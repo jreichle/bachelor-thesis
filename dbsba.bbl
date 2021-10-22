@@ -1,0 +1,101 @@
+\newcommand{\etalchar}[1]{$^{#1}$}
+\begin{thebibliography}{DLRMR13}
+
+\bibitem[Beo21a]{beom_crnn_2021}
+Beom.
+\newblock {\em {CRNN} ({CNN}+{RNN})}, September 2021.
+\newblock original-date: 2018-01-14T07:52:25Z.
+
+\bibitem[Beo21b]{beom_text_2021}
+Beom.
+\newblock {\em Text {Detector} for {OCR}}, August 2021.
+\newblock original-date: 2019-03-12T05:11:06Z.
+
+\bibitem[BRSS19]{balas_handbook_2019}
+Valentina~Emilia Balas, Sanjiban~Sekhar Roy, Dharmendra Sharma, and Pijush
+  Samui, editors.
+\newblock {\em Handbook of {Deep} {Learning} {Applications}}, volume 136 of
+  {\em Smart {Innovation}, {Systems} and {Technologies}}.
+\newblock Springer International Publishing, Cham, 2019.
+
+\bibitem[Cox17]{cox_translating_2017}
+Victoria Cox.
+\newblock {\em Translating {Statistics} to {Make} {Decisions}: {A} {Guide} for
+  the {Non}-{Statistician}}.
+\newblock Apress, Berkeley, CA, 2017.
+
+\bibitem[DLRMR13]{dumas_fundamentals_2013}
+Marlon Dumas, Marcello La~Rosa, Jan Mendling, and Hajo~A. Reijers.
+\newblock {\em Fundamentals of {Business} {Process} {Management}}.
+\newblock Springer Berlin Heidelberg, Berlin, Heidelberg, 2013.
+
+\bibitem[JP21]{johannesson_introduction_2021}
+Paul Johannesson and Erik Perjons.
+\newblock {\em An {Introduction} to {Design} {Science}}.
+\newblock Springer International Publishing, Cham, 2021.
+
+\bibitem[LGG{\etalchar{+}}18]{lin_focal_2018}
+Tsung-Yi Lin, Priya Goyal, Ross Girshick, Kaiming He, and Piotr Dollár.
+\newblock {\em Focal {Loss} for {Dense} {Object} {Detection}}.
+\newblock arXiv:1708.02002 [cs], February 2018.
+\newblock arXiv: 1708.02002.
+
+\bibitem[LSB18]{liao_textboxes_2018}
+Minghui Liao, Baoguang Shi, and Xiang Bai.
+\newblock {\em {TextBoxes}++: {A} {Single}-{Shot} {Oriented} {Scene} {Text}
+  {Detector}}.
+\newblock IEEE Transactions on Image Processing, 27(8):3676--3690, August 2018.
+\newblock arXiv: 1801.02765.
+
+\bibitem[OOK15]{oyedotun_deep_2015}
+Oyebade~K. Oyedotun, Ebenezer~O. Olaniyi, and Adnan Khashman.
+\newblock {\em Deep {Learning} in {Character} {Recognition} {Considering}
+  {Pattern} {Invariance} {Constraints}}.
+\newblock International Journal of Intelligent Systems and Applications,
+  7(7):1--10, June 2015.
+
+\bibitem[Pri12]{prince_computer_2012}
+Simon J.~D. Prince.
+\newblock {\em Computer {Vision}: {Models}, {Learning}, and {Inference}}.
+\newblock Cambridge University Press, June 2012.
+\newblock Google-Books-ID: PmrICLzHutgC.
+
+\bibitem[PRN{\etalchar{+}}17]{ponti_everything_2017}
+Moacir~Antonelli Ponti, Leonardo Sampaio~Ferraz Ribeiro, Tiago~Santana Nazare,
+  Tu~Bui, and John Collomosse.
+\newblock {\em Everything {You} {Wanted} to {Know} about {Deep} {Learning} for
+  {Computer} {Vision} but {Were} {Afraid} to {Ask}}.
+\newblock In 2017 30th {SIBGRAPI} {Conference} on {Graphics}, {Patterns} and
+  {Images} {Tutorials} ({SIBGRAPI}-{T}), pages 17--41, October 2017.
+\newblock ISSN: 2474-0705.
+
+\bibitem[SBY15]{shi_end--end_2015}
+Baoguang Shi, Xiang Bai, and Cong Yao.
+\newblock {\em An {End}-to-{End} {Trainable} {Neural} {Network} for
+  {Image}-based {Sequence} {Recognition} and {Its} {Application} to {Scene}
+  {Text} {Recognition}}.
+\newblock arXiv:1507.05717 [cs], July 2015.
+\newblock arXiv: 1507.05717.
+
+\bibitem[SM19]{shrestha_review_2019}
+Ajay Shrestha and Ausif Mahmood.
+\newblock {\em Review of {Deep} {Learning} {Algorithms} and {Architectures}}.
+\newblock IEEE Access, 7:53040--53065, 2019.
+\newblock Conference Name: IEEE Access.
+
+\bibitem[Smi07]{smith_overview_2007}
+R.~Smith.
+\newblock {\em An {Overview} of the {Tesseract} {OCR} {Engine}}.
+\newblock In Ninth {International} {Conference} on {Document} {Analysis} and
+  {Recognition} ({ICDAR} 2007), volume~2, pages 629--633, September 2007.
+\newblock ISSN: 2379-2140.
+
+\bibitem[ZJG{\etalchar{+}}20]{zhao_improving_2020}
+Zhenyao Zhao, Min Jiang, Shihui Guo, Zhenzhong Wang, Fei Chao, and Kay~Chen
+  Tan.
+\newblock {\em Improving {Deep} {Learning} based {Optical} {Character}
+  {Recognition} via {Neural} {Architecture} {Search}}.
+\newblock In 2020 {IEEE} {Congress} on {Evolutionary} {Computation} ({CEC}),
+  pages 1--7, July 2020.
+
+\end{thebibliography}

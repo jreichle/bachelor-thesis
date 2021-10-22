@@ -1,0 +1,58 @@
+\chapter{Theoretical Foundation}
+\section{Opical Character Recognition}
+
+\textbf{Deep Learning based OCR}~\cite{zhao_improving_2020}
+What is OCR:\ process of converting images of typed, handwritten or printed text into machine-encoded one
+includes two sub frameworks: text detection and text recognition
+
+\subsection{Text detection}
+Detect position coordinates containing text in input image
+Text detection more challenging
+
+Two object detection methods
+\begin{itemize}
+    \item R-CNN\\
+        views detection problem as classification problem\\
+        CNN to extract deep features of proposals by selective search\\ % TODO: research selective search
+        Use SVM to classify with features
+    \item YOLO
+        extract feature maps on entire image\\
+        directly regress bounding boxes on feature maps
+\end{itemize}
+YOLO generally slower but more accurate
+
+
+\textbf{Deep Learning in Character Recognition Considering Pattern Invariance
+Constraints}~\cite{oyedotun_deep_2015}
+Neural networks can learn features of task on chich they are designed and trained
+Neural networks better than other approaches (e.g.\ template matching, syntactic analysis)
+$\rightarrow$ NNs can learn and adapt to moderate variations (e.g.\ translation, rotation, scaling,
+noisy patterns)
+
+Deep Learning: neural network architecture of more than a single hidden layer as opposed to shallow
+networks
+Features of deep networks: distributed representation of knowledge at each hidden layer, distinct
+features are extracted by units or neurons in each hidden layer
+several units can be active concurrently
+
+
+
+\subsection{Character recognition}
+Recognize text based on position coordinates
+
+\section{Machine Learning}
+\begin{enumerate}
+    \item Supervised --- Unsupervised
+    \item Loss Function
+    \item Optimization techniques: Stochastic-Batch Gradient Descent, GD Momentum, Adam
+    \item Errors metrics
+    \item Bias-Variance tradeoff (including Regularization)
+\end{enumerate}
+
+
+\section{Deep Learning}
+\begin{enumerate}
+    \item ANN / MLP % Node, Feedforward, Backpropagation
+    \item CNN % layers --- convolutional, max-pooling
+    \item RNN % recurrent layer
+\end{enumerate}
