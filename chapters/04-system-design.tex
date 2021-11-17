@@ -1,20 +1,16 @@
 \chapter{System Design}
-
-Search for specific information
-% Vergleich muss gut genug sein
-
 \section{Approach comparison}
-% include Pipeline differences
+include Pipeline differences
 
-% why new model? important what it is trained on, most for documents, recognizing random alphanumeric
-% sequences
+% TODO: approaches to research: Faster R-CNN, Mask R-CNN, Yolo v3
+% TODO: look at DETR-DC5-R101 and Faster RCNN-R101-FPN+
 
 \subsection{Approach Research}
 \subsubsection*{GitHub implementation}
 Two models that can be used in conjunction
 
 \textbf{detection}~\cite{beom_text_2021}\\
-uses RetinaNet structure~\cite{lin_focal_2018}
+uses RetinaNet structure~\cite{lin_focal_2018}\\
 applies techniques from textboxes++~\cite{liao_textboxes_2018}
 
 \textbf{character recognition}~\cite{beom_crnn_2021}\\
@@ -42,9 +38,66 @@ Open Source OCR engine~\cite{smith_overview_2007}
         4. Linguistic Analysis\\
         5. Adaptive Classifier
 \end{itemize}
+Performs poorly with unstructured text with significant noise
 
-\subsubsection*{EAST}
-An Efficient and Accurate Scene Text Detector
+\subsubsection*{Faster-RCNN}
+A deeper look at how Faster-RCNN works~\cite{goswami_deeper_2018}
+composed of 3 neural nets:
+\begin{itemize}
+    \item Feature Network: pre-trained image classification netork $\rightarrow$ generate good features
+    \item Region Proposal Network:
+        \begin{itemize}
+            \item NN with 3 conv layers
+            \item one layer splits up network to: classification and bounding box regression
+            \item bounding box regression $\rightarrow$ bounding boxes are region of interes (ROI)
+                that might contain an object
+        \end{itemize}
+    \item Detection Network: take input from previous nets, generate final class and bounding box,
+        4 fully connected, 2 stacked common layers shared by classification and bounding box regression
+        layer
+\end{itemize}
+
+\subsubsection*{current research}
+An Efficient and Accurate Scene Text Detector~\cite{zhou_east_2017}
+
+SOFT:\ Softmax-free Transformer with Linear Complexity~\cite{lu_soft_2021}
+
+Generative Pretraining from Pixels~\cite{chen_generative_nodate}
+\begin{itemize}
+    \item unsupervised representation learning (approach transfered from NLP)
+    \item training of sequence Transformer to auto-regressively predict pixels without incorporating
+        knowledge of 2D input structure
+    \item Active part: GPT-2 scale model learns image representations and performs extremely well even
+        when compared to supervised models
+\end{itemize}
+
+Learning High-Precision Bounding Box for Rotated Object Detection via Kullback-Leibler
+Divergence~\cite{yang_learning_2021}
+\begin{itemize}
+    \item Deductive approach to rotated object detection
+    \item box is `translated' to 2D-Gaussian $\rightarrow$ KLD with prediction and true gaussian as Loss
+    \item LIMIT:\ cannot be directly applied to quadrilateral detection
+\end{itemize}
+
+DP-SSL:\ Towards Robust Semi-supervised Learning with A Few Labeled Samples~\cite{xu_dp-ssl_2021}
+\begin{itemize}
+    \item Semi-supervised learning:
+        \begin{itemize}
+            \item provides way to leverage unlabeled data by pseudo labels
+            \item performs poorly and unstable when size of labeled data is very small (low quality
+                of pseudo labels)
+        \end{itemize}
+    \item Data programming:
+        \begin{itemize}
+            \item paradigm for the programmatic creation of training sets
+            \item existing methods rely on human experts to provide initial labeling functions (LF)
+        \end{itemize}
+    \item DP-SSL
+        \begin{itemize}
+            \item multiple-choice learning (MCL) based approach to automatically generate labeling functions
+            \item scheme to generate probabilistic labels for unlabeled data
+        \end{itemize}
+\end{itemize}
 
 
 

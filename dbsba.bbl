@@ -11,23 +11,26 @@ Beom.
 \newblock {\em Text {Detector} for {OCR}}, August 2021.
 \newblock original-date: 2019-03-12T05:11:06Z.
 
-\bibitem[BRSS19]{balas_handbook_2019}
-Valentina~Emilia Balas, Sanjiban~Sekhar Roy, Dharmendra Sharma, and Pijush
-  Samui, editors.
-\newblock {\em Handbook of {Deep} {Learning} {Applications}}, volume 136 of
-  {\em Smart {Innovation}, {Systems} and {Technologies}}.
-\newblock Springer International Publishing, Cham, 2019.
-
 \bibitem[Cox17]{cox_translating_2017}
 Victoria Cox.
 \newblock {\em Translating {Statistics} to {Make} {Decisions}: {A} {Guide} for
   the {Non}-{Statistician}}.
 \newblock Apress, Berkeley, CA, 2017.
 
+\bibitem[CRC{\etalchar{+}}]{chen_generative_nodate}
+Mark Chen, Alec Radford, Rewon Child, Jeff Wu, Heewoo Jun, Prafulla Dhariwal,
+  David Luan, and Ilya Sutskever.
+\newblock {\em Generative {Pretraining} from {Pixels}}.
+\newblock page~12.
+
 \bibitem[DLRMR13]{dumas_fundamentals_2013}
 Marlon Dumas, Marcello La~Rosa, Jan Mendling, and Hajo~A. Reijers.
 \newblock {\em Fundamentals of {Business} {Process} {Management}}.
 \newblock Springer Berlin Heidelberg, Berlin, Heidelberg, 2013.
+
+\bibitem[Gos18]{goswami_deeper_2018}
+Subrata Goswami.
+\newblock {\em A deeper look at how {Faster}-{RCNN} works}, July 2018.
 
 \bibitem[JP21]{johannesson_introduction_2021}
 Paul Johannesson and Erik Perjons.
@@ -47,18 +50,20 @@ Minghui Liao, Baoguang Shi, and Xiang Bai.
 \newblock IEEE Transactions on Image Processing, 27(8):3676--3690, August 2018.
 \newblock arXiv: 1801.02765.
 
+\bibitem[LYZ{\etalchar{+}}21]{lu_soft_2021}
+Jiachen Lu, Jinghan Yao, Junge Zhang, Xiatian Zhu, Hang Xu, Weiguo Gao,
+  Chunjing Xu, Tao Xiang, and Li~Zhang.
+\newblock {\em {SOFT}: {Softmax}-free {Transformer} with {Linear}
+  {Complexity}}.
+\newblock arXiv:2110.11945 [cs], October 2021.
+\newblock arXiv: 2110.11945.
+
 \bibitem[OOK15]{oyedotun_deep_2015}
 Oyebade~K. Oyedotun, Ebenezer~O. Olaniyi, and Adnan Khashman.
 \newblock {\em Deep {Learning} in {Character} {Recognition} {Considering}
   {Pattern} {Invariance} {Constraints}}.
 \newblock International Journal of Intelligent Systems and Applications,
   7(7):1--10, June 2015.
-
-\bibitem[Pri12]{prince_computer_2012}
-Simon J.~D. Prince.
-\newblock {\em Computer {Vision}: {Models}, {Learning}, and {Inference}}.
-\newblock Cambridge University Press, June 2012.
-\newblock Google-Books-ID: PmrICLzHutgC.
 
 \bibitem[PRN{\etalchar{+}}17]{ponti_everything_2017}
 Moacir~Antonelli Ponti, Leonardo Sampaio~Ferraz Ribeiro, Tiago~Santana Nazare,
@@ -77,6 +82,13 @@ Baoguang Shi, Xiang Bai, and Cong Yao.
 \newblock arXiv:1507.05717 [cs], July 2015.
 \newblock arXiv: 1507.05717.
 
+\bibitem[SDA{\etalchar{+}}21]{srivastava_comparative_2021}
+Shrey Srivastava, Amit~Vishvas Divekar, Chandu Anilkumar, Ishika Naik, Ved
+  Kulkarni, and V.~Pattabiraman.
+\newblock {\em Comparative analysis of deep learning image detection
+  algorithms}.
+\newblock Journal of Big Data, 8(1):66, December 2021.
+
 \bibitem[SM19]{shrestha_review_2019}
 Ajay Shrestha and Ausif Mahmood.
 \newblock {\em Review of {Deep} {Learning} {Algorithms} and {Architectures}}.
@@ -90,6 +102,21 @@ R.~Smith.
   {Recognition} ({ICDAR} 2007), volume~2, pages 629--633, September 2007.
 \newblock ISSN: 2379-2140.
 
+\bibitem[XDZZ21]{xu_dp-ssl_2021}
+Yi~Xu, Jiandong Ding, Lu~Zhang, and Shuigeng Zhou.
+\newblock {\em {DP}-{SSL}: {Towards} {Robust} {Semi}-supervised {Learning} with
+  {A} {Few} {Labeled} {Samples}}.
+\newblock arXiv:2110.13740 [cs], October 2021.
+\newblock arXiv: 2110.13740.
+
+\bibitem[YYY{\etalchar{+}}21]{yang_learning_2021}
+Xue Yang, Xiaojiang Yang, Jirui Yang, Qi~Ming, Wentao Wang, Qi~Tian, and Junchi
+  Yan.
+\newblock {\em Learning {High}-{Precision} {Bounding} {Box} for {Rotated}
+  {Object} {Detection} via {Kullback}-{Leibler} {Divergence}}.
+\newblock arXiv:2106.01883 [cs], October 2021.
+\newblock arXiv: 2106.01883.
+
 \bibitem[ZJG{\etalchar{+}}20]{zhao_improving_2020}
 Zhenyao Zhao, Min Jiang, Shihui Guo, Zhenzhong Wang, Fei Chao, and Kay~Chen
   Tan.
@@ -97,5 +124,13 @@ Zhenyao Zhao, Min Jiang, Shihui Guo, Zhenzhong Wang, Fei Chao, and Kay~Chen
   {Recognition} via {Neural} {Architecture} {Search}}.
 \newblock In 2020 {IEEE} {Congress} on {Evolutionary} {Computation} ({CEC}),
   pages 1--7, July 2020.
+
+\bibitem[ZYW{\etalchar{+}}17]{zhou_east_2017}
+Xinyu Zhou, Cong Yao, He~Wen, Yuzhi Wang, Shuchang Zhou, Weiran He, and Jiajun
+  Liang.
+\newblock {\em {EAST}: {An} {Efficient} and {Accurate} {Scene} {Text}
+  {Detector}}.
+\newblock arXiv:1704.03155 [cs], July 2017.
+\newblock arXiv: 1704.03155.
 
 \end{thebibliography}

@@ -1,2 +1,39 @@
 \chapter{Exploratory Data Analysis}
 %  Python Software für Layout-Detection -> suchen
+
+% TODO: add costs
+% TODO: speed / accuracy tradeoff
+% TODO: cut down this part -> put into EDA part
+When determining whether automisation is an improvement four aspects have to be examined.
+These are time, costs, quality and flexibility.
+The aspects build a quadrangle that is based on the optimizing trade-off between the
+factors~\cite{dumas_fundamentals_2013}.
+
+Without software supporting the task of reading the name of the picture  and typing it into
+the system, can take long seconds, whereas a trained Deep Learning model could complete the task
+in a mere instant.
+Therefor automisation via Deep Learning should improve the efficiency of the process when compared to
+manually reading and typing the information off the image.
+
+Training costs for a Deep Learning model are very high due to the computing intensive
+backpropagation algorithm that tunes the network to the data.
+But the usage cost is low.
+For manual labor the opposite is the case as training a person to type in a label is done quickly
+and labor costs are high in comparison to the expenses for running the model.
+
+Both Deep Learning models and human labor are not 100\% accurate.
+It is human to make mistakes and because Deep Learning is trained only trained on a specific set
+of data it makes sense that not all predictions can be correct as there can always be outliers in
+the data. % TODO: find source
+The question is whether the model can be as accurate or even better than its human counterpart.
+This is especially interesting when it is applied in the real world where it might have to do good
+in subpar situations.
+An example is bad image quality.
+
+Flexibility is concerned with how well a process can adjust to changing requirements.
+A set of new equipment names that have to be included can pose a problem to a Deep Learning model
+because it is not trained for the new data.
+A human on the other hand should not have any problems in this regard.
+
+The main concern for the solution's efficacy is whether it is accurate enough.
+Therefor this work focuses on this aspect in particular.

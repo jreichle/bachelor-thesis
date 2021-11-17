@@ -3,44 +3,47 @@ Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
 The top-level auxiliary file: dbsba.aux
 The style file: dbstmpl.bst
 Database file #1: dbstmpl.bib
-You've used 15 entries,
+Warning--empty journal in chen_generative_nodate
+Warning--empty year in chen_generative_nodate
+You've used 20 entries,
             2535 wiz_defined-function locations,
-            644 strings with 7316 characters,
-and the built_in function-call counts, 6161 in all, are:
-= -- 590
-> -- 326
+            666 strings with 8423 characters,
+and the built_in function-call counts, 8728 in all, are:
+= -- 819
+> -- 560
 < -- 10
-+ -- 118
-- -- 114
-* -- 453
-:= -- 1031
-add.period$ -- 52
-call.type$ -- 15
-change.case$ -- 87
-chr.to.int$ -- 14
-cite$ -- 15
-duplicate$ -- 244
-empty$ -- 436
-format.name$ -- 131
-if$ -- 1243
++ -- 208
+- -- 203
+* -- 687
+:= -- 1499
+add.period$ -- 69
+call.type$ -- 20
+change.case$ -- 139
+chr.to.int$ -- 19
+cite$ -- 22
+duplicate$ -- 308
+empty$ -- 539
+format.name$ -- 220
+if$ -- 1716
 int.to.chr$ -- 2
 int.to.str$ -- 0
-missing$ -- 17
-newline$ -- 86
-num.names$ -- 46
-pop$ -- 111
+missing$ -- 20
+newline$ -- 113
+num.names$ -- 60
+pop$ -- 164
 preamble$ -- 1
-purify$ -- 117
+purify$ -- 179
 quote$ -- 0
-skip$ -- 196
+skip$ -- 258
 stack$ -- 0
-substring$ -- 264
-swap$ -- 44
+substring$ -- 310
+swap$ -- 53
 text.length$ -- 10
 text.prefix$ -- 5
 top$ -- 0
-type$ -- 100
-warning$ -- 0
-while$ -- 55
-width$ -- 19
-write$ -- 209
+type$ -- 148
+warning$ -- 2
+while$ -- 72
+width$ -- 22
+write$ -- 271
+(There were 2 warnings)

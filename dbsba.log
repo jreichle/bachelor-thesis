@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2021.4.18)  22 OCT 2021 12:57
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2021.4.18)  16 NOV 2021 18:20
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -344,45 +344,58 @@ ogo.png>]
 Chapter 1.
 [3
 
-] [4]
-<img/Chapter.drawio.png, id=32, 548.0475pt x 544.0325pt>
-File: img/Chapter.drawio.png Graphic file (type png)
-<use img/Chapter.drawio.png>
-Package pdftex.def Info: img/Chapter.drawio.png  used on input line 123.
-(pdftex.def)             Requested size: 398.33858pt x 395.43036pt.
-) (./chapters/02-theoretical-foundation.tex [5] [6 <./img/Chapter.drawio.png>]
+] [4]) (./chapters/02-theoretical-foundation.tex [5]
 Chapter 2.
-[7
+[6
 
-]) (./chapters/03-exploratory-data-analysis.tex [8]
+]
+Overfull \hbox (0.13452pt too wide) in paragraph at lines 62--64
+[]\OT1/cmr/bx/n/12 Ohne Quelle \OT1/cmr/m/n/12 Gen-er-a-tive and Con-vo-lu-tion
+ for `fea-ture gen-er-a-tion' $\OMS/cmsy/m/n/12 !$ \OT1/cmr/m/n/12 which
+ []
+
+[7]
+Overfull \hbox (33.21663pt too wide) in paragraph at lines 104--106
+\OT1/cmr/bx/n/12 Comparative anal-y-sis of deep learn-ing im-age de-tec-tion al
+-go-rithms \OT1/cmr/m/n/12 [[]]
+ []
+
+[8]
+Overfull \hbox (33.21663pt too wide) in paragraph at lines 156--158
+\OT1/cmr/bx/n/12 Comparative anal-y-sis of deep learn-ing im-age de-tec-tion al
+-go-rithms \OT1/cmr/m/n/12 [[]]
+ []
+
+[9]
+<img/Deep-Belief-Network.png, id=49, 435.6275pt x 320.19624pt>
+File: img/Deep-Belief-Network.png Graphic file (type png)
+<use img/Deep-Belief-Network.png>
+Package pdftex.def Info: img/Deep-Belief-Network.png  used on input line 187.
+(pdftex.def)             Requested size: 398.33858pt x 292.78613pt.
+ [10]) (./chapters/03-exploratory-data-analysis.tex [11 <./img/Deep-Belief-Netw
+ork.png>]
 Chapter 3.
-) (./chapters/04-system-design.tex [9
+) (./chapters/04-system-design.tex [12
 
 ]
 Chapter 4.
+[13
 
-Overfull \hbox (14.35736pt too wide) in paragraph at lines 16--19
-\OT1/cmr/m/n/12 uses Reti-naNet struc-ture [[]] ap-plies tech-niques from textb
-oxes++ [[]] 
- []
-
-[10
-
-]) (./chapters/05-implementation.tex [11]
+] [14]) (./chapters/05-implementation.tex [15]
 Chapter 5.
-) (./chapters/06-discussion.tex [12
+) (./chapters/06-discussion.tex [16
 
 ]
 Chapter 6.
-) (./chapters/07-conclusion.tex [13
+) (./chapters/07-conclusion.tex [17
 
 ]
 Chapter 7.
-) [14
+) [18
 
 ]
 Appendix A.
-[15
+[19
 
 ] (./dbsba.lof)
 \tf@lof=\write4
@@ -392,34 +405,40 @@ Appendix A.
 \tf@lot=\write5
 \openout5 = `dbsba.lot'.
 
- (./dbsba.bbl [16
+ (./dbsba.bbl [20
 
 ]
-Underfull \hbox (badness 2486) in paragraph at lines 28--31
+Underfull \hbox (badness 2486) in paragraph at lines 27--30
 \OT1/cmr/m/n/12 Rei-jers.  \OT1/cmr/m/it/12 Fun-da-men-tals of Busi-ness Pro-ce
 ss Man-age-ment\OT1/cmr/m/n/12 .
  []
 
-[17
+
+Underfull \hbox (badness 4266) in paragraph at lines 54--60
+\OT1/cmr/m/it/12 SOFT: Softmax-free Trans-former with Lin-ear Com-plex-ity\OT1/
+cmr/m/n/12 .
+ []
+
+[21
 
 ]
-Underfull \hbox (badness 1226) in paragraph at lines 64--71
+Underfull \hbox (badness 1226) in paragraph at lines 69--76
 []\OT1/cmr/m/n/12 Moacir An-tonelli Ponti, Leonardo Sam-paio Fer-raz Ribeiro,
  []
 
-) [18]
+[22]) [23]
 Appendix B.
-[19
+[24
 
 ] (./dbsba.aux) ) 
 Here is how much of TeX's memory you used:
- 4389 strings out of 478994
- 60346 string characters out of 5858184
- 377330 words of memory out of 5000000
- 21777 multiletter control sequences out of 15000+600000
+ 4394 strings out of 478994
+ 60475 string characters out of 5858184
+ 377398 words of memory out of 5000000
+ 21782 multiletter control sequences out of 15000+600000
  411536 words of font info for 56 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 83i,10n,88p,244b,375s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 83i,11n,88p,343b,476s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/cm-super/c
 m-super-ts1.enc}</usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts
 /cm/cmbx12.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/
@@ -430,10 +449,10 @@ mr8.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmsl
 0.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12
 .pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfrm1200.p
 fb>
-Output written on dbsba.pdf (22 pages, 164635 bytes).
+Output written on dbsba.pdf (27 pages, 186979 bytes).
 PDF statistics:
- 113 PDF objects out of 1000 (max. 8388607)
- 76 compressed objects within 1 object stream
+ 129 PDF objects out of 1000 (max. 8388607)
+ 87 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  11 words of extra memory for PDF output out of 10000 (max. 10000000)
 
