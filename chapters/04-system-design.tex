@@ -40,22 +40,6 @@ Open Source OCR engine~\cite{smith_overview_2007}
 \end{itemize}
 Performs poorly with unstructured text with significant noise
 
-\subsubsection*{Faster-RCNN}
-A deeper look at how Faster-RCNN works~\cite{goswami_deeper_2018}
-composed of 3 neural nets:
-\begin{itemize}
-    \item Feature Network: pre-trained image classification netork $\rightarrow$ generate good features
-    \item Region Proposal Network:
-        \begin{itemize}
-            \item NN with 3 conv layers
-            \item one layer splits up network to: classification and bounding box regression
-            \item bounding box regression $\rightarrow$ bounding boxes are region of interes (ROI)
-                that might contain an object
-        \end{itemize}
-    \item Detection Network: take input from previous nets, generate final class and bounding box,
-        4 fully connected, 2 stacked common layers shared by classification and bounding box regression
-        layer
-\end{itemize}
 
 \subsubsection*{current research}
 An Efficient and Accurate Scene Text Detector~\cite{zhou_east_2017}
