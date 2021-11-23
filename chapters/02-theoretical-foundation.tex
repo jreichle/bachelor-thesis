@@ -1,4 +1,4 @@
-\chapter{Theoretical Foundation}
+\chapter{Theoretical Foundation}\label{ch:theoretical}
 
 \section{Machine Learning}
 
@@ -10,6 +10,14 @@
 \end{enumerate}
 
 \section{Deep Learning}
+` One of the main differences from traditional ma- chine learning (ML) methods is that DL
+automatically learns how to represent data using multiple layers of abstraction [5], [6].
+In traditional ML, a significant amount of work has to be spent on “feature engineering” to
+build this representation manually, but this process can now be automated to a higher degree.
+Having an automated and data-driven method for learning how to represent data improves both the
+performance of the model and reduces requirements for manual feature engineering work
+[7], [8].'~\cite{arpteg_software_2018}
+
 \begin{enumerate}
     \item ANN / MLP % Node, Feedforward, Backpropagation / Optimization
         \begin{itemize}
@@ -24,6 +32,7 @@
             \item RNN % recurrent layer
             \item Specific foundation architectures for relevant approaches
         \end{itemize}
+    \item transfer learning: reuse parameters from pretrained models
 \end{enumerate}
 
 \textbf{Deep Learning in Character Recognition Considering Pattern Invariance
@@ -57,47 +66,6 @@ Classification of deep learning architectures
         combination of discriminative and generative\\
         generally pre-trained and discriminately fine-tuned for deterministic purposes
 \end{itemize}
-
-
-\textbf{Ohne Quelle}
-Generative and Convolution for `feature generation' $\rightarrow$ which one is best?
-
-
-
-\subsection{Generative Architectures}
-\textbf{Deep Learning in Character Recognition Considering Pattern Invariance
-Constraints}~\cite{oyedotun_deep_2015}
-Stacked Denoizing Auto Encoder lowest error rate on translation
-Deep Belief Network lowest error rate on rotation, scale, low noise
-
-\subsubsection{Auto-Encoder}
-Auto-Encoder not always seen as generative!
-\textbf{Deep Learning in Character Recognition Considering Pattern Invariance
-Constraints}~\cite{oyedotun_deep_2015}
-denoizing
-\begin{itemize}
-    \item Generative
-    \item Learn underlying features during training
-    \item Single layer, feedfoward network
-        \begin{itemize}
-            \item input and output neurons in equal amount
-            \item number of hidden units is smaller
-            \item endcode --- input $\rightarrow$ hidden; decode --- hidden $\rightarrow$ output
-        \end{itemize}
-    \item Unsupervised (see source for details)
-    \item auto encoders can be stacked on one another $\rightarrow$ more distributed and hierarchical
-        representation $\rightarrow$ Stacked Auto Encoders
-\end{itemize}
-
-\subsubsection{Deep belief network}
-\textbf{Deep Learning in Character Recognition Considering Pattern Invariance
-Constraints}~\cite{oyedotun_deep_2015}
-\begin{itemize}
-    \item Generative
-    \item graphical and probabilistic, directed acyclic graph composed of stochastic variables
-    \item combination of Sigmoid Belief Network (aka Bayesian network) and a Restricted Blotzman Machine
-\end{itemize}
-
 
 \subsection{Convolutional Neural Network}
 \textbf{Comparative analysis of deep learning image detection
@@ -181,10 +149,8 @@ Neural networks better than other approaches (e.g.\ template matching, syntactic
 $\rightarrow$ NNs can learn and adapt to moderate variations (e.g.\ translation, rotation, scaling,
 noisy patterns)
 
-\subsection{Character recognition}
+\subsection{Text Recognition}
 Recognize text based on position coordinates
-\begin{center}
-    \includegraphics[width=\textwidth]{img/Deep-Belief-Network.png}
-\end{center}
 
+character based or word based
 \subsection{End-To-End}

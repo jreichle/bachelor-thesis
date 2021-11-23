@@ -1,49 +1,50 @@
 This is BibTeX, Version 0.99d (TeX Live 2021)
 Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
 The top-level auxiliary file: dbsba.aux
-The style file: dbstmpl.bst
+The style file: alpha.bst
 Database file #1: dbstmpl.bib
-Warning--empty journal in chen_generative_nodate
-Warning--empty year in chen_generative_nodate
-You've used 20 entries,
-            2535 wiz_defined-function locations,
-            666 strings with 8423 characters,
-and the built_in function-call counts, 8728 in all, are:
-= -- 819
-> -- 560
-< -- 10
-+ -- 208
-- -- 203
-* -- 687
-:= -- 1499
-add.period$ -- 69
-call.type$ -- 20
-change.case$ -- 139
-chr.to.int$ -- 19
-cite$ -- 22
-duplicate$ -- 308
-empty$ -- 539
-format.name$ -- 220
-if$ -- 1716
+Warning--I didn't find a database entry for "chen_generative_nodate"
+Warning--to sort, need author or key in noauthor_ieee_1998
+Warning--empty author in noauthor_ieee_1998
+You've used 23 entries,
+            2543 wiz_defined-function locations,
+            691 strings with 9534 characters,
+and the built_in function-call counts, 10636 in all, are:
+= -- 1014
+> -- 662
+< -- 13
++ -- 243
+- -- 239
+* -- 833
+:= -- 1777
+add.period$ -- 79
+call.type$ -- 23
+change.case$ -- 181
+chr.to.int$ -- 22
+cite$ -- 26
+duplicate$ -- 383
+empty$ -- 674
+format.name$ -- 257
+if$ -- 2132
 int.to.chr$ -- 2
 int.to.str$ -- 0
-missing$ -- 20
-newline$ -- 113
-num.names$ -- 60
-pop$ -- 164
+missing$ -- 22
+newline$ -- 128
+num.names$ -- 69
+pop$ -- 182
 preamble$ -- 1
-purify$ -- 179
+purify$ -- 206
 quote$ -- 0
-skip$ -- 258
+skip$ -- 335
 stack$ -- 0
-substring$ -- 310
-swap$ -- 53
-text.length$ -- 10
-text.prefix$ -- 5
+substring$ -- 428
+swap$ -- 82
+text.length$ -- 13
+text.prefix$ -- 4
 top$ -- 0
-type$ -- 148
+type$ -- 172
 warning$ -- 2
-while$ -- 72
-width$ -- 22
-write$ -- 271
-(There were 2 warnings)
+while$ -- 91
+width$ -- 25
+write$ -- 316
+(There were 3 warnings)

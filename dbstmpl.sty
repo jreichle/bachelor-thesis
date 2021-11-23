@@ -51,7 +51,8 @@
 \pagestyle{fancy}
 \headheight 14pt
 \fancyhf{}
-\fancyhead[L]{\small\slshape\leftmark}
+\fancyhead[L]{\small\leftmark}
+%\fancyhead[R]{\small\thepage}
 \fancyfoot[C]{\thepage}
 
 % subsubsections numerieren und ins Inhaltsverzeichnis aufnehmen
@@ -110,7 +111,6 @@
 
 %%
 %% Ausgabe der Erklaerung ueber die selbstaendige Anfertigung
-%% einer Diplomarbeit
 %%
 \newcommand{\erklaerung}{
   \begin{titlepage}
@@ -122,7 +122,7 @@
       \vspace{1cm}
 
       \begin{minipage}{9.8cm}
-       I hereby certify that I have written \the\arbeit\ on my own and that I have not used any
+       I hereby certify that I have written this \the\arbeit\ on my own and that I have not used any
        sources or aids other than those indicated.
 
         \vspace{1cm}

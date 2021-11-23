@@ -1,78 +1,95 @@
 \chapter{Introduction}\label{ch:intro}
 \section{Motivation}
-Optical Character Recognition is the concept of extracting typed, handwritten or printed text
+% TODO: make more inciting
+Optical Character Recognition (OCR) is the concept of extracting typed, handwritten or printed text
 from an image.
-Techniques for this concept have improved a lot due to the advances in the field of deep
-learning~\cite{zhao_improving_2020}.
+Techniques for this concept have improved a lot due to the advances in the field of Deep
+Learning~\cite{zhao_improving_2020}.
 Deep Learning is a technology based on Artificial Neural Networks where data is processed
 in multiple layers to extract complex features and solve a given problem~\cite{shrestha_review_2019}.
 Deep Learning has only caught on in the recent years as the big computational cost has been met
 by the improvement in computer hardware~\cite{ponti_everything_2017}.
 Finding the right solution in the space of deep learning and applying these new capabilities to
 the use case of extracting information of equipment labels is the focus of this thesis.
+% TODO: state relevance
 
 \section{Problem description}\label{se:problem}
-The central part of the bachelor thesis is finding the right approach for the extraction of textual
-information of of images with equipment labels.
+The central part of the bachelor thesis is laying a foundation for finding the right approach for
+the extraction of textual information from images with equipment labels.
 This includes defining functional requirements such as detecting rotated text but also non functional
-requirements such as given computational power of mobile devices that are to use the solution.
+requirements such as given computational power of mobile devices the solution.
 These requirements define properties that a solution must have in order to be classified as viable.
 Thus the discussion of techniques from end-to-end OCR to dividing the process into text detection and
 text recognition is centered around the requirements which are given by the problem.
-The research ranges from established solutions for similar problems to current research in the field.
-% TODO: add more
+Critical factors such as the availability of data and the complexity of implementing and training a
+Deep Learning model also need to be assessed.
 
 Following aspects such as implementing, training, deploying and maintaining a solution in a
 production environment shall not be subject of this thesis.
 
-\section{Methodology}
+Make Pipeline the problem?
 
-The goal of this work is to implement and train a Deep Learning model to read in labels from photos.
-The emerging artifact can be used to solve the problem detailed in chapter~\ref{se:problem}.
-The expository instantiation is helpful to gain more understanding the artifact as it is common
-in design science.
-In particular this is justificatory knowledge on the design on the Deep Learning model and
-Machine Learning way of approaching problems.
-This is important in order to apply it and to optimize existing research to the specific problem.
+\section{Methodology}\label{se:methodology}
+The methodology of this \the\arbeit\ can be described as a literature review.
+As such, the research question guiding the process is most crucial: Which state of the art Deep
+Learning approaches for OCR are viable for the use case of extracting textual label data from
+images.
+The following section describes how relevant literature is identified, analysed and synthesised.
 
-The methodology is based on action research~\cite{johannesson_introduction_2021}.
-It constists of a cycle of five phases: Diagnosis, Planning, Intervention, Evaluation, Reflection.
-The first cycle will entail an exploratory data analysis which corresponds to the Diagnosis part.
-Here it is important to recognize main characteristics of the images and to find outliers
-and other potential problems~\cite{cox_translating_2017}.
+Add: how was problem defined
+
+Searching:
+search strategy for specific review: $\rightarrow$ provide reasoning behind choices
+\begin{itemize}
+    \item search tearms
+    \item databases
+    \item inclusion \& exclusion criteria: year of publification, type of article, journal, research
+        quality
+\end{itemize}
+write all decisions down, how is search documented
 The research is then extended to existing practical solutions for similar practical problems as
 well as proposed architectures from academic research.
+documentation of search process and selection, asses quality of search process and selection
+
+Analysis:
+how is data prepared for analysis
+analyse problem: find requirements
+type of information that needs to be extracted: what works, why, not necesseraly how
+literature review (state of the art)
+how? top journals of last few years
 Theoretical knowledge about the models as well as practical information about results for
-similar problems contribute to the discussion about which approach is the most promissing.
-Combining architectures is also a viable possibility to solve the given problem.
-This concludes the Planning phase and will lead to a model exaptation that evolves to be the
-artifact at the center of this thesis.
-The next step is implementing and training the chosen approach which.
-Evaluation for of the current model follows.
-Storing and analyzing results of training and cross validation as well as visualizing the training
-progress is an important part of this.
-In the Reflection stage it is decided whether a new cycle should be carried out.
 
-From the second cycle on the first three phases change as there already is a model that is to be
-improved.
-This time the Diagnosis phase entails asking questions about the existing model: What worked?
-Why did it work/not work? What needs to change?
-Changes are planned and implemented accordingly.
-The Evaluation and Reflection phases are not changing in the second cycle thus closing the loop.
-The incremental adjustments to the model are made in order to improve the accuracy.
-This includes possibly adjusting the architecture, hyperparameter tuning and preprocessing approaches
-like image compression.
+Synthesis
 
-% TODO: add chapter oversight and their connections -> add next lines
+after review:
+discuss different approchoaches pros and cons for problem
+methodogical limitations: practice is always different, \ldots
 
-\section{Expected results and outlook}
-The research into the theoretical foundation of Deep Learning and into possible approaches leads
-to a strong understanding of the underlying technology.
-This is helpful to produce a comparison of approaches that is based on theoretical as well as
-practical knowledge.
-The goal is to find out which approach work best for the chosen practical problem and why that is the
-case.
-Implementation and training of the most promissing one is yielding the artifact this work revolves
-around.
-The process of optimization not only improves the solution to the problem (see~\ref{se:problem}) but
-is also used to learn more about the implemented approach.
+\section{Expected results}
+In the following section the structure of the \the\arbeit\ is listed and each chapter's expected
+result is detailed along with its benefits for the overall objective of producing an overview of
+state of the art OCR relevant for the problem described in Section~\ref{se:problem}.
+
+In Chapter~\ref{ch:theoretical} the theoretical foundation for the \the\arbeit\ which is needed for
+comprehension of the following chapters is gathered.
+This includes general principles of Deep Learning and by extension Machine Learning but also of OCR.
+
+In Chapter~\ref{ch:problem} the problem from Section~\ref{se:problem} is addressed in more detail.
+The result shall be a firm understanding of functional and non-functional requirements both on the
+technical and the business process side.
+These requirements are the point of focus for the further examination of OCR techniques.
+
+After laying the foundation, in Chapter~\ref{ch:research} current research in regards to the
+identified requirements is examined.
+The resulting overview can be viewed as a basis for a decision when it comes implementing a practical
+solution.
+
+Therefore it enables the discussion in Chapter~\ref{ch:discussion}.
+Here not only the results and the availability of a solution but also the methodology of this work
+are assessed critically.
+
+The conclusion is a summary of the results compared to the expected results detailed in this chapter
+as well as an outlook for further research into the topic.
+
+
+`A major challenge in developing DL systems is the difficulties in estimating the results before a system has been trained and tested'\cite{arpteg_software_2018}

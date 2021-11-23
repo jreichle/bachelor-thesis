@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2021.4.18)  16 NOV 2021 18:20
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2021.4.18)  23 NOV 2021 17:39
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -235,6 +235,9 @@ Package: subfigure 2002/03/15 v2.1.5 subfigure package
 \subfig@top=\skip65
 \subfig@bottom=\skip66
 )
+(/usr/local/texlive/2021/texmf-dist/tex/latex/base/fontenc.sty
+Package: fontenc 2020/08/10 v2.0s Standard LaTeX package
+)
 (/usr/local/texlive/2021/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
 File: l3backend-pdftex.def 2021-03-18 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count275
@@ -243,20 +246,20 @@ File: l3backend-pdftex.def 2021-03-18 L3 backend support: PDF output (pdfTeX)
 (./dbsba.aux)
 \openout1 = `dbsba.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 16.
-LaTeX Font Info:    ... okay on input line 16.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 16.
-LaTeX Font Info:    ... okay on input line 16.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 16.
-LaTeX Font Info:    ... okay on input line 16.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 16.
-LaTeX Font Info:    ... okay on input line 16.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 16.
-LaTeX Font Info:    ... okay on input line 16.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 16.
-LaTeX Font Info:    ... okay on input line 16.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 16.
-LaTeX Font Info:    ... okay on input line 16.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
 
 *geometry* detected driver: pdftex
 *geometry* verbose mode - [ preamble ] result:
@@ -306,8 +309,37 @@ LaTeX Font Info:    ... okay on input line 16.
 \everyMPtoPDFconversion=\toks32
 ) (/usr/local/texlive/2021/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
+
+(/usr/local/texlive/2021/texmf-dist/tex/generic/infwarerr/infwarerr.sty
+Package: infwarerr 2019/12/03 v1.5 Providing info/warning/error messages (HO)
+)
+(/usr/local/texlive/2021/texmf-dist/tex/latex/grfext/grfext.sty
+Package: grfext 2019/12/03 v1.3 Manage graphics extensions (HO)
+
+(/usr/local/texlive/2021/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty
+Package: kvdefinekeys 2019-12-19 v1.6 Define keys (HO)
+)) (/usr/local/texlive/2021/texmf-dist/tex/latex/kvoptions/kvoptions.sty
+Package: kvoptions 2020-10-07 v3.14 Key value format for package options (HO)
+
+(/usr/local/texlive/2021/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty
+Package: ltxcmds 2020-05-10 v1.25 LaTeX kernel commands for general use (HO)
+)
+(/usr/local/texlive/2021/texmf-dist/tex/generic/kvsetkeys/kvsetkeys.sty
+Package: kvsetkeys 2019/12/15 v1.18 Key value parser (HO)
+))
+(/usr/local/texlive/2021/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty
+Package: pdftexcmds 2020-06-27 v0.33 Utility functions of pdfTeX for LuaTeX (HO
+)
+Package pdftexcmds Info: \pdf@primitive is available.
+Package pdftexcmds Info: \pdf@ifprimitive is available.
+Package pdftexcmds Info: \pdfdraftmode found.
+)
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
 85.
+Package grfext Info: Graphics extension search list:
+(grfext)             [.pdf,.png,.jpg,.mps,.jpeg,.jbig2,.jb2,.PDF,.PNG,.JPG,.JPE
+G,.JBIG2,.JB2,.eps]
+(grfext)             \AppendGraphicsExtensions on input line 504.
 
 (/usr/local/texlive/2021/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
@@ -316,15 +348,15 @@ e
 <img/Logo.png, id=1, 300.12125pt x 168.63pt>
 File: img/Logo.png Graphic file (type png)
 <use img/Logo.png>
-Package pdftex.def Info: img/Logo.png  used on input line 18.
+Package pdftex.def Info: img/Logo.png  used on input line 19.
 (pdftex.def)             Requested size: 199.16928pt x 111.9111pt.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 18.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 19.
 
 
 (/usr/local/texlive/2021/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 18.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 19.
 
 
 (/usr/local/texlive/2021/texmf-dist/tex/latex/amsfonts/umsb.fd
@@ -349,53 +381,47 @@ Chapter 2.
 [6
 
 ]
-Overfull \hbox (0.13452pt too wide) in paragraph at lines 62--64
-[]\OT1/cmr/bx/n/12 Ohne Quelle \OT1/cmr/m/n/12 Gen-er-a-tive and Con-vo-lu-tion
- for `fea-ture gen-er-a-tion' $\OMS/cmsy/m/n/12 !$ \OT1/cmr/m/n/12 which
+Overfull \hbox (33.11328pt too wide) in paragraph at lines 72--74
+\T1/cmr/bx/n/12 Comparative anal-y-sis of deep learn-ing im-age de-tec-tion al-
+go-rithms \T1/cmr/m/n/12 [[]]
  []
 
-[7]
-Overfull \hbox (33.21663pt too wide) in paragraph at lines 104--106
-\OT1/cmr/bx/n/12 Comparative anal-y-sis of deep learn-ing im-age de-tec-tion al
--go-rithms \OT1/cmr/m/n/12 [[]]
+[7] [8]
+Overfull \hbox (33.11328pt too wide) in paragraph at lines 124--126
+\T1/cmr/bx/n/12 Comparative anal-y-sis of deep learn-ing im-age de-tec-tion al-
+go-rithms \T1/cmr/m/n/12 [[]]
  []
 
-[8]
-Overfull \hbox (33.21663pt too wide) in paragraph at lines 156--158
-\OT1/cmr/bx/n/12 Comparative anal-y-sis of deep learn-ing im-age de-tec-tion al
--go-rithms \OT1/cmr/m/n/12 [[]]
- []
-
-[9]
-<img/Deep-Belief-Network.png, id=49, 435.6275pt x 320.19624pt>
-File: img/Deep-Belief-Network.png Graphic file (type png)
-<use img/Deep-Belief-Network.png>
-Package pdftex.def Info: img/Deep-Belief-Network.png  used on input line 187.
-(pdftex.def)             Requested size: 398.33858pt x 292.78613pt.
- [10]) (./chapters/03-exploratory-data-analysis.tex [11 <./img/Deep-Belief-Netw
-ork.png>]
+[9]) (./chapters/03-problem.tex [10]
 Chapter 3.
-) (./chapters/04-system-design.tex [12
+
+Overfull \hbox (4.72183pt too wide) in paragraph at lines 27--28
+[]\T1/cmr/m/n/12 mobile phone com-pu-ta-tional ca-pa-bil-i-ties $\OMS/cmsy/m/n/
+12 !$ \T1/cmr/m/n/12 per-for-mance, GPU/ANE 
+ []
+
+[11
+
+] [12] [13]) (./chapters/04-overview.tex [14]
+Chapter 4.
+[15
 
 ]
-Chapter 4.
-[13
 
-] [14]) (./chapters/05-implementation.tex [15]
+LaTeX Warning: Citation `chen_generative_nodate' on page 16 undefined on input 
+line 54.
+
+[16]) (./chapters/05-discussion.tex [17]
 Chapter 5.
-) (./chapters/06-discussion.tex [16
+) (./chapters/06-conclusion.tex [18
 
 ]
 Chapter 6.
-) (./chapters/07-conclusion.tex [17
-
-]
-Chapter 7.
-) [18
+) [19
 
 ]
 Appendix A.
-[19
+[20
 
 ] (./dbsba.lof)
 \tf@lof=\write4
@@ -405,54 +431,60 @@ Appendix A.
 \tf@lot=\write5
 \openout5 = `dbsba.lot'.
 
- (./dbsba.bbl [20
+ (./dbsba.bbl [21
 
 ]
-Underfull \hbox (badness 2486) in paragraph at lines 27--30
-\OT1/cmr/m/n/12 Rei-jers.  \OT1/cmr/m/it/12 Fun-da-men-tals of Busi-ness Pro-ce
-ss Man-age-ment\OT1/cmr/m/n/12 .
+Underfull \hbox (badness 2503) in paragraph at lines 30--33
+\T1/cmr/m/n/12 Rei-jers.  \T1/cmr/m/it/12 Fun-da-men-tals of Busi-ness Pro-cess
+ Man-age-ment\T1/cmr/m/n/12 .
  []
 
-
-Underfull \hbox (badness 4266) in paragraph at lines 54--60
-\OT1/cmr/m/it/12 SOFT: Softmax-free Trans-former with Lin-ear Com-plex-ity\OT1/
-cmr/m/n/12 .
- []
-
-[21
+[22
 
 ]
-Underfull \hbox (badness 1226) in paragraph at lines 69--76
-[]\OT1/cmr/m/n/12 Moacir An-tonelli Ponti, Leonardo Sam-paio Fer-raz Ribeiro,
+Underfull \hbox (badness 3029) in paragraph at lines 58--63
+\T1/cmr/m/n/12 SOFT: Softmax-free Trans-former with Lin-ear Com-plex-ity.
  []
 
-[22]) [23]
+
+Underfull \hbox (badness 1237) in paragraph at lines 77--84
+[]\T1/cmr/m/n/12 Moacir An-tonelli Ponti, Leonardo Sam-paio Fer-raz Ribeiro,
+ []
+
+[23]) [24]
 Appendix B.
-[24
+[25
 
-] (./dbsba.aux) ) 
+] (./dbsba.aux)
+
+LaTeX Warning: There were undefined references.
+
+ ) 
 Here is how much of TeX's memory you used:
- 4394 strings out of 478994
- 60475 string characters out of 5858184
- 377398 words of memory out of 5000000
- 21782 multiletter control sequences out of 15000+600000
- 411536 words of font info for 56 fonts, out of 8000000 for 9000
+ 5046 strings out of 478994
+ 69667 string characters out of 5858184
+ 385973 words of memory out of 5000000
+ 22401 multiletter control sequences out of 15000+600000
+ 416039 words of font info for 56 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 83i,11n,88p,343b,476s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/cm-super/c
-m-super-ts1.enc}</usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts
-/cm/cmbx12.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/
-cm/cmr12.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm
-/cmr17.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/c
-mr8.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmsl
-10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy1
-0.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12
-.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfrm1200.p
-fb>
-Output written on dbsba.pdf (27 pages, 186979 bytes).
+ 83i,11n,88p,343b,492s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}
+{/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}<
+/usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></us
+r/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr
+/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfbx1200.pfb></usr/l
+ocal/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfbx1440.pfb></usr/loc
+al/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfbx1728.pfb></usr/local
+/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfbx2488.pfb></usr/local/t
+exlive/2021/texmf-dist/fonts/type1/public/cm-super/sfrm1095.pfb></usr/local/tex
+live/2021/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb></usr/local/texli
+ve/2021/texmf-dist/fonts/type1/public/cm-super/sfrm1440.pfb></usr/local/texlive
+/2021/texmf-dist/fonts/type1/public/cm-super/sfrm2488.pfb></usr/local/texlive/2
+021/texmf-dist/fonts/type1/public/cm-super/sfti1200.pfb>
+Output written on dbsba.pdf (28 pages, 226140 bytes).
 PDF statistics:
- 129 PDF objects out of 1000 (max. 8388607)
- 87 compressed objects within 1 object stream
+ 144 PDF objects out of 1000 (max. 8388607)
+ 100 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 11 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 6 words of extra memory for PDF output out of 10000 (max. 10000000)
 
