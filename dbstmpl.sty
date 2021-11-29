@@ -30,6 +30,10 @@
 \RequirePackage{fancyhdr}
 \RequirePackage[nottoc]{tocbibind}
 \RequirePackage{graphicx}
+\RequirePackage{subfigure}
+\RequirePackage[T1]{fontenc}
+\RequirePackage{verbatim}
+\RequirePackage{acro}
 
 %%
 %% haeufig benutzte Symbole
@@ -39,6 +43,17 @@
 \newcommand{\Q}{\mathbb{Q}}    % Menge der rationalen Zahlen
 \newcommand{\R}{\mathbb{R}}    % Menge der reellen Zahlen
 \newcommand{\C}{\mathbb{C}}    % Menge der komplexen Zahlen
+
+%%
+%% haeufig benutzte Begriffe
+%%
+\DeclareAcronym{OCR}{short=OCR,long=Optical Character Recognition}
+\DeclareAcronym{DL}{short=DL,long=Deep Learning}
+\DeclareAcronym{ML}{short=ML,long=Machine Learning}
+\DeclareAcronym{NN}{short=NN,long=Neural Net}
+\DeclareAcronym{FR}{short=FR,long=functional requirement}
+\DeclareAcronym{NFR}{short=NFR,long=non-functional requirement}
+\DeclareAcronym{DR}{short=DR,long=data requirement}
 
 %%
 %% Einstellungen
@@ -79,7 +94,7 @@
   \begin{titlepage}
   \vspace{-2cm}
   \begin{center}
-       \includegraphics[width=0.5\textwidth]{img/Logo.png}
+       \includegraphics[width=0.5\textwidth]{img/Logo.jpeg}
   \end{center}
 
   \begin{center}
@@ -95,7 +110,7 @@
       \vspace{1cm}
       \large \the\bearbeiter
 
-      \large Matriculation no. 04797218
+      \large Matriculation No. 04797218
 
       \vspace{\fill}
       \normalsize
@@ -122,8 +137,8 @@
       \vspace{1cm}
 
       \begin{minipage}{9.8cm}
-       I hereby certify that I have written this \the\arbeit\ on my own and that I have not used any
-       sources or aids other than those indicated.
+       I hereby certify that I have written this bachelor thesis on my own and that I have not
+       used any sources or aids other than those indicated.
 
         \vspace{1cm}
         \the\ort, the \the\abgabetermin

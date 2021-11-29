@@ -1,11 +1,9 @@
 \documentclass[pdftex,12pt,a4paper]{report}
 \usepackage{dbstmpl}
-\usepackage{subfigure}
-\usepackage[T1]{fontenc}
 
 % Hier die eigenen Daten eintragen
 \global\arbeit{Bachelor Thesis}
-\global\titel{Label Extraction from Image via Deep Learning}
+\global\titel{Optical Character Recognition for Labels Using Deep Learning}
 \global\bearbeiter{Johannes Reichle}
 \global\matrikel{04797218}
 \global\betreuer{Prof.\ Dr.\ Rainer Schmidt}
@@ -22,10 +20,20 @@
 \input{chapters/00-abstract.tex}
 
 \tableofcontents
+\listoffigures
+% delete group thing to have tables on new page
+\begingroup
+    \let\clearpage\relax
+    \listoftables
+\endgroup
+
+\chapter*{Abbreviations}
+\addcontentsline{toc}{chapter}{Abbreviations}
+\printacronyms[heading=none]
 
 \input{chapters/01-introduction.tex}
-\input{chapters/02-theoretical-foundation.tex}
-\input{chapters/03-problem.tex}
+\input{chapters/02-problem.tex}
+\input{chapters/03-theoretical-foundation.tex}
 \input{chapters/04-overview.tex}
 \input{chapters/05-discussion.tex}
 \input{chapters/06-conclusion.tex}
@@ -33,16 +41,6 @@
 \appendix
 
 \chapter{References}
-
-% Abbildungsverzeichnis (kann auch nach dem Inhaltsverzeichnis kommen)
-\listoffigures
-
-% delete group thing to have tables on new page
-\begingroup
-\let\clearpage\relax
-% Tabellenverzeichnis (kann auch nach dem Inhaltsverzeichnis kommen)
-\listoftables
-\endgroup
 
 % Literaturverzeichnis
 %\bibliographystyle{dbstmpl}    % verwendet dbstmpl.bst

@@ -1,0 +1,143 @@
+\chapter{Problem analysis}\label{ch:problem} This chapter entails an analysis of the problem which is the research question's foundation.
+It is crucial, as the quality of requirements ultimately determines the quality of the literature review.
+
+%\section{Requirements}
+For traditional software projects requirements engineering classifies requirements into
+two categories~\cite{zowghi_requirements_2014}.
+\Acp{FR} specify functionality that users can experience~\cite{noauthor_ieee_1998}.
+Other requirements that are relevant to the project in a way that shapes the target system,
+defines the development process and manages the development project are refered to as
+\acp{NFR}~\cite{kotonya_requirements_1998,chung_non-functional_2009}.
+For \ac{DL} and thus \ac{ML} projects, the \acp{DR} can be added
+to these categories.
+This is because data directly influences the performance of the solution.
+This results in the need to specify requirements for data that is used
+in conjunction with the \ac{DL} system~\cite{vogelsang_requirements_2019}.
+% FIXME: see who cited source
+
+% FIXME: bevor man Experimentiert -> Kriterien finden, mit denen man ausschlie√üen kann
+
+
+% functional requirements
+The basic functionality can be described as extraction of textual data from images.
+The relevant text information is framed by the label.
+The label contains printed text which can be structured and spaced differently from label to
+label (see figure~\ref{fig:good-example}).
+The goal is to extract the text and keep the semantical meaning behind structure and space.
+\begin{figure}
+    \centering
+    \subfigure[Positive example\label{fig:good-example}]{\includegraphics[width=0.48\textwidth]{img/Image-Example-Positive.jpg}}
+    \subfigure[Negative example\label{fig:bad-example}]{\includegraphics[width=0.48\textwidth]{img/Image-Example-Negative.jpg}}
+    \caption{Examples for label images\label{fig:examples}}
+\end{figure}
+The extracted information then needs to be made available for further processing within a
+business process.
+The images can contain alpha-numeric strings.
+This results in the requirement that the \ac{DL} model has to be able to recognize sequences that
+are not part of a predefined lexicon~\cite{ghosh_visual_2017}.
+For \ac{ML} projects the predictive reliability can be regarded as a \ac{FR}.
+To quantify this value a suitable evaluation metric has to be
+chosen~\cite{vogelsang_requirements_2019}.
+% FIXME: find evaluation metric for problem
+% FIXME: not the metric that is compared for -> no implementation
+Due to the uncontrolled environment in the practical aspect of taking the images on-site beneficial
+image properties can not be guaranteed.
+Robust text extraction can be influenced by factors such as complex backgrounds, lightning conditions,
+text rotation, font variability and image qualities like blur, noise and low
+resolution~\cite{oyedotun_deep_2015,ghosh_visual_2017}.
+An example for bad image quality in regards to \ac{OCR} can be seen in figure~\ref{fig:bad-example}.
+Therefore, these properties have to be accounted for when determining the viability for an approach.
+
+% FIXME: in which form? html, pdf, txt, csv?
+%           spezifisches Format finden (Orientierung kann z.B. Informationen tragen
+%           Liste von Strings -> Koordinaten und Orientierungen + zustätzliche Kriterien
+%           JSON, CSV -> find best (eher JSON da unstrukturiert)
+%           -> semantic nicht rekonstruierbar, wenn es nur als String gegeben worden ist
+
+% non-functional requirements
+The \acp{NFR} that derive from the intended use for the solution with mobile phones are led by
+power aspects.
+Not only are mobile phones limited by a finite battery but also by computational power.
+% FIXME: find source
+In this regard \acp{NN} can be challenging because they often have an immense amount of parameters
+which are computationally demanding and can therefore also be a burden for the phone's power supply.
+% FIXME: add - find solution which reduces computational amount
+% FIXME: GPU/AppleNeuralEngine & OS zu viel!!!
+The solution will be used on mobile phones that have no access to the internet.
+% FIXME: erkennung muss offline möglich sein, verarbeitung von JSON verzögern
+%   -> offline informationssammeln
+%   -> prozesseinarbeitung ausserhalb von scope
+Varying aspect ratios in images and such diversities can increase the requirements for preprocessing.
+% FIXME: find source?
+Depending on the approach the complexity can change i.e.\ decrease thus making it more viable.
+Maintenance of a \ac{DL} system in regards to changing requirements such as changing the output
+format are also an important factor.
+% FIXME: add??? deployment/intregration into BP, training, implementation
+
+% FIXME: formulate that sh
+% Complexity for training, validating, implementation $\rightarrow$ cost
+
+% data requirements
+% TODO: add?? - sources for object detection shows difficulty as is harder task
+% experiment how granular
+
+% FIXME: focus more on annotation, costs or difference for different algorithms
+\acp{DR} encompass the data that is required in order to train, tune and test a \ac{DL}
+system~\cite{vogelsang_requirements_2019}.
+Difficulties arise from the amount of data needed to train a \ac{DL} model and from the need to
+annotate the data for supervised learning~\cite{nowruzi_how_2019}.
+However, it is possible to pretrain a model on a dataset for a related task.
+The pretrained model can then be fine tuned to fit the actual task thus decreasing the needed size
+in the dat set that is specific to the problem~\cite{ouyang_factors_2016}.
+This procedure allows for achieving good performance.
+Additionally there's many available pretraining datasets that are labeled~\cite{ouyang_factors_2016}.
+In the context of requirements, quantity refers to diversity of data~\cite{vogelsang_requirements_2019}.
+When it comes to the quality of data there's three factors: completeness, consistency,
+correctness.
+These factors are especially important since better quality as a big influence on
+performance~\cite{vogelsang_requirements_2019}.
+% FIXME: set into relation with data quantity? after certain amount of data convergence to value
+%       but if quality better higher convergence
+For completeness, it is important that the dataset that is used for finetuning contains all edge
+cases that are relevant for the task~\cite{arpteg_software_2018, vogelsang_requirements_2019}.
+`Consistency refers to the format and representation of data that should be the same in the dataset. Correctness refers to the degree to which you can rely on the data actually being
+true'\cite{vogelsang_requirements_2019}.
+As implementation and training a \ac{DL} model is not the subject of this theses these \ac{DR} are
+not discussed in detail in the following chapters.
+
+% FIXME: maybe not needed as section?
+\begin{comment}
+\section{Tradeoff}
+Note: tradeoff between accuracy and computational cost $\rightarrow$ mobile phone dilemma
+
+When determining whether automation is an improvement four aspects have to be examined.
+These are time, costs, quality and flexibility.
+The aspects build a quadrangle that is based on the optimizing trade-off between the
+factors~\cite{dumas_fundamentals_2013}.
+
+Without software supporting the task of reading the name of the picture and typing it into
+the system, can take long seconds, whereas a trained \ac{DL} model could complete the task
+in a mere instant.
+Therefor automisation via \ac{DL} should improve the efficiency of the process when compared to
+manually reading and typing the information off the image.
+
+Training costs for a \ac{DL} model are very high due to the computing intensive
+backpropagation algorithm that tunes the network to the data.
+But the usage cost is low.
+For manual labor the opposite is the case as training a person to type in a label is done quickly
+and labor costs are high in comparison to the expenses for running the model.
+
+Both \ac{DL} models and human labor are not 100\% accurate.
+The question is whether the model can be as accurate or even better than its human counterpart.
+This is especially interesting when it is applied in the real world where it might have to do good
+in subpar situations.
+An example is bad image quality.
+
+Flexibility is concerned with how well a process can adjust to changing requirements.
+A set of new equipment names that have to be included can pose a problem to a \ac{DL} model
+because it is not trained for the new data.
+A human on the other hand should not have any problems in this regard.
+
+The main concern for the solution's efficacy is whether it is accurate enough.
+Therefor this work focuses on this aspect in particular.
+\end{comment}

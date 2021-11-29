@@ -1,42 +1,53 @@
 \chapter{Introduction}\label{ch:intro}
 \section{Motivation}
-% TODO: make more inciting
-Optical Character Recognition (OCR) is the concept of extracting typed, handwritten or printed text
+% FIXME: make more inciting
+% FIXME: longer -> 0.5p
+\ac{OCR} is the concept of extracting typed, handwritten or printed text
 from an image.
-Techniques for this concept have improved a lot due to the advances in the field of Deep
-Learning~\cite{zhao_improving_2020}.
-Deep Learning is a technology based on Artificial Neural Networks where data is processed
+Techniques for this concept have improved a lot due to the advances in the field of
+\ac{DL}~\cite{zhao_improving_2020}.
+\ac{DL} is a technology based on \acp{NN} where data is processed
 in multiple layers to extract complex features and solve a given problem~\cite{shrestha_review_2019}.
-Deep Learning has only caught on in the recent years as the big computational cost has been met
+\ac{DL} has only caught on in the recent years as the big computational cost has been met
 by the improvement in computer hardware~\cite{ponti_everything_2017}.
-Finding the right solution in the space of deep learning and applying these new capabilities to
-the use case of extracting information of equipment labels is the focus of this thesis.
-% TODO: state relevance
+Finding the right solution in the space of \ac{DL} and applying these new capabilities to
+the use case of extracting information of labels is the focus of this thesis.
 
 \section{Problem description}\label{se:problem}
-The central part of the bachelor thesis is laying a foundation for finding the right approach for
-the extraction of textual information from images with equipment labels.
-This includes defining functional requirements such as detecting rotated text but also non functional
-requirements such as given computational power of mobile devices the solution.
-These requirements define properties that a solution must have in order to be classified as viable.
-Thus the discussion of techniques from end-to-end OCR to dividing the process into text detection and
-text recognition is centered around the requirements which are given by the problem.
-Critical factors such as the availability of data and the complexity of implementing and training a
-Deep Learning model also need to be assessed.
+% FIXME: more sources
+The basic problem of this thesis is finding a viable solution for the extraction of textual
+information from images with equipment labels.
+However, it is difficult to assess how well an approach performs before it has been implemented and
+tested on the specific problem or dataset~\cite{arpteg_software_2018}.
+Therefore, it is useful to propose several approaches that might solve the problem from
+different angles.
 
-Following aspects such as implementing, training, deploying and maintaining a solution in a
-production environment shall not be subject of this thesis.
+The problem has to first be analysed in depth in order to find a viable approaches for the solution.
+This includes defining requirements such as detecting rotated text or given computational power
+of mobile devices the solution.
+These requirements define properties that an approach must have in order to be classified as viable.
+Thus the reasearch and subsequent discussion of techniques from end-to-end \ac{OCR} to dividing the
+process into text detection and text recognition is centered around the requirements which are
+given by the problem.
+Critical factors such as the requirement for data and the complexity of implementation and training
+of a \ac{DL} model also need to be assessed.
 
-Make Pipeline the problem?
+Subsequent aspects such as implementation, training, deployment and maintenance of a solution in a
+production environment shall not be performed within the scope of this thesis.
+Because these aspects may vary depending on the approach, it is important to consider them when
+discussing the viability for solving the problem.
 
 \section{Methodology}\label{se:methodology}
-The methodology of this \the\arbeit\ can be described as a literature review.
-As such, the research question guiding the process is most crucial: Which state of the art Deep
-Learning approaches for OCR are viable for the use case of extracting textual label data from
+The methodology of this thesis can be described as a literature review.
+As such, the research question guiding the process is most crucial: Which state of the art \ac{DL}
+approaches for \ac{OCR} are viable for the use case of extracting textual label data from
 images.
 The following section describes how relevant literature is identified, analysed and synthesised.
 
+% FIXME: formulate that sh
+\begin{comment}
 Add: how was problem defined
+only after (incl.) 2017
 
 Searching:
 search strategy for specific review: $\rightarrow$ provide reasoning behind choices
@@ -49,7 +60,7 @@ search strategy for specific review: $\rightarrow$ provide reasoning behind choi
 write all decisions down, how is search documented
 The research is then extended to existing practical solutions for similar practical problems as
 well as proposed architectures from academic research.
-documentation of search process and selection, asses quality of search process and selection
+Documentation of search process and selection, asses quality of search process and selection
 
 Analysis:
 how is data prepared for analysis
@@ -64,32 +75,30 @@ Synthesis
 after review:
 discuss different approchoaches pros and cons for problem
 methodogical limitations: practice is always different, \ldots
+\end{comment}
 
 \section{Expected results}
-In the following section the structure of the \the\arbeit\ is listed and each chapter's expected
+% FIXME: kürzen
+In addition to a deeper understanding of the problem and its detailed definition, the literature
+review lays the foundation for finding the right approach for the extraction of textual
+information from images with equipment labels through literature review.
+In the subsequent analysis different approaches are highlight for their theoretical fit as a solution.
+
+In the following section the structure of this thesis is listed and each chapter's expected
 result is detailed along with its benefits for the overall objective of producing an overview of
-state of the art OCR relevant for the problem described in Section~\ref{se:problem}.
-
-In Chapter~\ref{ch:theoretical} the theoretical foundation for the \the\arbeit\ which is needed for
+state of the art \ac{OCR} relevant for the problem described in Section~\ref{se:problem}.
 comprehension of the following chapters is gathered.
-This includes general principles of Deep Learning and by extension Machine Learning but also of OCR.
-
+This includes general principles of \ac{DL} and by extension \ac{ML} but also of \ac{OCR}.\@
 In Chapter~\ref{ch:problem} the problem from Section~\ref{se:problem} is addressed in more detail.
 The result shall be a firm understanding of functional and non-functional requirements both on the
 technical and the business process side.
-These requirements are the point of focus for the further examination of OCR techniques.
-
+These requirements are the point of focus for the further examination of \ac{OCR} techniques.
 After laying the foundation, in Chapter~\ref{ch:research} current research in regards to the
 identified requirements is examined.
 The resulting overview can be viewed as a basis for a decision when it comes implementing a practical
 solution.
-
 Therefore it enables the discussion in Chapter~\ref{ch:discussion}.
 Here not only the results and the availability of a solution but also the methodology of this work
 are assessed critically.
-
 The conclusion is a summary of the results compared to the expected results detailed in this chapter
 as well as an outlook for further research into the topic.
-
-
-`A major challenge in developing DL systems is the difficulties in estimating the results before a system has been trained and tested'\cite{arpteg_software_2018}
