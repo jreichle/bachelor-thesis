@@ -1,4 +1,5 @@
-\chapter{Problem analysis}\label{ch:problem} This chapter entails an analysis of the problem which is the research question's foundation.
+\chapter{Problem analysis}\label{ch:problem}
+This chapter entails an analysis of the problem which is the research question's foundation.
 It is crucial, as the quality of requirements ultimately determines the quality of the literature review.
 
 %\section{Requirements}
@@ -8,79 +9,79 @@ two categories~\cite{zowghi_requirements_2014}.
 Other requirements that are relevant to the project in a way that shapes the target system,
 defines the development process and manages the development project are refered to as
 \acp{NFR}~\cite{kotonya_requirements_1998,chung_non-functional_2009}.
-For \ac{DL} and thus \ac{ML} projects, the \acp{DR} can be added
-to these categories.
-This is because data directly influences the performance of the solution.
-This results in the need to specify requirements for data that is used
+For \ac{ML} and thus \ac{DL} projects, data directly influences the performance of the solution.
+This results in the need to specify \acp{DR} for data that is used
 in conjunction with the \ac{DL} system~\cite{vogelsang_requirements_2019}.
-% FIXME: see who cited source
 
-% FIXME: bevor man Experimentiert -> Kriterien finden, mit denen man ausschlie√üen kann
+% FIXME: add that requirements where not gathered according to normal processes (like stakeholder
+analysis\ldots
 
+% FIXME: only model requirements, maybe get rid of data requirements entirely
+% FIXME: find exlusion criteria
+% alphanumeric strings, preserve saving and strucure with coordinates,
+% computationally efficient (how to define cutof)
+% --> all FR without performance metric?
 
 % functional requirements
 The basic functionality can be described as extraction of textual data from images.
-The relevant text information is framed by the label.
+The relevant text information is framed by a label.
 The label contains printed text which can be structured and spaced differently from label to
-label (see figure~\ref{fig:good-example}).
-The goal is to extract the text and keep the semantical meaning behind structure and space.
+label (see figure~\ref{fig:examples}).
 \begin{figure}
     \centering
     \subfigure[Positive example\label{fig:good-example}]{\includegraphics[width=0.48\textwidth]{img/Image-Example-Positive.jpg}}
     \subfigure[Negative example\label{fig:bad-example}]{\includegraphics[width=0.48\textwidth]{img/Image-Example-Negative.jpg}}
     \caption{Examples for label images\label{fig:examples}}
 \end{figure}
-The extracted information then needs to be made available for further processing within a
-business process.
-The images can contain alpha-numeric strings.
+The text carries semantic information which can be important for later processing in the scope of
+a business process.
+The goal is to extract the text and preserve semantics from structure and space.
+This means text and the respective coordinates, height, width and a possible rotation angle must
+be output as the result~\cite{yang_learning_2021}.
+Those values can then be transformed into other formats such as JSON or HTML as needed.
+% TODO: text that is not in straight line? I think not
+The images can contain arbitrary alpha-numeric strings (see figure~\ref{fig:examples}).
 This results in the requirement that the \ac{DL} model has to be able to recognize sequences that
 are not part of a predefined lexicon~\cite{ghosh_visual_2017}.
-For \ac{ML} projects the predictive reliability can be regarded as a \ac{FR}.
-To quantify this value a suitable evaluation metric has to be
-chosen~\cite{vogelsang_requirements_2019}.
-% FIXME: find evaluation metric for problem
-% FIXME: not the metric that is compared for -> no implementation
-Due to the uncontrolled environment in the practical aspect of taking the images on-site beneficial
-image properties can not be guaranteed.
-Robust text extraction can be influenced by factors such as complex backgrounds, lightning conditions,
-text rotation, font variability and image qualities like blur, noise and low
-resolution~\cite{oyedotun_deep_2015,ghosh_visual_2017}.
-An example for bad image quality in regards to \ac{OCR} can be seen in figure~\ref{fig:bad-example}.
+% FIXME: performance, change reliability to performance after checking source
+For \ac{ML} projects the predictive reliability can be regarded as a
+\ac{FR}~\cite{vogelsang_requirements_2019}.
+% TODO: does following belong to methodology (until **)
+However, due to the fact that the implementation and testing phase is not performed in the scope of
+this thesis and the difficulty in assessing the performance ahead of those phases, it is not
+possible to base a decision on this factor.
+Additionally experimental results from literature can only be compared as long as factors such as
+hardware, platform, source code, configuration and dataset are uniform~\cite{arpteg_software_2018}.
+This applies to studies that create an overview such as~\cite{chen_text_2021,long_scene_2021}.
+% **
+% FIXME: robustness
+Due to the uncontrolled environment of \ac{STR} in the practical aspect of taking the images on-site
+beneficial image properties can not be guaranteed~\cite{chen_text_2021}.
+Robust text extraction can be influenced by factors such as complex backgrounds, text form
+(text rotation, font variability, arrangement), image noise (lighting conditions, blur,
+interference and low resolution) and access (perspective, shape of
+text)~\cite{oyedotun_deep_2015,ghosh_visual_2017,chen_text_2021}.
 Therefore, these properties have to be accounted for when determining the viability for an approach.
+An example for bad image quality in regards to \ac{OCR} can be seen in figure~\ref{fig:bad-example}.
 
-% FIXME: in which form? html, pdf, txt, csv?
-%           spezifisches Format finden (Orientierung kann z.B. Informationen tragen
-%           Liste von Strings -> Koordinaten und Orientierungen + zustätzliche Kriterien
-%           JSON, CSV -> find best (eher JSON da unstrukturiert)
-%           -> semantic nicht rekonstruierbar, wenn es nur als String gegeben worden ist
 
 % non-functional requirements
+% FIXME: find sources
 The \acp{NFR} that derive from the intended use for the solution with mobile phones are led by
 power aspects.
 Not only are mobile phones limited by a finite battery but also by computational power.
-% FIXME: find source
 In this regard \acp{NN} can be challenging because they often have an immense amount of parameters
 which are computationally demanding and can therefore also be a burden for the phone's power supply.
-% FIXME: add - find solution which reduces computational amount
-% FIXME: GPU/AppleNeuralEngine & OS zu viel!!!
+Therefore, finding an approach which reduces computational complexity is important.
 The solution will be used on mobile phones that have no access to the internet.
-% FIXME: erkennung muss offline möglich sein, verarbeitung von JSON verzögern
-%   -> offline informationssammeln
-%   -> prozesseinarbeitung ausserhalb von scope
+This is why the extraction must work offline.
 Varying aspect ratios in images and such diversities can increase the requirements for preprocessing.
-% FIXME: find source?
 Depending on the approach the complexity can change i.e.\ decrease thus making it more viable.
 Maintenance of a \ac{DL} system in regards to changing requirements such as changing the output
 format are also an important factor.
-% FIXME: add??? deployment/intregration into BP, training, implementation
 
-% FIXME: formulate that sh
-% Complexity for training, validating, implementation $\rightarrow$ cost
-
+% TODO: weglassen?
 % data requirements
-% TODO: add?? - sources for object detection shows difficulty as is harder task
-% experiment how granular
-
 % FIXME: focus more on annotation, costs or difference for different algorithms
 \acp{DR} encompass the data that is required in order to train, tune and test a \ac{DL}
 system~\cite{vogelsang_requirements_2019}.
@@ -104,6 +105,37 @@ cases that are relevant for the task~\cite{arpteg_software_2018, vogelsang_requi
 true'\cite{vogelsang_requirements_2019}.
 As implementation and training a \ac{DL} model is not the subject of this theses these \ac{DR} are
 not discussed in detail in the following chapters.
+% FIXME: add following
+Relevant, Complete, Balanced, Accurate~\cite{ashmore_assuring_2021}
+
+
+% literature notes
+Towards Requirements Specification for \ldots~\cite{hu_towards_2020}
+requirements that ensure robustness (handle stressfull environmental conditions and unseen or
+unexpected data) are crucial
+
+Definition of transformations: modifications in images
+--- affine (e.g.\ scaling, rotation), perceptual context transformations (e.g.\ light sources, viewpoint)
+$\rightarrow$ invariant (not changing e.g. class label) --- equivariant (e.g. bounding
+                box position) requirements
+
+Assuring the Machine Learning Lifecycle~\cite{ashmore_assuring_2021}
+Activities in MLC Model Learning
+\begin{itemize}
+    \item Model Selection: decide model type, variant, strucutre of model
+    \item Training
+    \item Hyperparameter Selection
+    \item Transfer Learning
+\end{itemize}
+
+desired properties for ML component: performance, robustness (handle stressfl environmental
+conditions and unseen or unexpected data), reusability, interpretability
+
+`Comparing models is not always straightforward, with different models showing superior performance
+against different measures. Composite metrics [59, 158] allow for a tradeoff between measures
+during the training process.'
+
+Check:~\cite{hu_towards_2020, belani_requirements_2019, siebert_construction_2021, nakamichi_requirements-driven_2020, ishikawa_evidence-driven_2020}
 
 % FIXME: maybe not needed as section?
 \begin{comment}

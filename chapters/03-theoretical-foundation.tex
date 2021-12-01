@@ -7,7 +7,21 @@
     \item Supervised --- Unsupervised / Categorization
     \item Optimization techniques: Stochastic-Batch Gradient Descent, GD Momentum, Adam
     \item Bias-Variance tradeoff / Overfitting --- Underfitting
+        % FIXME: how much of optimization and bias-variance tradeoff is actually needed???
 \end{enumerate}
+
+`The prediction error of a model has three components: irreducible error, which cannot be elim-
+inated regardless of the algorithm or training methods employed; bias error, due to simplifying
+assumptions intended to make learning the model easier; and variance error, an estimate of how
+much the model output would vary if different data were used in the training process. The aim
+of training is to minimise the bias and variance errors, and therefore the objective functions
+reflect these errors. The objective functions may also contain simplifying assumptions to aid
+optimiza- tion, and these assumptions must not be present when assessing model
+performance [59].'\cite{ashmore_assuring_2021}
+See~\cite{ashmore_assuring_2021} for measures, ROC curve and cost curve
+Difference in Robusteness vs Performance see~\cite{ashmore_assuring_2021} (pretty much
+bias-variance tradeoff)
+Robusteness: training set does not include all possible ranges of values -> ability to generalize
 
 \section{Deep Learning}
 ` One of the main differences from traditional ma- chine learning (ML) methods is that DL
@@ -25,7 +39,7 @@ performance of the model and reduces requirements for manual feature engineering
             \item Feedforward
             \item Optimization $\rightarrow$ Backpropagation, SGD, ADAM, \ldots
         \end{itemize}
-    \item Regularization
+    \item Regularization: L0,L1,L2, Dropout, Dropconnect
     \item important architectures
         \begin{itemize}
             \item CNN % layers --- convolutional, max-pooling
@@ -33,6 +47,13 @@ performance of the model and reduces requirements for manual feature engineering
             \item Specific foundation architectures for relevant approaches
         \end{itemize}
     \item transfer learning: reuse parameters from pretrained models\\
+
+
+For reusability: see~\cite{ashmore_assuring_2021}: `Convolutional neural networks (CNN) are
+particularly suited for partial model transfer [59] since the convolutional layers encode
+features in the input space, whilst the fully connected layers encode reasoning based on those
+features.'
+
 
 \end{enumerate}
 
@@ -97,6 +118,30 @@ What is OCR:\ process of converting images of typed, handwritten or printed text
 includes two sub frameworks: text detection and text recognition (based on position coordinates)
 \textbf{End-To-End also possible}
 Process can include image processing!!!
+
+Text Recognition in the Wild: A Survey~\cite{chen_text_2021}
+\begin{itemize}
+    \item various stages of \ac{OCR}:
+        \begin{itemize}
+            \item text localization: localize text components, group into candidate text regions with
+                as little background as possible, DNN
+            \item text verification: verify text candidate regions as text or non-text,
+                filter false-positives, CNN
+            \item text detection: determine whether text is present using localization and verification
+                procedures, basis for end-to-end, can be regression or segmentation based
+            \item text segmentation: most challenging, includes text line (splitting a region of multiple
+                text lines into subregion of single text lines) and character segmentation (separating
+                text instance into single characters, typically used in earlier approaches)
+            \item text recognition: translates cropped text instance image into target string sequence,
+                basis for end-to-end, DL encoder-decoder frameworks
+            \item end-to-end-system: given scene text image $\rightarrow$ convert all text regions into
+                target string sequences, includes detectoin, recognition and postprocessing, can be
+                seen as indipendent subproblems but also joint by sharing information
+        \end{itemize}
+    \item text enhancement: recover degraded text, improve text resolution, remove distortions,
+        remove background $\rightarrow$ reduce difficulty of recognition
+\end{itemize}
+\includegraphics{img/OCR-Basics.png}
 
 
 \textbf{no source}
