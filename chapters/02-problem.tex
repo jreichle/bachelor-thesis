@@ -1,6 +1,7 @@
 \chapter{Problem analysis}\label{ch:problem}
 This chapter entails an analysis of the problem which is the research question's foundation.
-It is crucial, as the quality of requirements ultimately determines the quality of the literature review.
+It is crucial, as the quality of requirements ultimately determines the quality of the literature
+review.
 
 %\section{Requirements}
 For traditional software projects requirements engineering classifies requirements into
@@ -13,14 +14,16 @@ For \ac{ML} and thus \ac{DL} projects, data directly influences the performance 
 This results in the need to specify \acp{DR} for data that is used
 in conjunction with the \ac{DL} system~\cite{vogelsang_requirements_2019}.
 
+% FIXME: delete data requirements and highlight other categorization
 % FIXME: add that requirements where not gathered according to normal processes (like stakeholder
-analysis\ldots
-
+%           analysis\ldots) -> no systematic way but literature research
 % FIXME: only model requirements, maybe get rid of data requirements entirely
 % FIXME: find exlusion criteria
 % alphanumeric strings, preserve saving and strucure with coordinates,
 % computationally efficient (how to define cutof)
 % --> all FR without performance metric?
+
+% FIXME: keep requirements such as maintenance (encapsulation, modularity), development, ...??
 
 % functional requirements
 The basic functionality can be described as extraction of textual data from images.
@@ -33,8 +36,9 @@ label (see figure~\ref{fig:examples}).
     \subfigure[Negative example\label{fig:bad-example}]{\includegraphics[width=0.48\textwidth]{img/Image-Example-Negative.jpg}}
     \caption{Examples for label images\label{fig:examples}}
 \end{figure}
-The text carries semantic information which can be important for later processing in the scope of
-a business process.
+% TODO: need source for sentence below?
+The text, spacing and structure carries semantic information which can be important for later
+processing in the scope of a business process.
 The goal is to extract the text and preserve semantics from structure and space.
 This means text and the respective coordinates, height, width and a possible rotation angle must
 be output as the result~\cite{yang_learning_2021}.
@@ -77,8 +81,6 @@ The solution will be used on mobile phones that have no access to the internet.
 This is why the extraction must work offline.
 Varying aspect ratios in images and such diversities can increase the requirements for preprocessing.
 Depending on the approach the complexity can change i.e.\ decrease thus making it more viable.
-Maintenance of a \ac{DL} system in regards to changing requirements such as changing the output
-format are also an important factor.
 
 % TODO: weglassen?
 % data requirements
@@ -89,7 +91,7 @@ Difficulties arise from the amount of data needed to train a \ac{DL} model and f
 annotate the data for supervised learning~\cite{nowruzi_how_2019}.
 However, it is possible to pretrain a model on a dataset for a related task.
 The pretrained model can then be fine tuned to fit the actual task thus decreasing the needed size
-in the dat set that is specific to the problem~\cite{ouyang_factors_2016}.
+in the data set that is specific to the problem~\cite{ouyang_factors_2016}.
 This procedure allows for achieving good performance.
 Additionally there's many available pretraining datasets that are labeled~\cite{ouyang_factors_2016}.
 In the context of requirements, quantity refers to diversity of data~\cite{vogelsang_requirements_2019}.
@@ -108,8 +110,9 @@ not discussed in detail in the following chapters.
 % FIXME: add following
 Relevant, Complete, Balanced, Accurate~\cite{ashmore_assuring_2021}
 
-
+%%%%%%%%%%%%%%%%%%
 % literature notes
+%%%%%%%%%%%%%%%%%%
 Towards Requirements Specification for \ldots~\cite{hu_towards_2020}
 requirements that ensure robustness (handle stressfull environmental conditions and unseen or
 unexpected data) are crucial
@@ -119,6 +122,7 @@ Definition of transformations: modifications in images
 $\rightarrow$ invariant (not changing e.g. class label) --- equivariant (e.g. bounding
                 box position) requirements
 
+
 Assuring the Machine Learning Lifecycle~\cite{ashmore_assuring_2021}
 Activities in MLC Model Learning
 \begin{itemize}
@@ -127,15 +131,105 @@ Activities in MLC Model Learning
     \item Hyperparameter Selection
     \item Transfer Learning
 \end{itemize}
-
 desired properties for ML component: performance, robustness (handle stressfl environmental
 conditions and unseen or unexpected data), reusability, interpretability
-
 `Comparing models is not always straightforward, with different models showing superior performance
 against different measures. Composite metrics [59, 158] allow for a tradeoff between measures
 during the training process.'
 
-Check:~\cite{hu_towards_2020, belani_requirements_2019, siebert_construction_2021, nakamichi_requirements-driven_2020, ishikawa_evidence-driven_2020}
+Requirements Engineering Challengs in Building AI-Based Complex Systems~\cite{belani_requirements_2019}
+RE activities according to different AI-entities: data, model, system (for thesis only model)
+Look into: Agent-based software engineering (see sources 11, 12 in paper)
+`A software requirement should be traceable backward to the system requirements that it helps
+satisfy, as well as to stakeholders that motivated it.'
+
+Construction of a quality model for machine learning systems~\cite{siebert_construction_2021}
+\textbf{tries to associate quality with measur --- not  possible in thesis}
+Data-driven software components: function not entirely defined by programmer but is derived from data
+At the core of dd software component lies the notion of a model (by definition a
+re-presentation/simplification of some part of reality)
+Behavior of such components is fundamentally different from traditional software: input-output
+relationship is usually non-linear $\rightarrow$ small discrepancy in input big discrepancy in output
+Relationship only defined for test data $\rightarrow$ uncertainty in outcomes for unseen data
+To build a quality model:
+\begin{itemize}
+    \item first define the usage scenarios
+    \item define quality properties
+    \item define quantity properties and how to measue
+\end{itemize}
+Different quality classifications:
+\begin{itemize}
+    \item service quality, product quality, platform quality
+    \item  data integrity, model robustness, system quality, process agility and costumer expectation
+\end{itemize}
+Different views/entities of the system: data, model, platform, environment
+Qualiy model construction process (performed iteratively)
+\begin{enumerate}
+    \item Define quality meta-model: basic structure for documenting all quality properties and
+        measures for quantifying those properties
+    \item Define use case and application context
+    \item identify relevant ML quality requirements (for thesis only model part)
+        \begin{itemize}
+            \item usually systematic approach after CRISP-DM
+            \item Important aspects: data understanding, modeling
+        \end{itemize}
+    \item Idenfify relevant entities of ML System: data, model, \ldots\\
+        Model view, specifically model type not instanciation (Data, System, Infrastructure,
+        Enironment views not looked at in thesis)
+        \begin{itemize}
+            \item ML component consists of subcomponents organized in a directed acyclic graph/pipeline
+        \end{itemize}
+    \item Identify reference elements of an ML quality model: table of reference for requirements
+        and entities
+    \item instantiate quality model for use case\\
+        \begin{itemize}
+            \item interested in quality (property) at each step of the pipeline (entity)
+            \item pipeline modeled as ahierarchy of entities, on lower levels, requirements for steps
+                can be found
+        \end{itemize}
+\end{enumerate}
+Important factors: context and user must be clear; iterative approach;
+
+Requirements-Driven Methode to Determine Quality\ldots~\cite{nakamichi_requirements-driven_2020}
+MLS is different from conventional software systems --- depends on amount and distribution of
+training data in model learning and input data during operation $\rightarrow$ major challenge in
+quality assurance
+Research on quality problems still in early stage
+More of a systemeatic approach in this paper
+MLS issues
+\begin{itemize}
+    \item system/infrastrucure: scope compliance, training/execute performance efficiency, output
+        supervision, \ldots
+    \item model
+        \begin{itemize}
+            \item approriatenss: is model appropriate for task and the required data
+            \item performance training --- runtime
+            \item \ldots
+        \end{itemize}
+    \item data: representativeness, balancedness, timeliness
+\end{itemize}
+quality meta model: quality model, quality characteristic, measure
+\begin{itemize}
+    \item functional suitability: correctness (accuracy), completeness (generalization)
+    \item reliability: maturity (robustness against change of input data and against noise data),
+        availability (appropriatenss of operation maintenance)
+    \item performance efficiency: time behaviour, resource utilization
+    \item maintainability: modifiability (software, resource update), analyzability
+    \item \ldots
+\end{itemize}
+
+
+New approach to chapters: (justify every decision)
+\begin{enumerate}
+    \item away from traditional requirements engineering --- specify qualities that are needed
+        (find good justification for need)
+    \item describe use case in detail
+    \item usually more entities in ML system need to be looked at but here only model (and its pipeline)
+        and given data properties\\
+        other parts data, system not important
+    \item define entities and their requirements/givens
+    \item graph like in~\cite{siebert_construction_2021}
+\end{enumerate}
 
 % FIXME: maybe not needed as section?
 \begin{comment}
