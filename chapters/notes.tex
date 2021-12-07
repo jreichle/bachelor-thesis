@@ -1,0 +1,145 @@
+%%%%%%%%%%%%%%%%%%
+% introduction chaper
+%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%
+% methodology section
+
+find 5 possible solutions and compare
+
+Add: how was problem defined
+only after (incl.) 2017
+
+Searching:
+search strategy for specific review: $\rightarrow$ provide reasoning behind choices
+\begin{itemize}
+    \item search tearms
+    \item databases
+    \item inclusion \& exclusion criteria: year of publification, type of article, journal, research
+        quality
+\end{itemize}
+write all decisions down, how is search documented
+The research is then extended to existing practical solutions for similar practical problems as
+well as proposed architectures from academic research.
+Documentation of search process and selection, asses quality of search process and selection
+
+Analysis:
+how is data prepared for analysis
+analyse problem: find requirements
+type of information that needs to be extracted: what works, why, not necesseraly how
+literature review (state of the art)
+how? top journals of last few years
+Theoretical knowledge about the models as well as practical information about results for
+
+Synthesis
+
+after review:
+discuss different approchoaches pros and cons for problem
+methodogical limitations: practice is always different, \ldots
+
+
+guiding values from studies (see problem)
+%%%%%%%%%%%%%%%%%%
+% problem chaper
+%%%%%%%%%%%%%%%%%%
+Towards Requirements Specification for \ldots~\cite{hu_towards_2020}
+requirements that ensure robustness (handle stressfull environmental conditions and unseen or
+unexpected data) are crucial
+
+Definition of transformations: modifications in images
+--- affine (e.g.\ scaling, rotation), perceptual context transformations (e.g.\ light sources, viewpoint)
+$\rightarrow$ invariant (not changing e.g. class label) --- equivariant (e.g. bounding
+                box position) requirements
+
+
+Assuring the Machine Learning Lifecycle~\cite{ashmore_assuring_2021}
+Activities in MLC Model Learning
+\begin{itemize}
+    \item Model Selection: decide model type, variant, strucutre of model
+    \item Training
+    \item Hyperparameter Selection
+    \item Transfer Learning
+\end{itemize}
+desired properties for ML component: performance, robustness (handle stressfl environmental
+conditions and unseen or unexpected data), reusability, interpretability
+`Comparing models is not always straightforward, with different models showing superior performance
+against different measures. Composite metrics [59, 158] allow for a tradeoff between measures
+during the training process.'
+
+Requirements Engineering Challengs in Building AI-Based Complex Systems~\cite{belani_requirements_2019}
+RE activities according to different AI-entities: data, model, system (for thesis only model)
+Look into: Agent-based software engineering (see sources 11, 12 in paper)
+
+Construction of a quality model for machine learning systems~\cite{siebert_construction_2021}
+Data-driven software components: function not entirely defined by programmer but is derived from data
+At the core of dd software component lies the notion of a model (by definition a
+re-presentation/simplification of some part of reality)
+Behavior of such components is fundamentally different from traditional software: input-output
+relationship is usually non-linear $\rightarrow$ small discrepancy in input big discrepancy in output
+Relationship only defined for test data $\rightarrow$ uncertainty in outcomes for unseen data
+To build a quality model:
+\begin{itemize}
+    \item first define the usage scenarios
+    \item define quality properties
+    \item define quantity properties and how to measue
+\end{itemize}
+Different quality classifications:
+\begin{itemize}
+    \item service quality, product quality, platform quality
+    \item  data integrity, model robustness, system quality, process agility and costumer expectation
+\end{itemize}
+Different views/entities of the system: data, model, platform, environment
+Qualiy model construction process (performed iteratively)
+\begin{enumerate}
+    \item Define quality meta-model: basic structure for documenting all quality properties and
+        measures for quantifying those properties
+    \item Define use case and application context
+    \item identify relevant ML quality requirements (for thesis only model part)
+        \begin{itemize}
+            \item usually systematic approach after CRISP-DM
+            \item Important aspects: data understanding, modeling
+        \end{itemize}
+    \item Idenfify relevant entities of ML System: data, model, \ldots\\
+        Model view, specifically model type not instanciation (Data, System, Infrastructure,
+        Enironment views not looked at in thesis)
+        \begin{itemize}
+            \item ML component consists of subcomponents organized in a directed acyclic graph/pipeline
+        \end{itemize}
+    \item Identify reference elements of an ML quality model: table of reference for requirements
+        and entities
+    \item instantiate quality model for use case\\
+        \begin{itemize}
+            \item interested in quality (property) at each step of the pipeline (entity)
+            \item pipeline modeled as ahierarchy of entities, on lower levels, requirements for steps
+                can be found
+        \end{itemize}
+\end{enumerate}
+Important factors: context and user must be clear; iterative approach;
+
+Requirements-Driven Methode to Determine Quality\ldots~\cite{nakamichi_requirements-driven_2020}
+MLS is different from conventional software systems --- depends on amount and distribution of
+training data in model learning and input data during operation $\rightarrow$ major challenge in
+quality assurance
+Research on quality problems still in early stage
+More of a systemeatic approach in this paper
+MLS issues
+\begin{itemize}
+    \item system/infrastrucure: scope compliance, training/execute performance efficiency, output
+        supervision, \ldots
+    \item model
+        \begin{itemize}
+            \item approriatenss: is model appropriate for task and the required data
+            \item performance training --- runtime
+            \item \ldots
+        \end{itemize}
+    \item data: representativeness, balancedness, timeliness
+\end{itemize}
+quality meta model: quality model, quality characteristic, measure
+\begin{itemize}
+    \item functional suitability: correctness (accuracy), completeness (generalization)
+    \item reliability: maturity (robustness against change of input data and against noise data),
+        availability (appropriatenss of operation maintenance)
+    \item performance efficiency: time behaviour, resource utilization
+    \item maintainability: modifiability (software, resource update), analyzability
+    \item \ldots
+\end{itemize}
