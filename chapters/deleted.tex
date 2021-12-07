@@ -34,3 +34,81 @@ A human on the other hand should not have any problems in this regard.
 
 The main concern for the solution's efficacy is whether it is accurate enough.
 Therefor this work focuses on this aspect in particular.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Problem chapter: with FR and NFR
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Def Requirements / what to expect
+For traditional software projects requirements engineering classifies requirements into
+two categories~\cite{zowghi_requirements_2014}.
+\Acp{FR} specify functionality that users can experience~\cite{noauthor_ieee_1998}.
+Other requirements that are relevant to the project in a way that shapes the target system,
+defines the development process and manages the development project are refered to as
+\acp{NFR}~\cite{kotonya_requirements_1998,chung_non-functional_2009}.
+For \ac{ML} and thus \ac{DL} projects, data directly influences the performance of the solution.
+This results in the need to specify \acp{DR} for data that is used
+in conjunction with the \ac{DL} system~\cite{vogelsang_requirements_2019}.
+
+% FIXME: keep requirements such as maintenance (encapsulation, modularity), development, ...??
+
+% functional requirements
+The basic functionality can be described as extraction of textual data from images.
+The relevant text information is framed by a label.
+The label contains printed text which can be structured and spaced differently from label to
+label (see figure~\ref{fig:examples}).
+% TODO: need source for sentence below?
+The text, spacing and structure carries semantic information which can be important for later
+processing in the scope of a business process.
+The goal is to extract the text and preserve semantics from structure and space.
+This means text and the respective coordinates, height, width and a possible rotation angle must
+be output as the result~\cite{yang_learning_2021}.
+Those values can then be transformed into other formats such as JSON or HTML as needed.
+% TODO: text that is not in straight line? I think not
+The images can contain arbitrary alpha-numeric strings (see figure~\ref{fig:examples}).
+This results in the requirement that the \ac{DL} model has to be able to recognize sequences that
+are not part of a predefined lexicon~\cite{ghosh_visual_2017}.
+% FIXME: performance, change reliability to performance after checking source
+
+
+% non-functional requirements
+% FIXME: find sources
+The \acp{NFR} that derive from the intended use for the solution with mobile phones are led by
+power aspects.
+Not only are mobile phones limited by a finite battery but also by computational power.
+In this regard \acp{NN} can be challenging because they often have an immense amount of parameters
+which are computationally demanding and can therefore also be a burden for the phone's power supply.
+Therefore, finding an approach which reduces computational complexity is important.
+The solution will be used on mobile phones that have no access to the internet.
+This is why the extraction must work offline.
+Varying aspect ratios in images and such diversities can increase the requirements for preprocessing.
+Depending on the approach the complexity can change i.e.\ decrease thus making it more viable.
+
+% TODO: weglassen?
+% data requirements
+% FIXME: focus more on annotation, costs or difference for different algorithms
+\acp{DR} encompass the data that is required in order to train, tune and test a \ac{DL}
+system~\cite{vogelsang_requirements_2019}.
+Difficulties arise from the amount of data needed to train a \ac{DL} model and from the need to
+annotate the data for supervised learning~\cite{nowruzi_how_2019}.
+However, it is possible to pretrain a model on a dataset for a related task.
+The pretrained model can then be fine tuned to fit the actual task thus decreasing the needed size
+in the data set that is specific to the problem~\cite{ouyang_factors_2016}.
+This procedure allows for achieving good performance.
+Additionally there's many available pretraining datasets that are labeled~\cite{ouyang_factors_2016}.
+In the context of requirements, quantity refers to diversity of data~\cite{vogelsang_requirements_2019}.
+When it comes to the quality of data there's three factors: completeness, consistency,
+correctness.
+These factors are especially important since better quality as a big influence on
+performance~\cite{vogelsang_requirements_2019}.
+% FIXME: set into relation with data quantity? after certain amount of data convergence to value
+%       but if quality better higher convergence
+For completeness, it is important that the dataset that is used for finetuning contains all edge
+cases that are relevant for the task~\cite{arpteg_software_2018, vogelsang_requirements_2019}.
+`Consistency refers to the format and representation of data that should be the same in the dataset. Correctness refers to the degree to which you can rely on the data actually being
+true'\cite{vogelsang_requirements_2019}.
+As implementation and training a \ac{DL} model is not the subject of this theses these \ac{DR} are
+not discussed in detail in the following chapters.
+% FIXME: add following
+Relevant, Complete, Balanced, Accurate~\cite{ashmore_assuring_2021}
