@@ -81,7 +81,7 @@ To build a quality model:
 \begin{itemize}
     \item first define the usage scenarios
     \item define quality properties
-    \item define quantity properties and how to measue
+    \item define quantity properties and how to measure
 \end{itemize}
 Different quality classifications:
 \begin{itemize}
@@ -93,6 +93,7 @@ Qualiy model construction process (performed iteratively)
 \begin{enumerate}
     \item Define quality meta-model: basic structure for documenting all quality properties and
         measures for quantifying those properties
+        for model sse fig3
     \item Define use case and application context
     \item identify relevant ML quality requirements (for thesis only model part)
         \begin{itemize}
@@ -116,14 +117,25 @@ Qualiy model construction process (performed iteratively)
 \end{enumerate}
 Important factors: context and user must be clear; iterative approach;
 
+Maintainability:
+encapsulation and modularity have to be rethought
+changing anything changes everything
+
 Requirements-Driven Methode to Determine Quality\ldots~\cite{nakamichi_requirements-driven_2020}
 MLS is different from conventional software systems --- depends on amount and distribution of
 training data in model learning and input data during operation $\rightarrow$ major challenge in
 quality assurance
+
+`It has been noted that MLS has essentially different charac- teristics from those of conventional
+software systems [12] [21]. Sculley et al.\ pointed out that machine learning component is only a
+small portion of the entire \ac{MLS}. Therefore, it is necessary to consider the entire MLS instead
+of machine learning compo- nent [21]. This raises new problems in software engineering [1] [15].'
+
 Research on quality problems still in early stage
 More of a systemeatic approach in this paper
-MLS issues
+MLS parts and their issues
 \begin{itemize}
+    \item environmant/user
     \item system/infrastrucure: scope compliance, training/execute performance efficiency, output
         supervision, \ldots
     \item model
@@ -134,7 +146,7 @@ MLS issues
         \end{itemize}
     \item data: representativeness, balancedness, timeliness
 \end{itemize}
-quality meta model: quality model, quality characteristic, measure
+quality meta model: quality model, quality measurement, environment
 \begin{itemize}
     \item functional suitability: correctness (accuracy), completeness (generalization)
     \item reliability: maturity (robustness against change of input data and against noise data),
