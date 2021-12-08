@@ -3,36 +3,37 @@
 \ac{OCR} is the concept of extracting typed, handwritten or printed text
 from an image.
 Techniques for this concept have improved a lot due to the advances in the field of
-\ac{DL}~\cite{zhao_improving_2020}.
+\ac{DL}~\citep{zhao_improving_2020}.
 When compared to traditional methods \ac{DL} improves automation, effectiveness and
-generalization~\cite{chen_text_2021}.
+generalization~\citep{chen_text_2021}.
 \ac{DL} is a technology based on \acp{NN} where data is processed
-in multiple layers to extract complex features to solve a given problem~\cite{shrestha_review_2019}.
+in multiple layers to extract complex features to solve a given problem~\citep{shrestha_review_2019}.
 \ac{DL} has only caught on in the recent years as the big computational cost has been met
 by improvement in computer hardware as well as automatic feature
-learning~\cite{ponti_everything_2017, chen_text_2021}.
+learning~\citep{ponti_everything_2017, chen_text_2021}.
 Finding the right solution in the space of \ac{DL} and applying these new capabilities to
 the use case of extracting information of labels is the focus of this thesis.
 This is an interesting task as performance of \ac{OCR} systems in complex scenes is still
-challenging~\cite{zhao_improving_2020}.
+challenging~\citep{zhao_improving_2020}.
 Such scenes entail natural scenes captured by a camera.
-\ac{OCR} in these conditions is also known as \ac{STR}~\cite{chen_text_2021}.
-Factors like complex backgrounds, noise, perspective and variability in fonts, colors and sizes,
-of scene texts complicate the process~\cite{hu_gtc_2020,chen_text_2021}.
+\ac{OCR} in these conditions is also known as \ac{STR}~\citep{chen_text_2021}.
+Factors such as complex backgrounds, noise, perspective and variability in fonts, colors and sizes,
+of scene texts complicate the process~\citep{hu_gtc_2020,chen_text_2021}.
 Therefore, it is critical to specify possible factors for the underlying problem and to find
 criteria for evaluating feasibility.
 
+% FIXME: adjust for pipeline instead of model
 \section{Problem description}\label{se:problem}
 The basic problem of this thesis is finding a viable solution for the extraction of textual
 information from images with equipment labels.
 However, it is difficult to assess how well an approach performs before it has been implemented and
-tested on the specific problem or dataset~\cite{arpteg_software_2018}.
+tested on the specific problem or dataset~\citep{arpteg_software_2018}.
 Therefore, it is useful to propose several approaches that might solve the problem from
 different angles and different properties.
 
 The problem has to first be analyzed in depth in order to find viable approaches for the solution.
 This includes defining requirements such as detecting alpha-numeric strings or suitability despite
-suboptimal image conditions~\cite{ghosh_visual_2017, hu_gtc_2020}.
+inadequate image conditions~\citep{ghosh_visual_2017, hu_gtc_2020}.
 These requirements define properties that an approach must have in order to be classified as viable.
 Thus the reasearch and subsequent discussion of techniques from end-to-end \ac{OCR} to dividing the
 process into text detection and text recognition is centered around the requirements which are
@@ -44,7 +45,7 @@ However, because these aspects may vary depending on the approach, it is importa
 discussing the viability for solving the problem.
 
 % FIXME: add following
-only model selection activity~\cite{ashmore_assuring_2021}
+only model selection activity~\citep{ashmore_assuring_2021}
 set into context to MLC lifecycle: Data Management, Model Learning (Model Selection, Training,
 Transfer Learning, Hyperparameter Selection), Model Verificatoin
 
@@ -55,41 +56,6 @@ approaches for \ac{OCR} are viable for the use case of extracting textual label 
 images.
 The following section describes how relevant literature is identified, analyzed and synthesised.
 
-find 5 possible solutions and compare
-
-Add: how was problem defined
-only after (incl.) 2017
-
-Searching:
-search strategy for specific review: $\rightarrow$ provide reasoning behind choices
-\begin{itemize}
-    \item search tearms
-    \item databases
-    \item inclusion \& exclusion criteria: year of publification, type of article, journal, research
-        quality
-\end{itemize}
-write all decisions down, how is search documented
-The research is then extended to existing practical solutions for similar practical problems as
-well as proposed architectures from academic research.
-Documentation of search process and selection, asses quality of search process and selection
-
-Analysis:
-how is data prepared for analysis
-analyse problem: find requirements
-type of information that needs to be extracted: what works, why, not necesseraly how
-literature review (state of the art)
-how? top journals of last few years
-Theoretical knowledge about the models as well as practical information about results for
-
-Synthesis
-
-after review:
-discuss different approchoaches pros and cons for problem
-methodogical limitations: practice is always different, \ldots
-
-
-guiding values from studies (see problem)
-
 \section{Expected results}
 % FIXME: kürzen
 % FIXME: weg von literature review -> problem with criteria, analysing and summarizing research,
@@ -97,7 +63,7 @@ guiding values from studies (see problem)
 In addition to a deeper understanding of the problem and its detailed definition, the literature
 review lays the foundation for finding the right approach for the extraction of textual
 information from images with equipment labels through literature review.
-In the subsequent analysis different approaches are highlight for their theoretical fit as a solution.
+In the subsequent analysis different approaches are highlighted for their theoretical fit as a solution.
 
 In the following section the structure of this thesis is listed and each chapter's expected
 result is detailed along with its benefits for the overall objective of producing an overview of

@@ -17,11 +17,15 @@ much the model output would vary if different data were used in the training pro
 of training is to minimise the bias and variance errors, and therefore the objective functions
 reflect these errors. The objective functions may also contain simplifying assumptions to aid
 optimiza- tion, and these assumptions must not be present when assessing model
-performance [59].'\cite{ashmore_assuring_2021}
-See~\cite{ashmore_assuring_2021} for measures, ROC curve and cost curve
-Difference in Robusteness vs Performance see~\cite{ashmore_assuring_2021} (pretty much
+performance [59].'\citep{ashmore_assuring_2021}
+See~\citep{ashmore_assuring_2021} for measures, ROC curve and cost curve
+Difference in Robusteness vs Performance see~\citep{ashmore_assuring_2021} (pretty much
 bias-variance tradeoff)
 Robusteness: training set does not include all possible ranges of values -> ability to generalize
+
+See~\citep{seshia_formal_2018} for mathematical notation for ML
+
+Define generalization
 
 \section{Deep Learning}
 ` One of the main differences from traditional ma- chine learning (ML) methods is that DL
@@ -30,7 +34,7 @@ In traditional ML, a significant amount of work has to be spent on “feature en
 build this representation manually, but this process can now be automated to a higher degree.
 Having an automated and data-driven method for learning how to represent data improves both the
 performance of the model and reduces requirements for manual feature engineering work
-[7], [8].'~\cite{arpteg_software_2018}
+[7], [8].'~\citep{arpteg_software_2018}
 
 \begin{enumerate}
     \item ANN / MLP % Node, Feedforward, Backpropagation / Optimization
@@ -49,7 +53,7 @@ performance of the model and reduces requirements for manual feature engineering
     \item transfer learning: reuse parameters from pretrained models\\
 
 
-For reusability: see~\cite{ashmore_assuring_2021}: `Convolutional neural networks (CNN) are
+For reusability: see~\citep{ashmore_assuring_2021}: `Convolutional neural networks (CNN) are
 particularly suited for partial model transfer [59] since the convolutional layers encode
 features in the input space, whilst the fully connected layers encode reasoning based on those
 features.'
@@ -58,7 +62,7 @@ features.'
 \end{enumerate}
 
 \textbf{Deep Learning in Character Recognition Considering Pattern Invariance
-Constraints}~\cite{oyedotun_deep_2015}
+Constraints}~\citep{oyedotun_deep_2015}
 Deep Learning: neural network architecture of more than a single hidden layer as opposed to shallow networks
 Features of deep networks: distributed representation of knowledge at each hidden layer, distinct
 features are extracted by units or neurons in each hidden layer
@@ -91,16 +95,16 @@ Classification of deep learning architectures
 
 \subsection*{Transfer Learning}
 Factors in Finetuning Deep Model for Object Detection with Long-tail
-Distribution~\cite{ouyang_factors_2016}
+Distribution~\citep{ouyang_factors_2016}
 finetuning: appraoch dat initializes model parameters for target task from parameters pretrained on
 another related task
 
 \subsection*{Convolutional Neural Network}
 \textbf{Comparative analysis of deep learning image detection
-algorithms}~\cite{srivastava_comparative_2021}
+algorithms}~\citep{srivastava_comparative_2021}
 These layers apply filters to extract patterns from images. The filter moves over the image to generates the output. Different filters recognize different patterns. Initial layers have filters to recognize simple patterns. They become more complex through the layers over time as follows:
 
-\textbf{Review of Deep Learning Algorithms and Architectures}~\cite{shrestha_review_2019}
+\textbf{Review of Deep Learning Algorithms and Architectures}~\citep{shrestha_review_2019}
 Def Neural Network:
 \begin{itemize}
     \item Machine Learning technique that consists of processing units organized in input,
@@ -113,13 +117,13 @@ Def Neural Network:
 
 \section{Optical Character Recognition}
 
-\textbf{Deep Learning based OCR}~\cite{zhao_improving_2020}
+\textbf{Deep Learning based OCR}~\citep{zhao_improving_2020}
 What is OCR:\ process of converting images of typed, handwritten or printed text into machine-encoded one
 includes two sub frameworks: text detection and text recognition (based on position coordinates)
 \textbf{End-To-End also possible}
 Process can include image processing!!!
 
-Text Recognition in the Wild: A Survey~\cite{chen_text_2021}
+Text Recognition in the Wild: A Survey~\citep{chen_text_2021}
 \begin{itemize}
     \item various stages of \ac{OCR}:
         \begin{itemize}
@@ -173,13 +177,13 @@ Non CNN-based: DETR
 
 \subsubsection*{Comparison Object Detection basic algos}
 \textbf{Comparative analysis of deep learning image detection
-algorithms}~\cite{srivastava_comparative_2021}
+algorithms}~\citep{srivastava_comparative_2021}
 YOLO-V3 outperforms SSD and Faster R-CNN
 
 VGG-16 widely used feature generating architecture
 
 \subsubsection*{Faster-RCNN}
-A deeper look at how Faster-RCNN works~\cite{goswami_deeper_2018}
+A deeper look at how Faster-RCNN works~\citep{goswami_deeper_2018}
 composed of 3 neural nets:
 \begin{itemize}
     \item Feature Network: pre-trained image classification netork $\rightarrow$ generate good features
@@ -195,7 +199,7 @@ composed of 3 neural nets:
         layer \end{itemize}
 
 \textbf{Deep Learning in Character Recognition Considering Pattern Invariance
-Constraints}~\cite{oyedotun_deep_2015}
+Constraints}~\citep{oyedotun_deep_2015}
 Neural networks can learn features of task on which they are designed and trained
 Neural networks better than other approaches (e.g.\ template matching, syntactic analysis)
 $\rightarrow$ NNs can learn and adapt to moderate variations (e.g.\ translation, rotation, scaling,
@@ -206,7 +210,7 @@ Recognize text based on position coordinates
 
 character based or word based
 
-Visual attention models for scene text recognition~\cite{ghosh_visual_2017}
+Visual attention models for scene text recognition~\citep{ghosh_visual_2017}
 Divided into word detection (generate bounding boxes) and word recognition
 word recognition can be divided into dictionary-based methods and unconstrained methods
 

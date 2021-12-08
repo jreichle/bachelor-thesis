@@ -9,7 +9,7 @@ model-pruning $\rightarrow$ remove connections for better performance
 `The great advances that have been made in fields such as computer vision and speech recognition,
 have been accom- plished by replacing a modular processing pipeline with large neural networks
 that are trained end-to-end [37]. In essence, transparency is traded for accuracy.
-This is an unavoidable reality.'\cite{arpteg_software_2018}
+This is an unavoidable reality.'\citep{arpteg_software_2018}
 
 include Pipeline differences
 
@@ -17,16 +17,16 @@ include Pipeline differences
 % FIXME: look at Backbones: DETR-DC5-R101 and Faster RCNN-R101-FPN+
 
 Two models that can be used in conjunction
-\textbf{detection}~\cite{beom_text_2021}\\
-uses RetinaNet structure~\cite{lin_focal_2018}\\
-applies techniques from textboxes++~\cite{liao_textboxes_2018}
+\textbf{detection}~\citep{beom_text_2021}\\
+uses RetinaNet structure~\citep{lin_focal_2018}\\
+applies techniques from textboxes++~\citep{liao_textboxes_2018}
 
-\textbf{character recognition}~\cite{beom_crnn_2021}\\
+\textbf{character recognition}~\citep{beom_crnn_2021}\\
 needs cropped text area as input\\
-uses CRNN~\cite{shi_end--end_2015} $\rightarrow$ end-to-end learning, LSTM fir arbitrary length of
+uses CRNN~\citep{shi_end--end_2015} $\rightarrow$ end-to-end learning, LSTM fir arbitrary length of
 input and output, no need to apply detection and cropping to each single character
 
-Open Source OCR engine~\cite{smith_overview_2007}
+Open Source OCR engine~\citep{smith_overview_2007}
 \begin{itemize}
     \item uses Deep Learning (found c++ code for layers in repo)
     \item Processing in step-by-step pipeline, some unusual stages\\
@@ -47,11 +47,11 @@ Open Source OCR engine~\cite{smith_overview_2007}
 \end{itemize}
 Performs poorly with unstructured text with significant noise
 
-An Efficient and Accurate Scene Text Detector~\cite{zhou_east_2017}
+An Efficient and Accurate Scene Text Detector~\citep{zhou_east_2017}
 
-SOFT:\ Softmax-free Transformer with Linear Complexity~\cite{lu_soft_2021}
+SOFT:\ Softmax-free Transformer with Linear Complexity~\citep{lu_soft_2021}
 
-Generative Pretraining from Pixels~\cite{chen_generative_2021}
+Generative Pretraining from Pixels~\citep{chen_generative_2021}
 \begin{itemize}
     \item unsupervised representation learning (approach transfered from NLP)
     \item training of sequence Transformer to auto-regressively predict pixels without incorporating
@@ -61,14 +61,14 @@ Generative Pretraining from Pixels~\cite{chen_generative_2021}
 \end{itemize}
 
 Learning High-Precision Bounding Box for Rotated Object Detection via Kullback-Leibler
-Divergence~\cite{yang_learning_2021}
+Divergence~\citep{yang_learning_2021}
 \begin{itemize}
     \item Deductive approach to rotated object detection
     \item box is `translated' to 2D-Gaussian $\rightarrow$ KLD with prediction and true gaussian as Loss
     \item LIMIT:\ cannot be directly applied to quadrilateral detection
 \end{itemize}
 
-DP-SSL:\ Towards Robust Semi-supervised Learning with A Few Labeled Samples~\cite{xu_dp-ssl_2021}
+DP-SSL:\ Towards Robust Semi-supervised Learning with A Few Labeled Samples~\citep{xu_dp-ssl_2021}
 \begin{itemize}
     \item Semi-supervised learning:
         \begin{itemize}
