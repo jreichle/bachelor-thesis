@@ -17,10 +17,12 @@
 \deckblatt
 \erklaerung
 
-\input{chapters/00-abstract.tex}
+\input{chapters/00-frontmatter.tex}
 
 \tableofcontents
+
 \listoffigures
+
 % delete group thing to have tables on new page
 \begingroup
     \let\clearpage\relax
@@ -39,7 +41,6 @@
 \input{chapters/06-conclusion.tex}
 
 % Literaturverzeichnis
-% alternative, vorinstallierte Stile sind z.B. plain oder abbrv
 %\bibliographystyle{dbstmpl}    % verwendet dbstmpl.bst
 %\bibliographystyle{alpha}
 \bibliographystyle{plainnat}
@@ -47,5 +48,4 @@
 
 \appendix
 \chapter{References}
-
 \end{document}
