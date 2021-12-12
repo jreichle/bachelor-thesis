@@ -13,22 +13,21 @@ Instead of categorizing functional and non-functional requirements, like for tra
 software projects~\citep{zowghi_requirements_2014}, qualities that a \ac{MLS} must possess
 are defined as proposed.
 In~\cite{nakamichi_requirements-driven_2020,siebert_construction_2021} systematic approaches for
-identification and documentation are detailed.
+identification and documentation of such qualities are detailed.
 In \acp{MLS} various entities interact to in order to produce the desired functionality.
-\cite{nakamichi_requirements-driven_2020} suggests that in order to adequately evaluate the qualities,
-it is vital to not only consider the model but the entire \ac{MLS}.
+The paper~\cite{nakamichi_requirements-driven_2020} suggests that in order to adequately evaluate
+the qualities, it is essential to not only consider the model but the entire \ac{MLS}.
 These entities are data, model, infrastrucure, environment and platform (also system but as explained
 shortly, extra granularity would be redundant)~\citep{nakamichi_requirements-driven_2020,
 siebert_construction_2021}.
+% FIXME: add \cite{ashmore_assuring_2021} to this?
 
 For this thesis only the model can be assessed because neither of the other entities can be regarded
 as given.
-% FIXME: missing data most problematic (CRISP-DM for siebert)
-The model consists of subcomponents organized in directed acyclc graph building a
-pipeline~\citep{siebert_construction_2021}.
-This directed acyclic graph depicts everything from processing the images to the extracted
-information~\citep{siebert_construction_2021}.
 That is why the systematic approaches cannot be performed in the scope of this thesis.
+For example~\cite{siebert_construction_2021} proposes to follow the systematic CRISP-DM approach of
+identifying qualities.
+It cannot be performed due to the lack of data and other the other entities.
 Instead many qualities that are highlighted by research that fit the problem are taken into account
 along with two critical qualities (alphanumeric recognition, semantic retention) that are directly
 derived from the use case.
@@ -43,10 +42,10 @@ of measurements.
 Additionally, experimental results from literature can only be compared as long as factors such as
 hardware, platform, source code, configuration and dataset are uniform~\citep{arpteg_software_2018}.
 This applies to studies that create an overview such as~\cite{chen_text_2021,long_scene_2021}.
+% FIXME: different data -> cannot transfer
 These studies can only be regarded as guiding values.
 That's why measurements are not defined, as evaluation would only deliver a false
 sense of certainty.
-% FIXME: explain systematic approach of siebert??
 
 The problem can be depicted by a use case.
 This use case sets the foundation for determining requirements for an
@@ -76,9 +75,10 @@ The labels can contain arbitrary alpha-numeric strings such as serial numbers (s
 figure~\ref{fig:examples}).
 This results in the requirement that the \ac{DL} model has to be able to recognize sequences that
 are not part of a predefined lexicon~\citep{ghosh_visual_2017}.
-% FIXME: justify following
+% TODO: add rotation to excluding criteria?
 The qualities for the \ac{MLS} that can be derived directly from the use case (see
-table~\ref{tb:literatureQualities}) can be regarded as excluding criterias.
+table~\ref{tb:literatureQualities}) can be regarded as excluding criterias, because an approach
+that does not possess the qualities in question, cannot be regarded as viable for the use case.
 \begin{table}[h]
     \centering
     \begin{tabular}{c l}
@@ -97,17 +97,24 @@ can be regarded as relevant and other do not hold any importance for the specifi
     \begin{tabular}{c c}
         Imporant Qualites & Unimportant \\
         \hline
-        Performance & Interpretability \\
-        Robustness & Reusability \\
-        Maintainability & Fairness \\
-        Performance efficiency & Security / Data protection \\
+        Performance (ashmore)& Interpretability (ashmore) \\
+        Robustness (ashmore, \ldots) & Reusability (ashmore) \\
+        Maintainability & Fairness (siebert) \\
+        Performance efficiency & Security / Data protection (Siebert)\\
     \end{tabular}
-    \caption{Qualities identified by literature}
+    \caption{Qualities identified through literature}
 \end{table}
-\textbf{here important qualities explained (example: robustness)}
+% TODO: add justification for unimportant qualities or just leave them out? I'd leave them out
 % Performance
-% FIXME: text performance vs generalization, close to robustness!
+`An ML model is performant if it operates as expected according to a measure (or set of measures)
+that captures relevant characteristics of the model output'~\citep{ashmore_assuring_2021}.
+The measure is chosen depending on the type of task to be solved~\citep{siebert_construction_2021}.
+The F-Score is an example for a metric that is used to compare different
+models~\cite{chen_text_2021, long_scene_2021}.
+Performance is usually measured with a test dataset that is independed from training and validating
+a model~\cite{goodfellow_deep_2016}.
 % Robustness
+% FIXME: closely related to performance
 Due to the uncontrolled environment of \ac{STR} in the practical aspect of taking the images on-site
 beneficial image properties can not be guaranteed~\citep{chen_text_2021}.
 Robust text extraction can be influenced by factors such as complex backgrounds, text form
@@ -116,3 +123,8 @@ interference and low resolution) and access (perspective, shape of
 text)~\citep{oyedotun_deep_2015,ghosh_visual_2017,chen_text_2021}.
 Therefore, these properties have to be accounted for when determining the viability for an approach.
 An example for bad image quality in regards to \ac{OCR} can be seen in figure~\ref{fig:bad-example}.
+% FIXME: e.g. add gaussian noise, rotate stuff, ...
+
+% Maintainability
+
+% Power efficiency
