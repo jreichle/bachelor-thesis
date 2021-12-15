@@ -15,24 +15,8 @@
 \begin{document}
 
 \deckblatt
-\erklaerung
 
 \input{chapters/00-frontmatter.tex}
-
-\tableofcontents
-
-\listoffigures
-
-% delete group thing to have tables on new page
-\begingroup
-    \let\clearpage\relax
-    \listoftables
-\endgroup
-
-\chapter*{Abbreviations}
-\addcontentsline{toc}{chapter}{Abbreviations}
-\printacronyms[heading=none]
-
 \input{chapters/01-introduction.tex}
 \input{chapters/02-theoretical-foundation.tex}
 \input{chapters/03-problem.tex}
@@ -46,6 +30,6 @@
 \bibliographystyle{plainnat}
 \bibliography{dbstmpl}          % verwendet dbstmpl.bib
 
-\appendix
-\chapter{References}
+%\appendix
+%\chapter{Appendix Chapter}
 \end{document}

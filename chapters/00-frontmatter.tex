@@ -1,3 +1,5 @@
+\erklaerung
+
 \begin{abstract}
     Here abstract for \the\arbeit.
 
@@ -9,3 +11,17 @@
         Literature Review
     }
 \end{abstract}
+
+\tableofcontents
+
+\listoffigures
+
+% delete group thing to have tables on new page
+\begingroup
+    \let\clearpage\relax
+    \listoftables
+\endgroup
+
+\chapter*{Abbreviations}
+\addcontentsline{toc}{chapter}{Abbreviations}
+\printacronyms[heading=none]
