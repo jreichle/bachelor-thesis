@@ -106,6 +106,10 @@ Distribution~\citep{ouyang_factors_2016}
 finetuning: appraoch dat initializes model parameters for target task from parameters pretrained on
 another related task
 
+`Transfer learning [183] allows for a model learned in one domain to be exploited in a second domain, as long as the do- mains are similar enough so that features learned in the source domain are applicable to the target domain. Where this is the case, all or part of a model may be transferred to reduce the training cost.'~\cite{ashmore_assuring_2021}
+
+`Convolutional neural networks (CNN) are particularly suited for partial model transfer [59] since the convolutional layers encode features in the input space, whilst the fully connected layers encode reasoning based on those features.'~\cite{ashmore_assuring_2021}
+
 \subsection*{Convolutional Neural Network}
 \textbf{Comparative analysis of deep learning image detection
 algorithms}~\citep{srivastava_comparative_2021}
@@ -152,8 +156,13 @@ Text Recognition in the Wild: A Survey~\citep{chen_text_2021}
     \item text enhancement: recover degraded text, improve text resolution, remove distortions,
         remove background $\rightarrow$ reduce difficulty of recognition
 \end{itemize}
-\includegraphics{img/OCR-Basics.png}
+\includegraphics{img/OCR-Pipeline.png}
 
+OCR-phases~\cite{srivastava_comparative_2021}
+\includegraphics{img/OCR-Phases.png}
+
+
+see~\cite{sourvanos_challenges_2018} for mobile issues for \ac{OCR}
 
 \textbf{no source}
 grid: divides image into parts $\rightarrow$ each part has own bounding boxes
@@ -167,6 +176,9 @@ subfield of object detection (e.g. YOLOv4 can be used for text)
 
 Detect position coordinates containing text in input image
 Text detection more challenging
+
+From Github~\cite{noauthor_yangxue0827rotationdetection_nodate}
+\includegraphics{img/Detection-Modules.png}
 
 Two object detection methods --- CNN-based
 \begin{itemize}
