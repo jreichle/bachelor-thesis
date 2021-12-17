@@ -3,48 +3,56 @@ This chapter entails an analysis of the problem which is the research question's
 It is crucial, as the quality of requirements ultimately determines the quality of the overview and
 subsequent analysis.
 
-Requirements for a software system that involves \ac{ML} and thus \ac{DL} requirements differs from
-the traditional approach. The data-driven software components are not entirely defined by the programmer
-but are influenced by data.
+Requirements for a software system that involves \ac{ML} and thus \ac{DL} differs from
+the traditional approach. The data-driven software components are not entirely defined by the
+programmer but are influenced by data.
 The system acts with dependency on the test data~\citep{siebert_construction_2021}.
 This poses a challenge in determining requirements and measuring quality of
 results~\citep{nakamichi_requirements-driven_2020}.
 Instead of categorizing functional and non-functional requirements, like for traditional
 software projects~\citep{zowghi_requirements_2014}, qualities that a \ac{MLS} must possess
-are defined as proposed.
+are defined.
+
+In the article~\cite{ashmore_assuring_2021} the qualities are identified and assigned to different
+challenges in regards to working with \ac{MLS}: Development Challenges, Production Challenges,
+Organizational Challenges.
+Because the only the Model Selection substage of the lifecycle is performed, the challenges and their
+qualities are not relevant for this thesis, as they concern the operational aspect of \acp{MLS}.
+
 In~\cite{nakamichi_requirements-driven_2020,siebert_construction_2021} systematic approaches for
-identification and documentation of such qualities are detailed.
+identification and documentation of qualities are detailed.
 In \acp{MLS} various entities interact to in order to produce the desired functionality.
 The paper~\cite{nakamichi_requirements-driven_2020} suggests that in order to adequately evaluate
 the qualities, it is essential to not only consider the model but the entire \ac{MLS}.
-These entities are data, model, infrastrucure, environment and platform (also system but as explained
-shortly, extra granularity would be redundant)~\citep{nakamichi_requirements-driven_2020,
-siebert_construction_2021}.
-% FIXME: add \cite{ashmore_assuring_2021} to this?
-
-For this thesis only the model can be assessed because neither of the other entities can be regarded
-as given.
+These entities are data, model, environment,
+system/infrastrucure~\citep{nakamichi_requirements-driven_2020, siebert_construction_2021}.
+The article~\cite{siebert_construction_2021} differenciates between system and infrastrucure.
+The infrastrucure represents given hardware and available libraries, whereas the system depicts
+the software that surrounds the model in the runtime environment.
+% TODO: explain entities: data, environment, model?
+For this thesis the entities data and system cannot be regarded as given.
+The entities environment and infrastrucure are only losely defined through the use case.
 That is why the systematic approaches cannot be performed in the scope of this thesis.
 For example~\cite{siebert_construction_2021} proposes to follow the systematic CRISP-DM approach of
 identifying qualities.
-It cannot be performed due to the lack of data and other the other entities.
+It cannot be performed due to the lack of data and the other entities.
 Instead many qualities that are highlighted by research that fit the problem are taken into account
 along with two critical qualities (alphanumeric recognition, semantic retention) that are directly
 derived from the use case.
-
 When it comes to documenting the identified qualities,
 both~\cite{nakamichi_requirements-driven_2020} and~\cite{siebert_construction_2021} define a meta
 model for qualities that combines qualities with
 measurement methods and values and assignes them to an entity of the \ac{MLS}.
 The implementation and testing phase are not performed in the scope of this thesis and the
-difficulty in assessing the performance ahead of those phases, prevents complicates the evaluation
+difficulty in assessing the performance ahead of those phases, prevents the evaluation
 of measurements.
 Additionally, experimental results from literature can only be compared as long as factors such as
 hardware, platform, source code, configuration and dataset are uniform~\citep{arpteg_software_2018}.
 This applies to studies that create an overview such as~\cite{chen_text_2021,long_scene_2021}.
-% FIXME: different data -> cannot transfer
-These studies can only be regarded as guiding values.
-That's why measurements are not defined, as evaluation would only deliver a false
+These studies can only be regarded as guiding values because the performance for a specific dataset
+cannot be predicted without testing on it~\cite{arpteg_software_2018}.
+% TODO: ok like that? then compare relative to each other not absolute
+That's why targets for measurements are not defined, as evaluation would only deliver a false
 sense of certainty.
 
 The problem can be depicted by a use case.
@@ -65,47 +73,58 @@ Space and structure of this information can vary from label to label (see figure
         {img/Image-Example-Negative.jpg}}
     \caption{Examples for label images\label{fig:examples}}
 \end{figure}
+% XXX: use concept of representation for semantics retention
 The text, spacing and structure carries semantic information which can be important for later
 processing in the scope of a business process~\citep{chen_text_2021}.
 The goal is to extract the text and preserve semantics from structure and space.
 This means text and the respective coordinates, height, width and a possible rotation angle must
 be output as the result~\citep{yang_learning_2021}.
 Those values can then be transformed into other formats such as JSON or HTML as needed.
-The labels can contain arbitrary alpha-numeric strings such as serial numbers (see
+The labels can contain arbitrary alphanumeric strings such as serial numbers (see
 figure~\ref{fig:examples}).
 This results in the requirement that the \ac{DL} model has to be able to recognize sequences that
 are not part of a predefined lexicon~\citep{ghosh_visual_2017}.
-% TODO: add rotation to excluding criteria?
 The qualities for the \ac{MLS} that can be derived directly from the use case (see
 table~\ref{tb:literatureQualities}) can be regarded as excluding criterias, because an approach
 that does not possess the qualities in question, cannot be regarded as viable for the use case.
 \begin{table}[h]
     \centering
-    \begin{tabular}{c l}
-        Alphanumeric recognition & Recognize alphanumeric strings such as serial numbers \\
-        Semantics retention & Retain semantics given implicitly be space and strucure \\
-                            & of text in labels \\
+    \begin{tabular}{l c}
+        Alphanumeric recognition    & Recognize alphanumeric strings such as serial \\
+                                    & numbers \\
+        Semantics retention & Retain semantics given implicitly be space, \\
+                            & strucure and rotation of text in labels \\
     \end{tabular}
     \caption{Qualities specific to use case --- exclusion criterias}
 \end{table}
 
 In addition to the qualities that arise directly from the use case, literature reveals a number of
 common qualities in regards to \ac{MLS} (see table~\ref{tb:literatureQualities}), some of which
-can be regarded as relevant and other do not hold any importance for the specific use case.
+can be regarded as relevant and other do not hold any relevance for the specific use case.
+The qualities are taken from literature which covers \ac{ML} in general to literature
+which covers \ac{STR}.
+Only qualities that concern the model will be looked at because the model is the focus of this thesis.
+These qualities may however be influenced by other entities.
+
+% FIXME: some can be quantified, some can't
+
 \begin{table}[h]\label{tb:literatureQualities}
     \centering
     \begin{tabular}{c c}
-        Imporant Qualites & Unimportant \\
+        Relevant                & Not relevant \\
         \hline
-        Performance (ashmore)& Interpretability (ashmore) \\
-        Robustness (ashmore, \ldots) & Reusability (ashmore) \\
-        Maintainability & Fairness (siebert) \\
-        Performance efficiency & Security / Data protection (Siebert)\\
+        Performance & Interpretability (ashmore, siebert) \\
+        Robustness & Reusability (ashmore) \\
+        Performance efficiency (zhang, El Bahi)  & Security / Data protection (Siebert, zhang)\\
+        Appropriateness & Fairness (siebert, zhang) \\
+                                & Maintainability \\
     \end{tabular}
     \caption{Qualities identified through literature}
 \end{table}
-% TODO: add justification for unimportant qualities or just leave them out? I'd leave them out
+% TODO: qualities often under different name -> also name source and explain?
+
 % Performance
+% FIXME: explain relevence
 `An ML model is performant if it operates as expected according to a measure (or set of measures)
 that captures relevant characteristics of the model output'~\citep{ashmore_assuring_2021}.
 The measure is chosen depending on the type of task to be solved~\citep{siebert_construction_2021}.
@@ -113,8 +132,13 @@ The F-Score is an example for a metric that is used to compare different
 models~\cite{chen_text_2021, long_scene_2021}.
 Performance is usually measured with a test dataset that is independed from training and validating
 a model~\cite{goodfellow_deep_2016}.
+% FIXME: combine from \cite{siebert_construction_2021}: Correctness, appropriateness, Relevance
+% FIXME: from \cite{nakamichi_requirements-driven_2020}: generalization performance, sufficiency of
+%        accuracy
+
 % Robustness
-% FIXME: closely related to performance
+% FIXME: focus from literature
+The robustness of a model concerns environmental uncertainty~\cite{ashmore_assuring_2021}.
 Due to the uncontrolled environment of \ac{STR} in the practical aspect of taking the images on-site
 beneficial image properties can not be guaranteed~\citep{chen_text_2021}.
 Robust text extraction can be influenced by factors such as complex backgrounds, text form
@@ -123,8 +147,65 @@ interference and low resolution) and access (perspective, shape of
 text)~\citep{oyedotun_deep_2015,ghosh_visual_2017,chen_text_2021}.
 Therefore, these properties have to be accounted for when determining the viability for an approach.
 An example for bad image quality in regards to \ac{OCR} can be seen in figure~\ref{fig:bad-example}.
+
+% FIXME: revisit \cite{hu_towards_2020} for definition of transformations (invariant, equivariant)
 % FIXME: e.g. add gaussian noise, rotate stuff, ...
 
-% Maintainability
+% FIXME: work in following notes:
+`Increasing model complexity generally reduces training errors, but noise in the training data may result in overfitting and in a failure of the model to generalise to real-world
+data'~\citep{ashmore_assuring_2021}.
+Aspect ratios and perspective distortions~\cite{sourvanos_challenges_2018}
+`Perspective distortion is an inherent issue when the optical axis of the camera is not perpendicular to the text plane. Shapes of characters are distorted, skewed or stretched.'~\cite{sourvanos_challenges_2018}
 
-% Power efficiency
+% Appropriateness (sieber, nakamichi)
+Whether model type is appropriate for the task~\cite{nakamichi_requirements-driven_2020}
+Degree to which model type is appropriate for current task and can deal with current data
+type~\cite{siebert_construction_2021}
+
+% Interpretability (ashmore, siebert)
+extent to which model can produce artefacts that support the analysis of its output~\citep{ashmore}
+`Interpretable models aid assurance by providing evidence that allows for [2, 96, 99]: justifying the results provided by a model, supporting the identification and correction of errors, aiding model improvement, and providing insight with respect to the operational domain.'~\citep{ashmore_assuring_2021}
+`The difficulty of providing interpretable models stems from the frequent use of complex ML models whose structure and size makes it impossible for a human to construct a mental model that can explain the features and parameters of the model in a contextually meaningful manner.'~\citep{ashmore_assuring_2021}
+degree to which trained model can be interpreted by humans~\cite{siebert_construction_2021}
+
+Explainability twofold: explain the model (what has been learned) explain single preditictions of the model~\cite{vogelsang_requirements_2019}
+
+modular processing pipeline replaced with large NN that are trained end-to-end
+$\rightarrow$ trade transparency for accuracy~\cite{arpteg_software_2018}
+
+% Reusability (ashmore)
+Ability of model to be reused in systems for which not originally intended $\rightarrow$ reuse of
+pre-trained model for transfer learning~\citep{ashmore_assuring_2021}
+
+% how well do overviews transfer to given dataset?
+
+
+% Performance efficiency (zhang, El Bahi, Siebert)
+Resource utilization when already trained~\citep{siebert_construction_2021}
+The computational power of smartphones demonstrates large variations, which depend on the
+smartphone model.~\cite{sourvanos_challenges_2018}
+`Especially for vision-based applications, such as OCR, computational complexity is a key factor, as can be noticed for other applications of visual computing in mobile devices [18]. Apart from more technical requirements, such as a de- cent camera, processing of multimedia information on mobile devices in interactive or real time is either computationally demanding (which results in high power consumption, bad performance of other functions, etc.) or cannot be done at all.'~\cite{sourvanos_challenges_2018}
+time behaviour and resource utilization (data storage)\cite{nakamichi_requirements-driven_2020}
+
+Resource limitations> lack of memory, long training time, low-latency needs~\cite{arpteg_software_2018}
+
+
+% Security / Data protection (Siebert, zhang)
+GDPR:\ personal data can only be used in ways specified by explicit consent~\cite{vogelsang_requirements_2019}
+security, safety, data protection~\cite{siebert_construction_2021}
+% Fairness (siebert, zhang)
+ability to output fair decisions~\cite{siebert_construction_2021}
+also: freedom from discrimination, problem with \ac{MLS}: discrimination is implicit, \ac{MLS} amplify
+discrimination bias in the data~\cite{vogelsang_requirements_2019}
+% Maintainability (Nakamichi)
+Modifiability (resource or software update), Analyzability (System Status
+analysis)~\cite{nakamichi_requirements-driven_2020}
+`Version control for ML systems adds a number of challenges compared to traditional software
+development, especially given the high level of data dependency in ML
+systems.'~\cite{arpteg_software_2018}
+`With the addition of data dependencies and a high degree of configuration parameters, it can
+be very challenging to properly maintain ML systems in the long run. Also, it is not uncommon to
+perform hyperparameter tuning of models, potentially by making use of automated meta-optimization
+methods that generate hundreds of versions of the same data and model but with different
+configuration parameters [35]. Deep learning can also add the requirement of specific hard-
+ware.'~\cite{arpteg_software_2018}
