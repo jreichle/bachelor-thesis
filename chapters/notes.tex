@@ -237,3 +237,60 @@ quality meta model: quality model, quality measurement, environment
     \item maintainability: modifiability (software, resource update), analyzability
     \item \ldots
 \end{itemize}
+
+
+% Appropriateness (sieber, nakamichi)
+Whether model type is appropriate for the task~\cite{nakamichi_requirements-driven_2020}
+Degree to which model type is appropriate for current task and can deal with current data
+type~\cite{siebert_construction_2021}
+
+
+
+% Performance efficiency (zhang, El Bahi, Siebert)
+Resource utilization when already trained~\citep{siebert_construction_2021}
+The computational power of smartphones demonstrates large variations, which depend on the
+smartphone model.~\cite{sourvanos_challenges_2018}
+`Especially for vision-based applications, such as OCR, computational complexity is a key factor, as can be noticed for other applications of visual computing in mobile devices [18]. Apart from more technical requirements, such as a de- cent camera, processing of multimedia information on mobile devices in interactive or real time is either computationally demanding (which results in high power consumption, bad performance of other functions, etc.) or cannot be done at all.'~\cite{sourvanos_challenges_2018}
+time behaviour and resource utilization (data storage)\cite{nakamichi_requirements-driven_2020}
+Resource limitations> lack of memory, long training time, low-latency needs~\cite{arpteg_software_2018}
+DNNs have high demand in computation power and memory storage~\cite{niu_26ms_2019}
+
+% Fairness (siebert, zhang)
+ability to output fair decisions~\cite{siebert_construction_2021}
+also: freedom from discrimination, problem with \ac{MLS}: discrimination is implicit, \ac{MLS} amplify
+discrimination bias in the data~\cite{vogelsang_requirements_2019}
+
+% Interpretability (ashmore, siebert)
+extent to which model can produce artefacts that support the analysis of its
+output~\citep{ashmore_assuring_2021}
+`Interpretable models aid assurance by providing evidence that allows for [2, 96, 99]: justifying the results provided by a model, supporting the identification and correction of errors, aiding model improvement, and providing insight with respect to the operational domain.'~\citep{ashmore_assuring_2021}
+`The difficulty of providing interpretable models stems from the frequent use of complex ML models whose structure and size makes it impossible for a human to construct a mental model that can explain the features and parameters of the model in a contextually meaningful manner.'~\citep{ashmore_assuring_2021}
+degree to which trained model can be interpreted by humans~\cite{siebert_construction_2021}
+
+Explainability twofold: explain the model (what has been learned) --- explain single
+preditictions of the model~\cite{vogelsang_requirements_2019}
+
+modular processing pipeline replaced with large NN that are trained end-to-end
+$\rightarrow$ trade transparency for accuracy~\cite{arpteg_software_2018}
+
+% Reusability (ashmore)
+Ability of model to be reused in systems for which not originally intended $\rightarrow$ reuse of
+pre-trained model for transfer learning~\citep{ashmore_assuring_2021}
+% how well do overviews transfer to given dataset?
+
+% Maintainability (Nakamichi)
+Modifiability (resource or software update), Analyzability (System Status
+analysis)~\cite{nakamichi_requirements-driven_2020}
+`Version control for ML systems adds a number of challenges compared to traditional software
+development, especially given the high level of data dependency in ML
+systems.'~\cite{arpteg_software_2018}
+`With the addition of data dependencies and a high degree of configuration parameters, it can
+be very challenging to properly maintain ML systems in the long run. Also, it is not uncommon to
+perform hyperparameter tuning of models, potentially by making use of automated meta-optimization
+methods that generate hundreds of versions of the same data and model but with different
+configuration parameters [35]. Deep learning can also add the requirement of specific hard-
+ware.'~\cite{arpteg_software_2018}
+
+% Security / Data protection (Siebert, zhang)
+GDPR:\ personal data can only be used in ways specified by explicit consent~\cite{vogelsang_requirements_2019}
+security, safety, data protection~\cite{siebert_construction_2021}

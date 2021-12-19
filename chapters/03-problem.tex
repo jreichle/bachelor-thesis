@@ -89,7 +89,7 @@ table~\ref{tb:literatureQualities}) can be regarded as excluding criterias, beca
 that does not possess the qualities in question, cannot be regarded as viable for the use case.
 \begin{table}[h]
     \centering
-    \begin{tabular}{l c}
+    \begin{tabular}{c|c}
         Alphanumeric recognition    & Recognize alphanumeric strings such as serial \\
                                     & numbers \\
         Semantics retention & Retain semantics given implicitly be space, \\
@@ -104,40 +104,44 @@ can be regarded as relevant and other do not hold any relevance for the specific
 The qualities are taken from literature which covers \ac{ML} in general to literature
 which covers \ac{STR}.
 Only qualities that concern the model will be looked at because the model is the focus of this thesis.
-These qualities may however be influenced by other entities.
+% FIXME: operational aspect and concerns whole system not only model -> find right source
+    % Maintainability for example is not included because the qualitiy can
+The qualities may however be influenced by other entities.
 
-% FIXME: some can be quantified, some can't
 
 \begin{table}[h]\label{tb:literatureQualities}
     \centering
-    \begin{tabular}{c c}
+    \begin{tabular}{c l}
         Relevant                & Not relevant \\
-        \hline
-        Performance & Interpretability (ashmore, siebert) \\
-        Robustness & Reusability (ashmore) \\
-        Performance efficiency (zhang, El Bahi)  & Security / Data protection (Siebert, zhang)\\
-        Appropriateness & Fairness (siebert, zhang) \\
-                                & Maintainability \\
+        \midrule
+        Appropriateness         & Fairness  \\
+        Performance             & Interpretability \\
+        Robustness              & Reusability \\
+        Performance efficiency  & \\
     \end{tabular}
     \caption{Qualities identified through literature}
 \end{table}
 % TODO: qualities often under different name -> also name source and explain?
+% FIXME: differenciate between purely quantiative and qualitative tasks?
+% FIXME: Interpretability to relevant?
+
+% Appropriateness
+The appropriateness quality refers to the ability to perform the type of task that is required by
+the use case.
+For this thesis this applies to \ac{STR} models.
+% TODO: qualities from use case in here?
 
 % Performance
-% FIXME: explain relevence
 `An ML model is performant if it operates as expected according to a measure (or set of measures)
 that captures relevant characteristics of the model output'~\citep{ashmore_assuring_2021}.
 The measure is chosen depending on the type of task to be solved~\citep{siebert_construction_2021}.
 The F-Score is an example for a metric that is used to compare different
 models~\cite{chen_text_2021, long_scene_2021}.
 Performance is usually measured with a test dataset that is independed from training and validating
-a model~\cite{goodfellow_deep_2016}.
-% FIXME: combine from \cite{siebert_construction_2021}: Correctness, appropriateness, Relevance
-% FIXME: from \cite{nakamichi_requirements-driven_2020}: generalization performance, sufficiency of
-%        accuracy
+a model in order to approximate the generalization performance~\cite{goodfellow_deep_2016,
+nakamichi_requirements-driven_2020}.
 
 % Robustness
-% FIXME: focus from literature
 The robustness of a model concerns environmental uncertainty~\cite{ashmore_assuring_2021}.
 Due to the uncontrolled environment of \ac{STR} in the practical aspect of taking the images on-site
 beneficial image properties can not be guaranteed~\citep{chen_text_2021}.
@@ -146,66 +150,45 @@ Robust text extraction can be influenced by factors such as complex backgrounds,
 interference and low resolution) and access (perspective, shape of
 text)~\citep{oyedotun_deep_2015,ghosh_visual_2017,chen_text_2021}.
 Therefore, these properties have to be accounted for when determining the viability for an approach.
+Some of these factors do not change the expected prediction (noise), others do (text
+form)\cite{hu_towards_2020}.
 An example for bad image quality in regards to \ac{OCR} can be seen in figure~\ref{fig:bad-example}.
 
-% FIXME: revisit \cite{hu_towards_2020} for definition of transformations (invariant, equivariant)
-% FIXME: e.g. add gaussian noise, rotate stuff, ...
+% Performance efficiency
+Performance efficiency addresses time and resource utilization when the model is in use.
+This does not involve the training phase but the execution or
+prediction~\citep{siebert_construction_2021}.
+The efficiency refers to low latency needs and to minimizing resource needs such as memory
+usage or power consumption~\citep{nakamichi_requirements-driven_2020, siebert_construction_2021,
+sourvanos_challenges_2018}.
+This quality is especially important for usage on mobile devices in conjunction with
+\ac{DNN}~\citep{sourvanos_challenges_2018, niu_26ms_2019}.
 
-% FIXME: work in following notes:
-`Increasing model complexity generally reduces training errors, but noise in the training data may result in overfitting and in a failure of the model to generalise to real-world
-data'~\citep{ashmore_assuring_2021}.
-Aspect ratios and perspective distortions~\cite{sourvanos_challenges_2018}
-`Perspective distortion is an inherent issue when the optical axis of the camera is not perpendicular to the text plane. Shapes of characters are distorted, skewed or stretched.'~\cite{sourvanos_challenges_2018}
+% Fairness
+The first quality often found in research that is not relevant for the use case is fairness.
+A fair model is free from discrimination bias.
+For \ac{ML} this is can be a big problem, since discrimination can not only be influenced through
+explicit programming in terms of the model but also through implicit knowledge from the
+data~\citep{vogelsang_requirements_2019}.
+For the use case however no relevance is attached.
+The model can either recognize the text or it fails the task.
 
-% Appropriateness (sieber, nakamichi)
-Whether model type is appropriate for the task~\cite{nakamichi_requirements-driven_2020}
-Degree to which model type is appropriate for current task and can deal with current data
-type~\cite{siebert_construction_2021}
+% Interpretability
+The interpretability of a model helps to justify the output~\citep{ashmore_assuring_2021}.
+The interpretability is twofold: explain what the model has learned, explain how a model given the
+input comes to the output~\citep{vogelsang_requirements_2019}.
+This can be challenging for two reasons.
+\ac{ML} models used can be complex in terms of size and structure~\citep{ashmore_assuring_2021}.
+Modular processing pipelines are continusously replaced with end-to-end
+models~\cite{arpteg_software_2018}.
+% FIXME: why not relevant?
 
-% Interpretability (ashmore, siebert)
-extent to which model can produce artefacts that support the analysis of its output~\citep{ashmore}
-`Interpretable models aid assurance by providing evidence that allows for [2, 96, 99]: justifying the results provided by a model, supporting the identification and correction of errors, aiding model improvement, and providing insight with respect to the operational domain.'~\citep{ashmore_assuring_2021}
-`The difficulty of providing interpretable models stems from the frequent use of complex ML models whose structure and size makes it impossible for a human to construct a mental model that can explain the features and parameters of the model in a contextually meaningful manner.'~\citep{ashmore_assuring_2021}
-degree to which trained model can be interpreted by humans~\cite{siebert_construction_2021}
-
-Explainability twofold: explain the model (what has been learned) explain single preditictions of the model~\cite{vogelsang_requirements_2019}
-
-modular processing pipeline replaced with large NN that are trained end-to-end
-$\rightarrow$ trade transparency for accuracy~\cite{arpteg_software_2018}
-
-% Reusability (ashmore)
-Ability of model to be reused in systems for which not originally intended $\rightarrow$ reuse of
-pre-trained model for transfer learning~\citep{ashmore_assuring_2021}
-
-% how well do overviews transfer to given dataset?
-
-
-% Performance efficiency (zhang, El Bahi, Siebert)
-Resource utilization when already trained~\citep{siebert_construction_2021}
-The computational power of smartphones demonstrates large variations, which depend on the
-smartphone model.~\cite{sourvanos_challenges_2018}
-`Especially for vision-based applications, such as OCR, computational complexity is a key factor, as can be noticed for other applications of visual computing in mobile devices [18]. Apart from more technical requirements, such as a de- cent camera, processing of multimedia information on mobile devices in interactive or real time is either computationally demanding (which results in high power consumption, bad performance of other functions, etc.) or cannot be done at all.'~\cite{sourvanos_challenges_2018}
-time behaviour and resource utilization (data storage)\cite{nakamichi_requirements-driven_2020}
-
-Resource limitations> lack of memory, long training time, low-latency needs~\cite{arpteg_software_2018}
-
-
-% Security / Data protection (Siebert, zhang)
-GDPR:\ personal data can only be used in ways specified by explicit consent~\cite{vogelsang_requirements_2019}
-security, safety, data protection~\cite{siebert_construction_2021}
-% Fairness (siebert, zhang)
-ability to output fair decisions~\cite{siebert_construction_2021}
-also: freedom from discrimination, problem with \ac{MLS}: discrimination is implicit, \ac{MLS} amplify
-discrimination bias in the data~\cite{vogelsang_requirements_2019}
-% Maintainability (Nakamichi)
-Modifiability (resource or software update), Analyzability (System Status
-analysis)~\cite{nakamichi_requirements-driven_2020}
-`Version control for ML systems adds a number of challenges compared to traditional software
-development, especially given the high level of data dependency in ML
-systems.'~\cite{arpteg_software_2018}
-`With the addition of data dependencies and a high degree of configuration parameters, it can
-be very challenging to properly maintain ML systems in the long run. Also, it is not uncommon to
-perform hyperparameter tuning of models, potentially by making use of automated meta-optimization
-methods that generate hundreds of versions of the same data and model but with different
-configuration parameters [35]. Deep learning can also add the requirement of specific hard-
-ware.'~\cite{arpteg_software_2018}
+% Reusability
+Another quality for a \ac{ML} model refers to how well a model intended for one task can be reused
+for another related task.
+% XXX: check whether trasnfer learning defined before
+This can be beneficial because transfer learning can speed up the training, thus reducing training
+cost.
+~\citep{ashmore_assuring_2021}.
+Reusability is not relavant in the scope of this work as it targets the training phase of the
+\ac{ML} lifecycle.
