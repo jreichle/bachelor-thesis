@@ -1,0 +1,173 @@
+%%%%%%%%%%%%%%%%%%
+% problem chaper
+%%%%%%%%%%%%%%%%%%
+Towards Requirements Specification for \ldots~\cite{hu_towards_2020}
+requirements that ensure robustness (handle stressful environmental conditions and unseen or
+unexpected data) are crucial
+
+Definition of transformations: modifications in images
+--- affine (e.g.\ scaling, rotation), perceptual context transformations (e.g.\ light sources, viewpoint)
+$\rightarrow$ invariant (not changing e.g. class label) --- equivariant (e.g. bounding
+                box position) requirements
+
+
+Assuring the Machine Learning Lifecycle~\cite{ashmore_assuring_2021}
+Activities in MLC Model Learning
+\begin{itemize}
+    \item Model Selection: decide model type, variant, structure of model
+    \item Training
+    \item Hyperparameter Selection
+    \item Transfer Learning
+\end{itemize}
+desired properties for ML component: performance, robustness (handle stressful environmental
+conditions and unseen or unexpected data), reusability, interpretability
+`Comparing models is not always straightforward, with different models showing superior performance
+against different measures. Composite metrics [59, 158] allow for a tradeoff between measures
+during the training process.'
+
+Requirements Engineering Challengs in Building AI-Based Complex Systems~\cite{belani_requirements_2019}
+RE activities according to different AI-entities: data, model, system (for thesis only model)
+Look into: Agent-based software engineering (see sources 11, 12 in paper)
+
+Construction of a quality model for machine learning systems~\cite{siebert_construction_2021}
+Data-driven software components: function not entirely defined by programmer but is derived from data
+At the core of dd software component lies the notion of a model (by definition a
+re-presentation/simplification of some part of reality)
+Behavior of such components is fundamentally different from traditional software: input-output
+relationship is usually non-linear $\rightarrow$ small discrepancy in input big discrepancy in output
+Relationship only defined for test data $\rightarrow$ uncertainty in outcomes for unseen data
+To build a quality model:
+\begin{itemize}
+    \item first define the usage scenarios
+    \item define quality properties
+    \item define quantity properties and how to measure
+\end{itemize}
+Different quality classifications:
+\begin{itemize}
+    \item service quality, product quality, platform quality
+    \item data integrity, model robustness, system quality, process agility and costumer expectation
+\end{itemize}
+Different views/entities of the system: data, model, platform, environment
+Qualiy model construction process (performed iteratively)
+\begin{enumerate}
+    \item Define quality meta-model: basic structure for documenting all quality properties and
+        measures for quantifying those properties
+        for model sse fig3
+    \item Define use case and application context
+    \item identify relevant ML quality requirements (for thesis only model part)
+        \begin{itemize}
+            \item usually systematic approach after CRISP-DM!!!
+            \item Important aspects: data understanding, modeling
+        \end{itemize}
+    \item Idenfify relevant entities of ML System: data, model, \ldots\\
+        Model view, specifically model type not instanciation (Data, System, Infrastructure,
+        Enironment views not looked at in thesis)
+        \begin{itemize}
+            \item ML component consists of subcomponents organized in a directed acyclic graph/pipeline
+        \end{itemize}
+    \item Identify reference elements of an ML quality model: table of reference for requirements
+        and entities
+    \item instantiate quality model for use case\\
+        \begin{itemize}
+            \item interested in quality (property) at each step of the pipeline (entity)
+            \item pipeline modeled as ahierarchy of entities, on lower levels, requirements for steps
+                can be found
+        \end{itemize}
+\end{enumerate}
+Important factors: context and user must be clear; iterative approach;
+
+Maintainability:
+encapsulation and modularity have to be rethought
+changing anything changes everything
+
+Requirements-Driven Methode to Determine Quality\ldots~\cite{nakamichi_requirements-driven_2020}
+MLS is different from conventional software systems --- depends on amount and distribution of
+training data in model learning and input data during operation $\rightarrow$ major challenge in
+quality assurance
+
+software systems [12] [21]. Sculley et al.\ pointed out that machine learning component is only a
+
+small portion of the entire \ac{MLS}. Therefore, it is necessary to consider the entire MLS instead
+of machine learning compo- nent [21]. This raises new problems in software engineering [1] [15].'
+
+Research on quality problems still in early stage
+More of a systemeatic approach in this paper
+MLS parts and their issues
+\begin{itemize}
+    \item environmant/user
+    \item system/infrastrucure: scope compliance, training/execute performance efficiency, output
+        supervision, \ldots
+    \item model
+        \begin{itemize}
+            \item approriatenss: is model appropriate for task and the required data
+            \item performance training --- runtime
+            \item \ldots
+        \end{itemize}
+    \item data: representativeness, balancedness, timeliness
+\end{itemize}
+quality meta model: quality model, quality measurement, environment
+\begin{itemize}
+    \item functional suitability: correctness (accuracy), completeness (generalization)
+    \item reliability: maturity (robustness against change of input data and against noise data),
+        availability (appropriatenss of operation maintenance)
+    \item performance efficiency: time behaviour, resource utilization
+    \item maintainability: modifiability (software, resource update), analyzability
+    \item \ldots
+\end{itemize}
+
+
+% Appropriateness (sieber, nakamichi)
+Whether model type is appropriate for the task~\cite{nakamichi_requirements-driven_2020}
+Degree to which model type is appropriate for current task and can deal with current data
+type~\cite{siebert_construction_2021}
+
+
+
+% Performance efficiency (zhang, El Bahi, Siebert)
+Resource utilization when already trained~\citep{siebert_construction_2021}
+The computational power of smartphones demonstrates large variations, which depend on the
+smartphone model.~\cite{sourvanos_challenges_2018}
+`Especially for vision-based applications, such as OCR, computational complexity is a key factor, as can be noticed for other applications of visual computing in mobile devices [18]. Apart from more technical requirements, such as a de- cent camera, processing of multimedia information on mobile devices in interactive or real time is either computationally demanding (which results in high power consumption, bad performance of other functions, etc.) or cannot be done at all.'~\cite{sourvanos_challenges_2018}
+time behaviour and resource utilization (data storage)\cite{nakamichi_requirements-driven_2020}
+Resource limitations> lack of memory, long training time, low-latency needs~\cite{arpteg_software_2018}
+DNNs have high demand in computation power and memory storage~\cite{niu_26ms_2019}
+
+% Fairness (siebert, zhang)
+ability to output fair decisions~\cite{siebert_construction_2021}
+also: freedom from discrimination, problem with \ac{MLS}: discrimination is implicit, \ac{MLS} amplify
+discrimination bias in the data~\cite{vogelsang_requirements_2019}
+
+% Interpretability (ashmore, siebert)
+extent to which model can produce artefacts that support the analysis of its
+output~\citep{ashmore_assuring_2021}
+`Interpretable models aid assurance by providing evidence that allows for [2, 96, 99]: justifying the results provided by a model, supporting the identification and correction of errors, aiding model improvement, and providing insight with respect to the operational domain.'~\citep{ashmore_assuring_2021}
+`The difficulty of providing interpretable models stems from the frequent use of complex ML models whose structure and size makes it impossible for a human to construct a mental model that can explain the features and parameters of the model in a contextually meaningful manner.'~\citep{ashmore_assuring_2021}
+degree to which trained model can be interpreted by humans~\cite{siebert_construction_2021}
+
+Explainability twofold: explain the model (what has been learned) --- explain single
+preditictions of the model~\cite{vogelsang_requirements_2019}
+
+modular processing pipeline replaced with large NN that are trained end-to-end
+$\rightarrow$ trade transparency for accuracy~\cite{arpteg_software_2018}
+
+% Reusability (ashmore)
+Ability of model to be reused in systems for which not originally intended $\rightarrow$ reuse of
+pre-trained model for transfer learning~\citep{ashmore_assuring_2021}
+% how well do overviews transfer to given dataset?
+
+% Maintainability (Nakamichi)
+Modifiability (resource or software update), Analyzability (System Status
+analysis)~\cite{nakamichi_requirements-driven_2020}
+`Version control for ML systems adds a number of challenges compared to traditional software
+development, especially given the high level of data dependency in ML
+systems.'~\cite{arpteg_software_2018}
+`With the addition of data dependencies and a high degree of configuration parameters, it can
+be very challenging to properly maintain ML systems in the long run. Also, it is not uncommon to
+perform hyperparameter tuning of models, potentially by making use of automated meta-optimization
+methods that generate hundreds of versions of the same data and model but with different
+configuration parameters [35]. Deep learning can also add the requirement of specific hard-
+ware.'~\cite{arpteg_software_2018}
+
+% Security / Data protection (Siebert, zhang)
+GDPR:\ personal data can only be used in ways specified by explicit consent~\cite{vogelsang_requirements_2019}
+security, safety, data protection~\cite{siebert_construction_2021}
