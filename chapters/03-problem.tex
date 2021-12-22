@@ -14,18 +14,38 @@ software projects~\citep{zowghi_requirements_2014}, qualities that a \ac{MLS} mu
 are defined.
 
 \section{Use Case}
-% FIXME: use case ein bisschen mehr ausschreiben -> ausführlicher
 The problem can be depicted by a use case.
 This use case sets the foundation for determining requirements for an
 approach because qualities derive from the intended purpose of
 use~\citep{siebert_construction_2021}.
+Table~\ref{tb:useCaseQualities} gives an overview over the relevant properties that can be derived
+from the use case.
+\begin{table}[h]\label{tb:useCaseQualities}
+    \centering
+    \begin{tabular}{c l}
+        \textbf{Alphanumeric recognition}    & Recognize alphanumeric strings such as serial \\
+                                    & numbers \\
+        \textbf{Semantics retention} & Retain semantics given implicitly be space, \\
+                            & strucure and rotation of text in labels \\
+        \textbf{Offline Capabilities} & Perform extraction process offline \\
+    \end{tabular}
+    \caption{Qualities specific to use case --- exclusion criterias}
+\end{table}
 For this thesis, the basic use case is as follows:
 A technician takes a photo of a device label with his smart phone.
 For this the technician is situated in locations like a cable shaft.
 Due to this, there's no internet availability.
+The process from taking the image to storing the extracted text safely must work offline.
 The resulting image contains printed textual information which must be extraced by an application on
 the smart phone.
 Space and structure of this information can vary from label to label (see figure~\ref{fig:examples}).
+The text, spacing and structure carries semantic information which can be important for later
+processing in the scope of a business process~\citep{chen_text_2021}.
+The goal is to extract the text and preserve semantics that are implicitly provided through
+structure and space.
+This means text and the respective coordinates, height, width and a possible rotation angle must
+be output as the result~\citep{yang_learning_2021}.
+Those values can then be transformed into other formats such as JSON or HTML as needed.
 \begin{figure}[h]
     \centering
     \subfigure[Positive example\label{fig:good-example}]{\includegraphics[width=0.40\textwidth]
@@ -35,31 +55,14 @@ Space and structure of this information can vary from label to label (see figure
     \caption{Examples for label images\label{fig:examples}}
 \end{figure}
 % XXX: use concept of representation for semantics retention
-The text, spacing and structure carries semantic information which can be important for later
-processing in the scope of a business process~\citep{chen_text_2021}.
-The goal is to extract the text and preserve semantics from structure and space.
-This means text and the respective coordinates, height, width and a possible rotation angle must
-be output as the result~\citep{yang_learning_2021}.
-Those values can then be transformed into other formats such as JSON or HTML as needed.
-The labels can contain arbitrary alphanumeric strings such as serial numbers (see
-figure~\ref{fig:examples}).
+In addition to this, the labels can contain arbitrary alphanumeric strings such as serial numbers
+(see figure~\ref{fig:examples}).
 This results in the requirement that the \ac{DL} model has to be able to recognize sequences that
 are not part of a predefined lexicon~\citep{ghosh_visual_2017}.
 The qualities for the \ac{MLS} that can be derived directly from the use case (see
 table~\ref{tb:literatureQualities}) can be regarded as excluding criterias, because an approach
 that does not possess the qualities in question, cannot be regarded as viable for the use case.
 % FIXME: internet
-\begin{table}[h]
-    \centering
-    \begin{tabular}{c|c}
-        Alphanumeric recognition    & Recognize alphanumeric strings such as serial \\
-                                    & numbers \\
-        Semantics retention & Retain semantics given implicitly be space, \\
-                            & strucure and rotation of text in labels \\
-        Offline Capabilities & yes
-    \end{tabular}
-    \caption{Qualities specific to use case --- exclusion criterias}
-\end{table}
 
 \section{Literature on Defining Quality}
 In the article~\cite{ashmore_assuring_2021} the qualities are identified and assigned to different
@@ -129,9 +132,8 @@ The qualities may however be influenced by other entities.
 
 \begin{table}[h]\label{tb:literatureQualities}
     \centering
-    \begin{tabular}{c l}
-        Relevant                & Not relevant \\
-        \midrule
+    \begin{tabular}{l l}
+        \textbf{Relevant}                & \textbf{Irrelevant} \\
         Appropriateness         & Fairness  \\
         Performance             & Interpretability \\
         Robustness              & Reusability \\
@@ -148,8 +150,8 @@ The qualities may however be influenced by other entities.
 The appropriateness quality refers to the ability to perform the type of task that is required by
 the use case~\citep{siebert_construction_2021,nakamichi_requirements-driven_2020}.
 For this thesis this applies to \ac{STR} models.
-Additionally, the properties which are derived from the use case can be bundeled together under this
-quality.
+Additionally, the properties which are derived from the use case (see Table~\ref{tb:useCaseQualities}),
+can be grouped under this quality.
 
 % Performance
 `An ML model is performant if it operates as expected according to a measure (or set of measures)
@@ -209,7 +211,6 @@ Another quality for a \ac{ML} model refers to how well a model intended for one 
 for another related task.
 % XXX: check whether trasnfer learning defined before
 This can be beneficial because transfer learning can speed up the training, thus reducing training
-cost.
-~\citep{ashmore_assuring_2021}.
+cost~\citep{ashmore_assuring_2021}.
 Reusability is not relavant in the scope of this work as it targets the training phase of the
 \ac{ML} lifecycle.
