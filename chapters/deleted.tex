@@ -58,14 +58,12 @@ The basic functionality can be described as extraction of textual data from imag
 The relevant text information is framed by a label.
 The label contains printed text which can be structured and spaced differently from label to
 label (see figure~\ref{fig:examples}).
-% TODO: need source for sentence below?
 The text, spacing and structure carries semantic information which can be important for later
 processing in the scope of a business process.
 The goal is to extract the text and preserve semantics from structure and space.
 This means text and the respective coordinates, height, width and a possible rotation angle must
 be output as the result~\cite{yang_learning_2021}.
 Those values can then be transformed into other formats such as JSON or HTML as needed.
-% TODO: text that is not in straight line? I think not
 The images can contain arbitrary alpha-numeric strings (see figure~\ref{fig:examples}).
 This results in the requirement that the \ac{DL} model has to be able to recognize sequences that
 are not part of a predefined lexicon~\cite{ghosh_visual_2017}.
@@ -73,7 +71,7 @@ are not part of a predefined lexicon~\cite{ghosh_visual_2017}.
 
 
 % non-functional requirements
-% FIXME: find sources
+% find sources
 The \acp{NFR} that derive from the intended use for the solution with mobile phones are led by
 power aspects.
 Not only are mobile phones limited by a finite battery but also by computational power.
@@ -85,9 +83,8 @@ This is why the extraction must work offline.
 Varying aspect ratios in images and such diversities can increase the requirements for preprocessing.
 Depending on the approach the complexity can change i.e.\ decrease thus making it more viable.
 
-% TODO: weglassen?
 % data requirements
-% FIXME: focus more on annotation, costs or difference for different algorithms
+% focus more on annotation, costs or difference for different algorithms
 \acp{DR} encompass the data that is required in order to train, tune and test a \ac{DL}
 system~\cite{vogelsang_requirements_2019}.
 Difficulties arise from the amount of data needed to train a \ac{DL} model and from the need to

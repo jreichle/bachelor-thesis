@@ -1,88 +1,60 @@
 \chapter{Current Research}\label{ch:research}
-no transformers $\rightarrow$ self-attention mechanism is too computationally expensive???
 
-model-pruning $\rightarrow$ remove connections for better performance
-
-`The great advances that have been made in fields such as computer vision and speech recognition,
-have been accom- plished by replacing a modular processing pipeline with large neural networks
-that are trained end-to-end [37]. In essence, transparency is traded for accuracy.
-This is an unavoidable reality.'\citep{arpteg_software_2018}
-
-include Pipeline differences
-
-% FIXME: approaches to research: Faster R-CNN, Mask R-CNN, Yolo v3
-% FIXME: look at Backbones: DETR-DC5-R101 and Faster RCNN-R101-FPN+
-
-Two models that can be used in conjunction
-\textbf{detection}~\citep{beom_text_2021}\\
-uses RetinaNet structure~\citep{lin_focal_2018}\\
-applies techniques from textboxes++~\citep{liao_textboxes_2018}
-
-\textbf{character recognition}~\citep{beom_crnn_2021}\\
-needs cropped text area as input\\
-uses CRNN~\citep{shi_end--end_2015} $\rightarrow$ end-to-end learning, LSTM fir arbitrary length of
-input and output, no need to apply detection and cropping to each single character
-
-Open Source OCR engine~\citep{smith_overview_2007}
+What is wrong with scene text recognition model comparison\section{Different pipeline Frameworks}
+\cite{baek_what_2019}
+Four stages derived from existing STR-Models
 \begin{itemize}
-    \item uses Deep Learning (found c++ code for layers in repo)
-    \item Processing in step-by-step pipeline, some unusual stages\\
-        1. Line and Word finding\\
-        1.1. Line finding\\
-        1.2. Baseline Fitting\\
-        1.3. Fixed Pitch Detection and Chopping\\
-        1.4. Proportional Word Finding\\
-        2. Word Recognition\\
-        2.1 Chopping Joined Characters\\
-        2.2 Accociating Broken Characters\\
-        3. Static Character Classifier\\
-        3.1 Features\\
-        3.2 Classification\\
-        3.3 Training Data\\
-        4. Linguistic Analysis\\
-        5. Adaptive Classifier
-\end{itemize}
-Performs poorly with unstructured text with significant noise
-
-An Efficient and Accurate Scene Text Detector~\citep{zhou_east_2017}
-
-SOFT:\ Softmax-free Transformer with Linear Complexity~\citep{lu_soft_2021}
-
-Generative Pretraining from Pixels~\citep{chen_generative_2021}
-\begin{itemize}
-    \item unsupervised representation learning (approach transfered from NLP)
-    \item training of sequence Transformer to auto-regressively predict pixels without incorporating
-        knowledge of 2D input structure
-    \item Active part: GPT-2 scale model learns image representations and performs extremely well even
-        when compared to supervised models
+    \item Transformation: normalize input image $\rightarrow$ Spatial Transormer Network
+    \item Feature extraction: map input image to representation that focuses on relevant attributes,
+        while suppressing irrelevant features
+    \item Sequence Modeling: capture contextual information within sequence of characters
+    \item Prediction: estimate output character sequence
 \end{itemize}
 
-Learning High-Precision Bounding Box for Rotated Object Detection via Kullback-Leibler
-Divergence~\citep{yang_learning_2021}
+Text Recognition in the Wild: A Survey~\citep{chen_text_2021}
 \begin{itemize}
-    \item Deductive approach to rotated object detection
-    \item box is `translated' to 2D-Gaussian $\rightarrow$ KLD with prediction and true gaussian as Loss
-    \item LIMIT:\ cannot be directly applied to quadrilateral detection
-\end{itemize}
-
-DP-SSL:\ Towards Robust Semi-supervised Learning with A Few Labeled Samples~\citep{xu_dp-ssl_2021}
-\begin{itemize}
-    \item Semi-supervised learning:
+    \item pipeline
         \begin{itemize}
-            \item provides way to leverage unlabeled data by pseudo labels
-            \item performs poorly and unstable when size of labeled data is very small (low quality
-                of pseudo labels)
+            \item text detection: text localization \& text verification
+            \item (Text Segmentation)
+            \item Text Recognition
         \end{itemize}
-    \item Data programming:
+    \item various stages of \ac{OCR}:
         \begin{itemize}
-            \item paradigm for the programmatic creation of training sets
-            \item existing methods rely on human experts to provide initial labeling functions (LF)
+            \item text localization: localize text components, group into candidate text regions with
+                as little background as possible, DNN
+            \item text verification: verify text candidate regions as text or non-text,
+                filter false-positives, CNN
+            \item text detection: determine whether text is present using localization and verification
+                procedures, basis for end-to-end, can be regression or segmentation based
+            \item text segmentation: most challenging, includes text line (splitting a region of multiple
+                text lines into subregion of single text lines) and character segmentation (separating
+                text instance into single characters, typically used in earlier approaches)
+            \item text recognition: translates cropped text instance image into target string sequence,
+                basis for end-to-end, DL encoder-decoder frameworks
+            \item end-to-end-system: given scene text image $\rightarrow$ convert all text regions into
+                target string sequences, includes detectoin, recognition and postprocessing, can be
+                seen as indipendent subproblems but also joint by sharing information
         \end{itemize}
-    \item DP-SSL
-        \begin{itemize}
-            \item multiple-choice learning (MCL) based approach to automatically generate labeling functions
-            \item scheme to generate probabilistic labels for unlabeled data
-        \end{itemize}
+    \item text enhancement: recover degraded text, improve text resolution, remove distortions,
+        remove background $\rightarrow$ reduce difficulty of recognition
 \end{itemize}
 
-which aspects to compare? quantitative, qualitative
+Challenges in input preprocessing for mobile OCR applications~\cite{sourvanos_challenges_2018}
+\begin{itemize}
+    \item Acquistion: obtaining image --- digitization, binarization, compression
+    \item Preprocessing: enhancing image quality --- noise removal, skew removal, thinning,
+        morphological operations
+    \item Segmentation: separating structural elements --- implicit and explicit segmentation
+    \item Feature extraction: generating salient features --- geometrical, statistical
+    \item Classification: categorizing individual characters to their respective classes --- clustering,
+        neural networks, bayesian models, etc.
+    \item Post-processing: improving and filtering --- contextual approaches, multiple classifiers,
+        dictionary based approaches
+\end{itemize}
+
+
+\section{Techniques/Modules for Improvement}
+
+model pruning:~\cite{niu_26ms_2019}
+integer inference:~\cite{ignatov_ai_2019}

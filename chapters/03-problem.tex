@@ -13,55 +13,16 @@ Instead of categorizing functional and non-functional requirements, like for tra
 software projects~\citep{zowghi_requirements_2014}, qualities that a \ac{MLS} must possess
 are defined.
 
-In the article~\cite{ashmore_assuring_2021} the qualities are identified and assigned to different
-challenges in regards to working with \ac{MLS}: Development Challenges, Production Challenges,
-Organizational Challenges.
-Because the only the Model Selection substage of the lifecycle is performed, the challenges and their
-qualities are not relevant for this thesis, as they concern the operational aspect of \acp{MLS}.
-
-In~\cite{nakamichi_requirements-driven_2020,siebert_construction_2021} systematic approaches for
-identification and documentation of qualities are detailed.
-In \acp{MLS} various entities interact to in order to produce the desired functionality.
-The paper~\cite{nakamichi_requirements-driven_2020} suggests that in order to adequately evaluate
-the qualities, it is essential to not only consider the model but the entire \ac{MLS}.
-These entities are data, model, environment,
-system/infrastrucure~\citep{nakamichi_requirements-driven_2020, siebert_construction_2021}.
-The article~\cite{siebert_construction_2021} differenciates between system and infrastrucure.
-The infrastrucure represents given hardware and available libraries, whereas the system depicts
-the software that surrounds the model in the runtime environment.
-% TODO: explain entities: data, environment, model?
-For this thesis the entities data and system cannot be regarded as given.
-The entities environment and infrastrucure are only losely defined through the use case.
-That is why the systematic approaches cannot be performed in the scope of this thesis.
-For example~\cite{siebert_construction_2021} proposes to follow the systematic CRISP-DM approach of
-identifying qualities.
-It cannot be performed due to the lack of data and the other entities.
-Instead many qualities that are highlighted by research that fit the problem are taken into account
-along with two critical qualities (alphanumeric recognition, semantic retention) that are directly
-derived from the use case.
-When it comes to documenting the identified qualities,
-both~\cite{nakamichi_requirements-driven_2020} and~\cite{siebert_construction_2021} define a meta
-model for qualities that combines qualities with
-measurement methods and values and assignes them to an entity of the \ac{MLS}.
-The implementation and testing phase are not performed in the scope of this thesis and the
-difficulty in assessing the performance ahead of those phases, prevents the evaluation
-of measurements.
-Additionally, experimental results from literature can only be compared as long as factors such as
-hardware, platform, source code, configuration and dataset are uniform~\citep{arpteg_software_2018}.
-This applies to studies that create an overview such as~\cite{chen_text_2021,long_scene_2021}.
-These studies can only be regarded as guiding values because the performance for a specific dataset
-cannot be predicted without testing on it~\cite{arpteg_software_2018}.
-% TODO: ok like that? then compare relative to each other not absolute
-That's why targets for measurements are not defined, as evaluation would only deliver a false
-sense of certainty.
-
+\section{Use Case}
+% FIXME: use case ein bisschen mehr ausschreiben -> ausführlicher
 The problem can be depicted by a use case.
 This use case sets the foundation for determining requirements for an
 approach because qualities derive from the intended purpose of
 use~\citep{siebert_construction_2021}.
 For this thesis, the basic use case is as follows:
-% TODO: where exactly
 A technician takes a photo of a device label with his smart phone.
+For this the technician is situated in locations like a cable shaft.
+Due to this, there's no internet availability.
 The resulting image contains printed textual information which must be extraced by an application on
 the smart phone.
 Space and structure of this information can vary from label to label (see figure~\ref{fig:examples}).
@@ -87,6 +48,7 @@ are not part of a predefined lexicon~\citep{ghosh_visual_2017}.
 The qualities for the \ac{MLS} that can be derived directly from the use case (see
 table~\ref{tb:literatureQualities}) can be regarded as excluding criterias, because an approach
 that does not possess the qualities in question, cannot be regarded as viable for the use case.
+% FIXME: internet
 \begin{table}[h]
     \centering
     \begin{tabular}{c|c}
@@ -94,10 +56,65 @@ that does not possess the qualities in question, cannot be regarded as viable fo
                                     & numbers \\
         Semantics retention & Retain semantics given implicitly be space, \\
                             & strucure and rotation of text in labels \\
+        Offline Capabilities & yes
     \end{tabular}
     \caption{Qualities specific to use case --- exclusion criterias}
 \end{table}
 
+\section{Literature on Defining Quality}
+In the article~\cite{ashmore_assuring_2021} the qualities are identified and assigned to different
+challenges in regards to working with \ac{MLS}: Development Challenges, Production Challenges,
+Organizational Challenges.
+Because the only the Model Selection substage of the lifecycle is performed, the challenges and their
+qualities are not relevant for this thesis, as they concern the operational aspect of \acp{MLS}.
+
+In~\cite{nakamichi_requirements-driven_2020,siebert_construction_2021} systematic approaches for
+identification and documentation of qualities are detailed.
+In \acp{MLS} various entities interact to in order to produce the desired functionality.
+The paper~\cite{nakamichi_requirements-driven_2020} suggests that in order to adequately evaluate
+the qualities, it is essential to not only consider the model but the entire \ac{MLS}.
+These entities are data, model, environment,
+system/infrastructure~\citep{nakamichi_requirements-driven_2020, siebert_construction_2021}.
+The article~\cite{siebert_construction_2021} differentiates between system and infrastrucure.
+The infrastrucure represents given hardware and available libraries, whereas the system depicts
+the software that surrounds the model in the runtime environment.
+The data view pertains to the quality of development and runtime
+data~\citep{siebert_construction_2021}.
+The model consists of subcomponents organized in directed acyclc graph building a
+pipeline.
+This directed acyclic graph depicts everything from processing the images to the extracted
+information~\citep{siebert_construction_2021}.
+The environment entity covers the external aspects to the \ac{MLS} which may interact with
+it~\citep{siebert_construction_2021}.
+In the scope of this work the environment entails mostly the conditions in which images are taken.
+For this thesis the entities data and system cannot be regarded as given.
+The entities environment and infrastrucure are only losely defined through the use case.
+That is why the systematic approaches cannot be performed in the scope of this thesis.
+For example~\cite{siebert_construction_2021} proposes to follow the systematic CRISP-DM approach of
+identifying qualities.
+It cannot be performed due to the lack of data and the other entities.
+Instead many qualities that are highlighted by research that fit the problem are taken into account
+along with two critical qualities (alphanumeric recognition, semantic retention) that are directly
+derived from the use case.
+When it comes to documenting the identified qualities,
+both~\cite{nakamichi_requirements-driven_2020} and~\cite{siebert_construction_2021} define a meta
+model for qualities that combines qualities with
+measurement methods and values and assignes them to an entity of the \ac{MLS}.
+The implementation and testing phase are not performed in the scope of this thesis and the
+difficulty in assessing the performance ahead of those phases, prevents the evaluation
+of measurements.
+Additionally, experimental results from literature can only be compared as long as factors such as
+hardware, platform, source code, configuration and dataset are uniform~\citep{arpteg_software_2018}.
+Comparing models through results of diferent papers is troublesome, because different papers
+might use different evaluation and testing environments~\citep{baek_what_2019}.
+This applies to studies that present an overview such as~\cite{chen_text_2021,long_scene_2021}.
+These studies can only be regarded as guiding values because the performance for a specific dataset
+cannot be predicted without testing on it~\cite{arpteg_software_2018}.
+That's why targets for measurements are not defined, as evaluation would only deliver a false
+sense of certainty.
+
+
+\section{Qualities}
 In addition to the qualities that arise directly from the use case, literature reveals a number of
 common qualities in regards to \ac{MLS} (see table~\ref{tb:literatureQualities}), some of which
 can be regarded as relevant and other do not hold any relevance for the specific use case.
@@ -108,6 +125,7 @@ Only qualities that concern the model will be looked at because the model is the
     % Maintainability for example is not included because the qualitiy can
 The qualities may however be influenced by other entities.
 
+% FIXME: add table with qualities and related source
 
 \begin{table}[h]\label{tb:literatureQualities}
     \centering
@@ -122,22 +140,25 @@ The qualities may however be influenced by other entities.
     \caption{Qualities identified through literature}
 \end{table}
 % TODO: qualities often under different name -> also name source and explain?
+%       -> wenn Begrifflichkeiten unterschiedlich erklärt oder unscharf nachfragen
 % FIXME: differenciate between purely quantiative and qualitative tasks?
 % FIXME: Interpretability to relevant?
 
 % Appropriateness
 The appropriateness quality refers to the ability to perform the type of task that is required by
-the use case.
+the use case~\citep{siebert_construction_2021,nakamichi_requirements-driven_2020}.
 For this thesis this applies to \ac{STR} models.
-% TODO: qualities from use case in here?
+Additionally, the properties which are derived from the use case can be bundeled together under this
+quality.
 
 % Performance
 `An ML model is performant if it operates as expected according to a measure (or set of measures)
 that captures relevant characteristics of the model output'~\citep{ashmore_assuring_2021}.
-The measure is chosen depending on the type of task to be solved~\citep{siebert_construction_2021}.
+For the performance quality, a measure is chosen depending on the type of task to be
+solved~\citep{siebert_construction_2021}.
 The F-Score is an example for a metric that is used to compare different
 models~\cite{chen_text_2021, long_scene_2021}.
-Performance is usually measured with a test dataset that is independed from training and validating
+Performance is usually measured with a test dataset that is independent from training and validating
 a model in order to approximate the generalization performance~\cite{goodfellow_deep_2016,
 nakamichi_requirements-driven_2020}.
 
