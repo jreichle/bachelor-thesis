@@ -62,14 +62,15 @@ are not part of a predefined lexicon~\citep{ghosh_visual_2017}.
 The qualities for the \ac{MLS} that can be derived directly from the use case (see
 table~\ref{tb:literatureQualities}) can be regarded as excluding criterias, because an approach
 that does not possess the qualities in question, cannot be regarded as viable for the use case.
-% FIXME: internet
 
-\section{Literature on Defining Quality}
+\section{Identifying Qualities}
 In the article~\cite{ashmore_assuring_2021} the qualities are identified and assigned to different
 challenges in regards to working with \ac{MLS}: Development Challenges, Production Challenges,
 Organizational Challenges.
 Because the only the Model Selection substage of the lifecycle is performed, the challenges and their
 qualities are not relevant for this thesis, as they concern the operational aspect of \acp{MLS}.
+
+% FIXME: System figure from nakamichi_requirements
 
 In~\cite{nakamichi_requirements-driven_2020,siebert_construction_2021} systematic approaches for
 identification and documentation of qualities are detailed.
@@ -116,19 +117,51 @@ cannot be predicted without testing on it~\cite{arpteg_software_2018}.
 That's why targets for measurements are not defined, as evaluation would only deliver a false
 sense of certainty.
 
-
 \section{Qualities}
 In addition to the qualities that arise directly from the use case, literature reveals a number of
 common qualities in regards to \ac{MLS} (see table~\ref{tb:literatureQualities}), some of which
 can be regarded as relevant and other do not hold any relevance for the specific use case.
 The qualities are taken from literature which covers \ac{ML} in general to literature
 which covers \ac{STR}.
-Only qualities that concern the model will be looked at because the model is the focus of this thesis.
-% FIXME: operational aspect and concerns whole system not only model -> find right source
-    % Maintainability for example is not included because the qualitiy can
+Only qualities that concern the model will be looked at, as the model is the focus of this thesis.
 The qualities may however be influenced by other entities.
 
-% FIXME: add table with qualities and related source
+
+\begin{table}[h]\label{tb:LiteratureQualitiesModel}
+    \centering
+    \begin{tabular}{p{.5\textwidth} p{.5\textwidth}}
+        \textbf{Qualitiy} & \textbf{Source(s)} \\
+        Relevance / bias-variance tradeoff &~\cite{siebert_construction_2021, zhang_machine_2020} \\
+        Suitability &~\cite{siebert_construction_2021} \\
+        Execution efficiency &~\cite{siebert_construction_2021} \\
+        Freedom from Discrimination &~\cite{vogelsang_requirements_2019} \\
+        Performance &~\cite{ashmore_assuring_2021,vogelsang_requirements_2019} \\
+        Accuracy &~\cite{nakamichi_requirements-driven_2020} \\
+        Robustness &~\cite{ashmore_assuring_2021, hu_towards_2020, siebert_construction_2021} \\
+        Robustness Against Change of Input Data &~\cite{nakamichi_requirements-driven_2020} \\
+        Robustness Against Noise Data &~\cite{nakamichi_requirements-driven_2020} \\
+        Reusability &~\cite{ashmore_assuring_2021} \\
+        Interpretability &~\cite{ashmore_assuring_2021, siebert_construction_2021, zhang_machine_2020} \\
+        Understandability &~\cite{nakamichi_requirements-driven_2020} \\
+        Transparency &~\cite{arpteg_software_2018} \\
+        Comprehensibility &~\cite{ashmore_assuring_2021} \\
+        Comprehensiveness &~\cite{ashmore_assuring_2021} \\
+        Resource Utilization &~\cite{nakamichi_requirements-driven_2020} \\
+        Fairness &~\cite{siebert_construction_2021, zhang_machine_2020} \\
+        Appropriateness &~\cite{siebert_construction_2021} \\
+        Model Fitness --- Quality of Output Data &~\cite{nakamichi_requirements-driven_2020} \\
+        Model Fitness --- Degree of Correctness &~\cite{nakamichi_requirements-driven_2020,
+                                                    zhang_machine_2020} \\
+        Model Explainability &~\cite{vogelsang_requirements_2019} \\
+        Resource utilization &~\cite{siebert_construction_2021} \\
+        Development correctness &~\cite{siebert_construction_2021} \\
+        Trained Model Generalization Peroformance Appropriateness
+                                                    &~\cite{nakamichi_requirements-driven_2020} \\
+        Temporal Performance &~\cite{nakamichi_requirements-driven_2020} \\
+        Training Process Appropriateness &~\cite{nakamichi_requirements-driven_2020} \\
+    \end{tabular}
+    \caption{\ac{MLS} qualities identified for model entity through literature}
+\end{table}
 
 \begin{table}[h]\label{tb:literatureQualities}
     \centering
@@ -139,12 +172,8 @@ The qualities may however be influenced by other entities.
         Robustness              & Reusability \\
         Performance efficiency  & \\
     \end{tabular}
-    \caption{Qualities identified through literature}
+    \caption{Condensed Qualities for model entity}
 \end{table}
-% TODO: qualities often under different name -> also name source and explain?
-%       -> wenn Begrifflichkeiten unterschiedlich erklärt oder unscharf nachfragen
-% FIXME: differenciate between purely quantiative and qualitative tasks?
-% FIXME: Interpretability to relevant?
 
 % Appropriateness
 The appropriateness quality refers to the ability to perform the type of task that is required by
@@ -181,6 +210,8 @@ An example for bad image quality in regards to \ac{OCR} can be seen in figure~\r
 Performance efficiency addresses time and resource utilization when the model is in use.
 This does not involve the training phase but the execution or
 prediction~\citep{siebert_construction_2021}.
+% FIXME: for siebert: execution efficiency in infrastrucure, but can be put to model also and
+%               grouped with resource utilization
 The efficiency refers to low latency needs and to minimizing resource needs such as memory
 usage or power consumption~\citep{nakamichi_requirements-driven_2020, siebert_construction_2021,
 sourvanos_challenges_2018}.
@@ -202,9 +233,9 @@ The interpretability is twofold: explain what the model has learned, explain how
 input comes to the output~\citep{vogelsang_requirements_2019}.
 This can be challenging for two reasons.
 \ac{ML} models used can be complex in terms of size and structure~\citep{ashmore_assuring_2021}.
-Modular processing pipelines are continusously replaced with end-to-end
-models~\cite{arpteg_software_2018}.
-% FIXME: why not relevant?
+Modular processing pipelines are continuously replaced with end-to-end
+models which facilitates the tradeoff between interpretability and
+performance~\cite{arpteg_software_2018}.
 
 % Reusability
 Another quality for a \ac{ML} model refers to how well a model intended for one task can be reused
