@@ -131,34 +131,45 @@ The qualities may however be influenced by other entities.
     \centering
     \begin{tabular}{p{.5\textwidth} p{.5\textwidth}}
         \textbf{Qualitiy} & \textbf{Source(s)} \\
-        Relevance / bias-variance tradeoff &~\cite{siebert_construction_2021, zhang_machine_2020} \\
+        \toprule
+        \textit{Appropriateness} \\
+        Appropriateness &~\cite{siebert_construction_2021} \\
         Suitability &~\cite{siebert_construction_2021} \\
-        Execution efficiency &~\cite{siebert_construction_2021} \\
-        Freedom from Discrimination &~\cite{vogelsang_requirements_2019} \\
+        Model Fitness --- Quality of Output Data &~\cite{nakamichi_requirements-driven_2020} \\
+        \midrule
+        \textit{Performance} \\
         Performance &~\cite{ashmore_assuring_2021,vogelsang_requirements_2019} \\
         Accuracy &~\cite{nakamichi_requirements-driven_2020} \\
+        Model Fitness --- Degree of Correctness &~\cite{nakamichi_requirements-driven_2020,
+                                                    zhang_machine_2020} \\
+        Development correctness &~\cite{siebert_construction_2021} \\
+        \midrule
+        \textit{Robustness} \\
         Robustness &~\cite{ashmore_assuring_2021, hu_towards_2020, siebert_construction_2021} \\
         Robustness Against Change of Input Data &~\cite{nakamichi_requirements-driven_2020} \\
         Robustness Against Noise Data &~\cite{nakamichi_requirements-driven_2020} \\
+        Relevance / bias-variance tradeoff &~\cite{siebert_construction_2021, zhang_machine_2020} \\
+        Trained Model Generalization Peroformance Appropriateness
+                                                    &~\cite{nakamichi_requirements-driven_2020} \\
+        \midrule
+        \textit{Reusability} \\
         Reusability &~\cite{ashmore_assuring_2021} \\
+        \midrule
+        \textit{Interpretability} \\
         Interpretability &~\cite{ashmore_assuring_2021, siebert_construction_2021, zhang_machine_2020} \\
         Understandability &~\cite{nakamichi_requirements-driven_2020} \\
         Transparency &~\cite{arpteg_software_2018} \\
+        Model Explainability &~\cite{vogelsang_requirements_2019} \\
         Comprehensibility &~\cite{ashmore_assuring_2021} \\
         Comprehensiveness &~\cite{ashmore_assuring_2021} \\
-        Resource Utilization &~\cite{nakamichi_requirements-driven_2020} \\
+        \midrule
+        \textit{Fairness}
         Fairness &~\cite{siebert_construction_2021, zhang_machine_2020} \\
-        Appropriateness &~\cite{siebert_construction_2021} \\
-        Model Fitness --- Quality of Output Data &~\cite{nakamichi_requirements-driven_2020} \\
-        Model Fitness --- Degree of Correctness &~\cite{nakamichi_requirements-driven_2020,
-                                                    zhang_machine_2020} \\
-        Model Explainability &~\cite{vogelsang_requirements_2019} \\
-        Resource utilization &~\cite{siebert_construction_2021} \\
-        Development correctness &~\cite{siebert_construction_2021} \\
-        Trained Model Generalization Peroformance Appropriateness
-                                                    &~\cite{nakamichi_requirements-driven_2020} \\
-        Temporal Performance &~\cite{nakamichi_requirements-driven_2020} \\
-        Training Process Appropriateness &~\cite{nakamichi_requirements-driven_2020} \\
+        Freedom from Discrimination &~\cite{vogelsang_requirements_2019} \\
+        \midrule
+        \textit{Resource Utilization}
+        Resource utilization &~\cite{siebert_construction_2021, nakamichi_requirements-driven_2020} \\
+        \bottomrule
     \end{tabular}
     \caption{\ac{MLS} qualities identified for model entity through literature}
 \end{table}
@@ -207,6 +218,7 @@ form)\cite{hu_towards_2020}.
 An example for bad image quality in regards to \ac{OCR} can be seen in figure~\ref{fig:bad-example}.
 
 % Performance efficiency
+% FIXME: more of a quality for infrastrucure -> not in the scope
 Performance efficiency addresses time and resource utilization when the model is in use.
 This does not involve the training phase but the execution or
 prediction~\citep{siebert_construction_2021}.
