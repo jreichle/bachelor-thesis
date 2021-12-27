@@ -1,47 +1,133 @@
 no transformers $\rightarrow$ self-attention mechanism is too computationally expensive???
 
-model-pruning $\rightarrow$ remove connections for better performance
-
 `The great advances that have been made in fields such as computer vision and speech recognition,
 have been accom- plished by replacing a modular processing pipeline with large neural networks
 that are trained end-to-end [37]. In essence, transparency is traded for accuracy.
 This is an unavoidable reality.'\citep{arpteg_software_2018}
 
+Scene Text Detection and Recognition~\cite{long_scene_2021}
+Deep learning $\rightarrow$ frees researchers from hand-crafting features, simplifies pipeline,
+    improves performance
 
-Two models that can be used in conjunction
-\textbf{detection}~\citep{beom_text_2021}\\
-uses RetinaNet structure~\citep{lin_focal_2018}\\
-applies techniques from textboxes++~\citep{liao_textboxes_2018}
-
-\textbf{character recognition}~\citep{beom_crnn_2021}\\
-needs cropped text area as input\\
-uses CRNN~\citep{shi_end--end_2015} $\rightarrow$ end-to-end learning, LSTM fir arbitrary length of
-input and output, no need to apply detection and cropping to each single character
-
-Open Source OCR engine~\citep{smith_overview_2007}
+Difference: two-part pipeline vs end-to-end
 \begin{itemize}
-    \item uses Deep Learning (found c++ code for layers in repo)
-    \item Processing in step-by-step pipeline, some unusual stages\\
-        1. Line and Word finding\\
-        1.1. Line finding\\
-        1.2. Baseline Fitting\\
-        1.3. Fixed Pitch Detection and Chopping\\
-        1.4. Proportional Word Finding\\
-        2. Word Recognition\\
-        2.1 Chopping Joined Characters\\
-        2.2 Accociating Broken Characters\\
-        3. Static Character Classifier\\
-        3.1 Features\\
-        3.2 Classification\\
-        3.3 Training Data\\
-        4. Linguistic Analysis\\
-        5. Adaptive Classifier
+    \item two-part / Detection \& Recognition: detector passes cropped image to recognizer
+    \item end-to-end: detector passes cropped feature maps to recognizer $\rightarrow$ end-to-end
+            training
 \end{itemize}
-Performs poorly with unstructured text with significant noise
 
-An Efficient and Accurate Scene Text Detector~\citep{zhou_east_2017}
+\textbf{Text detection and localization}
+can be generalized under object detection --- generally: one-staged or two staged methods
+scene text detection algorithms often inspired bz object detectors --- difference:
+        text is homogeneous as a whole and characterized bz its locality
+stages of development
+\begin{itemize}
+    \item early DL approaches: long and slow pipelines, design methodology is bottom up
+    \item methods inspired by object detection:
+        \begin{itemize}
+            \item modifying region proposal and bounding box regression modules to localize text directliy
+            \item consist of stacked convolutional layers that encode image into feature maps
+            \item spatial location at the feature maps corresponds to region of input image
+            \item feature maps are fed into classifier for prediction of existance and localization
+        \end{itemize}
+        see p.5 / p.165 for specific papers
+    \item Methods based on Sub-text components
+        \begin{itemize}
+            \item any part of a text insance is still text
+                $\rightarrow$ only predict sub-text components and then assemble into a text instance
+            \item use NN to predict local attributes or segments $\rightarrow$ postprocessing for
+                re-construction
+            \item in comparison to early DL-approaches: rely more on NN and shorter pipelines
+            \item different approaches
+                \begin{itemize}
+                    \item pixel-level: learn dense prediction map --- does pixel belong to
+                        any text instances
+                    \item component-level: predict local region of text instance (overlapping one or
+                        more characters)
+                    \item character-level: learn segmentation map for character centers and links
+                        between them, centers and links predicted in form of gaussian heat map,
+                        problem: requires iterative weak supervision, but real-world datasets rarely
+                        equipped with character-level labels
+                \end{itemize}
+                sub-text components: \\
+                better flexibility and generalization over shapes and aspect ratios\\
+                drawback: module or post-processing step used to group segments into text instances
+                may be vulnerable to noise and the efficiency
+        \end{itemize}
+\end{itemize}
 
-SOFT:\ Softmax-free Transformer with Linear Complexity~\citep{lu_soft_2021}
+\textbf{Recognition --- Text transcribing and converting into linguistic symbols}
+use CNNs to encode images into feature space
+different approaches in text content decoding module:
+challenge: represent oriented characters and curved text that are distributed over a 2-dimensional space
+    (rather than 1-dim/horizontal) in order to fit decoding modules (whose decodes require
+    1-dimensional inputs)
+\begin{itemize}
+    \item Connectionist Temporal Classification (CTC)
+        \begin{itemize}
+            \item input images are viewed as sequence of vertical pixel frames
+            \item network outputs per-frame prediciton $\rightarrow$ probability distribution of
+                label types for each frame
+            \item CTC-rule is applied to edit per-frame prediction to a text string
+            \item training end-to-end: sum of negative log propability of all possible per-frame
+                predictions that generate target sequence by CTC-rules
+            \item less dependant on language models and has better character to pixel alignment
+        \end{itemize}
+    \item Encoder-Decoder Framework
+        \begin{itemize}
+            \item encoder RNN reads input sequence and passes final latent state to decoder RNN
+                which generates output in auto-regressive way
+            \item often combined with attention mechanism
+            \item decoder is an implicit language model: can incorporate more linguistic priors
+        \end{itemize}
+    \item adaptions for irregular text recognition
+        \begin{itemize}
+            \item Spatial Transformer Networks (predict text bounding polyglons with fc-layers for
+                thin-plate-spline transformations to rectify irregular input into more canonical form)
+                $\rightarrow$ Sequence Recognition Network
+            \item \ldots
+        \end{itemize}
+    \item other methods
+        \begin{itemize}
+            \item perform word recognition by classifying image into pre-defined set of vocabulary
+            \item improve occlusion cases: transformer-based semantic reasoning module
+        \end{itemize}
+\end{itemize}
+evaluation of recognition methods falls behind the time robustness of recognition when cropped
+with slightly differend bounding box is seldom verified
+
+\textbf{End-to-end system}
+also known as text spotting systems, profiting from idea of designing differentiable computation graphs
+\begin{itemize}
+    \item Two-step pipeline:
+        \begin{itemize}
+            \item recent work goes away from character level and towards word or line level
+            \item first generate proposal using text detection model, thenrecognize using
+                text recognition model
+            \item detected words are cropped from the image $\rightarrow$ detection and recognition
+                are two separate steps
+        \end{itemize}
+    \item Two-stage pipeline
+        \begin{itemize}
+            \item more recent
+            \item cropp feature maps instead of images and feed to recognition modules
+        \end{itemize}
+    \item One-Stage Pipeline:
+        \begin{itemize}
+            \item predict character, text bounding boxes and character type segmentation
+                maps in parallel
+            \item text bb are used to group character boxes to form final word transcription results
+        \end{itemize}
+\end{itemize}
+
+What is wrong with scene text recognition~\cite{baek_what_2019}
+Vertical texts: most of current STR models assumes hori-
+zontal text images, and thus structurally could not deal with
+vertical texts. Some STR models [28, 5] exploit vertical in-
+formation also, however, vertical texts are not clearly cov-
+ered yet. Further research would be needed to cover vertical
+texts.
+
 
 Generative Pretraining from Pixels~\citep{chen_generative_2021}
 \begin{itemize}
@@ -58,26 +144,6 @@ Divergence~\citep{yang_learning_2021}
     \item Deductive approach to rotated object detection
     \item box is `translated' to 2D-Gaussian $\rightarrow$ KLD with prediction and true gaussian as Loss
     \item LIMIT:\ cannot be directly applied to quadrilateral detection
-\end{itemize}
-
-DP-SSL:\ Towards Robust Semi-supervised Learning with A Few Labeled Samples~\citep{xu_dp-ssl_2021}
-\begin{itemize}
-    \item Semi-supervised learning:
-        \begin{itemize}
-            \item provides way to leverage unlabeled data by pseudo labels
-            \item performs poorly and unstable when size of labeled data is very small (low quality
-                of pseudo labels)
-        \end{itemize}
-    \item Data programming:
-        \begin{itemize}
-            \item paradigm for the programmatic creation of training sets
-            \item existing methods rely on human experts to provide initial labeling functions (LF)
-        \end{itemize}
-    \item DP-SSL
-        \begin{itemize}
-            \item multiple-choice learning (MCL) based approach to automatically generate labeling functions
-            \item scheme to generate probabilistic labels for unlabeled data
-        \end{itemize}
 \end{itemize}
 
 which aspects to compare? quantitative, qualitative

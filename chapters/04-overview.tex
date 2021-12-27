@@ -4,10 +4,38 @@ What is wrong with scene text recognition model comparison~\cite{baek_what_2019}
 Four stages derived from existing STR-Models
 \begin{itemize}
     \item Transformation: normalize input image $\rightarrow$ Spatial Transormer Network
+        \begin{itemize}
+            \item transform input image $X$ into $\tilde{X}$
+            \item if curved and tilted texts / other diverse shapes are forwarded unaltered,
+                feature extraction needs to learn an invariant representation
+            \item thin-plate spline transformatino (variant of spatial transformation network)
+                $\rightarrow$ smooth spline interpolation between set of fiducial points
+        \end{itemize}
     \item Feature extraction: map input image to representation that focuses on relevant attributes,
         while suppressing irrelevant features
+        \begin{itemize}
+            \item use \ac{CNN} to abstract image $\tilde{X}$ to output visual feature map
+                $V=\{v_i\}, i=i,\ldots,I$\\
+                I is number of columns in feature map, each column has a corresponding distinguishable
+                receptive field along the horizontal line of $\tilde{X}$
+            \item important architectures: VGG, RCNN, ResNet
+        \end{itemize}
     \item Sequence Modeling: capture contextual information within sequence of characters
+        \begin{itemize}
+            \item reshape extracted featured to be a sequence of features $V$ (each column)
+            \item use Bidirectional LSTM $\rightarrow$ sequence $H=Seq.(V)$
+            \item this stage is optional
+        \end{itemize}
     \item Prediction: estimate output character sequence
+        \begin{itemize}
+            \item use $H$ to predict a sequence of characters $Y=y_1,y_2,\ldots,y_n$
+            \item options: Connectionist temporal classification or attention-based sequence prediction
+        \end{itemize}
+\end{itemize}
+Tradeoff:
+\begin{itemize}
+    \item accuracy-speed
+    \item accuracy-memory
 \end{itemize}
 
 Text Recognition in the Wild: A Survey~\citep{chen_text_2021}
@@ -51,6 +79,7 @@ Challenges in input preprocessing for mobile OCR applications~\cite{sourvanos_ch
     \item Post-processing: improving and filtering --- contextual approaches, multiple classifiers, dictionary based approaches
 \end{itemize}
 
+Some part for which datasets have which characteristics? see \cite{long_scene_2021}
 
 \section{Techniques/Modules for Improvement}
 

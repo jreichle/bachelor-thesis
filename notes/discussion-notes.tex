@@ -1,1 +1,25 @@
 
+
+Scene text detection and recognition~\cite{long_scene_2021}
+Detection:
+\begin{itemize}
+    \item sub-text components: \\
+        better flexibility and generalization over shapes and aspect ratios\\
+        drawback: module or post-processing step used to group segments into text instances
+        may be vulnerable to noise and the efficiency
+\end{itemize}
+Recognition
+\begin{itemize}
+    \item CTC:\ less dependant on language models and has better character to pixel alignment
+    \item Encoder-Decoder: decoder is an implicit language model: can incorporate more linguistic priors
+    \item both: assume text is straight and can therefore not adapt to irregular text
+        challenge: represent oriented characters and curved text that are distributed over a
+        2-dimensional space
+            (rather than 1-dim/horizontal) in order to fit decoding modules (whose decodes require
+            1-dimensional inputs)
+        \item evaluation of recognition methods falls behind the time robustness of recognition when
+            cropped with slightly differend bounding box is seldom verified
+\end{itemize}
+Character level annotations are more accurate and better. However, most existing datasets do not
+provide character- level annotating. Since characters are smaller and close to each other,
+character-level annotation is more costly and inconvenient.

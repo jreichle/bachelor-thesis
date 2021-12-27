@@ -100,6 +100,52 @@ It cannot be performed due to the lack of data and the other entities.
 Instead many qualities that are highlighted by research that fit the problem are taken into account
 along with two critical qualities (alphanumeric recognition, semantic retention) that are directly
 derived from the use case.
+% FIXME: for table: zurodnung zum Teil selber vorgenommen
+\begin{table}[h]\label{tb:LiteratureQualitiesModel}
+    \centering
+    \begin{tabular}{p{.6\textwidth} p{.4\textwidth}}
+        \textbf{Qualitiy} & \textbf{Source(s)} \\
+        \toprule
+        \textit{Appropriateness} \\
+        Appropriateness &~\cite{siebert_construction_2021} \\
+        Suitability &~\cite{siebert_construction_2021} \\
+        Model Fitness --- Quality of Output Data &~\cite{nakamichi_requirements-driven_2020} \\
+        \midrule
+        \textit{Performance} \\
+        Performance &~\cite{ashmore_assuring_2021,vogelsang_requirements_2019} \\
+        Accuracy &~\cite{nakamichi_requirements-driven_2020} \\
+        Model Fitness --- Degree of Correctness &~\cite{nakamichi_requirements-driven_2020,
+                                                    zhang_machine_2020} \\
+        Development correctness &~\cite{siebert_construction_2021} \\
+        \midrule
+        \textit{Robustness} \\
+        Robustness &~\cite{ashmore_assuring_2021, hu_towards_2020, siebert_construction_2021} \\
+        Robustness Against Change of Input Data &~\cite{nakamichi_requirements-driven_2020} \\
+        Robustness Against Noise Data &~\cite{nakamichi_requirements-driven_2020} \\
+        Relevance / bias-variance tradeoff &~\cite{siebert_construction_2021, zhang_machine_2020} \\
+        Trained Model Generalization Peroformance Appropriateness
+                                                    &~\cite{nakamichi_requirements-driven_2020} \\
+        \midrule
+        \textit{Reusability} &~\cite{ashmore_assuring_2021} \\
+        \midrule
+        \textit{Interpretability} \\
+        Interpretability &~\cite{ashmore_assuring_2021, siebert_construction_2021, zhang_machine_2020} \\
+        Understandability &~\cite{nakamichi_requirements-driven_2020} \\
+        Transparency &~\cite{arpteg_software_2018} \\
+        Model Explainability &~\cite{vogelsang_requirements_2019} \\
+        Comprehensibility &~\cite{ashmore_assuring_2021} \\
+        Comprehensiveness &~\cite{ashmore_assuring_2021} \\
+        \midrule
+        \textit{Fairness}\\
+        Fairness &~\cite{siebert_construction_2021, zhang_machine_2020} \\
+        Freedom from Discrimination &~\cite{vogelsang_requirements_2019} \\
+        \midrule
+        \textit{Resource Utilization} &~\cite{siebert_construction_2021,
+                                nakamichi_requirements-driven_2020} \\
+        \bottomrule
+    \end{tabular}
+    \caption{\ac{MLS} qualities identified for model entity through literature}
+\end{table}
 When it comes to documenting the identified qualities,
 both~\cite{nakamichi_requirements-driven_2020} and~\cite{siebert_construction_2021} define a meta
 model for qualities that combines qualities with
@@ -125,54 +171,6 @@ The qualities are taken from literature which covers \ac{ML} in general to liter
 which covers \ac{STR}.
 Only qualities that concern the model will be looked at, as the model is the focus of this thesis.
 The qualities may however be influenced by other entities.
-
-
-\begin{table}[h]\label{tb:LiteratureQualitiesModel}
-    \centering
-    \begin{tabular}{p{.5\textwidth} p{.5\textwidth}}
-        \textbf{Qualitiy} & \textbf{Source(s)} \\
-        \toprule
-        \textit{Appropriateness} \\
-        Appropriateness &~\cite{siebert_construction_2021} \\
-        Suitability &~\cite{siebert_construction_2021} \\
-        Model Fitness --- Quality of Output Data &~\cite{nakamichi_requirements-driven_2020} \\
-        \midrule
-        \textit{Performance} \\
-        Performance &~\cite{ashmore_assuring_2021,vogelsang_requirements_2019} \\
-        Accuracy &~\cite{nakamichi_requirements-driven_2020} \\
-        Model Fitness --- Degree of Correctness &~\cite{nakamichi_requirements-driven_2020,
-                                                    zhang_machine_2020} \\
-        Development correctness &~\cite{siebert_construction_2021} \\
-        \midrule
-        \textit{Robustness} \\
-        Robustness &~\cite{ashmore_assuring_2021, hu_towards_2020, siebert_construction_2021} \\
-        Robustness Against Change of Input Data &~\cite{nakamichi_requirements-driven_2020} \\
-        Robustness Against Noise Data &~\cite{nakamichi_requirements-driven_2020} \\
-        Relevance / bias-variance tradeoff &~\cite{siebert_construction_2021, zhang_machine_2020} \\
-        Trained Model Generalization Peroformance Appropriateness
-                                                    &~\cite{nakamichi_requirements-driven_2020} \\
-        \midrule
-        \textit{Reusability} \\
-        Reusability &~\cite{ashmore_assuring_2021} \\
-        \midrule
-        \textit{Interpretability} \\
-        Interpretability &~\cite{ashmore_assuring_2021, siebert_construction_2021, zhang_machine_2020} \\
-        Understandability &~\cite{nakamichi_requirements-driven_2020} \\
-        Transparency &~\cite{arpteg_software_2018} \\
-        Model Explainability &~\cite{vogelsang_requirements_2019} \\
-        Comprehensibility &~\cite{ashmore_assuring_2021} \\
-        Comprehensiveness &~\cite{ashmore_assuring_2021} \\
-        \midrule
-        \textit{Fairness}
-        Fairness &~\cite{siebert_construction_2021, zhang_machine_2020} \\
-        Freedom from Discrimination &~\cite{vogelsang_requirements_2019} \\
-        \midrule
-        \textit{Resource Utilization}
-        Resource utilization &~\cite{siebert_construction_2021, nakamichi_requirements-driven_2020} \\
-        \bottomrule
-    \end{tabular}
-    \caption{\ac{MLS} qualities identified for model entity through literature}
-\end{table}
 
 \begin{table}[h]\label{tb:literatureQualities}
     \centering
@@ -205,6 +203,7 @@ a model in order to approximate the generalization performance~\cite{goodfellow_
 nakamichi_requirements-driven_2020}.
 
 % Robustness
+% FIXME: this is the quality that literature concerning STD and STR refer to
 The robustness of a model concerns environmental uncertainty~\cite{ashmore_assuring_2021}.
 Due to the uncontrolled environment of \ac{STR} in the practical aspect of taking the images on-site
 beneficial image properties can not be guaranteed~\citep{chen_text_2021}.
@@ -216,6 +215,7 @@ Therefore, these properties have to be accounted for when determining the viabil
 Some of these factors do not change the expected prediction (noise), others do (text
 form)\cite{hu_towards_2020}.
 An example for bad image quality in regards to \ac{OCR} can be seen in figure~\ref{fig:bad-example}.
+% FIXME: add \cite{long_scene_2021} difficulties
 
 % Performance efficiency
 % FIXME: more of a quality for infrastrucure -> not in the scope

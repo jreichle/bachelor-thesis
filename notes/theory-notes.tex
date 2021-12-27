@@ -116,6 +116,32 @@ Development from \ac{CNN} and \ac{RNN}
         (e.g. font style, cluttered background)
 \end{itemize}
 
+Scene Text Detection and Recognition~\cite{long_scene_2021}
+Evaluation protocols: match prediction to ground truth
+\begin{itemize}
+    \item general
+        \begin{itemize}
+            \item Precision P:\ proportion of predicted text instances that can be matched to ground
+                truth labels
+            \item Recall R:\ proportion of ground truth labels that have correspondents in predicted list
+            \item F1-Score: $F_1=\frac{2PR}{P+R}$
+        \end{itemize}
+    \item text detection: differ in criterion of matching predicted text instances to ground truth ones\\
+        $S_{GT}$: area of ground truth bounding box, $S_P$: area of oredicted bounding box,
+        $S_I$: area of intersection of predicted and ground truth bounding box, $S_U$:: area of union
+        \begin{itemize}
+            \item PASCAL Eval: IOU based --- P $\frac{S_I}{S_P}$ and R $\frac{S_I}{S_{GT}}$ larger
+                than threshhold to match
+            \item DetEval: overlap based --- intersection over union value $\frac{S_I}{S_U}$
+                larger than threshhold to match
+            \item match score may be different from two protocols in slight variations
+        \end{itemize}
+    \item Text Recognition and End-to-End System
+        \begin{itemize}
+            \item % FIXME: go on here
+        \end{itemize}
+\end{itemize}
+
 \textbf{Deep Learning based OCR}~\citep{zhao_improving_2020}
 What is OCR:\ process of converting images of typed, handwritten or printed text into machine-encoded one
 includes two sub frameworks: text detection and text recognition (based on position coordinates)
