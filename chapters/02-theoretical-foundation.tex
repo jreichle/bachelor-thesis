@@ -11,8 +11,7 @@ The most well known definition for \ac{ML} comes from~\cite{mitchell_machine_199
 `A computer program is said to learn from experience $E$ with respect to some class of tasks $T$
 and performance measure $P$, improves with experience $E$'.
 
-% FIXME: explain difference: model - algorithm
-
+% XXX: explain difference: model - algorithm
 The task that the \ac{MLS} learns to perform, can range from approximating a function
 (e.g.\ regression --- $f:\R^n \rightarrow \R$, classification ---
 $f:\R^n \rightarrow \{1,\ldots,k\}$) to optaining a different representation for the data that
@@ -32,7 +31,6 @@ Linear is derived from the underlying model shown in Equation~\ref{eq:linReg}:
 The scalar product of the weights $\w\in\R^n$ and \x\ is added to the bias term $b\in\R$.
 Both $\w,b$ are parameters that are learned by the model in order to optimize the
 approximation~\citep{goodfellow_deep_2016}.
-% FIXME: capacity
 % FIXME: here figure with linear regression
 
 The performance of a model measures how well the task can be completed.
@@ -67,11 +65,11 @@ For unsupervised learning on the other hand the algorithm is not directed to pre
 value but to learn properties about the data and to leverage them for representation tasks
 like compressing or denoising the data~\citep{goodfellow_deep_2016}.
 The important difference between the paradigms is that the unsupervised learning algorithm does
-not use a target value, i.e.\ $y$ plays no role in the objective
-function~\citep{goodfellow_deep_2016,geron_hands-machine_2017}.
+not use a target value, there's no ground truth
+value~\citep{goodfellow_deep_2016,geron_hands-machine_2017}.
 In most cases training can be described as an optimization problem, i.e.\ as minimizing a
-function, the so called objective or loss function~\citep{goodfellow_deep_2016}.
-The MSE introduced earlier can be used for Linear Regression.
+function --- the so called objective or loss function~\citep{goodfellow_deep_2016}.
+The MSE introduced earlier can be used for Linear Regression (see Equation~\ref{eq:mseOpt}).
 This objective function has properties which make it suitable for models which have linear
 output~\citep{goodfellow_deep_2016}.
 \begin{equation}\label{eq:mseOpt}
@@ -86,8 +84,8 @@ objective function (binary cross entropy loss) are different~\citep{geron_hands-
 ho_real-world-weight_2020}.
 % FIXME: simple gradient descent figure / learning process graphic
 For optimization the \ac{GD} algorithm is prevalent, especially in the subfield of \ac{DL}.
-As the name suggests, the gradient is used to iteratively update the parameters $\w,b$ to a minimum
-of the objective function (see Equation~\ref{eq:gradDescW}
+As the name suggests, the gradient is used to iteratively update the parameters $\w,b$ to arrive
+at a minimum of the objective function (see Equation~\ref{eq:gradDescW}
 and~\ref{eq:gradDescb})~\citep{geron_hands-machine_2017}.
 \begin{equation}\label{eq:gradDescW}
     \w \leftarrow \w - \epsilon \cdot \nabla_{\w} MSE(\w,b) = \w-\frac{2\epsilon}{m}\Xt^T (\Xt\w+b-\y)
@@ -98,13 +96,21 @@ and~\ref{eq:gradDescb})~\citep{geron_hands-machine_2017}.
 The learning rate constant $\epsilon$ can be adjusted to speed up or slow down the `steps' which
 can have different effects on the convergence~\citep{goodfellow_deep_2016}.
 There are more sophisticated variations of the \ac{GD} algorithm which are more suited for practical
-application (e.g. RMSProp, Adam)~\cite{goodfellow_deep_2016}.
-% FIXME: combine test error and curse of dimensionality with generalization error
-The calculation with the test set $\Xt$
-Curse of dimensionality
-
-Overfitting --- Underfitting
-% FIXME: graphic for underfitting/overfitting
+application (e.g. RMSProp, Adam)~\citep{geron_hands-machine_2017}.
+Note that the process minimizes the test error with the test set $\Xt$.
+The effect on the generalization error depends on model capacity which is the space of functions
+the model enables~\citep{goodfellow_deep_2016}.
+Linear Regression has the capacity to fit to data with a linear relationship between features and
+ground truth.
+If the underlying relationship is more complicated, the model can only underfit the data (model
+bias)~\citep{goodfellow_deep_2016}.
+Polynomial Regression has more capacity for example.
+Say the real relationship between features and ground truth now actually is linear;
+the Polynomial Regression model can overfit for statistical outliers in the test set which is why
+in this case the model with the lower capacity can achieve a lower generalization
+error~\citep{geron_hands-machine_2017}.
+Therefore, it is important to improve the bias/variance tradeoff.
+% FIXME: graphic for underfitting/overfitting -> LinRegr - Under, PolRegr - Over / Fig 5.3 goodfellow
 
 \section{Deep Learning}
 approximate a function
