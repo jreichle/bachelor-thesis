@@ -40,7 +40,7 @@ The metric Mean Squared Error (see Equation~\ref{eq:mse}) can be used for Linear
     MSE =\frac{1}{m}\norm{{(\hat{\textbf{y}} - \textbf{y})}}^2
         =\frac{1}{m}\sum_{i=1}^m {((\w^T \x^{(i)} + b) - \yti)}^2
 \end{equation}
-Here $m$ denotes the number of examples $\X$ with the associated targets \y, used to calculate
+Here $m$ denotes the number of examples $X$ with the associated targets \y, used to calculate
 the error~\citep{geron_hands-machine_2017,goodfellow_deep_2016}.
 The goal is to minimize the generalization error which measures the expected performance on
 previously unseen input~\citep{geron_hands-machine_2017}.
@@ -91,7 +91,7 @@ and~\ref{eq:gradDescb})~\citep{geron_hands-machine_2017}.
     \w \leftarrow \w - \epsilon \cdot \nabla_{\w} MSE(\w,b) = \w-\frac{2\epsilon}{m}\Xt^T (\Xt\w+b-\y)
 \end{equation}
 \begin{equation}\label{eq:gradDescb}
-    b \leftarrow b - \epsilon \cdot \frac{\delta}{\delta b} MSE(\w,b) = b-\frac{2\epsilon}{m}(\Xt\w+b-y)
+    b \leftarrow b - \epsilon \cdot \frac{\delta}{\delta b} MSE(\w,b) = b-\frac{2\epsilon}{m}(\Xt\w+b-\y)
 \end{equation}
 The learning rate constant $\epsilon$ can be adjusted to speed up or slow down the `steps' which
 can have different effects on the convergence~\citep{goodfellow_deep_2016}.
