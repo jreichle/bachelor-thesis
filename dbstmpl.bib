@@ -920,15 +920,6 @@ Gaussians are constructed like with GWD scheme (note on p.5)
 	file = {Bengio_Bengio_2000_Modeling High-Dimensional Discrete Data with Multi-Layer Neural Networks.pdf:/Users/johannesreichle/Zotero/storage/SK5PW9Z6/Bengio_Bengio_2000_Modeling High-Dimensional Discrete Data with Multi-Layer Neural Networks.pdf:application/pdf},
 }
 
-@article{ranzato_sparse_nodate,
-	title = {Sparse {Feature} {Learning} for {Deep} {Belief} {Networks}},
-	abstract = {Unsupervised learning algorithms aim to discover the structure hidden in the data, and to learn representations that are more suitable as input to a supervised machine than the raw input. Many unsupervised methods are based on reconstructing the input from the representation, while constraining the representation to have certain desirable properties (e.g. low dimension, sparsity, etc). Others are based on approximating density by stochastically reconstructing the input from the representation. We describe a novel and efﬁcient algorithm to learn sparse representations, and compare it theoretically and experimentally with a similar machine trained probabilistically, namely a Restricted Boltzmann Machine. We propose a simple criterion to compare and select different unsupervised machines based on the trade-off between the reconstruction error and the information content of the representation. We demonstrate this method by extracting features from a dataset of handwritten numerals, and from a dataset of natural image patches. We show that by stacking multiple levels of such machines and by training sequentially, high-order dependencies between the input observed variables can be captured.},
-	language = {en},
-	author = {Ranzato, Marc’Aurelio and Boureau, Y-Lan and LeCun, Yann},
-	pages = {8},
-	file = {Ranzato et al. - Sparse Feature Learning for Deep Belief Networks.pdf:/Users/johannesreichle/Zotero/storage/C89NLYZ5/Ranzato et al. - Sparse Feature Learning for Deep Belief Networks.pdf:application/pdf},
-}
-
 @article{okoli_guide_2010,
 	title = {A guide to conducting a systematic literature review of information systems research},
 	author = {Okoli, Chitu and Schabram, Kira},
@@ -1194,6 +1185,7 @@ Gaussians are constructed like with GWD scheme (note on p.5)
 	month = apr,
 	year = {2021},
 	pages = {1--35},
+	annote = {Extracted Annotations (06/01/2022, 15:59:08)"Rich and precise semantic information carried by text is important in a wide range of vision-based application scenarios." (Chen et al 2021:1)"In recent years, with the rise and development of deep learning, numerous methods have shown promising results in terms of innovation, practicality, and efficiency." (Chen et al 2021:1)"Specifically, rich and precise semantic information carried by text is important in a wide range of vision-based application scenarios," (Chen et al 2021:1)"Recognizing text in natural scenes, also known as scene text recognition (STR), is usually considered as a special form of optical character recognition (OCR), that is, camera-based OCR. Although OCR in scanned documents is well developed [137, 241], STR remains challenging because of many factors, including complex backgrounds, various fonts, and imperfect imaging conditions. Figure 1 compares the following characteristics of STR and OCR in scanned documents. • Background. Unlike OCR in scanned documents, text in natural scenes can appear on anything (e.g., signboards, walls, or product packagings). Therefore, scene text images may contain very complex backgrounds. Moreover, the texture of the background can be visually similar to text, which causes additional challenges for recognition. • Form. Text in scanned documents is usually printed in a single color with regular font, consistent size, and uniform arrangement. Meanwhile, in natural scenes, text appears in multiple colors with irregular fonts, different sizes, and diverse orientations. The diversity of text thus makes STR more difficult than OCR in scanned documents. • Noise. Text in natural scenes is usually distorted by noise interference, such as nonuniform illumination, low resolution, and motion blurring. Imperfect imaging conditions cause failures in the STR. • Access. Scanned text is usually frontal and occupies the main part of an image. However, scene text is captured randomly, resulting in irregular deformations (such as perspective distortion). Furthermore, the various shapes of text increase the difficulty of recognizing characters and predicting text strings." (Chen et al 2021:2)"As illustrated in Figure 3, various fundamental problems have been defined at various stages of this task in the literature: text localization, text verification, text detection, text segmentation, text recognition, and end-to-end systems" (Chen et al 2021:4)"Text localization. The objective of text localization [102] is to localize text components precisely and group them into candidate text regions with as little background as possible" (Chen et al 2021:4)"Text verification. Text verification [89] aims at verifying text candidate regions as text or non-text." (Chen et al 2021:4)"Recent works [81, 196] have used a convolution neural network (CNN) to improve text/non-text discrimination." (Chen et al 2021:5)"Text detection. The function of text detection [201, 219] is to determine whether text is present using localization and verification procedures [222]." (Chen et al 2021:5)"Text segmentation. Text segmentation has been identified as one of the most challenging problems [184]. It includes text line segmentation [168, 223] and character segmentation [144, 167]. The former refers to splitting a region of multiple text lines into multiple subregions of single text lines. The latter refers to separating a text instance into multiple regions of single characters." (Chen et al 2021:5)"Compared with traditional methods, deep learning methods have the following advantages: (i) Automation: automatic feature representation learning can free researchers from empirically designing handcrafted features. (ii) Effectiveness: excellent recognition performance far exceeds traditional algorithms. (iii) Generalization: algorithms can be easily applied to similar vision-based problems." (Chen et al 2021:6)"The objective of STR is to translate a cropped text instance image into a target string sequence. There are two types of scene text in nature: regular and irregular." (Chen et al 2021:6)"Text Image Super-resolution (TextSR). Scene text is usually distorted by various noise interferences, such as low resolution." (Chen et al 2021:9)"Rectification. The function of rectification is to normalize the input text instance image, remove the distortion, and reduce the difficulty of irregular text recognition. Specifically, irregular text [217] refers to text with perspective distortion or an arbitrary curving shape, which usually causes additional challenges in recognition." (Chen et al 2021:9)"Image preprocessing includes but is not limited to the aforementioned types. It can significantly reduce the difficulties of recognition by improving image quality." (Chen et al 2021:10)"Feature Representation Stage Feature representation maps the input text instance image to a representation that reflects the attributes relevant for character recognition, while suppressing irrelevant features such as font, color, size, and background." (Chen et al 2021:10)"A deeper and more advanced feature extractor usually results in better representation power, which is suitable for improving STR with complex backgrounds. However, performance improvement costs increased memory and computation consumption" (Chen et al 2021:10)"Contextual cues are beneficial for image-based sequence recognition. Although recurrent neural network (RNN)-based [72] structures, such as BiLSTM or LSTM, can model character sequences, there are some inherent limitations. In contrast, CNNs or transformers [182] can not only effectively deal with long sequences but also be parallelized efficiently. Modeling language sequences using CNNs or transformer structures may be a new trend for sequence modeling because of its intrinsic superiority." (Chen et al 2021:11)"Given a text image with a complex background as input, an end-to-end system aims to directly convert all text regions into string sequences. Typically, this includes text detection, text recognition, and postprocessing." (Chen et al 2021:14)"Several factors promote the emergence of end-to-end systems: (i) Errors can accumulate in a cascade way of text detection and recognition, which may lead to a large fraction of garbage predictions, while an end-to-end system can prevent errors from being accumulated during the training. (ii) In an end-to-end system, text detection and recognition can share information and be jointly optimized to improve the overall performance. (iii) An end-to-end system is easier to maintain and adapt to new domains; whereas, maintaining a cascaded pipeline with data and model dependencies requires substantial engineering efforts. (iv) End-to-end systems exhibit competitive performance with faster inference and smaller storage requirements." (Chen et al 2021:14)"Although the current end-to-end systems work fairly well in many real-world scenarios, they have limitations. The following difficulties should be considered: (i) How can we efficiently bridge and share information between text detection and recognition? (ii) How can the significant differences in learning difficulty and convergence speed be balanced between text detection and recognition? (iii) How can joint optimization be improved? Moreover, a simple, compact, and powerful end-to-end system is yet to be developed." (Chen et al 2021:15)"In this section, we summarize the evaluation protocols for Latin and multilingual texts. 4.2.1 Evaluation Protocols for Latin Text. Recognition Protocols. The word recognition accuracy (WRA) and word error rate (WER) are two widely used recognition evaluation protocols for Latin text. • WRA. W RA is defined by W RA= Wr, (7) W whereW is the total number of words, andWr represents the number of correctly recognized words. • WER. W ER is defined by W ER = 1−W RA= 1− Wr. (8) W" (Chen et al 2021:21)"Most competitions [27, 67, 114] measured the algorithm recognition performance using a traditional evaluation metric, the normalized edit distance (NED):" (Chen et al 2021:22)"where D (.) stands for the Levenshtein distance. si and ˆi denote the predicted text and the corresponding ground truth, respectively. Furthermore, li and ˆi are their text lengths. N is the total number of text lines. The NED protocol measures mismatching between the predicted text and the corresponding ground truth. Therefore, the recognition score is usually calculated as 1-NED. End-to-end Protocols. Two main evaluation protocols for end-to-end systems have been used during recent competitions:" (Chen et al 2021:22)},
 	file = {Chen et al. - 2021 - Text Recognition in the Wild A Survey.pdf:/Users/johannesreichle/Zotero/storage/TVGZBTI2/Chen et al. - 2021 - Text Recognition in the Wild A Survey.pdf:application/pdf},
 }
 
@@ -1213,6 +1205,32 @@ Gaussians are constructed like with GWD scheme (note on p.5)
 	month = jan,
 	year = {2021},
 	pages = {161--184},
+	annote = {Extracted Annotations (27/12/2021, 16:06:39)
+"computer vision, scene text detection and recognition has been inevitably influenced by this wave of revolution," (Long et al 2021:161)
+"on the other hand, the rich and precise high-level semantics embodied in text could be beneficial for understanding the world around us." (Long et al 2021:161)
+"Diversity and Variability of Text in Natural Scenes Distinctive from scripts in documents, text in natural scene exhibit much higher diversity and variability" (Long et al 2021:161)
+"Complexity and Interference of Backgrounds The backgrounds of natural scenes are virtually unpredictable." (Long et al 2021:161)
+"Imperfect Imaging Conditions In" (Long et al 2021:162)
+"1) Most methods utilize deeplearning based models; (2) Most researchers are approaching the problem from a diversity of perspectives, trying to solve different challenges. Methods driven by deep learning enjoy the advantage that automatic feature learning can save us from designing and testing a large amount of potential handcrafted features." (Long et al 2021:163)
+"c, d are simplified pipeline. In c, detectors and recognizers are separate. In d, the detectors pass cropped Illustrations of tion system pipelines. feature maps to recognizers, which allows end-to-end training" (Long et al 2021:164)
+"(1) text detection that detects and localizes text in natural images; (2) recognition system that transcribes and converts the content of the detected text regions into linguistic symbols; (3) end-to-end system that performs both text detection and recognition in one unified pipeline; (4) auxiliary methods that aim to support the main task of text detection and recognition, e.g. synthetic data generation." (Long et al 2021:164)
+"Overall, in this stage, scene text detection algorithms still havelongandslowpipelines,thoughtheyhavereplacedsome hand-crafted features with learning-based ones. The design methodology is bottom-up and based on key components, such as single characters and text center lines." (Long et al 2021:165)
+"with curved, oriented, or long text for one-staged methods due to the limitation of the receptive field, and the efficiency is limited for two-staged methods." (Long et al 2021:166)
+"Character-level representation is yet another effective way. Baek et al. (2019b) propose to learn a segmentation map for character centers and links between them. Both components and links are predicted in the form of a Gaussian heat map. However, this method requires iterative weak supervision as real-world datasets are rarely equipped with character-level labels." (Long et al 2021:167)},
+	annote = {Extracted Annotations (27/12/2021, 16:20:58)
+"computer vision, scene text detection and recognition has been inevitably influenced by this wave of revolution," (Long et al 2021:161)
+"on the other hand, the rich and precise high-level semantics embodied in text could be beneficial for understanding the world around us." (Long et al 2021:161)
+"Diversity and Variability of Text in Natural Scenes Distinctive from scripts in documents, text in natural scene exhibit much higher diversity and variability" (Long et al 2021:161)
+"Complexity and Interference of Backgrounds The backgrounds of natural scenes are virtually unpredictable." (Long et al 2021:161)
+"Imperfect Imaging Conditions In" (Long et al 2021:162)
+"1) Most methods utilize deeplearning based models; (2) Most researchers are approaching the problem from a diversity of perspectives, trying to solve different challenges. Methods driven by deep learning enjoy the advantage that automatic feature learning can save us from designing and testing a large amount of potential handcrafted features." (Long et al 2021:163)
+"c, d are simplified pipeline. In c, detectors and recognizers are separate. In d, the detectors pass cropped Illustrations of tion system pipelines. feature maps to recognizers, which allows end-to-end training" (Long et al 2021:164)
+"(1) text detection that detects and localizes text in natural images; (2) recognition system that transcribes and converts the content of the detected text regions into linguistic symbols; (3) end-to-end system that performs both text detection and recognition in one unified pipeline; (4) auxiliary methods that aim to support the main task of text detection and recognition, e.g. synthetic data generation." (Long et al 2021:164)
+"Overall, in this stage, scene text detection algorithms still havelongandslowpipelines,thoughtheyhavereplacedsome hand-crafted features with learning-based ones. The design methodology is bottom-up and based on key components, such as single characters and text center lines." (Long et al 2021:165)
+"with curved, oriented, or long text for one-staged methods due to the limitation of the receptive field, and the efficiency is limited for two-staged methods." (Long et al 2021:166)
+"Character-level representation is yet another effective way. Baek et al. (2019b) propose to learn a segmentation map for character centers and links between them. Both components and links are predicted in the form of a Gaussian heat map. However, this method requires iterative weak supervision as real-world datasets are rarely equipped with character-level labels." (Long et al 2021:167)
+"Character level annotations are more accurate and better. However, most existing datasets do not provide characterlevel annotating. Since characters are smaller and close to each other, character-level annotation is more costly and inconvenient." (Long et al 2021:171)
+"enchmark Datasets and Evaluation Protocol" (Long et al 2021:172)},
 	file = {Long et al. - 2021 - Scene Text Detection and Recognition The Deep Lea.pdf:/Users/johannesreichle/Zotero/storage/HCWGWF4P/Long et al. - 2021 - Scene Text Detection and Recognition The Deep Lea.pdf:application/pdf},
 }
 
@@ -1341,6 +1359,7 @@ Gaussians are constructed like with GWD scheme (note on p.5)
 "We first define a quality evaluation meta-model consisting of three parts as shown in Fig. 2. In the "MLS Quality Model" part, "Quality Characteristic" is defined hierarchically. In the "Quality Measurement of MLS" part, "Measure" is associated with "QualityCharacteristics" on the lowest layer," (Nakamichi et al 2020:263)
 "Table 2. List of MSL Quality Characteristics (Part)" (Nakamichi et al 2020:263)
 "First, we identified 22 issues related to the requirements specifications of MLS, which are classified as environment/user, system/infrastructure, model, and data. Then, we defined quality characteristics and sub-characteristics specific to MLS by extending the quality model of ISO 25010. The MLS quality characteristics consist of 34 properties, of which, 18 were MLS-specific and 16 were derived from ISO 25010. We also defined a measure for each property." (Nakamichi et al 2020:269)},
+	annote = {Extracted Annotations (25/12/2021, 11:56:47)"The quality of MLS is different from that of conventional software systems, in the sense that it depends on the amount and distribution of training data in a model learning and input data during operation. This is a major challenge in quality assurance of MLS development for the enterprise." (Nakamichi et al 2020:260)"Therefore, the research emerged on machine learning software engineering and machine learning engineering [1] [12], which aims to find solutions to these problems by systematizing the development from the viewpoint of software engineering." (Nakamichi et al 2020:260)"In this paper, we focus on the required quality of the features of MLS in order to meet the quality requirements of enterprise information systems." (Nakamichi et al 2020:260)"It is necessary that the MLS provider creates an MLS specification including not only functional requirements but also quality requirements, and agrees with the customer. The quality requirements include the degree of the property which MLS should realize, the assumed usage context of MLS, and constraints." (Nakamichi et al 2020:260)"It has been noted that MLS has essentially different characteristics from those of conventional software systems [12] [21]. Sculley et al. pointed out that machine learning component is only a small portion of the entire MLS. Therefore, it is necessary to consider the entire MLS instead of machine learning component [21]. This raises new problems in software engineering [1] [15]." (Nakamichi et al 2020:261)"However, few papers identified in the survey discuss the quality model of MLS. Kuwajima, et al. discussed on the safety as the most important quality characteristic in automated driving, which is noted as a key application of MLS. However, the paper suggests that the research on the quality problems is still at the early stage [13]." (Nakamichi et al 2020:261)"Regarding a definition of the requirements for MLS, Belani et al. proposed an outline of RE4AI taxonomy for MLS development from the viewpoint of requirements engineering" (Nakamichi et al 2020:261)"mportance of measurement of machine learning performance, explainability, and specific legal requirements as the difference from the conventional requirements" (Nakamichi et al 2020:261)"Although the quality requirements of MLS are attracting attention, there have been few conventional works on the quality requirements of MLS in the context of enterprise systems." (Nakamichi et al 2020:261)"The requirements analyst extracts important issues from the list of items to be considered during MLS development according to the customer's needs. On the other hand, MLS quality characteristics that are an extension of the ISO/IEC 25010 quality characteristics, measures, and measurement method are defined as MLS quality evaluation models. In addition, a mapping between the above issues and the related MLS quality characteristics is provided in advance. As a result, it is possible to derive the quality and measurement items to be guaranteed by the MLS based on the customer's needs." (Nakamichi et al 2020:262)"The context of MLS discussed in this paper consists of environment/user, system/infrastructure, model, and data as shown in Fig. 2 [7]." (Nakamichi et al 2020:262)"Table 1. List of MLS Issues (Part)" (Nakamichi et al 2020:262)"We first define a quality evaluation meta-model consisting of three parts as shown in Fig. 2. In the "MLS Quality Model" part, "Quality Characteristic" is defined hierarchically. In the "Quality Measurement of MLS" part, "Measure" is associated with "QualityCharacteristics" on the lowest layer," (Nakamichi et al 2020:263)"Table 2. List of MSL Quality Characteristics (Part)" (Nakamichi et al 2020:263)"We assume that the correctness of a function of MLS corresponds to the correctness of the output data. The output data, test data, and trained models of MLS were specified as entities related to the MLS output. We defined the properties of these entities to be evaluated in terms of functional correctness. The properties are listed below: (1) Representativeness: A property of the data; the degree to which the statistical characteristics of the actual data set are consistent with the statistics assumed for the data set. (2) Independence: A property of test data; the extent to which test data are independent from training data." (Nakamichi et al 2020:263)"(3) Fitness: A quality of the output data of the MLS and trained models, and the degree of correctness." (Nakamichi et al 2020:264)"First, we identified 22 issues related to the requirements specifications of MLS, which are classified as environment/user, system/infrastructure, model, and data. Then, we defined quality characteristics and sub-characteristics specific to MLS by extending the quality model of ISO 25010. The MLS quality characteristics consist of 34 properties, of which, 18 were MLS-specific and 16 were derived from ISO 25010. We also defined a measure for each property." (Nakamichi et al 2020:269)},
 	file = {Nakamichi et al_2020_Requirements-Driven Method to Determine Quality Characteristics and.pdf:/Users/johannesreichle/Zotero/storage/GZJKLEGC/Nakamichi et al_2020_Requirements-Driven Method to Determine Quality Characteristics and.pdf:application/pdf;IEEE Xplore Abstract Record:/Users/johannesreichle/Zotero/storage/AWR84EVA/9218162.html:text/html},
 }
 
@@ -1519,6 +1538,7 @@ version: 1},
 	month = oct,
 	year = {2019},
 	pages = {4714--4722},
+	annote = {Extracted Annotations (26/12/2021, 10:22:48)"First, we examine the inconsistencies of training and evaluation datasets, and the performance gap results from inconsistencies. Second, we introduce a unified four-stage STR framework that most existing STR models fit into." (Baek et al 2019:4714)"The maturity of Optical Character Recognition (OCR) systems has led to its successful application on cleaned documents, but most traditional OCR methods have failed to be as effective on STR tasks due to the diverse text appearances that occur in the real world and the imperfect conditions in which these scenes are captured." (Baek et al 2019:4714)"Finally, we study the module-wise contributions in terms of accuracy, speed, and memory demand, under a unified experimental setting" (Baek et al 2019:4715)"Due to the resemblence of STR to computer vision tasks (e.g. object detection) and sequence prediction tasks, STR has benefited from high-performance convolutional neural networks (CNNs) and recurrent neural networks (RNNs)." (Baek et al 2019:4717)"The four stages derived from existing STR models are as follows: 1. Transformation (Trans.) normalizes the input text image using the Spatial Transformer Network (STN [11]) to ease downstream stages. 2. Feature extraction (Feat.) maps the input image to a representation that focuses on the attributes relevant for character recognition, while suppressing irrelevant features such as font, color, size, and background. 3. Sequence modeling (Seq.) captures the contextual information within a sequence of characters for the next stage to predict each character more robustly, rather than doing it independently. 4. Prediction (Pred.) estimates the output character sequence from the identified features of an image." (Baek et al 2019:4717)"In this stage, from the input H, a module predict a sequence of characters, (i.e., Y = y1 , y2 , . . . ). By summing up previous works, we have two options for prediction: (1) Connectionist temporal classification (CTC) [6] and (2) attention-based sequence prediction (Attn) [24, 4]." (Baek et al 2019:4718)"Vertical texts: most of current STR models assumes horizontal text images, and thus structurally could not deal with vertical texts. Some STR models [28, 5] exploit vertical information also, however, vertical texts are not clearly covered yet. Further research would be needed to cover vertical texts." (Baek et al 2019:4721)},
 	file = {Baek et al. - 2019 - What Is Wrong With Scene Text Recognition Model Co.pdf:/Users/johannesreichle/Zotero/storage/82G8BT9K/Baek et al. - 2019 - What Is Wrong With Scene Text Recognition Model Co.pdf:application/pdf},
 }
 
@@ -1535,4 +1555,131 @@ version: 1},
 	keywords = {Computer Science - Computer Vision and Pattern Recognition},
 	annote = {Comment: To appear at ICDAR2021 Springer Lecture Notes in Computer Science series},
 	file = {Atienza_2021_Vision Transformer for Fast and Efficient Scene Text Recognition.pdf:/Users/johannesreichle/Zotero/storage/8HCJS8TP/Atienza_2021_Vision Transformer for Fast and Efficient Scene Text Recognition.pdf:application/pdf;arXiv.org Snapshot:/Users/johannesreichle/Zotero/storage/QVWX5KYD/2105.html:text/html},
+}
+
+@article{kumar_scene_2016,
+	title = {Scene {Text} {Recognition} using {Artificial} {Neural} {Network}: {A} {Survey}},
+	volume = {137},
+	shorttitle = {Scene {Text} {Recognition} using {Artificial} {Neural} {Network}},
+	doi = {10.5120/ijca2016908804},
+	abstract = {Nowadays, scene text recognition has become an important emerging area of research in the field of image processing. In image processing, character recognition boosts the complexity in the area of Artificial Intelligence. Character recognition is not easy for computer programs in comparison to humans. In the broad spectrum of things, it may consider that recognizing patterns is the only thing which humans can do well and computers cannot. There are many reasons including various sources of variability, hypothesis and absence of hard-and-fast rules that define the appearance of a visual character. Hence; there is an unavoidable requirement for heuristic deduction of rules from different samples. This review highlights the superiority of artificial neural networks, a popular area of Artificial Intelligence, over various other available methods like fuzzy logic and genetic algorithm. In this paper, two methods are listed for character recognition – offline and online. The ―Offline‖ methods include Feature Extraction, Clustering, and Pattern Matching. Artificial neural networks use the static image properties. The online methods are divided into two methods, k-NN classifier and direction based algorithm. Thus, the scale of techniques available for scene text recognition deserves an admiration. This review gives a detail survey of use of artificial neural network in scene text recognition.},
+	journal = {International Journal of Computer Applications},
+	author = {Kumar, Sunil and Kumar, Krishan and Mishra, Rahul},
+	month = apr,
+	year = {2016},
+	pages = {975--8887},
+	file = {Kumar et al_2016_Scene Text Recognition using Artificial Neural Network.pdf:/Users/johannesreichle/Zotero/storage/8SIPHDJT/Kumar et al_2016_Scene Text Recognition using Artificial Neural Network.pdf:application/pdf},
+}
+
+@book{mitchell_machine_1997,
+	address = {New York},
+	series = {{McGraw}-{Hill} series in computer science},
+	title = {Machine {Learning}},
+	isbn = {978-0-07-042807-2},
+	publisher = {McGraw-Hill},
+	author = {Mitchell, Tom M.},
+	year = {1997},
+	keywords = {Machine learning, Computer algorithms},
+}
+
+@article{alzubi_machine_2018,
+	title = {Machine {Learning} from {Theory} to {Algorithms}: {An} {Overview}},
+	volume = {1142},
+	issn = {1742-6588, 1742-6596},
+	shorttitle = {Machine {Learning} from {Theory} to {Algorithms}},
+	url = {https://iopscience.iop.org/article/10.1088/1742-6596/1142/1/012012},
+	doi = {10.1088/1742-6596/1142/1/012012},
+	abstract = {The current SMAC (Social, Mobile, Analytic, Cloud) technology trend paves the way to a future in which intelligent machines, networked processes and big data are brought together. This virtual world has generated vast amount of data which is accelerating the adoption of machine learning solutions\& practices. Machine Learning enables computers to imitate and adapt human-like behaviour. Using machine learning, each interaction, each action performed, becomes something the system can learn and use as experience for the next time. This work is an overview of this data analytics method which enables computers to learn and do what comes naturally to humans, i.e. learn from experience. It includes the preliminaries of machine learning, the definition, nomenclature and applications’ describing it’s what, how and why. The technology roadmap of machine learning is discussed to understand and verify its potential as a market \& industry practice. The primary intent of this work is to give insight into why machine learning is the future.},
+	language = {en},
+	urldate = {2022-01-07},
+	journal = {Journal of Physics: Conference Series},
+	author = {Alzubi, Jafar and Nayyar, Anand and Kumar, Akshi},
+	month = nov,
+	year = {2018},
+	pages = {012012},
+	file = {Alzubi et al. - 2018 - Machine Learning from Theory to Algorithms An Ove.pdf:/Users/johannesreichle/Zotero/storage/XSMPT3FB/Alzubi et al. - 2018 - Machine Learning from Theory to Algorithms An Ove.pdf:application/pdf},
+}
+
+@inproceedings{chauhan_review_2018,
+	title = {A {Review} on {Conventional} {Machine} {Learning} vs {Deep} {Learning}},
+	doi = {10.1109/GUCON.2018.8675097},
+	abstract = {In now days, deep learning has become a prominent and emerging research area in computer vision applications. Deep learning permits the multiple layers models for computation to learn representations of data by processing in their original form while it is not possible in conventional machine learning. These methods surprisingly improved the accuracy of various image processing domains such as speech recognition, face recognition, object detection and in biomedical applications. Deep neural networks (DNN) such as convolutional neural network (CNN) provide tremendous results in processing of images and videos, while another approach of deep network i.e. recurrent neural network (RNN) gives better performance with sequential data such as text and speech.},
+	booktitle = {2018 {International} {Conference} on {Computing}, {Power} and {Communication} {Technologies} ({GUCON})},
+	author = {Chauhan, Nitin Kumar and Singh, Krishna},
+	month = sep,
+	year = {2018},
+	keywords = {Deep learning, Neural networks, CNN, ANN, Classification algorithms, DNN, DT, Fully connected layers, LDA, Machine learning algorithms, Neurons, PCA, Pooling layers, QDA, RBM, RNN, Support vector machines, SVM},
+	pages = {347--352},
+	file = {Chauhan_Singh_2018_A Review on Conventional Machine Learning vs Deep Learning.pdf:/Users/johannesreichle/Zotero/storage/J833HDNX/Chauhan_Singh_2018_A Review on Conventional Machine Learning vs Deep Learning.pdf:application/pdf;IEEE Xplore Abstract Record:/Users/johannesreichle/Zotero/storage/VAR38ZMB/8675097.html:text/html},
+}
+
+@book{richter_statistisches_2019,
+	address = {Berlin, Heidelberg},
+	title = {Statistisches und maschinelles {Lernen}: {Gängige} {Verfahren} im Überblick},
+	isbn = {978-3-662-59353-0 978-3-662-59354-7},
+	shorttitle = {Statistisches und maschinelles {Lernen}},
+	url = {http://link.springer.com/10.1007/978-3-662-59354-7},
+	language = {de},
+	urldate = {2022-01-09},
+	publisher = {Springer Berlin Heidelberg},
+	author = {Richter, Stefan},
+	year = {2019},
+	doi = {10.1007/978-3-662-59354-7},
+	file = {Richter - 2019 - Statistisches und maschinelles Lernen Gängige Ver.pdf:/Users/johannesreichle/Zotero/storage/8Y32ACBZ/Richter - 2019 - Statistisches und maschinelles Lernen Gängige Ver.pdf:application/pdf},
+}
+
+@book{geron_hands-machine_2017,
+	address = {Beijing ; Boston},
+	edition = {First edition},
+	title = {Hands-on machine learning with {Scikit}-{Learn} and {TensorFlow}: concepts, tools, and techniques to build intelligent systems},
+	isbn = {978-1-4919-6229-9},
+	shorttitle = {Hands-on machine learning with {Scikit}-{Learn} and {TensorFlow}},
+	abstract = {"Through a series of recent breakthroughs, deep learning has boosted the entire field of machine learning. Now, even programmers who know close to nothing about this technology can use simple, efficient tools to implement programs capable of learning from data. This practical book shows you how. By using concrete examples, minimal theory, and two production-ready Python frameworks--Scikit-Learn and TensorFlow--author Aurélien Géron helps you gain an intuitive understanding of the concepts and tools for building intelligent systems. You'll learn a range of techniques, starting with simple linear regression and progressing to deep neural networks. With exercises in each chapter to help you apply what you've learned, all you need is programming experience to get started" --},
+	publisher = {O'Reilly Media},
+	author = {Géron, Aurélien},
+	year = {2017},
+	note = {OCLC: ocn953432302},
+	keywords = {Artificial intelligence, Machine learning, Automatische Klassifikation, COMPUTERS / Computer Vision \& Pattern Recognition, COMPUTERS / Data Processing, COMPUTERS / Intelligence (AI) \& Semantics, COMPUTERS / Natural Language Processing, COMPUTERS / Neural Networks, Künstliche Intelligenz, Maschinelles Lernen, Nonfiction, Python 3.0},
+	annote = {Includes index},
+	file = {Géron - Hands-On Machine Learning with Scikit-Learn and Te.pdf:/Users/johannesreichle/Zotero/storage/CXQSL6VU/Géron - Hands-On Machine Learning with Scikit-Learn and Te.pdf:application/pdf},
+}
+
+@article{ye_least_nodate,
+	title = {Least {Squares} {Linear} {Discriminant} {Analysis}},
+	abstract = {Linear Discriminant Analysis (LDA) is a well-known method for dimensionality reduction and classiﬁcation. LDA in the binaryclass case has been shown to be equivalent to linear regression with the class label as the output. This implies that LDA for binary-class classiﬁcations can be formulated as a least squares problem. Previous studies have shown certain relationship between multivariate linear regression and LDA for the multi-class case. Many of these studies show that multivariate linear regression with a speciﬁc class indicator matrix as the output can be applied as a preprocessing step for LDA. However, directly casting LDA as a least squares problem is challenging for the multi-class case. In this paper, a novel formulation for multivariate linear regression is proposed. The equivalence relationship between the proposed least squares formulation and LDA for multi-class classiﬁcations is rigorously established under a mild condition, which is shown empirically to hold in many applications involving high-dimensional data. Several LDA extensions based on the equivalence relationship are discussed.},
+	language = {en},
+	author = {Ye, Jieping},
+	pages = {8},
+	file = {Ye - Least Squares Linear Discriminant Analysis.pdf:/Users/johannesreichle/Zotero/storage/ARDF7AQJ/Ye - Least Squares Linear Discriminant Analysis.pdf:application/pdf},
+}
+
+@book{james_introduction_2013,
+	address = {New York},
+	series = {Springer texts in statistics},
+	title = {An introduction to statistical learning: with applications in {R}},
+	isbn = {978-1-4614-7137-0},
+	shorttitle = {An introduction to statistical learning},
+	number = {103},
+	publisher = {Springer},
+	editor = {James, Gareth and Witten, Daniela and Hastie, Trevor and Tibshirani, Robert},
+	year = {2013},
+	note = {OCLC: ocn828488009},
+	keywords = {Mathematical models, Mathematical statistics, Problems, exercises, etc, R (Computer program language), Statistics},
+	annote = {Includes index},
+}
+
+@article{ho_real-world-weight_2020,
+	title = {The {Real}-{World}-{Weight} {Cross}-{Entropy} {Loss} {Function}: {Modeling} the {Costs} of {Mislabeling}},
+	volume = {8},
+	issn = {2169-3536},
+	shorttitle = {The {Real}-{World}-{Weight} {Cross}-{Entropy} {Loss} {Function}},
+	doi = {10.1109/ACCESS.2019.2962617},
+	abstract = {In this paper, we propose a new metric to measure goodness-of-fit for classifiers: the Real World Cost function. This metric factors in information about a real world problem, such as financial impact, that other measures like accuracy or F1 do not. This metric is also more directly interpretable for users. To optimize for this metric, we introduce the Real-World-Weight Cross-Entropy loss function, in both binary classification and single-label multiclass classification variants. Both variants allow direct input of real world costs as weights. For single-label, multiclass classification, our loss function also allows direct penalization of probabilistic false positives, weighted by label, during the training of a machine learning model. We compare the design of our loss function to the binary cross-entropy and categorical cross-entropy functions, as well as their weighted variants, to discuss the potential for improvement in handling a variety of known shortcomings of machine learning, ranging from imbalanced classes to medical diagnostic error to reinforcement of social bias. We create scenarios that emulate those issues using the MNIST data set and demonstrate empirical results of our new loss function. Finally, we discuss our intuition about why this approach works and sketch a proof based on Maximum Likelihood Estimation.},
+	journal = {IEEE Access},
+	author = {Ho, Yaoshiang and Wookey, Samuel},
+	year = {2020},
+	note = {Conference Name: IEEE Access},
+	keywords = {class imbalance, cross-entropy, ethnic stereotypes, Machine learning, maximum likelihood estimation, Maximum likelihood estimation, Measurement, Neural networks, oversampling, Probabilistic logic, social bias, softmax, Standards, Training, undersampling},
+	pages = {4806--4813},
+	file = {Ho_Wookey_2020_The Real-World-Weight Cross-Entropy Loss Function.pdf:/Users/johannesreichle/Zotero/storage/U6H99L69/Ho_Wookey_2020_The Real-World-Weight Cross-Entropy Loss Function.pdf:application/pdf;IEEE Xplore Abstract Record:/Users/johannesreichle/Zotero/storage/TVP49BNC/8943952.html:text/html},
 }

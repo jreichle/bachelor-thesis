@@ -7,8 +7,7 @@
 
     {
         \noindent
-        \textbf{Keywords:} Deep Learning, Optical Character Recognition, Scene Text Recognition,
-        Literature Review
+        \textbf{Keywords:} Deep Learning, Scene Text Spotting, Overview
     }
 \end{abstract}
 
@@ -26,3 +25,28 @@
 \chapter*{Abbreviations}
 \addcontentsline{toc}{chapter}{Abbreviations}
 \printacronyms[heading=none]
+
+\addcontentsline{toc}{chapter}{Notation}
+\renewcommand{\nomname}{Notation}
+\printnomenclature
+
+%%
+%% Nomenclature
+%%
+\nomenclature[D]{$\xti$}{The i-th example (input) from a dataset}
+\nomenclature[D]{$\yti$ or $\textbf{y}^{(i)}$}{The target associated with $\xti$}
+\nomenclature[D]{$\Xt$}{A set of training examples}
+\nomenclature[D]{\textbf{X}}{The $m\times n$ matrix with input example $\xti$ in row $\X_{u,:}$}
+
+
+\nomenclature[O]{$\R$}{Real numbers}
+\nomenclature[O]{$\norm{\x}$}{$L^2$ norm of \x}
+\nomenclature[O]{$f(\x;\T)$}{A function of \x\ parametrized by $\T$}
+
+\nomenclature[M]{\($a$\)}{Scalar}
+\nomenclature[M]{\textbf{a}}{Vector}
+\nomenclature[M]{$A$}{Matrix}
+\nomenclature[M]{\textbf{A}}{Tensor}
+
+\nomenclature[C]{$\frac{\delta y}{\delta x}$}{Partial derivative of y with respect to x}
+\nomenclature[C]{$\nabla_\textbf{x} y$}{Gradient of y with respecrt to \textbf{x}}

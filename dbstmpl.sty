@@ -37,6 +37,10 @@
 \RequirePackage[round]{natbib}
 \RequirePackage{url}
 \RequirePackage{booktabs}
+\RequirePackage{placeins}
+\RequirePackage{mathtools}
+\RequirePackage{nomencl}
+\makenomenclature
 
 %%
 %% haeufig benutzte Symbole
@@ -46,24 +50,57 @@
 \newcommand{\Q}{\mathbb{Q}}    % Menge der rationalen Zahlen
 \newcommand{\R}{\mathbb{R}}    % Menge der reellen Zahlen
 \newcommand{\C}{\mathbb{C}}    % Menge der komplexen Zahlen
+\newcommand{\E}{\mathbb{E}}    % Erwartungswert
+\newcommand{\Xt}{\mathbb{X}}    % Trainingsset
+
+% math notation help
+\newcommand{\w}{\textbf{w}}
+\newcommand{\x}{\textbf{x}}
+\newcommand{\y}{\textbf{y}}
+\newcommand{\xti}{\textbf{x}^{(i)}}
+\newcommand{\yti}{y^{(i)}}
+\newcommand{\X}{\textbf{X}}
+\newcommand{\T}{\boldsymbol{\theta}}
+
+%%
+%% Mathe Befehle
+%%
+% norm
+\DeclarePairedDelimiterX{\infdivx}[2]{(}{)}{%
+  #1\;\delimsize\|\;#2%
+}
+\newcommand{\infdiv}{D\infdivx}
+\DeclarePairedDelimiter{\norm}{\lVert}{\rVert}
+
 
 %%
 %% haeufig benutzte Begriffe
 %%
-\DeclareAcronym{OCR}{short=OCR,long=Optical Character Recognition}
-\DeclareAcronym{DL}{short=DL,long=Deep Learning}
-\DeclareAcronym{ML}{short=ML,long=Machine Learning}
-\DeclareAcronym{NN}{short=NN,long=Neural Network}
-\DeclareAcronym{DNN}{short=DNN,long= Deep Neural Network}
-\DeclareAcronym{FR}{short=FR,long=functional requirement}
-\DeclareAcronym{NFR}{short=NFR,long=non-functional requirement}
-\DeclareAcronym{DR}{short=DR,long=data requirement}
-\DeclareAcronym{STR}{short=STR,long=Scene Text Recognition}
-\DeclareAcronym{MLS}{short=MLS,long=Machine Learning System}
 \DeclareAcronym{CNN}{short=CNN,long=Convolutional Neural Networks}
-\DeclareAcronym{RNN}{short=RNN,long=Recurrent Neural Networks}
+\DeclareAcronym{DL}{short=DL,long=Deep Learning}
+\DeclareAcronym{DNN}{short=DNN,long=Deep Neural Network}
+\DeclareAcronym{GD}{short=GD,long=Gradient Descent}
 \DeclareAcronym{LSTM}{short=LSTM,long=Long Short Term Memory}
+\DeclareAcronym{ML}{short=ML,long=Machine Learning}
+\DeclareAcronym{MLS}{short=MLS,long=Machine Learning System}
+\DeclareAcronym{NN}{short=NN,long=Neural Network}
+\DeclareAcronym{OCR}{short=OCR,long=Optical Character Recognition}
+\DeclareAcronym{RNN}{short=RNN,long=Recurrent Neural Networks}
+\DeclareAcronym{STD}{short=STD,long=Scene Text Detection}
+\DeclareAcronym{STR}{short=STR,long=Scene Text Recognition}
+\DeclareAcronym{STS}{short=STS,long=Scene Text Spotting}
 
+%%
+%% Nomenclature
+%%
+\usepackage{etoolbox}
+\renewcommand\nomgroup[1]{%
+  \item[\bfseries
+  \ifstrequal{#1}{C}{Calculus}{%
+  \ifstrequal{#1}{O}{Other}{%
+  \ifstrequal{#1}{D}{Datasets}{%
+  \ifstrequal{#1}{M}{Numbers and Arrays}{}}}}%
+]}
 
 %%
 %% Einstellungen

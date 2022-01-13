@@ -1,19 +1,121 @@
 \chapter{Theoretical Foundation}\label{ch:theoretical}
-
-Work with~\cite{goodfellow_deep_2016} as much as possible
+This chapter succinctly describes principles which build the foundation for later chapters.
+Only the most relevant topics are touched upon, as the details are explained in later chapters.
+The mathematics that makes the techniques possible is not explained in depths.
 
 \section{Machine Learning}
+In order to grasp \ac{DL}, a solid understanding of \ac{ML} has to be developed
+first~\citep{goodfellow_deep_2016}.
+This is because \ac{DL} is a subfield of \ac{ML}~\citep{chauhan_review_2018}.
+The most well known definition for \ac{ML} comes from~\cite{mitchell_machine_1997}:
+`A computer program is said to learn from experience $E$ with respect to some class of tasks $T$
+and performance measure $P$, improves with experience $E$'.
 
-\begin{enumerate}
-    \item Loss Function / Error Metrics: CTC-loss, Cross entropy loss and maximum likelihood
-        estimation (\cite{goodfellow_deep_2016})
-    \item Supervised --- Unsupervised / Categorization
-    \item Optimization techniques: Stochastic-Batch Gradient Descent, GD Momentum, Adam
-    \item Bias-Variance tradeoff / Overfitting --- Underfitting
-        % FIXME: how much of optimization and bias-variance tradeoff is actually needed???
-\end{enumerate}
+% FIXME: explain difference: model - algorithm
+
+The task that the \ac{MLS} learns to perform, can range from approximating a function
+(e.g.\ regression --- $f:\R^n \rightarrow \R$, classification ---
+$f:\R^n \rightarrow \{1,\ldots,k\}$) to optaining a different representation for the data that
+has beneficial properties for further processing but preserves as much information as possible
+(e.g.\ PCA for compression)~\citep{goodfellow_deep_2016}.
+Note that the learning itself is not the task but merely the process of improving on performing the
+task~\citep{goodfellow_deep_2016}.
+One of the most well known \ac{ML} algorithms is Linear Regression.
+In the following the algorithm is used as an example for explaining \ac{ML} principles.
+As the name implies, Linear Regression is used to predict a value $\hat{y}$ given the input vector
+$\x\in\R^n$ which is made up of the features $x_i$.
+The goal is to approximate the ground truth $y$.
+Linear is derived from the underlying model shown in Equation~\ref{eq:linReg}:
+\begin{equation}\label{eq:linReg}
+    f(\x;\w,b) = \w^{T} \cdot \x + b = \sum_{i=1}^{n} w_i x_i + b = \hat{y}
+\end{equation}
+The scalar product of the weights $\w\in\R^n$ and \x\ is added to the bias term $b\in\R$.
+Both $\w,b$ are parameters that are learned by the model in order to optimize the
+approximation~\citep{goodfellow_deep_2016}.
+% FIXME: capacity
+% FIXME: here figure with linear regression
+
+The performance of a model measures how well the task can be completed.
+Depending on the task of the \ac{MLS}, different quantitative measures are used.
+The metric Mean Squared Error (see Equation~\ref{eq:mse}) can be used for Linear Regression.
+\begin{equation}\label{eq:mse}
+    MSE =\frac{1}{m}\norm{{(\hat{\textbf{y}} - \textbf{y})}}^2
+        =\frac{1}{m}\sum_{i=1}^m {((\w^T \x^{(i)} + b) - \yti)}^2
+\end{equation}
+Here $m$ denotes the number of examples $\X$ with the associated targets \y, used to calculate
+the error~\citep{geron_hands-machine_2017,goodfellow_deep_2016}.
+The goal is to minimize the generalization error which measures the expected performance on
+previously unseen input~\citep{geron_hands-machine_2017}.
+For this the test set is used, once the model has been trained.
+The test set is a part of the available data~\citep{geron_hands-machine_2017, goodfellow_deep_2016}.
+The generalization error can be divided into three components.
+The bias error arises from simplifying assumptions for the model, the variance error measures the
+variation in the model outcome depending on the data used for training.
+Both these errors are influenced by the model's capacity which is why the relationship between them
+is call the Bias/Variance tradeoff.
+Lastly the irreducible error stems from not having measured all data as well as the variation
+in real data and cannot be
+reduced~\citep{ashmore_assuring_2021, james_introduction_2013,geron_hands-machine_2017}.
+
+The experience part of \ac{ML} depicts the process where the algorithm is `experiencing' the training
+dataset $\Xt$ and is learning important properties of the dataset.
+In general there are two paradigms for training: supervised and
+unsupervised~\citep{goodfellow_deep_2016}.
+Linear Regression is an example for supervised learning, as the model is approximating the target
+value $\yti$\ for the associated input $\xti$~\citep{alzubi_machine_2018,goodfellow_deep_2016}.
+For unsupervised learning on the other hand the algorithm is not directed to predict a target
+value but to learn properties about the data and to leverage them for representation tasks
+like compressing or denoising the data~\citep{goodfellow_deep_2016}.
+The important difference between the paradigms is that the unsupervised learning algorithm does
+not use a target value, i.e.\ $y$ plays no role in the objective
+function~\citep{goodfellow_deep_2016,geron_hands-machine_2017}.
+In most cases training can be described as an optimization problem, i.e.\ as minimizing a
+function, the so called objective or loss function~\citep{goodfellow_deep_2016}.
+The MSE introduced earlier can be used for Linear Regression.
+This objective function has properties which make it suitable for models which have linear
+output~\citep{goodfellow_deep_2016}.
+\begin{equation}\label{eq:mseOpt}
+    \min_{\w,b} MSE(\w,b)
+\end{equation}
+Note that for minimization the MSE is a function of $\w,b$ and not of $\x$, in terms of
+predicting a value the MSE is a function of $\x$ parametrized by $\w,b$.
+In Equation~\ref{eq:linReg} \w,$b$ are parameters that have to be learned in order to minimize
+the generalization error~\citep{james_introduction_2013,geron_hands-machine_2017}.
+For other tasks such as binary classification, the metric (e.g. $F_1$-Score) and the
+objective function (binary cross entropy loss) are different~\citep{geron_hands-machine_2017,
+ho_real-world-weight_2020}.
+% FIXME: simple gradient descent figure / learning process graphic
+For optimization the \ac{GD} algorithm is prevalent, especially in the subfield of \ac{DL}.
+As the name suggests, the gradient is used to iteratively update the parameters $\w,b$ to a minimum
+of the objective function (see Equation~\ref{eq:gradDescW}
+and~\ref{eq:gradDescb})~\citep{geron_hands-machine_2017}.
+\begin{equation}\label{eq:gradDescW}
+    \w \leftarrow \w - \epsilon \cdot \nabla_{\w} MSE(\w,b) = \w-\frac{2\epsilon}{m}\Xt^T (\Xt\w+b-\y)
+\end{equation}
+\begin{equation}\label{eq:gradDescb}
+    b \leftarrow b - \epsilon \cdot \frac{\delta}{\delta b} MSE(\w,b) = b-\frac{2\epsilon}{m}(\Xt\w+b-y)
+\end{equation}
+The learning rate constant $\epsilon$ can be adjusted to speed up or slow down the `steps' which
+can have different effects on the convergence~\citep{goodfellow_deep_2016}.
+There are more sophisticated variations of the \ac{GD} algorithm which are more suited for practical
+application (e.g. RMSProp, Adam)~\cite{goodfellow_deep_2016}.
+% FIXME: combine test error and curse of dimensionality with generalization error
+The calculation with the test set $\Xt$
+Curse of dimensionality
+
+Overfitting --- Underfitting
+% FIXME: graphic for underfitting/overfitting
 
 \section{Deep Learning}
+approximate a function
+
+` One of the main differences from traditional ma- chine learning (ML) methods is that DL
+automatically learns how to represent data using multiple layers of abstraction [5], [6].
+In traditional ML, a significant amount of work has to be spent on “feature engineering” to
+build this representation manually, but this process can now be automated to a higher degree.
+Having an automated and data-driven method for learning how to represent data improves both the
+performance of the model and reduces requirements for manual feature engineering work
+[7], [8].'~\citep{arpteg_software_2018}
 
 \begin{enumerate}
     \item ANN / MLP % Node, Feedforward, Backpropagation / Optimization
@@ -27,6 +129,7 @@ Work with~\cite{goodfellow_deep_2016} as much as possible
         \begin{itemize}
             \item CNN % layers --- convolutional, max-pooling
             \item RNN % recurrent layer
+            \item transformer
             \item Specific foundation architectures for relevant approaches
         \end{itemize}
     \item transfer learning: reuse parameters from pretrained models\\
@@ -36,5 +139,8 @@ Work with~\cite{goodfellow_deep_2016} as much as possible
 
 \begin{enumerate}
     \item def
+    \item little history
+    \item need for \ac{STS}
     \item evaluation metric and matching prediction to ground truth
+    \item common data sets
 \end{enumerate}

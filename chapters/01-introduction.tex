@@ -1,7 +1,7 @@
 \chapter{Introduction}\label{ch:intro}
 \section{Motivation}
 \ac{OCR} is the concept of extracting typed, handwritten or printed text
-from an image~\cite{zhao_improving_2020}.
+from an image~\citep{zhao_improving_2020}.
 Techniques for this concept have improved a lot due to the advances in the field of
 \ac{DL}~\citep{zhao_improving_2020}.
 When compared to traditional methods \ac{DL} improves automation, effectiveness and
@@ -14,10 +14,9 @@ by improvement in computer hardware as well as in automatic feature
 learning~\citep{ponti_everything_2017, chen_text_2021}.
 Applying these new capabilities and finding the right solution in the space of \ac{DL} for the
 use case of extracting information of labels is the focus of this thesis.
-This is an interesting task as performance of \ac{OCR} systems in complex scenes is still
-challenging~\citep{zhao_improving_2020}.
-Such scenes entail natural scenes captured by a camera.
-\ac{OCR} in these conditions is also known as \ac{STR}~\citep{chen_text_2021, baek_what_2019}.
+This is an interesting task as performance of \ac{OCR} systems in natural scenes is still
+challenging~\citep{zhao_improving_2020, chen_text_2021}.
+Such scenes entail natural scenes captured by a camera~\citep{chen_text_2021, baek_what_2019}.
 Factors such as complex backgrounds, noise, perspective and variability in fonts, colors and sizes,
 of scene texts complicate the process~\citep{hu_gtc_2020,chen_text_2021,baek_what_2019}.
 
@@ -27,19 +26,20 @@ It is useful to digitize the lables of such equipment, to keep an overview over 
 inventory~\citep{abramowicz_business_2019}.
 The goal of this thesis is to find a solution which simplifies the digitization of equipment labels.
 The research question guiding the process is most crucial: Which state of the art \ac{DL}
-approaches for \ac{STR} are viable for the use case of extracting textual label data from images.
-% FIXME: STR may need to be changed: \cite{long} has STD and STR
+approaches for scene text \ac{OCR} are viable for the use case of extracting textual label data
+from images.
 The definition of the viability of an approach has to be determined for this.
 What qualities such as detecting alpha-numeric strings or suitability despite
 inadequate image conditions must a solution have~\citep{ghosh_visual_2017, hu_gtc_2020}?
-% FIXME: add: model and pipeline as well as stuff to experiment with (like model compression \cite{niu_26ms_2019}
+% FIXME: add: model and pipeline as well as stuff to experiment with
+%       (like model compression \cite{niu_26ms_2019}
 
 It is difficult to assess how well a \ac{DL} approach performs before it has been
 implemented and tested on the specific problem or dataset~\citep{arpteg_software_2018}.
 Therefore, multiple promissing approaches that can be implemented and experimented with must
 be identified and compared.
-The reasearch and discussion of techniques from end-to-end \ac{STR} to dividing the
-process into text detection and text recognition is centered~\cite{chen_text_2021} around the
+The reasearch and discussion of techniques from end-to-end scene \ac{STS} to dividing the
+pipeline into \ac{STD} and \ac{STR} is centered~\cite{chen_text_2021} around the
 requirements which are given by the problem.
 
 The article~\cite{ashmore_assuring_2021} defines four phases of the \ac{ML} lifecycle, namely,
@@ -57,30 +57,29 @@ choosing which to implement and test to solve the specific problem defined in
 Section~\ref{se:problem} and more detailed in Chapter~\ref{ch:problem}.
 
 The research question guiding the process is most crucial: Which state of the art \ac{DL}
-approaches for \ac{STR} are viable for the use case of extracting textual label data from
+approaches for scene text \ac{OCR} are viable for the use case of extracting textual label data from
 images.
 In order to improve the validity for the subsequent analysis, the problem is dissected further.
 This includes analysing the specific use case as well as researching which qualities have been
-identified as generally critical for \ac{STR} models.
+identified as generally critical for scene text approaches.
 The qualities are taken from literature which covers \ac{ML} in general to literature
-which covers \ac{STR}.
+which covers \ac{OCR} under challenging scene text conditions.
 
 The literature is identified through searching in reputable journals.
-All research after 2017 which pertains to \ac{STR} is regarded as relevant.
-\ac{OCR} solutions may not hold validity in practice, as the image qualities can vary in the
-defined problem~\citep{chen_text_2021}.
+All research after 2017 which pertains to extracting scene text is regarded as relevant.
+Standard \ac{OCR} solutions may not hold validity in practice, as the image and text conditions can
+vary in the defined problem~\citep{chen_text_2021}.
 An important criteria is that the paper contributes to the \ac{ML} model.
 This extends to the whole pipeline  from preprocessing an image to the final result of the model.
 Concludent to the distinction in Section~\ref{se:problem}, contributions to other stages in the
 \ac{ML} lifecycle are not examined.
 % FIXME: anpassen
 % FIXME: add keywords for use case qualities
-Therefore, keywords for the search include: Deep Learning, Scene Text Recognition,
-Preprocessing, End-to-end, Text Recognition, Text Detection, Text Segmentation.
+Therefore, keywords for the search include: Deep Learning, Optical Character Recognition,
+Text Detection, Text Recognition, Text Spotting, Scene Text.
 
 % XXX: more pipelines?
-The identified literature is synthesized into an overview over the most common approaches for
-\ac{STR}.
+The identified literature is synthesized into an overview over the most common approaches.
 This includes listing important factors for \ac{DL} such as the number of parameters, or which
 type of layers are used to achieve success.
 The overview will be organized into the categories for the \ac{ML} pipeline, such as End-to-End
@@ -103,12 +102,12 @@ In the subsequent analysis different approaches are highlighted for their theore
 
 In the following, the structure of this thesis is listed and each chapter's expected
 result is detailed along with its benefits for the overall objective of producing an overview of
-state of the art \ac{STR} relevant for the problem described in Section~\ref{se:problem}.
+state of the art scene text \ac{OCR} relevant for the problem described in Section~\ref{se:problem}.
 comprehension of the following chapters is gathered.
 This includes general principles of \ac{DL} and by extension \ac{ML} but also of \ac{OCR}.\@
 In Chapter~\ref{ch:problem} the problem from Section~\ref{se:problem} is addressed in more detail.
 The result shall be a firm understanding of qualities that a solution must possess.
-These requirements are the point of focus for the further examination of \ac{STR} techniques.
+These requirements are the point of focus for the further examination of techniques.
 After laying the foundation, in Chapter~\ref{ch:research} current research in regards to the
 identified requirements is examined.
 The resulting overview can be viewed as a basis for a decision when it comes implementing a practical

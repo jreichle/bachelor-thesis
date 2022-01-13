@@ -2,6 +2,7 @@
 This chapter entails an analysis of the problem which is the research question's foundation.
 It is crucial, as the quality of requirements ultimately determines the quality of the overview and
 subsequent analysis.
+% FIXME: source for this?
 
 Requirements for a software system that involves \ac{ML} and thus \ac{DL} differs from
 the traditional approach. The data-driven software components are not entirely defined by the
@@ -21,13 +22,13 @@ use~\citep{siebert_construction_2021}.
 Table~\ref{tb:useCaseQualities} gives an overview over the relevant properties that can be derived
 from the use case.
 \begin{table}[h]\label{tb:useCaseQualities}
-    \centering
+    \centering\scriptsize
     \begin{tabular}{c l}
+        \textbf{Offline Capabilities} & Perform extraction process offline \\
         \textbf{Alphanumeric recognition}    & Recognize alphanumeric strings such as serial \\
                                     & numbers \\
         \textbf{Semantics retention} & Retain semantics given implicitly be space, \\
                             & strucure and rotation of text in labels \\
-        \textbf{Offline Capabilities} & Perform extraction process offline \\
     \end{tabular}
     \caption{Qualities specific to use case --- exclusion criterias}
 \end{table}
@@ -60,17 +61,17 @@ In addition to this, the labels can contain arbitrary alphanumeric strings such 
 This results in the requirement that the \ac{DL} model has to be able to recognize sequences that
 are not part of a predefined lexicon~\citep{ghosh_visual_2017}.
 The qualities for the \ac{MLS} that can be derived directly from the use case (see
-table~\ref{tb:literatureQualities}) can be regarded as excluding criterias, because an approach
+table~\ref{tb:useCaseQualities}) can be regarded as excluding criterias, because an approach
 that does not possess the qualities in question, cannot be regarded as viable for the use case.
 
-\section{Identifying Qualities}
+\section{Quality Identification}
 In the article~\cite{ashmore_assuring_2021} the qualities are identified and assigned to different
 challenges in regards to working with \ac{MLS}: Development Challenges, Production Challenges,
 Organizational Challenges.
 Because the only the Model Selection substage of the lifecycle is performed, the challenges and their
 qualities are not relevant for this thesis, as they concern the operational aspect of \acp{MLS}.
 
-% FIXME: System figure from nakamichi_requirements
+% FIXME: make figure for system
 
 In~\cite{nakamichi_requirements-driven_2020,siebert_construction_2021} systematic approaches for
 identification and documentation of qualities are detailed.
@@ -84,6 +85,7 @@ The infrastrucure represents given hardware and available libraries, whereas the
 the software that surrounds the model in the runtime environment.
 The data view pertains to the quality of development and runtime
 data~\citep{siebert_construction_2021}.
+% FIXME: better definition, there are cyclic architectures
 The model consists of subcomponents organized in directed acyclc graph building a
 pipeline.
 This directed acyclic graph depicts everything from processing the images to the extracted
@@ -97,13 +99,33 @@ That is why the systematic approaches cannot be performed in the scope of this t
 For example~\cite{siebert_construction_2021} proposes to follow the systematic CRISP-DM approach of
 identifying qualities.
 It cannot be performed due to the lack of data and the other entities.
-Instead many qualities that are highlighted by research that fit the problem are taken into account
-along with two critical qualities (alphanumeric recognition, semantic retention) that are directly
+Instead many qualities that are highlighted by research are taken into account along with critical
+qualities (offline capabilities, alphanumeric recognition, semantic retention) that are directly
 derived from the use case.
-% FIXME: for table: zurodnung zum Teil selber vorgenommen
+The Table~\ref{tb:LiteratureQualitiesModel} (p.~\pageref{tb:LiteratureQualitiesModel}) lists all
+qualities that pertain to the model entity.
+Different qualities are \textit{grouped together} for their similarities.
+Because of their properties they can be evaluated jointly.
+When it comes to documenting the identified qualities,
+both~\cite{nakamichi_requirements-driven_2020} and~\cite{siebert_construction_2021} define a meta
+model for qualities that combines qualities with
+measurement methods and values and assignes them to an entity of the \ac{MLS}.
+The implementation and testing phase are not performed in the scope of this thesis and the
+difficulty in assessing the performance ahead of those phases, prevents the evaluation
+of measurements.
+Additionally, experimental results from literature can only be compared as long as factors such as
+hardware, platform, source code, configuration and dataset are uniform~\citep{arpteg_software_2018}.
+Comparing models through results of diferent papers is troublesome, because different papers
+might use different evaluation and testing environments~\citep{baek_what_2019}.
+This applies to studies that present an overview such as~\cite{chen_text_2021,long_scene_2021}.
+These studies can only be regarded as guiding values because the performance for a specific dataset
+cannot be predicted without testing on it~\cite{arpteg_software_2018}.
+That's why targets for measurements are not defined, as evaluation would only deliver a false
+sense of certainty.
+
 \begin{table}[h]\label{tb:LiteratureQualitiesModel}
-    \centering
-    \begin{tabular}{p{.6\textwidth} p{.4\textwidth}}
+    \centering\scriptsize
+    \begin{tabular}{p{.4\textwidth} p{.6\textwidth}}
         \textbf{Qualitiy} & \textbf{Source(s)} \\
         \toprule
         \textit{Appropriateness} \\
@@ -123,13 +145,13 @@ derived from the use case.
         Robustness Against Change of Input Data &~\cite{nakamichi_requirements-driven_2020} \\
         Robustness Against Noise Data &~\cite{nakamichi_requirements-driven_2020} \\
         Relevance / bias-variance tradeoff &~\cite{siebert_construction_2021, zhang_machine_2020} \\
-        Trained Model Generalization Peroformance Appropriateness
+        Trained Model Generalization Performance Appropriateness
                                                     &~\cite{nakamichi_requirements-driven_2020} \\
         \midrule
         \textit{Reusability} &~\cite{ashmore_assuring_2021} \\
         \midrule
         \textit{Interpretability} \\
-        Interpretability &~\cite{ashmore_assuring_2021, siebert_construction_2021, zhang_machine_2020} \\
+        Interpretability &~\cite{ashmore_assuring_2021, siebert_construction_2021, zhang_machine_2020}\\
         Understandability &~\cite{nakamichi_requirements-driven_2020} \\
         Transparency &~\cite{arpteg_software_2018} \\
         Model Explainability &~\cite{vogelsang_requirements_2019} \\
@@ -140,40 +162,28 @@ derived from the use case.
         Fairness &~\cite{siebert_construction_2021, zhang_machine_2020} \\
         Freedom from Discrimination &~\cite{vogelsang_requirements_2019} \\
         \midrule
-        \textit{Resource Utilization} &~\cite{siebert_construction_2021,
+        \textit{Performance Efficiency} \\
+        Resource Utilization &~\cite{siebert_construction_2021,
                                 nakamichi_requirements-driven_2020} \\
+        Execution efficiency &~\cite{siebert_construction_2021} \\
+        Temporal Performance &~\cite{nakamichi_requirements-driven_2020} \\
         \bottomrule
     \end{tabular}
     \caption{\ac{MLS} qualities identified for model entity through literature}
 \end{table}
-When it comes to documenting the identified qualities,
-both~\cite{nakamichi_requirements-driven_2020} and~\cite{siebert_construction_2021} define a meta
-model for qualities that combines qualities with
-measurement methods and values and assignes them to an entity of the \ac{MLS}.
-The implementation and testing phase are not performed in the scope of this thesis and the
-difficulty in assessing the performance ahead of those phases, prevents the evaluation
-of measurements.
-Additionally, experimental results from literature can only be compared as long as factors such as
-hardware, platform, source code, configuration and dataset are uniform~\citep{arpteg_software_2018}.
-Comparing models through results of diferent papers is troublesome, because different papers
-might use different evaluation and testing environments~\citep{baek_what_2019}.
-This applies to studies that present an overview such as~\cite{chen_text_2021,long_scene_2021}.
-These studies can only be regarded as guiding values because the performance for a specific dataset
-cannot be predicted without testing on it~\cite{arpteg_software_2018}.
-That's why targets for measurements are not defined, as evaluation would only deliver a false
-sense of certainty.
+\FloatBarrier
 
-\section{Qualities}
+\section{Quality Relevancy}
 In addition to the qualities that arise directly from the use case, literature reveals a number of
-common qualities in regards to \ac{MLS} (see table~\ref{tb:literatureQualities}), some of which
+common qualities in regards to \ac{MLS} (see Table~\ref{tb:condensedQualities}), some of which
 can be regarded as relevant and other do not hold any relevance for the specific use case.
 The qualities are taken from literature which covers \ac{ML} in general to literature
-which covers \ac{STR}.
+which covers scene text \ac{OCR}.
 Only qualities that concern the model will be looked at, as the model is the focus of this thesis.
 The qualities may however be influenced by other entities.
 
-\begin{table}[h]\label{tb:literatureQualities}
-    \centering
+\begin{table}[h]\label{tb:condensedQualities}
+    \centering\scriptsize
     \begin{tabular}{l l}
         \textbf{Relevant}                & \textbf{Irrelevant} \\
         Appropriateness         & Fairness  \\
@@ -187,7 +197,7 @@ The qualities may however be influenced by other entities.
 % Appropriateness
 The appropriateness quality refers to the ability to perform the type of task that is required by
 the use case~\citep{siebert_construction_2021,nakamichi_requirements-driven_2020}.
-For this thesis this applies to \ac{STR} models.
+For this thesis this applies to scene text \ac{OCR} models.
 Additionally, the properties which are derived from the use case (see Table~\ref{tb:useCaseQualities}),
 can be grouped under this quality.
 
@@ -203,9 +213,8 @@ a model in order to approximate the generalization performance~\cite{goodfellow_
 nakamichi_requirements-driven_2020}.
 
 % Robustness
-% FIXME: this is the quality that literature concerning STD and STR refer to
 The robustness of a model concerns environmental uncertainty~\cite{ashmore_assuring_2021}.
-Due to the uncontrolled environment of \ac{STR} in the practical aspect of taking the images on-site
+Due to the uncontrolled environment in the practical aspect of taking the images on-site
 beneficial image properties can not be guaranteed~\citep{chen_text_2021}.
 Robust text extraction can be influenced by factors such as complex backgrounds, text form
 (text rotation, font variability, arrangement), image noise (lighting conditions, blur,
@@ -218,17 +227,18 @@ An example for bad image quality in regards to \ac{OCR} can be seen in figure~\r
 % FIXME: add \cite{long_scene_2021} difficulties
 
 % Performance efficiency
-% FIXME: more of a quality for infrastrucure -> not in the scope
 Performance efficiency addresses time and resource utilization when the model is in use.
 This does not involve the training phase but the execution or
 prediction~\citep{siebert_construction_2021}.
-% FIXME: for siebert: execution efficiency in infrastrucure, but can be put to model also and
-%               grouped with resource utilization
 The efficiency refers to low latency needs and to minimizing resource needs such as memory
 usage or power consumption~\citep{nakamichi_requirements-driven_2020, siebert_construction_2021,
 sourvanos_challenges_2018}.
 This quality is especially important for usage on mobile devices in conjunction with
 \ac{DNN}~\citep{sourvanos_challenges_2018, niu_26ms_2019}.
+Note that performance efficiency is heaviliy influenced by the
+infrastrucure~\citep{nakamichi_requirements-driven_2020, siebert_construction_2021}.
+Because the efficiency needs fall mostly on the model, it is categorized as such and thus deemed
+relevant in the scope of this thesis.
 
 % Fairness
 The first quality often found in research that is not relevant for the use case is fairness.

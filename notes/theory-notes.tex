@@ -17,21 +17,27 @@ Robusteness: training set does not include all possible ranges of values -> abil
 
 See~\citep{seshia_formal_2018} for mathematical notation for ML
 
-Define generalization
-
 
 The model consists of subcomponents organized in directed acyclc graph building a
 pipeline~\citep{siebert_construction_2021}.
 This directed acyclic graph depicts everything from processing the images to the extracted
 information~\citep{siebert_construction_2021}.
 
-` One of the main differences from traditional ma- chine learning (ML) methods is that DL
-automatically learns how to represent data using multiple layers of abstraction [5], [6].
-In traditional ML, a significant amount of work has to be spent on “feature engineering” to
-build this representation manually, but this process can now be automated to a higher degree.
-Having an automated and data-driven method for learning how to represent data improves both the
-performance of the model and reduces requirements for manual feature engineering work
-[7], [8].'~\citep{arpteg_software_2018}
+% XXX: add if place left
+%   instance vs model learning \cite{geron_hands-machine_2017}
+%   make more statistical
+%   Bias-Variance tradeoff
+
+% negative log likelihood for Bernoulli Distribution binary classification as another example
+% https://medium.com/@bhardwajprakarsh/negative-log-likelihood-loss-why-do-we-use-it-for-binary-classification-7625f9e3c944
+
+It is derived by \ldots % MSE
+% introduce Maximum Likelihood Estimation
+% p. 130: maximum likelihood -> normal distribution -> MSE
+% p. 128f.: maximum likelihood can be rescaled to cross entropy (not changing minimum) which in
+%           turn can be rescaled to KLD -> reduce dissimilarity between empirical distribution
+%           defined by training set and model distribution
+% p. 129: cross entropy refers to any negative log-likelihood between empirical and model distribution
 
 %%%%%%%%%%%%%%%
 % Deep Learning
@@ -123,10 +129,10 @@ Evaluation protocols: match prediction to ground truth
         \begin{itemize}
             \item Precision P:\ proportion of predicted text instances that can be matched to ground
                 truth labels
-            \item Recall R:\ proportion of ground truth labels that have correspondents in predicted list
+            \item Recall R:\ proportion of ground truth labels that have correspondents in predicted
+                list
             \item F1-Score: $F_1=\frac{2PR}{P+R}$
         \end{itemize}
-    \item text detection: differ in criterion of matching predicted text instances to ground truth ones\\
         $S_{GT}$: area of ground truth bounding box, $S_P$: area of oredicted bounding box,
         $S_I$: area of intersection of predicted and ground truth bounding box, $S_U$:: area of union
         \begin{itemize}
@@ -170,6 +176,22 @@ Text Recognition in the Wild: A Survey~\citep{chen_text_2021}
     \item text enhancement: recover degraded text, improve text resolution, remove distortions,
         remove background $\rightarrow$ reduce difficulty of recognition
 \end{itemize}
+
+Normalized Edit Distance (NED) to measure mismatching between prediction and ground truth
+\[NED = \frac{1}{N}\sum_{i=1}^N D(s_i,\hat{s}_i)/\max(l_i,\hat{l_i})\]
+with $D(.)$ for Levenshtein distance, s for predicted text, l for text length, N for total number of lines
+
+recognition protocols (W --- total number of words, $W_r$ number of correctly recognized words)
+\begin{itemize}
+    \item Word Recognition Accuracy: $\frac{W_r}{W}$
+    \item Word Error Rate: $1 - \frac{W_r}{W}$
+\end{itemize}
+end-to-end protocols
+\begin{itemize}
+    \item precision, recall and f-score based on NED
+    \item average NED, i.e., AED --- NED for all images summed and then divided bz number
+\end{itemize}
+
 
 \includegraphics[width=\textwidth]{img/OCR-Pipeline.png}
 
