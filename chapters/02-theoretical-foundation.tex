@@ -113,7 +113,7 @@ error~\citep{geron_hands-machine_2017}.
 Therefore, it is important to improve the bias/variance tradeoff.
 Aside from model selection, there are different techniques use for this (e.g.
 Regularization)~\citep{goodfellow_deep_2016}.
-% FIXME: graphic for underfitting/overfitting -> LinRegr - Under, PolRegr - Over / Fig 5.3 goodfellow
+% FIXME: figure for underfitting/overfitting -> LinRegr - Under, PolRegr - Over / Fig 5.3 goodfellow
 
 \section{Deep Learning}
 In \ac{DL} \acp{DNN} are leveraged to automatically learn new representations of data through
@@ -129,10 +129,12 @@ The network is made up of artificial neurons.
 These neurons are arranged as a directed acyclic graph with multiple so
 called layers~\citep{goodfellow_deep_2016}.
 The first layer which receives the input features $\x$ is called the input layer, the last layer
-which outputs the final estimation of $y$ or $\y$ is called the output layer, all layers in between
+which outputs the final estimation of $\hat{y}$ or $\hat{\y}$ is called the output layer, all layers in between
 are called the hidden layers~\citep{shrestha_review_2019}.
 The structure with which the \ac{NN} is build in terms of how many layers, how many neurons in each
 layer and how they are connected, is called architecture~\citep{goodfellow_deep_2016}.
+The number of layers $d$ is refered to as depths whereas the dimensionality of those layers is called
+the width $w$~\citep{goodfellow_deep_2016}.
 % FIXME: figure with MLP - layers and connections, input, hidden, output
 A neuron, the basic building block of \acp{NN}, receives input from neurons in the previous layer
 and calculates a single value which is propagated to neurons in the following
@@ -151,19 +153,24 @@ Popular activation functions include ReLU, tanh, sigmoid~\citep{shrestha_review_
 \begin{equation}\label{eq:sigmoid}
     \sigma(x)=\frac{1}{1+e^{-x}}
 \end{equation}
+% FIXME: figure with functions layed over each other
 Note that for e.g.\ regression, the output layer can omit the activation
 function~\citep{goodfellow_deep_2016}.
-The calculation of the prediction is basically a concatenation of the functions defined by the neurons,
-the process of which is called forwardpropagation~\citep{goodfellow_deep_2016}.
-% FIXME: add z(x) as linear regression
-\begin{equation}\label{eq:NNconcat}
-    \hat{y}=f(f(\x;\T^{(1)};\T^{(2)}))
+% FIXME: change for one neuron (currently layer)
+\begin{equation}\label{eq:neuron}
+    f(\x;\T) = g(\T\x)
 \end{equation}
-Here $f$ represents the function which is performed by the neurons (linear regression + activation).
-$\T^{(i)}$ in Equation~\ref{eq:NNconcat} stands for the parameters in layer i with $T^{(i)}_{j,:}$
+Here $f$ denotes the function which is performed by the neurons (linear regression + activation).
+For simplification both $\w,b$ are refered to as $\T$ ($\T_:,n$ equals 1 for the bias term).
+The calculation of the prediction is basically a concatenation of the functions defined by the
+layers and their neurons, the process of which is called forwardpropagation~\citep{goodfellow_deep_2016}.
+\begin{equation}\label{eq:NNconcat}
+    \hat{y}=f(\ldots f(f(\x;\T^{(1)});\T^{(2)})\ldots;\T^{(d)})
+\end{equation}
+$\T^{(i)}$ in Equation~\ref{eq:NNconcat} stands for the parameters in layer i with $\T^{(i)}_{j,:}$
 being the parameters the $j-th$ neuron in that layer~\citep{goodfellow_deep_2016}.
-For simplification both $\w,b$ are refered to as $\T$.
-% FIXME: figure with functions layed over each other
+% FIXME: count from 0 or 1?
+
 The term \ac{DNN} comes from adding many hidden layers to the \ac{NN}~\citep{shrestha_review_2019}.
 This allows for a more complicated function and better developed features or representations that
 are extracted from the input feature vector $\x$~\citep{oyedotun_deep_2015}.
