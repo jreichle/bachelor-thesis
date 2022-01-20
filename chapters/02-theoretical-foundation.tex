@@ -3,11 +3,11 @@ This chapter succinctly describes principles which build the foundation for late
 Only the most relevant topics are touched upon, necessary the details are explained in later chapters.
 The mathematics that makes the techniques possible is not explained in depths as it would otherwise
 exceed the scope of this work.
-Whenever possible heavy mathamatical notation is omitted if it does not aid the understanding of the
+Whenever possible heavy mathematical notation is omitted if it does not aid the understanding of the
 reader.
 
 \section{Machine Learning}
-In order to grasp \ac{DL}, a solid understanding of \ac{ML} has to be developed
+To grasp \ac{DL}, a solid understanding of \ac{ML} has to be developed
 first~\citep{goodfellow_deep_2016}.
 This is because \ac{DL} is a subfield of \ac{ML}~\citep{chauhan_review_2018}.
 The most well known definition for \ac{ML} comes from~\cite{mitchell_machine_1997}:
@@ -16,8 +16,8 @@ and performance measure $P$, improves with experience $E$'.
 
 % XXX: explain difference: model - algorithm
 The task that the \ac{MLS} learns to perform, can range from approximating a function
-(e.g.\ regression --- $f:\R^n \rightarrow \R^l$, classification ---
-$f:\R^n \rightarrow \{1,\ldots,k\}$) to optaining a different representation for the data that
+(e.g.\ regression --- $f:\R^n \mapsto \R^l$, classification ---
+$f:\R^n \mapsto \{1,\ldots,k\}$) to obtaining a different representation for the data that
 has beneficial properties for further processing but preserves as much information as possible
 (e.g.\ PCA for compression)~\citep{goodfellow_deep_2016}.
 Note that the learning itself is not the task but merely the process of improving on performing the
@@ -60,7 +60,7 @@ reduced~\citep{ashmore_assuring_2021, james_introduction_2013,geron_hands-machin
 
 The experience part of \ac{ML} depicts the process where the algorithm is `experiencing' the training
 dataset $\Xt$ and is learning important properties of the dataset.
-In general there are two paradigms for training: supervised and
+In general, there are two paradigms for training: supervised and
 unsupervised~\citep{goodfellow_deep_2016}.
 Linear Regression is an example for supervised learning, as the model is using the ground truth value
 to learn approximating $\yti$\ for the associated input
@@ -119,7 +119,7 @@ Regularization)~\citep{goodfellow_deep_2016}.
 In \ac{DL} \acp{DNN} are leveraged to automatically learn new representations of data through
 multiple layers of abstraction.
 This makes \acp{DNN} powerful function approximators~\citep{goodfellow_deep_2016}.
-In the this section the basics of \acp{NN} are explained and popular basic architectures thereof are
+In this section the basics of \acp{NN} are explained and popular basic architectures thereof are
 introduced.
 
 % FIXME: small figure of simple MLP
@@ -141,7 +141,7 @@ and calculates a single value which is propagated to neurons in the following
 layer~\citep{shrestha_review_2019}.
 The value is calculated by feeding the received information into a Linear Regression model (see
 Equation~\ref{eq:linReg}).
-The resulting value is an fed into an activation function $g$ which introduces nonlinearity, to allow
+The resulting value is fed into an activation function $g$ which introduces nonlinearity, to allow
 more complicated transformations of information and representation~\citep{goodfellow_deep_2016}.
 Popular activation functions include ReLU, tanh, sigmoid~\citep{shrestha_review_2019}.
 \begin{equation}\label{eq:relu}
@@ -160,7 +160,7 @@ function~\citep{goodfellow_deep_2016}.
 \begin{equation}\label{eq:neuron}
     f(\x;\T) = g(\T\x)
 \end{equation}
-Here $f$ denotes the function which is performed by the neurons (linear regression + activation).
+Here $f$ denotes the function which is performed by a layer of neurons (linear regression + activation).
 For simplification both $\w,b$ are refered to as $\T$ ($\T_:,n$ equals 1 for the bias term).
 The calculation of the prediction is basically a concatenation of the functions defined by the
 layers and their neurons, the process of which is called forwardpropagation~\citep{goodfellow_deep_2016}.
@@ -168,7 +168,7 @@ layers and their neurons, the process of which is called forwardpropagation~\cit
     \hat{y}=f(\ldots f(f(\x;\T^{(1)});\T^{(2)})\ldots;\T^{(d)})
 \end{equation}
 $\T^{(i)}$ in Equation~\ref{eq:NNconcat} stands for the parameters in layer i with $\T^{(i)}_{j,:}$
-being the parameters the $j-th$ neuron in that layer~\citep{goodfellow_deep_2016}.
+being the parameters the $j$-th neuron in that layer~\citep{goodfellow_deep_2016}.
 % FIXME: count from 0 or 1?
 
 The term \ac{DNN} comes from adding many hidden layers to the \ac{NN}~\citep{shrestha_review_2019}.

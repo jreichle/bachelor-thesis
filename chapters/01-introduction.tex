@@ -24,23 +24,24 @@ of scene texts complicate the process~\citep{hu_gtc_2020,chen_text_2021,baek_wha
 Technicians in the field work with different equipment.
 It is useful to digitize the lables of such equipment, to keep an overview over the
 inventory~\citep{abramowicz_business_2019}.
-The goal of this thesis is to find a solution which simplifies the digitization of equipment labels.
-The research question guiding the process is most crucial: Which state of the art \ac{DL}
-approaches for scene text \ac{OCR} are viable for the use case of extracting textual label data
-from images.
+The goal of this thesis is to create an overview over possible \ac{DL} techniques that facilitates
+finding a solution for the process of digitization.
+The research question guiding the process is most crucial:
+Which state of the art \ac{DL} approaches for scene text \ac{OCR} are viable for the use case of
+extracting textual label data from images taken in real world conditions?
+
 The definition of the viability of an approach has to be determined for this.
 What qualities such as detecting alpha-numeric strings or suitability despite
 inadequate image conditions must a solution have~\citep{ghosh_visual_2017, hu_gtc_2020}?
-% FIXME: add: model and pipeline as well as stuff to experiment with
-%       (like model compression \cite{niu_26ms_2019}
 
 It is difficult to assess how well a \ac{DL} approach performs before it has been
-implemented and tested on the specific problem or dataset~\citep{arpteg_software_2018}.
-Therefore, multiple promissing approaches that can be implemented and experimented with must
-be identified and compared.
-The reasearch and discussion of techniques from end-to-end scene \ac{STS} to dividing the
-pipeline into \ac{STD} and \ac{STR} is centered~\cite{chen_text_2021} around the
-requirements which are given by the problem.
+implemented and tested on the specific problem or representative dataset~\citep{arpteg_software_2018}.
+This justifies the need to create an overview rather than pointing out a single approach which is
+deemed the most promissing.
+In order to create the overview the necessary steps in the process of \ac{STS} meed to be highlighted,
+from preprocessing to classifying the identified text~\citep{long_scene_2021, sourvanos_challenges_2018}.
+The ways in which the respective issues for the steps are solved need to be
+identified from literature, listed and explained alongside.
 
 The article~\cite{ashmore_assuring_2021} defines four phases of the \ac{ML} lifecycle, namely,
 Data Management, Model Learing, Model Verification and Model Deployment.
@@ -48,6 +49,10 @@ Only the substage Model Selection from Model Learning will only be looked at in 
 thesis.
 Other aspects such as data analysis, implementation, training, deployment and maintenance of a
 solution in a production environment shall not be performed.
+Based on this theses, further further verification, implementation and testing can then be performed.
+The overview and subsequent analysis thereof creates a foundation for finding the right solution,
+it does however not contain any claims about the degree of goodness or about the certainty of
+solving the given problem.
 
 \section{Methodology}\label{se:methodology}
 The methodology of this thesis can be labeled as a literature review~\citep{snyder_literature_2019,
@@ -65,26 +70,22 @@ identified as generally critical for scene text approaches.
 The qualities are taken from literature which covers \ac{ML} in general to literature
 which covers \ac{OCR} under challenging scene text conditions.
 
-The literature is identified through searching in reputable journals.
-All research after 2017 which pertains to extracting scene text is regarded as relevant.
+The literature is identified through searching in the Google Scholar database.
+A criterion for further examination is an appropriate amount of citations for the piece of literature
+in question.
+Additionally, literature is selected through citations for and by literature which has already been
+identified as important.
+All research after 2018 which pertains to extracting scene text is regarded as relevant.
 Standard \ac{OCR} solutions may not hold validity in practice, as the image and text conditions can
 vary in the defined problem~\citep{chen_text_2021}.
-An important criteria is that the paper contributes to the \ac{ML} model.
-This extends to the whole pipeline  from preprocessing an image to the final result of the model.
-Concludent to the distinction in Section~\ref{se:problem}, contributions to other stages in the
-\ac{ML} lifecycle are not examined.
-% FIXME: anpassen
-% FIXME: add keywords for use case qualities
-Therefore, keywords for the search include: Deep Learning, Optical Character Recognition,
-Text Detection, Text Recognition, Text Spotting, Scene Text.
+An important criterion is that the paper contributes to the \ac{ML} model.
+This extends to the whole pipeline from preprocessing an image to the final result of the model.
 
-% XXX: more pipelines?
 The identified literature is synthesized into an overview over the most common approaches.
-This includes listing important factors for \ac{DL} such as the number of parameters, or which
-type of layers are used to achieve success.
-The overview will be organized into the categories for the \ac{ML} pipeline, such as End-to-End
-solutions as in~\cite{xing_convolutional_2019} or a split into Text Detection and Text Recognition
-as in~\cite{yang_learning_2021, chen_improvement_2018}.
+This includes listing important factors for \ac{DL} such as the type and size of \ac{NN} or the used
+objective function.
+The overview will be organized according to a taxonomie which facilitates the clarity and
+comprehensibility.
 
 In the analysis possibly viable approaches are compared with the qualities defined
 in Chapter~\ref{ch:problem}.
@@ -114,6 +115,6 @@ The resulting overview can be viewed as a basis for a decision when it comes imp
 solution.
 Therefore, it enables the discussion in Chapter~\ref{ch:discussion}.
 Here not only the results and the availability of a solution but also the methodology of this work
-are assessed critically.
+is assessed critically.
 The conclusion is a summary of the results compared to the expected results detailed in this chapter
 as well as an outlook for further research into the topic.
