@@ -1,6 +1,6 @@
 \chapter{Theoretical Foundation}\label{ch:theoretical}
 This chapter succinctly describes principles which build the foundation for later chapters.
-Only the most relevant topics are touched upon, necessary the details are explained in later chapters.
+Only the most relevant topics are touched upon, necessary details are explained in later chapters.
 The mathematics that makes the techniques possible is not explained in depths as it would otherwise
 exceed the scope of this work.
 Whenever possible heavy mathematical notation is omitted if it does not aid the understanding of the
@@ -16,8 +16,8 @@ and performance measure $P$, improves with experience $E$'.
 
 % XXX: explain difference: model - algorithm
 The task that the \ac{MLS} learns to perform, can range from approximating a function
-(e.g.\ regression --- $f:\R^n \mapsto \R^l$, classification ---
-$f:\R^n \mapsto \{1,\ldots,k\}$) to obtaining a different representation for the data that
+(e.g.\ regression --- $f:\R^n \rightarrow \R^l$, classification ---
+$f:\R^n \rightarrow \{1,\ldots,k\}$) to obtaining a different representation for the data that
 has beneficial properties for further processing but preserves as much information as possible
 (e.g.\ PCA for compression)~\citep{goodfellow_deep_2016}.
 Note that the learning itself is not the task but merely the process of improving on performing the
@@ -72,7 +72,7 @@ In most cases training can be described as an optimization problem, i.e.\ as min
 function --- the so called objective or loss function~\citep{goodfellow_deep_2016}.
 The MSE introduced earlier can be used for Linear Regression (see Equation~\ref{eq:mseOpt}).
 This objective function has properties which make it suitable for models which have linear
-output~\citep{goodfellow_deep_2016}.
+output~\citep{goodfellow_deep_2016}. % FIXME: define as L
 \begin{equation}\label{eq:mseOpt}
     \min_{\w,b} MSE(\w,b)
 \end{equation}
@@ -116,7 +116,7 @@ Regularization)~\citep{goodfellow_deep_2016}.
 % FIXME: figure for underfitting/overfitting -> LinRegr - Under, PolRegr - Over / Fig 5.3 goodfellow
 
 \section{Deep Learning}
-In \ac{DL} \acp{DNN} are leveraged to automatically learn new representations of data through
+In \ac{DL}, \acp{DNN} are leveraged to automatically learn new representations of data through
 multiple layers of abstraction.
 This makes \acp{DNN} powerful function approximators~\citep{goodfellow_deep_2016}.
 In this section the basics of \acp{NN} are explained and popular basic architectures thereof are
@@ -124,7 +124,7 @@ introduced.
 
 % FIXME: small figure of simple MLP
 The most basic \ac{NN} is called a feedforward \ac{NN} or \ac{MLP} where the information only
-flows in one direction (in contrast to \acp{RNN})~\citep{goodfellow_deep_2016}.
+flows in one direction (in contrast to \acp{RNN} or Transformers)~\citep{goodfellow_deep_2016}.
 The network is made up of artificial neurons.
 These neurons are arranged as a directed acyclic graph with multiple so
 called layers~\citep{goodfellow_deep_2016}.
@@ -133,8 +133,8 @@ which outputs the final estimation of $\hat{y}$ or $\hat{\y}$ is called the outp
 are called the hidden layers~\citep{shrestha_review_2019}.
 The structure with which the \ac{NN} is build in terms of how many layers, how many neurons in each
 layer and how they are connected, is called architecture~\citep{goodfellow_deep_2016}.
-The number of layers $d$ is refered to as depths whereas the dimensionality of those layers is called
-the width $w$~\citep{goodfellow_deep_2016}.
+The number of layers $d$ is refered to as depths, whereas the dimensionality of those layers is
+called the width $w$~\citep{goodfellow_deep_2016}.
 % FIXME: figure with MLP - layers and connections, input, hidden, output
 A neuron, the basic building block of \acp{NN}, receives input from neurons in the previous layer
 and calculates a single value which is propagated to neurons in the following
@@ -143,6 +143,12 @@ The value is calculated by feeding the received information into a Linear Regres
 Equation~\ref{eq:linReg}).
 The resulting value is fed into an activation function $g$ which introduces nonlinearity, to allow
 more complicated transformations of information and representation~\citep{goodfellow_deep_2016}.
+\begin{equation}\label{eq:neuron}
+    f(\x;\T) = g(\T\x)=\z
+\end{equation}
+Here $f$ denotes the function which is performed by a layer of neurons (linear regression + activation).
+The parameters of the individual neurons are grouped together to $\T$ ($\T_:,n$ equals 1 for the
+bias term).
 Popular activation functions include ReLU, tanh, sigmoid~\citep{shrestha_review_2019}.
 \begin{equation}\label{eq:relu}
     ReLU(x)=\max(0,x)
@@ -157,11 +163,6 @@ Popular activation functions include ReLU, tanh, sigmoid~\citep{shrestha_review_
 Note that for e.g.\ regression, the output layer can omit the activation
 function~\citep{goodfellow_deep_2016}.
 % FIXME: change for one neuron (currently layer)
-\begin{equation}\label{eq:neuron}
-    f(\x;\T) = g(\T\x)
-\end{equation}
-Here $f$ denotes the function which is performed by a layer of neurons (linear regression + activation).
-For simplification both $\w,b$ are refered to as $\T$ ($\T_:,n$ equals 1 for the bias term).
 The calculation of the prediction is basically a concatenation of the functions defined by the
 layers and their neurons, the process of which is called forwardpropagation~\citep{goodfellow_deep_2016}.
 \begin{equation}\label{eq:NNconcat}
@@ -169,7 +170,8 @@ layers and their neurons, the process of which is called forwardpropagation~\cit
 \end{equation}
 $\T^{(i)}$ in Equation~\ref{eq:NNconcat} stands for the parameters in layer i with $\T^{(i)}_{j,:}$
 being the parameters the $j$-th neuron in that layer~\citep{goodfellow_deep_2016}.
-% FIXME: count from 0 or 1?
+The forwardpropagation can also be described by a computational graph~\citep{goodfellow_deep_2016}.
+% FIXME: computational graph figure
 
 The term \ac{DNN} comes from adding many hidden layers to the \ac{NN}~\citep{shrestha_review_2019}.
 This allows for a more complicated function and better developed features or representations that
@@ -177,10 +179,29 @@ are extracted from the input feature vector $\x$~\citep{oyedotun_deep_2015}.
 The \ac{DNN} can be trained as a whole, thus making feature engineering redundant in contrast to
 normal \ac{ML} algorithms~\citep{arpteg_software_2018}.
 The training algorithm is called backpropagation.
-It makes use of the chain rule of calculus which allows the algorithm to propagate the training
-error that is calculated through the objective function in conjunction with the output of
-forwardpropagation~\citep{goodfellow_deep_2016}.
-The propagation is performed from the output layer back to the first layer.
+It makes use of the chain rule of calculus (see Equation~\ref{eq:chainCalc}) which allows the
+algorithm to propagate the training error that is calculated through the objective function in
+conjunction with the output of forwardpropagation~\citep{goodfellow_deep_2016}.
+For this the chain rule of calculus (see Equation~\ref{eq:chainCalc}) can be used to modularly,
+recursively used to propagate the loss backwards to use \ac{GD}.
+\begin{equation}\label{eq:chainCalc}
+    \frac{dz}{dx}=\frac{dz}{dy}\frac{dy}{dx}
+\end{equation}
+The upstream gradient that is coming from neurons in the next layer is multiplied with the
+jacobian matrix of the current neuron to produce the downstream gradient that is then used by
+the preceding layer~\citep{boue_deep_2018,goodfellow_deep_2016}.
+\begin{equation}\label{eq:backPropNeuronW}
+    \frac{\delta f}{\delta\w} = \frac{\delta f}{\delta\z} \frac{\delta\z}{\delta\w}
+\end{equation}
+\begin{equation}\label{eq:backPropNeuronX}
+    \frac{\delta f}{\delta\x} = \frac{\delta f}{\delta\z}\frac{\delta\z}{\delta\x}
+\end{equation}
+The result of Equation~\ref{eq:backPropNeuronW} is used to update the neuron's weights \w\ while
+the result of Equation~\ref{eq:backPropNeuronX} is used for further propagation~\citep{boue_deep_2018}.
+This calculation is performed until the first layer of the computational graph is
+reached~\citep{goodfellow_deep_2016}.
+Note that the algorithm can be performed with tensors of arbitrary
+dimensionality~\citep{goodfellow_deep_2016}.
 
 \section{Scene Text Spotting}
 
