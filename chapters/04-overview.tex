@@ -1,33 +1,49 @@
 \chapter{Technique Overview}\label{ch:research}
 This part of the thesis constitutes the main part.
-The objective
+The objective create an overview of techniques in the field which may be used to solve the problem
+detailed in Chapter~\ref{ch:problem}.
+First the search for literature which lays the foundation for the subsequent sections, is documented.
+The a taxonomy is introduced which facilitates the analization and comparison of techniques.
+Lastly, the advances in the field are placed in the correct position and analyzed.
 
-\textbf{explain paper finding approach}
+\section{Literature Search}\label{se:litSearch}
+This section documents the search for literature which provides the content for the subsequent
+overview.
+For this, important pipelines and notable advances along with their properties are researched,
+analysed and presented.
+The literature is identified through searching in the Google Scholar database.
+The search is executed with keywords such as but not only: Deep Learning, Text Detection,
+Text Recognition, Text Spotting, Scene Text, Pipeline.
+% FIXME: update keywords
+A criterion for further examination is an appropriate amount of citations for the piece of literature
+in question.
+Additionally, literature is selected through citations for and by literature which has already been
+identified as important.
+All research after 2018 which pertains to extracting scene text is regarded as relevant.
+Standard \ac{OCR} solutions may not hold validity in practice, as the image and text conditions can
+vary in the defined problem~\citep{chen_text_2021}.
+The delimination from Section~\ref{se:problem} of course holds for this chapter and only literature
+which concerns advances for the \ac{DL} model will be regarded as important for the scope of this
+thesis.
+This extends to the whole pipeline from preprocessing an image to the final result of the model.
+
+% FIXME: hierarchical graphic with found papers
+% FIXME: describe proceeding
+
 \begin{comment}
-- Wie rigorous? literatur methodik
-    - entweder bestimmte Suchmaschinen oder bestimmte Publikationen
-    - Eher Suchmaschinen
-        -> Scholar
-        -> hoch zitiert (Zotero: automatisch Zitationen beschaffen)
-        -> weniger Keywordbasiert, mehr einfach graphbasiert Suche: zitierende Paper -> iterieren
-    - Dokumentierung: So war vorgehen, die Paper sind dabei raus gekommen
-    - Literatursammlung als BibTex
-
-In order to create the overview the necessary steps in the process of \ac{STS} meed to be highlighted,
-from preprocessing to classifying the identified text~\citep{long_scene_2021, sourvanos_challenges_2018}.
-The ways in which the respective issues for the steps are solved need to be
-identified from literature, listed and explained alongside.
+- Eher Suchmaschinen
+    -> Scholar
+    -> hoch zitiert (Zotero: automatisch Zitationen beschaffen)
+    -> weniger Keywordbasiert, mehr einfach graphbasiert Suche: zitierende Paper -> iterieren
+- Dokumentierung: So war vorgehen, die Paper sind dabei raus gekommen
+- Literatursammlung als BibTex
 \end{comment}
 
-Consistent with the distinction in Section~\ref{se:problem}, contributions to other stages in the
-\ac{ML} lifecycle are not examined.
-% FIXME: add keywords for use case qualities
-Therefore, keywords for the search include: Deep Learning, Optical Character Recognition,
-Text Detection, Text Recognition, Text Spotting, Scene Text.
-
-Show pipelines and notable advances along with properties
-
-\section{Different pipeline Frameworks}
+\section{Taxonomy of Pipeline Steps}
+In order to create the overview the necessary steps in the process of \ac{STS} need to be highlighted,
+from preprocessing to classifying the identified text~\citep{long_scene_2021, sourvanos_challenges_2018}.
+The ways in which the respective issues for the steps are solved are identified from literature,
+listed and explained alongside.
 
 Scene Text Detection and Recognition~\cite{long_scene_2021}
 Deep learning $\rightarrow$ frees researchers from hand-crafting features, simplifies pipeline,
@@ -323,7 +339,7 @@ Tradeoff:
 
 Some part for which datasets have which characteristics? see~\cite{long_scene_2021}
 
-\section{Techniques/Modules for Improvement}
+\section{State of the Art Methods}
 
 text enhancement:~\cite{chen_text_2021}
 model pruning:~\cite{niu_26ms_2019}

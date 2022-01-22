@@ -14,9 +14,13 @@
 \tableofcontents
 % FIXME: seitenzahlen
 
+\newpage
+\clearpage
 \listoffigures
 
 % delete group thing to have tables on new page
+% FIXME: seitenzahlen
+
 \begingroup
     \let\clearpage\relax
     \listoftables
@@ -26,8 +30,10 @@
 \addcontentsline{toc}{chapter}{Abbreviations}
 \printacronyms[heading=none]
 
-\addcontentsline{toc}{chapter}{Notation}
+\newpage
+\clearpage
 \renewcommand{\nomname}{Notation}
+\addcontentsline{toc}{chapter}{Notation}
 \printnomenclature
 
 %%
