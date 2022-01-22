@@ -82,7 +82,7 @@ Note that for minimization the MSE is a function of $\w,b$ and not of $\x$, in t
 predicting a value the MSE is a function of $\x$ parametrized by $\w,b$ (see Equation~\ref{eq:mseOpt}).
 In Equation~\ref{eq:linReg} \w,$b$ are parameters that have to be learned in order to minimize
 the generalization error~\citep{james_introduction_2013,geron_hands-machine_2017}.
-For other tasks such as binary classification, the metric (e.g. $F_1$-Score) and the
+For other tasks such as binary classification, the metric (e.g. \fone) and the
 objective function (binary cross entropy loss) are different~\citep{geron_hands-machine_2017,
 ho_real-world-weight_2020}.
 % FIXME: simple gradient descent figure / learning process graphic
@@ -206,11 +206,85 @@ Note that the algorithm can be performed with tensors of arbitrary
 dimensionality~\citep{goodfellow_deep_2016}.
 
 \section{Scene Text Spotting}
+\ac{OCR} is the concept of extracting typed, handwritten or printed text
+from an image~\citep{zhao_improving_2020}.
+Achieving satisfactory performance of \ac{OCR} systems in natural scenes is still
+challenging~\citep{zhao_improving_2020, chen_text_2021}.
+Such scenes entail natural scenes captured by a camera~\citep{chen_text_2021, baek_what_2019}.
+The difficulties arise from diviersity and variability of text, complexity and interference from
+backgrounds and imperfect imaging conditions.
+In these conditions \ac{OCR} is known as \ac{STS}~\citep{long_scene_2021}.
 
-\begin{enumerate}
-    \item def
-    \item little history
-    \item need for \ac{STS} / difference OCR
-    \item evaluation metric and matching prediction to ground truth
-    \item common data sets
-\end{enumerate}
+Before the advent of \ac{DL}, researchers in the field had to hand-craft features~\citep{long_scene_2021}.
+\ac{DL} automates the feature generation process with its representation and learning
+capabilities~\citep{long_scene_2021,goodfellow_deep_2016}.
+Because of this, \ac{DL} methods are the prefered tools for performing \ac{STS}~\citep{long_scene_2021}.
+
+\ac{OCR} and \ac{STS} are often divided into two subcategories (Scene) Text Detection and (Scene)
+Text Recognition~\citep{zhao_improving_2020, long_scene_2021,chen_text_2021}.
+For \ac{STD} the task is to localize text instances in the image, whereas the \ac{STR} task
+is to recognize/categorize text from already cropped images~\citep{chen_text_2021}.
+Note that a system which performs both \ac{STR} and \ac{STD} in one continuous pipeline are called
+end-to-end approaches~\citep{chen_text_2021}.
+
+To assess the performance of the developed approaches for \ac{STS}, specific metrics which fit the
+task have to be used.
+% FIXME: STD regression, STR/STS classification
+\ac{STD} can loosely be categorized as a regression task. % FIXME: source
+\ac{STS} and \ac{STR} on the other hand resembles classification.
+Therefore, evaluation the popular protocols Precision, Recall and the \fone\ are used for
+comparison among approaches.
+\begin{equation}\label{eq:P}
+    \text{Precision}=\frac{\text{True Positive}}{\text{True Positive + False Positive}}
+\end{equation}
+\begin{equation}\label{eq:R}
+    \text{Recall}=\frac{\text{True Positive}}{\text{True Positive + False Negative}}
+\end{equation}
+\begin{equation}\label{eq:f1}
+    F_1\text{-Score}=\frac{2\cdot \text{Precision}\cdot \text{Recall}}{\text{Precision}+\text{Recall}}
+\end{equation}
+
+
+Scene Text Detection and Recognition~\citep{long_scene_2021}
+Evaluation protocols: match prediction to ground truth
+\begin{itemize}
+    \item general
+        \begin{itemize}
+            \item Precision P:\ proportion of predicted text instances that can be matched to ground
+                truth labels
+            \item Recall R:\ proportion of ground truth labels that have correspondents in predicted
+                list
+            \item F1-Score: $F_1=\frac{2PR}{P+R}$
+        \end{itemize}
+        $S_{GT}$: area of ground truth bounding box, $S_P$: area of oredicted bounding box,
+        $S_I$: area of intersection of predicted and ground truth bounding box, $S_U$:: area of union
+        \begin{itemize}
+            \item PASCAL Eval: IOU based --- P $\frac{S_I}{S_P}$ and R $\frac{S_I}{S_{GT}}$ larger
+                than threshhold to match
+            \item DetEval: overlap based --- intersection over union value $\frac{S_I}{S_U}$
+                larger than threshhold to match
+            \item match score may be different from two protocols in slight variations
+        \end{itemize}
+    \item Text Recognition and End-to-End System
+        \begin{itemize}
+            \item % FIXME: go on here
+        \end{itemize}
+\end{itemize}
+
+Text Recognition in the Wild: A Survey~\citep{chen_text_2021}
+Normalized Edit Distance (NED) to measure mismatching between prediction and ground truth
+\[NED = \frac{1}{N}\sum_{i=1}^N \frac{D(s_i,\hat{s}_i)}{\max(l_i,\hat{l_i})}\]
+with $D(.)$ for Levenshtein distance, s for predicted text, l for text length, N for total number of lines
+
+recognition protocols (W --- total number of words, $W_r$ number of correctly recognized words)
+\begin{itemize}
+    \item Word Recognition Accuracy: $\frac{W_r}{W}$
+    \item Word Error Rate: $1 - \frac{W_r}{W}$
+\end{itemize}
+end-to-end protocols
+\begin{itemize}
+    \item precision, recall and f-score based on NED
+    \item average NED, i.e., AED --- NED for all images summed and then divided bz number
+\end{itemize}
+
+Introduce Benchmark Datasets

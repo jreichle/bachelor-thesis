@@ -205,12 +205,6 @@ OCR-phases~\cite{sourvanos_challenges_2018}
 
 see~\cite{sourvanos_challenges_2018} for mobile issues for \ac{OCR}
 
-\textbf{no source}
-grid: divides image into parts $\rightarrow$ each part has own bounding boxes
-bounding boxes:~regressor for box, each bounding box is assigned an anchor box (respective to grid cell)
-anchor boxes:~default `shape' for bounding box
-
-bounding boxes different stages of convolution / 2-d size $\rightarrow$ different object size to detect
 
 \subsection*{Text detection}
 subfield of object detection (e.g. YOLOv4 can be used for text)
@@ -237,6 +231,14 @@ Two object detection methods --- CNN-based
 Non CNN-based: DETR
 
 \subsubsection*{Comparison Object Detection basic algos}
+
+\textbf{no source}
+grid: divides image into parts $\rightarrow$ each part has own bounding boxes
+bounding boxes:~regressor for box, each bounding box is assigned an anchor box (respective to grid cell)
+anchor boxes:~default `shape' for bounding box
+
+bounding boxes different stages of convolution / 2-d size $\rightarrow$ different object size to detect
+
 \textbf{Comparative analysis of deep learning image detection
 algorithms}~\citep{srivastava_comparative_2021}
 YOLO-V3 outperforms SSD and Faster R-CNN
