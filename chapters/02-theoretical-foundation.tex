@@ -1,6 +1,6 @@
-\cleardoublepage
-\chapter*{Theoretical Foundation}\label{ch:theoretical}
-\addcontentsline{toc}{chapter}{Theoretical Foundation}
+\cleardoublepage%
+\chapter{Theoretical Foundation}\label{ch:theoretical}
+%\addcontentsline{toc}{chapter}{Theoretical Foundation}
 This chapter succinctly describes principles which build the foundation for later chapters.
 Only the most relevant topics are touched upon, necessary details are explained in later chapters.
 The mathematics that makes the techniques possible is not explained in depths as it would otherwise
@@ -181,14 +181,10 @@ are extracted from the input feature vector $\x$~\citep{oyedotun_deep_2015}.
 The \ac{DNN} can be trained as a whole, thus making feature engineering redundant in contrast to
 normal \ac{ML} algorithms~\citep{arpteg_software_2018}.
 The training algorithm is called backpropagation.
-It makes use of the chain rule of calculus (see Equation~\ref{eq:chainCalc}) which allows the
-algorithm to propagate the training error that is calculated through the objective function in
-conjunction with the output of forwardpropagation~\citep{goodfellow_deep_2016}.
-For this the chain rule of calculus (see Equation~\ref{eq:chainCalc}) can be used to modularly,
-recursively used to propagate the loss backwards to use \ac{GD}.
-\begin{equation}\label{eq:chainCalc}
-    \frac{dz}{dx}=\frac{dz}{dy}\frac{dy}{dx}
-\end{equation}
+The training error is calculated through the objective function and is propagated
+in conjunction with the output of forwardpropagation on each neuron~\citep{goodfellow_deep_2016}.
+For this the chain rule of calculus can be used to modularly, recursively used to propagate the
+loss backwards to use \ac{GD}.
 The upstream gradient that is coming from neurons in the next layer is multiplied with the
 jacobian matrix of the current neuron to produce the downstream gradient that is then used by
 the preceding layer~\citep{boue_deep_2018,goodfellow_deep_2016}.
@@ -206,6 +202,8 @@ Note that the algorithm can be performed with tensors of arbitrary
 dimensionality~\citep{goodfellow_deep_2016}.
 
 \section{Scene Text Spotting}
+%% intro
+% def, ocr vs sts
 \ac{OCR} is the concept of extracting typed, handwritten or printed text
 from an image~\citep{zhao_improving_2020}.
 Achieving satisfactory performance of \ac{OCR} systems in natural scenes is still
@@ -214,26 +212,42 @@ Such scenes entail natural scenes captured by a camera~\citep{chen_text_2021, ba
 The difficulties arise from diviersity and variability of text, complexity and interference from
 backgrounds and imperfect imaging conditions.
 In these conditions \ac{OCR} is known as \ac{STS}~\citep{long_scene_2021}.
-
+% DL influence
 Before the advent of \ac{DL}, researchers in the field had to hand-craft features~\citep{long_scene_2021}.
 \ac{DL} automates the feature generation process with its representation and learning
 capabilities~\citep{long_scene_2021,goodfellow_deep_2016}.
 Because of this, \ac{DL} methods are the prefered tools for performing \ac{STS}~\citep{long_scene_2021}.
-
 \ac{OCR} and \ac{STS} are often divided into two subcategories (Scene) Text Detection and (Scene)
 Text Recognition~\citep{zhao_improving_2020, long_scene_2021,chen_text_2021}.
+% STD, STR, end to end
 For \ac{STD} the task is to localize text instances in the image, whereas the \ac{STR} task
 is to recognize/categorize text from already cropped images~\citep{chen_text_2021}.
 Note that a system which performs both \ac{STR} and \ac{STD} in one continuous pipeline are called
 end-to-end approaches~\citep{chen_text_2021}.
 
-To assess the performance of the developed approaches for \ac{STS}, specific metrics which fit the
-task have to be used.
-% FIXME: STD regression, STR/STS classification
-\ac{STD} can loosely be categorized as a regression task. % FIXME: source
-\ac{STS} and \ac{STR} on the other hand resembles classification.
-Therefore, evaluation the popular protocols Precision, Recall and the \fone\ are used for
-comparison among approaches.
+%% evaluation metrics
+% FIXME: properties and pros for different metrics
+To assess the performance of the developed approaches, the right evaluation metrics
+have too be used.
+% for STD, STR, STS
+The popular protocols Precision, Recall and the \fone\ are used for
+comparison among approaches for all aforementioned tasks categories~\citep{long_scene_2021}.
+The metrics are derived with values from the confusion matrix (see
+Tabel~\ref{tb:confusionMatrix})~\citep{davis_relationship_2006}.
+\begin{table}[h]\label{tb:confusionMatrix}
+    \centering
+    \makebox[\textwidth][c]{\begin{tabular}{cccc}
+        \toprule
+                  & & \multicolumn{2}{c}{Ground Truth} \\
+                  & & positive & negative \\
+        \midrule
+        Prediction & \multicolumn{1}{c|}{\makecell{positive\\negative}}
+                            & \makecell{True Positive \\ False Negative }
+                            & \makecell{False Positive \\ True Negative} \\
+        \bottomrule
+    \end{tabular}}
+    \caption{Confusion Matrix}
+\end{table}
 \begin{equation}\label{eq:P}
     \text{Precision}=\frac{\text{True Positive}}{\text{True Positive + False Positive}}
 \end{equation}
@@ -243,33 +257,46 @@ comparison among approaches.
 \begin{equation}\label{eq:f1}
     F_1\text{-Score}=\frac{2\cdot \text{Precision}\cdot \text{Recall}}{\text{Precision}+\text{Recall}}
 \end{equation}
+The difference manifests itself in the way the values of the confusion matrix are
+calculated~\citep{long_scene_2021}.
+Note that the tradeoff between false positives and fales negaives manifests itself in the
+Precision-versus-Recall curve~\citep{su_relationship_2015}.
+% FIXME: PvR curve figure
+% FIXME: introduce ROC curve --- ratio of true positive rate and false positive rate, and
+%           relationship to PvR curve/AP
+% STD
+\ac{STD} differs mostly in the way the protocols match the prediction to the ground
+truth~\citep{long_scene_2021}.
+% FIXME: source !!!
+Detectors have multiple predictors which regress the placing and sizing of bounding boxes.
+Matching is the process of assigning a bounding box prediction to the ground
+truth, like in e.g.~\cite{liu_ssd_2016,liao_textboxes_2018}.
+% !!!
+More information on this will follow in Chapter~\ref{ch:research}.
+The PASCAL approach defines the \ac{IOU} (see Equation~\ref{eq:iou}).
+\begin{equation}\label{eq:iou}
+    \ac{IOU}=
+            \frac{\text{area of intersection between truth and prediction}}{\text{area of union
+            between truth and prediction}}
+\end{equation}
+For PASCAL, the prediction will be matched, if the \ac{IOU} value is larger than a
+threshhold~\citep{long_scene_2021}.
+% difference in training and testing/using -> threshhold - highest value
+Other evaluation approaches are mostly based on \ac{IOU}, e.g. MSRA-TD 500 evaluates the rotation
+from the bounding box, compared to the truth in addition to the \ac{IOU}
+threshhold~\citep{long_scene_2021}.
+\cite{long_scene_2021} argues that researchers in the field of \ac{STD} should consider \ac{AP}
+as the main evaluation protocol rather than \fone.
+Per~\cite{su_relationship_2015}  \ac{AP} can be considered the area under the precision-versus-recall
+curve.
+\fone\ on the other hand only considers singular instances on the curve~\citep{long_scene_2021}.
+% STR, STS
+For \ac{STR} and \ac{STS} the evaluation can be based on character-level or word-level.
+Note that for \ac{STS} the prediction has to be matched to the ground truth like for
+\ac{STD}~\citep{long_scene_2021}.
+Also compared with loss function
+\cite{yang_learning_2021} uses hmean/ap
 
-
-Scene Text Detection and Recognition~\citep{long_scene_2021}
-Evaluation protocols: match prediction to ground truth
-\begin{itemize}
-    \item general
-        \begin{itemize}
-            \item Precision P:\ proportion of predicted text instances that can be matched to ground
-                truth labels
-            \item Recall R:\ proportion of ground truth labels that have correspondents in predicted
-                list
-            \item F1-Score: $F_1=\frac{2PR}{P+R}$
-        \end{itemize}
-        $S_{GT}$: area of ground truth bounding box, $S_P$: area of oredicted bounding box,
-        $S_I$: area of intersection of predicted and ground truth bounding box, $S_U$:: area of union
-        \begin{itemize}
-            \item PASCAL Eval: IOU based --- P $\frac{S_I}{S_P}$ and R $\frac{S_I}{S_{GT}}$ larger
-                than threshhold to match
-            \item DetEval: overlap based --- intersection over union value $\frac{S_I}{S_U}$
-                larger than threshhold to match
-            \item match score may be different from two protocols in slight variations
-        \end{itemize}
-    \item Text Recognition and End-to-End System
-        \begin{itemize}
-            \item % FIXME: go on here
-        \end{itemize}
-\end{itemize}
 
 Text Recognition in the Wild: A Survey~\citep{chen_text_2021}
 Normalized Edit Distance (NED) to measure mismatching between prediction and ground truth

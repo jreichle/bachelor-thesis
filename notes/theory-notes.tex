@@ -111,6 +111,31 @@ Def Neural Network:
     \item the sum is used with an activation function (e.g. ReLU, Sigmoid, Tanh, SoftPlus)
 \end{itemize}
 
+\textbf{Michigan lecture, CNN and architectures}
+Conv network components:
+- FCL
+- ConvL -> always followed by ReLU
+    Kernel: 3x3 dot product with weights + bias, slided accros image
+    Stride
+    Padding
+- Pooling Layers (Average, Max)
+- Normalization (Batch, Layer, Instance)
+
+Layer and Instance used for RNN, FCN, Transformer
+
+Terms
+- Downsampling -> reduce feature size
+- Same padding -> ConvL to stay with same frame wxh
+
+Conv architecture
+- Aggressive downsampling in beginning -> pooling or conv layer
+- Multiple 3x3 conv better thane.g. 5x5 conv
+- Gradient saving:
+     Res Block, res bottleneck, res grouped (resnext)
+     Densely connected network
+- Look for Small net: Shufflenet, Mobilenet
+- Instead of big fully connected layers -> global average pooling and single fully connected
+
 %%%%%%%%%
 % OCR/STR
 %%%%%%%%%
@@ -137,7 +162,7 @@ Evaluation protocols: match prediction to ground truth
                 list
             \item F1-Score: $F_1=\frac{2PR}{P+R}$
         \end{itemize}
-        $S_{GT}$: area of ground truth bounding box, $S_P$: area of oredicted bounding box,
+        $S_{GT}$: area of ground truth bounding box, $S_P$: area of predicted bounding box,
         $S_I$: area of intersection of predicted and ground truth bounding box, $S_U$:: area of union
         \begin{itemize}
             \item PASCAL Eval: IOU based --- P $\frac{S_I}{S_P}$ and R $\frac{S_I}{S_{GT}}$ larger

@@ -40,6 +40,9 @@
 \RequirePackage{placeins}
 \RequirePackage{mathtools}
 \RequirePackage{nomencl}
+\RequirePackage{makecell}
+\RequirePackage{chngcntr}
+\counterwithin{table}{chapter}
 
 \makenomenclature
 
@@ -80,10 +83,12 @@
 %%
 %% haeufig benutzte Begriffe
 %%
+\DeclareAcronym{AP}{short=AP,long=Average Precision}
 \DeclareAcronym{CNN}{short=CNN,long=Convolutional Neural Networks}
 \DeclareAcronym{DL}{short=DL,long=Deep Learning}
 \DeclareAcronym{DNN}{short=DNN,long=Deep Neural Network}
 \DeclareAcronym{GD}{short=GD,long=Gradient Descent}
+\DeclareAcronym{IOU}{short=IOU,long=Intersection-over-Union}
 \DeclareAcronym{LSTM}{short=LSTM,long=Long Short Term Memory}
 \DeclareAcronym{ML}{short=ML,long=Machine Learning}
 \DeclareAcronym{MLP}{short=MLP,long=Multi Layer Perceptron}
