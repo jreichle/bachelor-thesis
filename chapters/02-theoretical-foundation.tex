@@ -91,10 +91,10 @@ As the name suggests, the gradient is used to iteratively update the parameters 
 at a minimum of the objective function (see Equation~\ref{eq:gradDescW}
 and~\ref{eq:gradDescb})~\citep{geron_hands-machine_2017}.
 \begin{equation}\label{eq:gradDescW}
-    \w \leftarrow \w - \epsilon \cdot \nabla_{\w} MSE(\w,b) = \w-\frac{2\epsilon}{m}\Xt^T (\Xt\w+b-\y)
+    \w\leftarrow \w-\epsilon\cdot\nabla_{\w} MSE(\w,b) = \w-\frac{2\epsilon}{m}\Xt^T (\Xt\w+b-\y)
 \end{equation}
 \begin{equation}\label{eq:gradDescb}
-    b \leftarrow b - \epsilon \cdot \frac{\delta}{\delta b} MSE(\w,b) = b-\frac{2\epsilon}{m}(\Xt\w+b-\y)
+    b\leftarrow b-\epsilon\cdot\frac{\delta}{\delta b} MSE(\w,b) = b-\frac{2\epsilon}{m}(\Xt\w+b-\y)
 \end{equation}
 The learning rate constant $\epsilon$ can be adjusted to speed up or slow down the `steps' which
 can have different effects on the convergence~\citep{goodfellow_deep_2016}.
@@ -227,26 +227,27 @@ end-to-end approaches~\citep{chen_text_2021}.
 
 %% evaluation metrics
 % FIXME: properties and pros for different metrics
+% FIXME: table with task, metric, properties/why it's used
 To assess the performance of the developed approaches, the right evaluation metrics
 have too be used.
-% for STD, STR, STS
+% STD
 The popular protocols Precision, Recall and the \fone\ are used for
-comparison among approaches for all aforementioned tasks categories~\citep{long_scene_2021}.
+comparison among approaches for \ac{STD}~\citep{long_scene_2021}.
 The metrics are derived with values from the confusion matrix (see
 Tabel~\ref{tb:confusionMatrix})~\citep{davis_relationship_2006}.
-\begin{table}[h]\label{tb:confusionMatrix}
-    \centering
+\begin{table}[ht]
+    \centering\scriptsize
     \makebox[\textwidth][c]{\begin{tabular}{cccc}
         \toprule
-                  & & \multicolumn{2}{c}{Ground Truth} \\
+                  & & \multicolumn{2}{c}{\textbf{Ground Truth}} \\
                   & & positive & negative \\
         \midrule
-        Prediction & \multicolumn{1}{c|}{\makecell{positive\\negative}}
+            \textbf{Prediction} & \multicolumn{1}{c|}{\makecell{positive\\negative}}
                             & \makecell{True Positive \\ False Negative }
                             & \makecell{False Positive \\ True Negative} \\
         \bottomrule
     \end{tabular}}
-    \caption{Confusion Matrix}
+    \caption{Confusion Matrix\label{tb:confusionMatrix}}
 \end{table}
 \begin{equation}\label{eq:P}
     \text{Precision}=\frac{\text{True Positive}}{\text{True Positive + False Positive}}
@@ -257,21 +258,18 @@ Tabel~\ref{tb:confusionMatrix})~\citep{davis_relationship_2006}.
 \begin{equation}\label{eq:f1}
     F_1\text{-Score}=\frac{2\cdot \text{Precision}\cdot \text{Recall}}{\text{Precision}+\text{Recall}}
 \end{equation}
-The difference manifests itself in the way the values of the confusion matrix are
-calculated~\citep{long_scene_2021}.
+The difference of metrics for the task manifests itself in the way the values of the confusion matrix
+are calculated~\citep{long_scene_2021}.
 Note that the tradeoff between false positives and fales negaives manifests itself in the
 Precision-versus-Recall curve~\citep{su_relationship_2015}.
 % FIXME: PvR curve figure
 % FIXME: introduce ROC curve --- ratio of true positive rate and false positive rate, and
 %           relationship to PvR curve/AP
-% STD
 \ac{STD} differs mostly in the way the protocols match the prediction to the ground
 truth~\citep{long_scene_2021}.
-% FIXME: source !!!
 Detectors have multiple predictors which regress the placing and sizing of bounding boxes.
 Matching is the process of assigning a bounding box prediction to the ground
 truth, like in e.g.~\cite{liu_ssd_2016,liao_textboxes_2018}.
-% !!!
 More information on this will follow in Chapter~\ref{ch:research}.
 The PASCAL approach defines the \ac{IOU} (see Equation~\ref{eq:iou}).
 \begin{equation}\label{eq:iou}
@@ -281,37 +279,67 @@ The PASCAL approach defines the \ac{IOU} (see Equation~\ref{eq:iou}).
 \end{equation}
 For PASCAL, the prediction will be matched, if the \ac{IOU} value is larger than a
 threshhold~\citep{long_scene_2021}.
-% difference in training and testing/using -> threshhold - highest value
+% difference in training \& testing and using -> threshhold - highest value
 Other evaluation approaches are mostly based on \ac{IOU}, e.g. MSRA-TD 500 evaluates the rotation
 from the bounding box, compared to the truth in addition to the \ac{IOU}
 threshhold~\citep{long_scene_2021}.
 \cite{long_scene_2021} argues that researchers in the field of \ac{STD} should consider \ac{AP}
 as the main evaluation protocol rather than \fone.
-Per~\cite{su_relationship_2015}  \ac{AP} can be considered the area under the precision-versus-recall
-curve.
-\fone\ on the other hand only considers singular instances on the curve~\citep{long_scene_2021}.
-% STR, STS
-For \ac{STR} and \ac{STS} the evaluation can be based on character-level or word-level.
-Note that for \ac{STS} the prediction has to be matched to the ground truth like for
-\ac{STD}~\citep{long_scene_2021}.
-Also compared with loss function
-\cite{yang_learning_2021} uses hmean/ap
+According to~\cite{su_relationship_2015}, \ac{AP} can be considered the area under the
+Precision-versus-Recall curve.
+\fone\ on the other hand only considers singular instances on that curve~\citep{long_scene_2021}.
+% STR
+For \ac{STR} the evaluation can be based on character-level or word-level.
+There is no need to match ground truth to prediction, as the image is already
+cropped~\citep{long_scene_2021}.
+The equations~\ref{eq:wordRecognitionAccuracy} and~\ref{eq:wordErrorRate} show metrics based on
+word level~\citep{chen_text_2021}.
+\begin{equation}\label{eq:wordRecognitionAccuracy}
+\text{Word Recognition Accuracy} = \frac{\text{correctly recognized words}}{\text{total words}}
+\end{equation}
+\begin{equation}\label{eq:wordErrorRate}
+    \text{Word Error Rate} = 1 - \text{Word Recognition Accuracy}
+\end{equation}
+An example for a character-based metric would be \ac{NED} (see Equation~\ref{eq:ned}).
+\begin{equation}\label{eq:ned}
+    NED = \frac{1}{N}\sum_{i=1}^N \frac{D(s_i,\hat{s}_i)}{\max(l_i,\hat{l_i})}
+\end{equation}
+D denotes the Levenshtein distance, s denotes the text, l denotes the text length and N is the total
+number of text lines.
+\ac{STS} is oriented to both \ac{STD} and \ac{STR}.
+The prediction has to be matched to the ground truth like for \ac{STD}~\citep{long_scene_2021}.
+For comparing words that have been matched, e.g. \ac{NED} is used~\citep{chen_text_2021}.
+The competitions~\cite{karatzas_icdar_2013,karatzas_icdar_2015} define two different tasks for
+\ac{STS} systems.
+Word spotting refers to the task of only finding words of a predefined vocabulary, while the
+end-to-end setting specifies that all text is to be found and recognized.
+For end-to-end the main evaluation protocols that are used include Precision, Recall, \fone\ and
+\ac{AED}~\citep{chen_text_2021}.
+Note that \ac{NED} is used for the Precision and Recall scores and \ac{AED} is the sum of
+\ac{NED} values devided by the number of pictures~\citep{chen_text_2021}.
+% FIXME: how?
 
-
-Text Recognition in the Wild: A Survey~\citep{chen_text_2021}
-Normalized Edit Distance (NED) to measure mismatching between prediction and ground truth
-\[NED = \frac{1}{N}\sum_{i=1}^N \frac{D(s_i,\hat{s}_i)}{\max(l_i,\hat{l_i})}\]
-with $D(.)$ for Levenshtein distance, s for predicted text, l for text length, N for total number of lines
-
-recognition protocols (W --- total number of words, $W_r$ number of correctly recognized words)
-\begin{itemize}
-    \item Word Recognition Accuracy: $\frac{W_r}{W}$
-    \item Word Error Rate: $1 - \frac{W_r}{W}$
-\end{itemize}
-end-to-end protocols
-\begin{itemize}
-    \item precision, recall and f-score based on NED
-    \item average NED, i.e., AED --- NED for all images summed and then divided bz number
-\end{itemize}
-
-Introduce Benchmark Datasets
+To compare approaches with these metrics benchmark datasets are used which have different
+characteristics.
+\begin{table}[ht]
+    \centering\scriptsize
+    \begin{tabular}{p{.2\textwidth}p{.05\textwidth}p{.05\textwidth}p{.15\textwidth}p{.3\textwidth}}
+        \textbf{Dataset (year)}&\textbf{\ac{STD}}&\textbf{\ac{STR}}&\textbf{Text Orientation}
+                               &\textbf{Characteristics} \\
+        \toprule
+        ICDAR (2013) & \checkmark& \checkmark&Horizontal& Stroke labels \\
+        ICDAR (2015) & \checkmark& \checkmark&Multi-oriented& Bad image quality\\
+        ICDAR MLT (2019) & \checkmark&\checkmark&Multi-oriented& Multilingual \\
+        CTW1500 (2017)& \checkmark& &curved& --- \\
+        Total-Text & \checkmark& \checkmark&Curved& Polygon labeles \\
+        IIIT 5K-Word & &\checkmark&Horizontal&Cropped \\
+        \bottomrule
+    \end{tabular}
+    \caption{Benchmark datasets and their properties\label{tb:datasets}}
+\end{table}
+Table~\ref{tb:datasets} lists a couple of influencial benchmark datasets along with their key
+properties.
+The second and third column indicate whether the dataset provides annotations for the tasks.
+The Text Orientation column specifies the most complicated orientation that is present in the dataset
+(Curved $\subset$ Multi-oriented $\subset$ Horizontal).
+Only datasets which focus on latin characters are included.

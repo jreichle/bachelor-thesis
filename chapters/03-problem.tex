@@ -14,6 +14,8 @@ Instead of categorizing functional and non-functional requirements, like for tra
 software projects~\citep{zowghi_requirements_2014}, qualities that a \ac{MLS} must possess
 are defined.
 
+% FIXME: end-to-end metric is important, not word spotting! (alphanumeric)
+
 \section{Use Case}
 The problem can be depicted by a use case.
 This use case sets the foundation for determining requirements for an
@@ -21,7 +23,7 @@ approach because qualities derive from the intended purpose of
 use~\citep{siebert_construction_2021}.
 Table~\ref{tb:useCaseQualities} gives an overview over the relevant properties that can be derived
 from the use case.
-\begin{table}[h]\label{tb:useCaseQualities}
+\begin{table}[ht]
     \centering\scriptsize
     \begin{tabular}{c l}
         \textbf{Offline Capabilities} & Perform extraction process offline \\
@@ -30,7 +32,7 @@ from the use case.
         \textbf{Semantics retention} & Retain semantics given implicitly be space, \\
                             & strucure and rotation of text in labels \\
     \end{tabular}
-    \caption{Qualities specific to use case --- exclusion criterias}
+    \caption{Qualities specific to use case --- exclusion criterias\label{tb:useCaseQualities}}
 \end{table}
 For this thesis, the basic use case is as follows:
 A technician takes a photo of a device label with his smart phone.
@@ -61,7 +63,7 @@ In addition to this, the labels can contain arbitrary alphanumeric strings such 
 This results in the requirement that the \ac{DL} model has to be able to recognize sequences that
 are not part of a predefined lexicon~\citep{ghosh_visual_2017}.
 The qualities for the \ac{MLS} that can be derived directly from the use case (see
-table~\ref{tb:useCaseQualities}) can be regarded as excluding criterias, because an approach
+Table~\ref{tb:useCaseQualities}) can be regarded as excluding criterias, because an approach
 that does not possess the qualities in question, cannot be regarded as viable for the use case.
 
 \section{Quality Identification}
@@ -121,7 +123,7 @@ cannot be predicted without testing on it~\cite{arpteg_software_2018}.
 That's why targets for measurements are not defined, as evaluation would only deliver a false
 sense of certainty.
 
-\begin{table}[h]\label{tb:LiteratureQualitiesModel}
+\begin{table}[h]
     \centering\scriptsize
     \begin{tabular}{p{.4\textwidth} p{.6\textwidth}}
         \textbf{Qualitiy} & \textbf{Source(s)} \\
@@ -167,7 +169,7 @@ sense of certainty.
         Temporal Performance &~\cite{nakamichi_requirements-driven_2020} \\
         \bottomrule
     \end{tabular}
-    \caption{MLS qualities identified for model entity}
+    \caption{MLS qualities identified for model entity\label{tb:LiteratureQualitiesModel}}
 \end{table}
 \FloatBarrier
 
@@ -180,7 +182,7 @@ which covers scene text \ac{OCR}.
 Only qualities that concern the model will be looked at, as the model is the focus of this thesis.
 The qualities may however be influenced by other entities.
 
-\begin{table}[h]\label{tb:condensedQualities}
+\begin{table}[h]
     \centering\scriptsize
     \begin{tabular}{l l}
         \textbf{Relevant}                & \textbf{Irrelevant} \\
@@ -189,7 +191,7 @@ The qualities may however be influenced by other entities.
         Robustness              & Reusability \\
         Performance efficiency  & \\
     \end{tabular}
-    \caption{Condensed Qualities for model entity}
+    \caption{Condensed Qualities for model entity\label{tb:condensedQualities}}
 \end{table}
 
 % Appropriateness

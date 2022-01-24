@@ -16,24 +16,31 @@ Recognition
 
 
 \section{Reflection}
-Challenges DL~\citep{arpteg_software_2018}
-Note that actual experiments with models have to be done
-Problem: different papers have different components
-$\rightarrow$ Hardware, Platform, Source Code, Configuration
-$\rightarrow$ studies can't really be compared
-
-`A major challenge in developing DL systems is the difficulties in estimating
-the results before a system has been trained and tested.'~\citep{arpteg_software_2018}
-
 Threats to validity!
-
-Problem: for practice all entities of \ac{MLS} should be inspected
+\begin{itemize}
+    \item~\cite{arpteg_software_2018}: different papers have different components
+        $\rightarrow$ Hardware, Platform, Source Code, Configuration
+        $\rightarrow$ studies can't really be compared
+    \item~\cite{arpteg_software_2018}: `A major challenge in developing DL systems is the
+        difficulties in estimating the results before a system has been trained and tested.'
+    \item~\cite{long_scene_2021}: different interpretations of metrics (matching for \ac{STD},
+        word/char for \ac{STR})
+    \item~\cite{siebert_construction_2021,nakamichi_requirements-driven_2020}: all entities of
+        \ac{MLS} should be inspected when developing a solution
+    \item~\cite{baek_what_2019}: different papers use different evaluation and testing environments
+    \item~\cite{baek_what_2019}: different papers use different subsets of the same dataset
+        $\rightarrow$ discrepancies in performance
+    \item~\cite{long_unrealtext_2020}: half of the widely adopted benchmark datasets have imperfect
+        annotations $\rightarrow$ ignoring case-sensitivities and punctuations, and provide new
+        annotations for those datasets
+    \item~\cite{chen_text_2021}: inconsistency of datasets, priors and testing environments make
+        comparison difficult
+\end{itemize}
 
 \section{Outlook}
-
 What to do next: next steps --- lifecycle
 $\rightarrow$
 Data Collection, Data Cleaning, Data Labeling, Model Training, Model Evaluation, Model Deployment,
 Model Monitoring~\cite{watanabe_preliminary_2019}
 
-Use Neural Architecture Search to automatically find right feature extractor
+Use Neural Architecture Search to automatically find right feature extractor~\citep{zhao_improving_2020}
