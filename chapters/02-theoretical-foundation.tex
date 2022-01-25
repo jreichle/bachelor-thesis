@@ -71,10 +71,10 @@ For unsupervised learning on the other hand the algorithm is not directed to pre
 value but to learn properties about the data and to leverage them for representation tasks
 like compressing or denoising the data~\citep{goodfellow_deep_2016,geron_hands-machine_2017}.
 In most cases training can be described as an optimization problem, i.e.\ as minimizing a
-function --- the so called objective or loss function~\citep{goodfellow_deep_2016}.
+function --- the so called objective or loss function $L$~\citep{goodfellow_deep_2016}.
 The MSE introduced earlier can be used for Linear Regression (see Equation~\ref{eq:mseOpt}).
 This objective function has properties which make it suitable for models which have linear
-output~\citep{goodfellow_deep_2016}. % FIXME: define as L
+output~\citep{goodfellow_deep_2016}.
 \begin{equation}\label{eq:mseOpt}
     \min_{\w,b} MSE(\w,b)
 \end{equation}
@@ -113,7 +113,7 @@ the Polynomial Regression model can overfit for statistical outliers in the test
 in this case the model with the lower capacity can achieve a lower generalization
 error~\citep{geron_hands-machine_2017}.
 Therefore, it is important to improve the bias/variance tradeoff.
-Aside from model selection, there are different techniques use for this (e.g.
+Aside from model selection, there are different techniques used to prevent overfitting (e.g.
 Regularization)~\citep{goodfellow_deep_2016}.
 % FIXME: figure for underfitting/overfitting -> LinRegr - Under, PolRegr - Over / Fig 5.3 goodfellow
 
@@ -148,7 +148,7 @@ more complicated transformations of information and representation~\citep{goodfe
 \begin{equation}\label{eq:neuron}
     f(\x;\T) = g(\T\x)=\z
 \end{equation}
-Here $f$ denotes the function which is performed by a layer of neurons (linear regression + activation).
+Here $f$ denotes the function which is performed by a layer of neurons (linearity + activation).
 The parameters of the individual neurons are grouped together to $\T$ ($\T_:,n$ equals 1 for the
 bias term).
 Popular activation functions include ReLU, tanh, sigmoid~\citep{shrestha_review_2019}.
@@ -164,7 +164,6 @@ Popular activation functions include ReLU, tanh, sigmoid~\citep{shrestha_review_
 % FIXME: figure with functions layed over each other
 Note that for e.g.\ regression, the output layer can omit the activation
 function~\citep{goodfellow_deep_2016}.
-% FIXME: change for one neuron (currently layer)
 The calculation of the prediction is basically a concatenation of the functions defined by the
 layers and their neurons, the process of which is called forwardpropagation~\citep{goodfellow_deep_2016}.
 \begin{equation}\label{eq:NNconcat}
@@ -224,10 +223,11 @@ For \ac{STD} the task is to localize text instances in the image, whereas the \a
 is to recognize/categorize text from already cropped images~\citep{chen_text_2021}.
 Note that a system which performs both \ac{STR} and \ac{STD} in one continuous pipeline are called
 end-to-end approaches~\citep{chen_text_2021}.
+% FIXME: figure with two images: multiple text instances --- cropped image with one
 
 %% evaluation metrics
-% FIXME: properties and pros for different metrics
-% FIXME: table with task, metric, properties/why it's used
+% XXX: properties and pros for different metrics
+% XXX: table with task, metric, properties/why it's used
 To assess the performance of the developed approaches, the right evaluation metrics
 have too be used.
 % STD
@@ -260,17 +260,18 @@ Tabel~\ref{tb:confusionMatrix})~\citep{davis_relationship_2006}.
 \end{equation}
 The difference of metrics for the task manifests itself in the way the values of the confusion matrix
 are calculated~\citep{long_scene_2021}.
-Note that the tradeoff between false positives and fales negaives manifests itself in the
+Note that the tradeoff between False Positives and Fales Negatives manifests itself in the
 Precision-versus-Recall curve~\citep{su_relationship_2015}.
+\fone\ is also refered to as the harmonic mean (between Precision and Recall)~\citep{he_icpr2018_2018}.
 % FIXME: PvR curve figure
 % FIXME: introduce ROC curve --- ratio of true positive rate and false positive rate, and
 %           relationship to PvR curve/AP
 \ac{STD} differs mostly in the way the protocols match the prediction to the ground
 truth~\citep{long_scene_2021}.
 Detectors have multiple predictors which regress the placing and sizing of bounding boxes.
+More information on this will follow in Chapter~\ref{ch:research}.
 Matching is the process of assigning a bounding box prediction to the ground
 truth, like in e.g.~\cite{liu_ssd_2016,liao_textboxes_2018}.
-More information on this will follow in Chapter~\ref{ch:research}.
 The PASCAL approach defines the \ac{IOU} (see Equation~\ref{eq:iou}).
 \begin{equation}\label{eq:iou}
     \ac{IOU}=
@@ -279,7 +280,8 @@ The PASCAL approach defines the \ac{IOU} (see Equation~\ref{eq:iou}).
 \end{equation}
 For PASCAL, the prediction will be matched, if the \ac{IOU} value is larger than a
 threshhold~\citep{long_scene_2021}.
-% difference in training \& testing and using -> threshhold - highest value
+A match is considered a True Positive, the other values are assigned accordingly~\citep{sun_icdar_2019}.
+% more BB have IOU>threshhold -> depending on situation all or greatest value
 Other evaluation approaches are mostly based on \ac{IOU}, e.g. MSRA-TD 500 evaluates the rotation
 from the bounding box, compared to the truth in addition to the \ac{IOU}
 threshhold~\citep{long_scene_2021}.
@@ -287,7 +289,8 @@ threshhold~\citep{long_scene_2021}.
 as the main evaluation protocol rather than \fone.
 According to~\cite{su_relationship_2015}, \ac{AP} can be considered the area under the
 Precision-versus-Recall curve.
-\fone\ on the other hand only considers singular instances on that curve~\citep{long_scene_2021}.
+\fone\ on the other hand only considers singular instances on that curve~\citep{long_scene_2021} and
+is sensitive to the tradeoff while \ac{AP} is invariant to it~\citep{shi_icdar2017_2017}.
 % STR
 For \ac{STR} the evaluation can be based on character-level or word-level.
 There is no need to match ground truth to prediction, as the image is already
@@ -300,24 +303,26 @@ word level~\citep{chen_text_2021}.
 \begin{equation}\label{eq:wordErrorRate}
     \text{Word Error Rate} = 1 - \text{Word Recognition Accuracy}
 \end{equation}
-An example for a character-based metric would be \ac{NED} (see Equation~\ref{eq:ned}).
+An example for a character-based metric would be $1 - $NED where \ac{NED}
+calculates the distance between prediction and ground truth (see Equation~\ref{eq:ned}).
 \begin{equation}\label{eq:ned}
-    NED = \frac{1}{N}\sum_{i=1}^N \frac{D(s_i,\hat{s}_i)}{\max(l_i,\hat{l_i})}
+    \text{NED} = \frac{1}{N}\sum_{i=1}^N \frac{D(s_i,\hat{s}_i)}{\max(l_i,\hat{l_i})}
 \end{equation}
 D denotes the Levenshtein distance, s denotes the text, l denotes the text length and N is the total
-number of text lines.
+number of text lines~\citep{shi_icdar2017_2017}.
+For \ac{STR} \ac{NED} is used over the whole dataset~\citep{karatzas_icdar_2013}.
 \ac{STS} is oriented to both \ac{STD} and \ac{STR}.
 The prediction has to be matched to the ground truth like for \ac{STD}~\citep{long_scene_2021}.
-For comparing words that have been matched, e.g. \ac{NED} is used~\citep{chen_text_2021}.
-The competitions~\cite{karatzas_icdar_2013,karatzas_icdar_2015} define two different tasks for
-\ac{STS} systems.
-Word spotting refers to the task of only finding words of a predefined vocabulary, while the
-end-to-end setting specifies that all text is to be found and recognized.
-For end-to-end the main evaluation protocols that are used include Precision, Recall, \fone\ and
-\ac{AED}~\citep{chen_text_2021}.
-Note that \ac{NED} is used for the Precision and Recall scores and \ac{AED} is the sum of
-\ac{NED} values devided by the number of pictures~\citep{chen_text_2021}.
-% FIXME: how?
+For comparing predictions and matched the respective ground truths that have been matched, \ac{NED} is
+used~\citep{chen_text_2021}.
+For end-to-end recognition~\citep{karatzas_icdar_2013,karatzas_icdar_2015}, the main evaluation
+protocols that are used include Precision, Recall, \fone\ and \ac{AED}~\citep{chen_text_2021}.
+A sample is considered a True positive if the \ac{NED} distance between predictions and
+matched ground truths is equal to 0~\citep{sun_icdar_2019} (on sample can have multiple text instances).
+\ac{AED} is the sum of \ac{NED} values devided by the number of pictures~\citep{chen_text_2021}.
+Note that competitions often define their own variants of the metrics,
+e.g.~\cite{he_icpr2018_2018,shi_icdar2017_2017}.
+Case sensitivity and matching criteria are examples for changing properties of metrics.
 
 To compare approaches with these metrics benchmark datasets are used which have different
 characteristics.
@@ -330,13 +335,14 @@ characteristics.
         ICDAR (2013) & \checkmark& \checkmark&Horizontal& Stroke labels \\
         ICDAR (2015) & \checkmark& \checkmark&Multi-oriented& Bad image quality\\
         ICDAR MLT (2019) & \checkmark&\checkmark&Multi-oriented& Multilingual \\
-        CTW1500 (2017)& \checkmark& &curved& --- \\
-        Total-Text & \checkmark& \checkmark&Curved& Polygon labeles \\
-        IIIT 5K-Word & &\checkmark&Horizontal&Cropped \\
+        CTW1500 (2017)& \checkmark& &Curved& --- \\
+        Total-Text (2017) & \checkmark& \checkmark&Curved& Polygon labeles \\
+        IIIT 5K-Word (2012) & &\checkmark&Horizontal&Cropped \\
         \bottomrule
     \end{tabular}
     \caption{Benchmark datasets and their properties\label{tb:datasets}}
 \end{table}
+% FIXME: add images from datasets
 Table~\ref{tb:datasets} lists a couple of influencial benchmark datasets along with their key
 properties.
 The second and third column indicate whether the dataset provides annotations for the tasks.

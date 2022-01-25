@@ -19,6 +19,7 @@ challenging~\citep{zhao_improving_2020, chen_text_2021}.
 Such scenes entail natural scenes captured by a camera~\citep{chen_text_2021, baek_what_2019}.
 Factors such as complex backgrounds, noise, perspective and variability in fonts, colors and sizes,
 of scene texts complicate the process~\citep{hu_gtc_2020,chen_text_2021,baek_what_2019}.
+In these conditions \ac{OCR} is known as \ac{STS}~\citep{long_scene_2021}.
 
 \section{Problem Description}\label{se:problem}
 Technicians in the field work with different equipment.
@@ -47,6 +48,9 @@ The article~\cite{ashmore_assuring_2021} defines four phases of the \ac{ML} life
 Data Management, Model Learing, Model Verification and Model Deployment.
 Only the substage Model Selection from Model Learning will only be looked at in the scope of this
 thesis.
+\cite{goodfellow_deep_2016} states:
+`Nearly all deep learning algorithms can be described as particular instances of a fairly simple
+recipe: combine a specification of a dataset, a cost function, an optimization procedure and a model.'
 Other aspects such as data analysis, implementation, training, deployment and maintenance of a
 solution in a production environment shall not be performed.
 Based on this theses, further further verification, implementation and testing can then be performed.
@@ -92,10 +96,8 @@ in Chapter~\ref{ch:problem}.
 The approaches are analysed in detail in regards to commonalities as well as differences and the
 possible effect on the feasibility.
 The analysis thus shows which approaches are worthwhile to apply the whole \ac{ML} lifecycle to.
-% FIXME: add: model and pipeline as well as stuff to experiment with (like model compression \cite{niu_26ms_2019}
 
 \section{Expected Results}
-% FIXME: add: model and pipeline as well as stuff to experiment with (like model compression \cite{niu_26ms_2019}
 In addition to a deeper understanding of the problem and its detailed definition, the literature
 review lays the foundation for finding the right approach for the extraction of textual
 information from images with equipment labels through literature review.
@@ -104,8 +106,8 @@ In the subsequent analysis different approaches are highlighted for their theore
 In the following, the structure of this thesis is listed and each chapter's expected
 result is detailed along with its benefits for the overall objective of producing an overview of
 state of the art scene text \ac{OCR} relevant for the problem described in Section~\ref{se:problem}.
-comprehension of the following chapters is gathered.
-This includes general principles of \ac{DL} and by extension \ac{ML} but also of \ac{OCR}.\@
+Chapter~\ref{ch:theoretical} lays the foundation for later chapters.
+This includes general principles of \ac{DL} and by extension \ac{ML} but also of \ac{STS}.
 In Chapter~\ref{ch:problem} the problem from Section~\ref{se:problem} is addressed in more detail.
 The result shall be a firm understanding of qualities that a solution must possess.
 These requirements are the point of focus for the further examination of techniques.

@@ -42,6 +42,8 @@ The process from taking the image to storing the extracted text safely must work
 The resulting image contains printed textual information which must be extraced by an application on
 the smart phone.
 Space and structure of this information can vary from label to label (see figure~\ref{fig:examples}).
+The text does not have to be oriented horizontally.
+However, it is not curved.
 The text, spacing and structure carries semantic information which can be important for later
 processing in the scope of a business process~\citep{chen_text_2021}.
 The goal is to extract the text and preserve semantics that are implicitly provided through
@@ -87,7 +89,7 @@ The infrastrucure represents given hardware and available libraries, whereas the
 the software that surrounds the model in the runtime environment.
 The data view pertains to the quality of development and runtime
 data~\citep{siebert_construction_2021}.
-% FIXME: better definition, there are cyclic architectures
+% FIXME: differentiate from what is refered to as model in normal DL literature
 The model consists of subcomponents organized in directed acyclc graph building a
 pipeline.
 This directed acyclic graph depicts everything from processing the images to the extracted
@@ -102,8 +104,7 @@ For example~\cite{siebert_construction_2021} proposes to follow the systematic C
 identifying qualities.
 It cannot be performed due to the lack of data and the other entities.
 derived from the use case.
-The Table~\ref{tb:LiteratureQualitiesModel} (p.~\pageref{tb:LiteratureQualitiesModel}) lists all
-qualities that pertain to the model entity.
+The Table~\ref{tb:LiteratureQualitiesModel} lists all qualities that pertain to the model entity.
 Different qualities are \textit{grouped together} for their similarities.
 Because of their properties they can be evaluated jointly.
 When it comes to documenting the identified qualities,
@@ -119,7 +120,7 @@ Comparing models through results of diferent papers is troublesome, because diff
 might use different evaluation and testing environments~\citep{baek_what_2019}.
 This applies to studies that present an overview such as~\cite{chen_text_2021,long_scene_2021}.
 These studies can only be regarded as guiding values because the performance for a specific dataset
-cannot be predicted without testing on it~\cite{arpteg_software_2018}.
+cannot be predicted without testing on it~\citep{arpteg_software_2018}.
 That's why targets for measurements are not defined, as evaluation would only deliver a false
 sense of certainty.
 
@@ -175,8 +176,9 @@ sense of certainty.
 
 \section{Quality Relevancy}
 In addition to the qualities that arise directly from the use case, literature reveals a number of
-common qualities in regards to \ac{MLS} (see Table~\ref{tb:condensedQualities}), some of which
-can be regarded as relevant and other do not hold any relevance for the specific use case.
+common qualities in regards to \ac{MLS} (see Table~\ref{tb:LiteratureQualitiesModel}), some of which
+can be regarded as relevant and other do not hold any relevance for the specific use case (see
+Table~\ref{tb:condensedQualities}).
 The qualities are taken from literature which covers \ac{ML} in general to literature
 which covers scene text \ac{OCR}.
 Only qualities that concern the model will be looked at, as the model is the focus of this thesis.
