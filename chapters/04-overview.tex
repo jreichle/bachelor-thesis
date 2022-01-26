@@ -36,10 +36,51 @@ from preprocessing to classifying the identified text~\citep{long_scene_2021, so
 The ways in which the respective issues for the steps are solved are identified from literature,
 listed and explained alongside.
 
-Tiefe: Pipeline Steps $\rightarrow$ possible solutions $\rightarrow$ research points (only mention)\\
-        Sequence Modeling $\rightarrow$ CNN, RNN, Transformer $\rightarrow$ \ldots
+\begin{itemize}
+    \item Bestandteile nicht zwangsweise sequentiell
+    \item Tiefe: Pipeline Steps
+        $\rightarrow$ possible solutions
+        $\rightarrow$ research points (only mention)
+        e.g.: Sequence Modeling $\rightarrow$ CNN, RNN, Transformer $\rightarrow$ \ldots
+    \item Lexicon Free Models!
+\end{itemize}
 
-Lexicon Free Models!
+\tikzset{
+    font=\scriptsize,
+    edge from parent fork down,
+    level distance=1.75cm,
+    every node/.style={
+            top color=white,
+            bottom color=blue!25,
+            rectangle,rounded corners,
+            minimum height=6mm,
+            draw=blue!75,
+            very thick,
+            drop shadow,
+            align=center,
+            text depth = 0pt,
+    },
+    edge from parent/.style={draw=blue!50,thick}
+}
+
+\begin{figure}[ht]
+    \centering
+    \begin{tikzpicture}
+        \Tree [.STS
+            [.{STD}
+                [.{Feature \\ Extraction} ]
+                [.{BB Regression} ]
+            ]
+            [.{STR}
+                [.{Preprocessing} ]
+                [.{Feature \\ Extraction} ]
+                [.{Sequence \\ Modelling} ]
+                [.{Prediction} ]
+            ]
+        ]
+    \end{tikzpicture}
+\caption{Pipeline steps with increasing granularity\label{fig:pipelineSteps}}
+\end{figure}
 
 \begin{figure}[h]
     \centering
@@ -49,16 +90,17 @@ Lexicon Free Models!
 
 \begin{figure}[h]
     \centering
+    \includegraphics[width=0.80\textwidth]{img/Long-Scene-2021-STD-Pipelines.png}
+    \caption{STD pipelines~\citep{long_scene_2021}\label{fig:STD-pipelines}}
+\end{figure}
+
+\begin{figure}[h]
+    \centering
     \includegraphics[width=0.95\textwidth]{img/Chen-Text-2021-STR-Pipeline.png}
     \caption{STR pipeline~\citep{chen_text_2021}\label{fig:STR-pipeline}}
 \end{figure}
 Same pipeline for~\cite{baek_what_2019}
 
-\begin{figure}[h]
-    \centering
-    \includegraphics[width=0.80\textwidth]{img/Long-Scene-2021-STD-Pipelines.png}
-    \caption{STD pipelines~\citep{long_scene_2021}\label{fig:STD-pipelines}}
-\end{figure}
 
 \begin{itemize}
     \item For Detection: describe how BB is assigned to ground truth while training \& testing
