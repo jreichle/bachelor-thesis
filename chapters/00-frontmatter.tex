@@ -19,10 +19,15 @@
 
 % delete group thing to have tables on new page
 
+\newpage
+\clearpage
+\listoftables
+\begin{comment}
 \begingroup
     \let\clearpage\relax
     \listoftables
 \endgroup
+\end{comment}
 
 \chapter*{Abbreviations}
 \addcontentsline{toc}{chapter}{Abbreviations}

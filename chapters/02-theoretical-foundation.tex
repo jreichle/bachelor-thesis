@@ -1,6 +1,5 @@
 \cleardoublepage%
 \chapter{Theoretical Foundation}\label{ch:theoretical}
-%\addcontentsline{toc}{chapter}{Theoretical Foundation}
 This chapter succinctly describes principles which build the foundation for later chapters.
 Only the most relevant topics are touched upon, necessary details are explained in later chapters.
 The mathematics that makes the techniques possible is not explained in depths as it would otherwise
@@ -124,7 +123,6 @@ This makes \acp{DNN} powerful function approximators~\citep{goodfellow_deep_2016
 In this section the basics of \acp{NN} are explained and popular basic architectures thereof are
 introduced.
 
-% FIXME: small figure of simple MLP
 The most basic \ac{NN} is called a feedforward \ac{NN} or \ac{MLP} where the information only
 flows in one direction (in contrast to \acp{RNN} or Transformers)~\citep{goodfellow_deep_2016}.
 The network is made up of artificial neurons.
@@ -137,7 +135,7 @@ The structure with which the \ac{NN} is build in terms of how many layers, how m
 layer and how they are connected, is called architecture~\citep{goodfellow_deep_2016}.
 The number of layers $d$ is refered to as depths, whereas the dimensionality of those layers is
 called the width $w$~\citep{goodfellow_deep_2016}.
-% FIXME: figure with MLP - layers and connections, input, hidden, output
+\input{figure-code/tikz/MLP-tikz.tex}
 A neuron, the basic building block of \acp{NN}, receives input from neurons in the previous layer
 and calculates a single value which is propagated to neurons in the following
 layer~\citep{shrestha_review_2019}.
@@ -149,50 +147,37 @@ more complicated transformations of information and representation~\citep{goodfe
     f(\x;\T) = g(\T\x)=\z
 \end{equation}
 Here $f$ denotes the function which is performed by a layer of neurons (linearity + activation).
-The parameters of the individual neurons are grouped together to $\T$ ($\T_:,n$ equals 1 for the
+The parameters of the individual neurons are grouped together to $\T$ ($\T_:,0$ equals 1 for the
 bias term).
-Popular activation functions include ReLU, tanh, sigmoid~\citep{shrestha_review_2019}.
+Popular activation functions include ReLU, sigmoid ($\sigma$) and softmax~\citep{shrestha_review_2019}.
 \begin{equation}\label{eq:relu}
     ReLU(x)=\max(0,x)
 \end{equation}
-\begin{equation}\label{eq:tanh}
-    \tanh(x)=\frac{e^{2x}-1}{e^{2x}+1}
-\end{equation}
 \begin{equation}\label{eq:sigmoid}
-    \sigma(x)=\frac{1}{1+e^{-x}}
+    \sigma(x)=\frac{1}{1+\exp(-x)}
 \end{equation}
-% FIXME: figure with functions layed over each other
+\begin{equation}\label{eq:softmax}
+    {softmax(\z)}_i = \frac{\exp(z_i)}{\sum_j \exp(z_j)}
+\end{equation}
+While ReLU is the prevalent function for hidden layers, sigmoid (softmax) activation functions
+are used to generate a bernoulli (multinouli) distribution which is useful for classification
+tasks~\citep{goodfellow_deep_2016}.
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.6\textwidth]{img/activation-functions.png}
+    \caption{Popular activation functions\label{fig:activation-functions}}
+\end{figure}
 Note that for e.g.\ regression, the output layer can omit the activation
 function~\citep{goodfellow_deep_2016}.
 The calculation of the prediction is basically a concatenation of the functions defined by the
 layers and their neurons, the process of which is called forwardpropagation~\citep{goodfellow_deep_2016}.
-\begin{comment}
 \begin{equation}\label{eq:NNconcat}
     \hat{y}=f(\ldots f(f(\x;\T^{(1)});\T^{(2)})\ldots;\T^{(d)})
 \end{equation}
-\begin{tikzpicture}
-[   cnode/.style={draw=black,fill=#1,minimum width=3mm,circle},
-]
-\node[cnode=red,label=0:$\Sigma$] (s) at (6,-3) {};
-\node at (0,-4) {$\vdots$};
-\node at (3,-4) {$\vdots$};
-\foreach \x in {1,...,4}
-{   \pgfmathparse{\x<4 ? \x : "n"}
-    \node[cnode=blue,label=180:$x_{\pgfmathresult}$] (x-\x) at (0,{-\x-div(\x,4)}) {};
-    \node[cnode=gray,label=90:$\varphi_{\pgfmathresult}$] (p-\x) at (3,{-\x-div(\x,4)}) {};
-    \draw (p-\x) -- node[above,sloped,pos=0.3] {$\omega_{\pgfmathresult}$} (s);
-}
-\foreach \x in {1,...,4}
-{   \foreach \y in {1,...,4}
-    {   \draw (x-\x) -- (p-\y);
-    }
-}
-\end{tikzpicture}
-\end{comment}
 $\T^{(i)}$ in Equation~\ref{eq:NNconcat} stands for the parameters in layer i with $\T^{(i)}_{j,:}$
 being the parameters the $j$-th neuron in that layer~\citep{goodfellow_deep_2016}.
-The forwardpropagation can also be described by a computational graph~\citep{goodfellow_deep_2016}.
-% FIXME: computational graph figure
+The forwardpropagation can also be described by a computational graph (see
+Figure~\ref{fig:multilayer-perceptron})~\citep{goodfellow_deep_2016}.
 
 The term \ac{DNN} comes from adding many hidden layers to the \ac{NN}~\citep{shrestha_review_2019}.
 This allows for a more complicated function and better developed features or representations that
@@ -203,15 +188,16 @@ The training algorithm is called backpropagation.
 The training error is calculated through the objective function and is propagated
 in conjunction with the output of forwardpropagation on each neuron~\citep{goodfellow_deep_2016}.
 For this the chain rule of calculus can be used to modularly, recursively used to propagate the
-loss backwards to use \ac{GD}.
+loss backwards to use \ac{GD} (see Figure~\ref{fig:error-backpropagation}).
+\input{figure-code/tikz/backprop-tikz.tex}
 The upstream gradient that is coming from neurons in the next layer is multiplied with the
 jacobian matrix of the current neuron to produce the downstream gradient that is then used by
 the preceding layer~\citep{boue_deep_2018,goodfellow_deep_2016}.
 \begin{equation}\label{eq:backPropNeuronW}
-    \frac{\delta f}{\delta\w} = \frac{\delta f}{\delta\z} \frac{\delta\z}{\delta\w}
+    \frac{\delta L}{\delta\w} = \frac{\delta L}{\delta\z} \frac{\delta\z}{\delta\w}
 \end{equation}
 \begin{equation}\label{eq:backPropNeuronX}
-    \frac{\delta f}{\delta\x} = \frac{\delta f}{\delta\z}\frac{\delta\z}{\delta\x}
+    \frac{\delta L}{\delta\x} = \frac{\delta L}{\delta\z}\frac{\delta\z}{\delta\x}
 \end{equation}
 The result of Equation~\ref{eq:backPropNeuronW} is used to update the neuron's weights \w\ while
 the result of Equation~\ref{eq:backPropNeuronX} is used for further propagation~\citep{boue_deep_2018}.
@@ -271,7 +257,6 @@ For \ac{STD} the task is to localize text instances in the image, whereas the \a
 is to recognize/categorize text from already cropped images~\citep{chen_text_2021}.
 Note that a system which performs both \ac{STR} and \ac{STD} in one continuous pipeline are called
 end-to-end approaches~\citep{chen_text_2021}.
-% FIXME: figure with two images: multiple text instances --- cropped image with one
 
 %% evaluation metrics
 % XXX: properties and pros for different metrics
