@@ -376,22 +376,27 @@ To compare approaches with these metrics benchmark datasets are used which have 
 characteristics.
 \begin{table}[ht]
     \centering\scriptsize
-    \begin{tabular}{p{.2\textwidth}p{.05\textwidth}p{.05\textwidth}p{.15\textwidth}p{.3\textwidth}}
+    \begin{tabular}{p{.25\textwidth}p{.05\textwidth}p{.05\textwidth}p{.15\textwidth}p{.25\textwidth}}
         \textbf{Dataset (year)}&\textbf{\ac{STD}}&\textbf{\ac{STR}}&\textbf{Text Orientation}
-                               &\textbf{Characteristics} \\
+                                                            &\textbf{Characteristics} \\
         \toprule
-        ICDAR (2013) & \checkmark& \checkmark&Horizontal& Stroke labels \\
-        ICDAR (2015) & \checkmark& \checkmark&Multi-oriented& Bad image quality\\
-        ICDAR MLT (2019) & \checkmark&\checkmark&Multi-oriented& Multilingual \\
+        ICDAR (2013) & \checkmark& \checkmark&Horizontal& --- \\
+        IIIT 5K-Word (2012) & &\checkmark&Horizontal& Cropped, variance in font, color, size and
+                                                        noise~\citep{long_scene_2021} \\
+        ICDAR (2015) & \checkmark& \checkmark&Multi-oriented& Low resolution, small text
+                                                                instances~\citep{liao_mask_2020} \\
+        MSRA-TD500 (2012) & \checkmark&&Multi-Oriented& Extreme aspect ratios~\citep{liao_mask_2020} \\
+        ICDAR MLT (2017) & \checkmark&\checkmark&Curved& Multilingual~\citep{long_scene_2021}  \\
         SCUT CTW1500 (2017)& \checkmark& &Curved& --- \\
-        Total-Text (2017) & \checkmark& \checkmark&Curved& Polygon labeles \\
-        IIIT 5K-Word (2012) & &\checkmark&Horizontal&Cropped \\
+        Total-Text (2017) & \checkmark& \checkmark&Curved& --- \\
         \bottomrule
     \end{tabular}
     \caption{Benchmark datasets and their properties\label{tb:datasets}}
 \end{table}
 Table~\ref{tb:datasets} lists a couple of influencial benchmark datasets along with their key
 properties.
+ICDAR (2013) references the Focused Scene Text dataset~\citep{karatzas_icdar_2013} and ICDAR 2015
+to the Incidental Text Competition dataset~\citep{karatzas_icdar_2015}.
 The second and third column indicate whether the dataset provides annotations for the tasks.
 The Text Orientation column specifies the most complicated orientation that is present in the dataset
 (Curved $\subset$ Multi-oriented $\subset$ Horizontal).
@@ -399,16 +404,18 @@ The Text Orientation column specifies the most complicated orientation that is p
 \begin{figure}[h]
     \centering\scriptsize
     \subfigure[\scriptsize ICDAR (2013)~\citep{karatzas_icdar_2013}\label{fig:ICDAR-2013}]
-        {\includegraphics[width=0.40\textwidth]{img/Dataset-Examples/icdar-2013-examples.png}}
-    \subfigure[\scriptsize IIIT 5k Word (2012)~\citep{mishra_scene_2012}\label{fig:IIIT-5k}]
-        {\includegraphics[width=0.40\textwidth]{img/Dataset-Examples/IIIT-5k-word-examples.png}}
+        {\includegraphics[width=0.30\textwidth]{img/Dataset-Examples/icdar-2013-examples.png}}
     \subfigure[\scriptsize ICDAR (2015)~\citep{karatzas_icdar_2015}\label{fig:ICDAR-2015}]
-        {\includegraphics[width=0.40\textwidth]{img/Dataset-Examples/icdar-2015-examples.png}}
-    \subfigure[\scriptsize ICDAR MLT (20159)~\citep{nayef_icdar2019_2019}\label{fig:ICDAR-2015}]
-        {\includegraphics[width=0.40\textwidth]{img/Dataset-Examples/icdar-2015-examples.png}}
-    \subfigure[\scriptsize SCUT CTW1500 (2017)~\citep{yuliang_detecting_2017}\label{fig:SCUT-CWT1500}]
-        {\includegraphics[width=0.40\textwidth]{img/Dataset-Examples/SCUT-CWT1500-examples.png}}
+        {\includegraphics[width=0.30\textwidth]{img/Dataset-Examples/icdar-2015-examples.png}}
+    \subfigure[\scriptsize ICDAR MLT (2017)~\citep{nayef_icdar2017_2017}\label{fig:ICDAR-2017}]
+        {\includegraphics[width=0.30\textwidth]{img/Dataset-Examples/icdar-mlt-2017-examples.png}}
+    \subfigure[\scriptsize IIIT 5k Word (2012)~\citep{mishra_scene_2012}\label{fig:IIIT-5k}]
+        {\includegraphics[width=0.30\textwidth]{img/Dataset-Examples/IIIT-5k-word-examples.png}}
+    \subfigure[\scriptsize MSRA-TD500~\citep{cong_yao_detecting_2012}\label{fig:msra-td500}]
+        {\includegraphics[width=0.30\textwidth]{img/Dataset-Examples/MSRA-TD500-examples.png}}
     \subfigure[\scriptsize Total Text (2017)~\citep{chan_total-text-dataset_2022}\label{fig:total-text}]
-        {\includegraphics[width=0.40\textwidth]{img/Dataset-Examples/Total-Text-examples.png}}
+        {\includegraphics[width=0.30\textwidth]{img/Dataset-Examples/Total-Text-examples.png}}
+    \subfigure[\scriptsize SCUT CTW1500 (2017)~\citep{yuliang_detecting_2017}\label{fig:SCUT-CWT1500}]
+        {\includegraphics[width=0.30\textwidth]{img/Dataset-Examples/SCUT-CWT1500-examples.png}}
     \caption{Benchmark Data Set Examples\label{fig:dataset-examples}}
 \end{figure}

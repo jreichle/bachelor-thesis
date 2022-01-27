@@ -43,7 +43,19 @@ listed and explained alongside.
         $\rightarrow$ research points (only mention)
         e.g.: Sequence Modeling $\rightarrow$ CNN, RNN, Transformer $\rightarrow$ \ldots
     \item Lexicon Free Models!
+    \item Trend: detection moves towards segmentation, recognition away
 \end{itemize}
+
+\begin{comment}
+    - What is segmentation
+    - Detection: from pixel to character -> better for arbitrary shapes
+        - Segmentation
+        - Text detection of of segmentation
+    - Recognition: are not used often (poor word-level results)
+        - Segmentation
+        - recognition
+    - End to end?
+\end{comment}
 
 \tikzset{
     font=\scriptsize,
@@ -104,6 +116,21 @@ Same pipeline for~\cite{baek_what_2019}
 
 \begin{itemize}
     \item For Detection: describe how BB is assigned to ground truth while training \& testing
+\end{itemize}
+
+An accurate Segmentation-Based \ldots~\citep{liu_accurate_2020}
+\begin{itemize}
+    \item For detection there's two categories: detection-based, segmentation based
+        $\rightarrow$ latter is more getting more popular
+        \begin{itemize}
+            \item detection-based: adapt general object detection framework
+                $\rightarrow$ directly regress quadrangles
+                $\rightarrow$ problem with arbitrary shapes and small texts
+            \item segmentation-based: use pixel-wise segmentation to segment text areas
+                $\rightarrow$ use segment text areas to extract text instances by post-processing
+        \end{itemize}
+    \item look into paper for overview of text detection
+    \item Text Detection is type of object detection
 \end{itemize}
 
 Scene Text Detection and Recognition~\cite{long_scene_2021}
@@ -243,7 +270,8 @@ various stages of \ac{OCR}:
     \item text verification: verify text candidate regions as text or non-text,
         filter false-positives, CNN
     \item text detection: determine whether text is present using localization and verification
-        procedures, basis for end-to-end, can be regression or segmentation based
+        procedures, basis for end-to-end, can be regression or segmentation based\\
+        $\rightarrow$ regression based or segmentation based
     \item text segmentation: most challenging, includes text line (splitting a region of multiple
         text lines into subregion of single text lines) and character segmentation (separating
         text instance into single characters, typically used in earlier approaches)
