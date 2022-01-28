@@ -35,7 +35,6 @@ Linear is derived from the underlying model shown in Equation~\ref{eq:linReg}:
 The scalar product of the weights $\w\in\R^n$ and \x\ is added to the bias term $b\in\R$.
 Both $\w,b$ are parameters that are learned by the model in order to optimize the
 approximation~\citep{goodfellow_deep_2016}.
-% FIXME: here figure with linear regression
 
 The performance of a model measures how well the task can be completed.
 Depending on the task of the \ac{MLS}, different quantitative measures are used.
@@ -84,17 +83,17 @@ the generalization error~\citep{james_introduction_2013,geron_hands-machine_2017
 For other tasks such as binary classification, the metric (e.g. \fone) and the
 objective function (binary cross entropy loss) are different~\citep{geron_hands-machine_2017,
 ho_real-world-weight_2020}.
-% FIXME: simple gradient descent figure / learning process graphic
 For optimization the \ac{GD} algorithm is prevalent, especially in the subfield of \ac{DL}.
 As the name suggests, the gradient is used to iteratively update the parameters $\w,b$ to arrive
 at a minimum of the objective function (see Equation~\ref{eq:gradDescW}
 and~\ref{eq:gradDescb})~\citep{geron_hands-machine_2017}.
 \begin{equation}\label{eq:gradDescW}
-    \w\leftarrow \w-\epsilon\cdot\nabla_{\w} MSE(\w,b) = \w-\frac{2\epsilon}{m}\Xt^T (\Xt\w+b-\y)
+    \w'\leftarrow \w-\epsilon\cdot\nabla_{\w} MSE(\w,b) = \w-\frac{2\epsilon}{m}\Xt^T (\Xt\w+b-\y)
 \end{equation}
 \begin{equation}\label{eq:gradDescb}
-    b\leftarrow b-\epsilon\cdot\frac{\delta}{\delta b} MSE(\w,b) = b-\frac{2\epsilon}{m}(\Xt\w+b-\y)
+    b'\leftarrow b-\epsilon\cdot\frac{\delta}{\delta b} MSE(\w,b) = b-\frac{2\epsilon}{m}(\Xt\w+b-\y)
 \end{equation}
+\input{figure-code/tikz/gradient-descent-tikz.tex}
 The learning rate constant $\epsilon$ can be adjusted to speed up or slow down the `steps' which
 can have different effects on the convergence~\citep{goodfellow_deep_2016}.
 There are more sophisticated variations of the \ac{GD} algorithm which are more suited for practical
@@ -114,7 +113,16 @@ error~\citep{geron_hands-machine_2017}.
 Therefore, it is important to improve the bias/variance tradeoff.
 Aside from model selection, there are different techniques used to prevent overfitting (e.g.
 Regularization)~\citep{goodfellow_deep_2016}.
-% FIXME: figure for underfitting/overfitting -> LinRegr - Under, PolRegr - Over / Fig 5.3 goodfellow
+\begin{figure}[h]
+    \centering
+    \subfigure[Linear Regression underfit\label{fig:lin-reg-under}]{
+        \includegraphics[width=0.45\textwidth]{img/Linear-Regression-underfit.png}
+    }
+    \subfigure[Polynomial Regression overfit\label{fig:pol-reg-over}]{
+        \includegraphics[width=0.45\textwidth]{img/Poly-Regression-overfit.png}
+    }
+    \caption{Regression with linear and polynomial model\label{fig:examples}}
+\end{figure}
 
 \section{Deep Learning}
 In \ac{DL}, \acp{DNN} are leveraged to automatically learn new representations of data through
@@ -157,14 +165,14 @@ Popular activation functions include ReLU, sigmoid ($\sigma$) and softmax~\citep
     \sigma(x)=\frac{1}{1+\exp(-x)}
 \end{equation}
 \begin{equation}\label{eq:softmax}
-    {softmax(\z)}_i = \frac{\exp(z_i)}{\sum_j \exp(z_j)}
+    {softmax(\x)}_i = \frac{\exp(x_i)}{\sum_j \exp(x_j)}
 \end{equation}
 While ReLU is the prevalent function for hidden layers, sigmoid (softmax) activation functions
 are used to generate a bernoulli (multinouli) distribution which is useful for classification
 tasks~\citep{goodfellow_deep_2016}.
 \begin{figure}[ht]
     \centering
-    \includegraphics[width=0.6\textwidth]{img/activation-functions.png}
+    \includegraphics[width=0.6\textwidth]{img/activation-functions.eps}
     \caption{Popular activation functions\label{fig:activation-functions}}
 \end{figure}
 Note that for e.g.\ regression, the output layer can omit the activation
@@ -187,8 +195,9 @@ normal \ac{ML} algorithms~\citep{arpteg_software_2018}.
 The training algorithm is called backpropagation.
 The training error is calculated through the objective function and is propagated
 in conjunction with the output of forwardpropagation on each neuron~\citep{goodfellow_deep_2016}.
-For this the chain rule of calculus can be used to modularly, recursively used to propagate the
+For this the chain rule of calculus can be used to modularly, recursively propagate the
 loss backwards to use \ac{GD} (see Figure~\ref{fig:error-backpropagation}).
+% TODO: not a real computation graph, ok?
 \input{figure-code/tikz/backprop-tikz.tex}
 The upstream gradient that is coming from neurons in the next layer is multiplied with the
 jacobian matrix of the current neuron to produce the downstream gradient that is then used by
@@ -296,8 +305,8 @@ are calculated~\citep{long_scene_2021}.
 Note that the tradeoff between False Positives and Fales Negatives manifests itself in the
 Precision-versus-Recall curve~\citep{su_relationship_2015}.
 \fone\ is also refered to as the harmonic mean (between Precision and Recall)~\citep{he_icpr2018_2018}.
-% FIXME: PvR curve figure
-% FIXME: introduce ROC curve --- ratio of true positive rate and false positive rate, and
+% XXX: PvR curve figure
+% XXX: introduce ROC curve --- ratio of true positive rate and false positive rate, and
 %           relationship to PvR curve/AP
 \ac{STD} differs mostly in the way the protocols match the prediction to the ground
 truth~\citep{long_scene_2021}.

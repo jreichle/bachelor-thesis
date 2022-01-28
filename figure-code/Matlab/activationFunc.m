@@ -14,4 +14,6 @@ xlabel('x');
 ylabel('z');
 lg = legend({'ReLU','sigmoid','sofmax'},'Location','northwest');
 lg.FontSize = 12;
+set(gca,'Fontsize',12);
+
 end
