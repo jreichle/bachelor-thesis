@@ -93,7 +93,12 @@ and~\ref{eq:gradDescb})~\citep{geron_hands-machine_2017}.
 \begin{equation}\label{eq:gradDescb}
     b'\leftarrow b-\epsilon\cdot\frac{\delta}{\delta b} MSE(\w,b) = b-\frac{2\epsilon}{m}(\Xt\w+b-\y)
 \end{equation}
-\input{figure-code/tikz/gradient-descent-tikz.tex}
+
+\begin{figure}
+    \centering
+    \input{figure-code/tikz/gradient-descent-tikz.tex}
+    \caption{Gradient descent for 1-dimensional objective function\label{fig:grad-desc}}
+\end{figure}
 The learning rate constant $\epsilon$ can be adjusted to speed up or slow down the `steps' which
 can have different effects on the convergence~\citep{goodfellow_deep_2016}.
 There are more sophisticated variations of the \ac{GD} algorithm which are more suited for practical
@@ -115,10 +120,10 @@ Aside from model selection, there are different techniques used to prevent overf
 Regularization)~\citep{goodfellow_deep_2016}.
 \begin{figure}[h]
     \centering
-    \subfigure[Linear Regression underfit\label{fig:lin-reg-under}]{
+    \subfigure[Linear Regression underfit\label{fig:lin-reg-under}]{%
         \includegraphics[width=0.45\textwidth]{img/Linear-Regression-underfit.png}
     }
-    \subfigure[Polynomial Regression overfit\label{fig:pol-reg-over}]{
+    \subfigure[Polynomial Regression overfit\label{fig:pol-reg-over}]{%
         \includegraphics[width=0.45\textwidth]{img/Poly-Regression-overfit.png}
     }
     \caption{Regression with linear and polynomial model\label{fig:examples}}
@@ -167,18 +172,21 @@ Popular activation functions include ReLU, sigmoid ($\sigma$) and softmax~\citep
 \begin{equation}\label{eq:softmax}
     {softmax(\x)}_i = \frac{\exp(x_i)}{\sum_j \exp(x_j)}
 \end{equation}
-While ReLU is the prevalent function for hidden layers, sigmoid (softmax) activation functions
-are used to generate a bernoulli (multinouli) distribution which is useful for classification
-tasks~\citep{goodfellow_deep_2016}.
+While ReLU is the prevalent function for hidden layers, sigmoid (softmax) activation functions,
+used for the output layer, are used to generate a bernoulli (multinouli) distribution which is
+useful for classification tasks~\citep{goodfellow_deep_2016}.
+\begin{comment}
 \begin{figure}[ht]
     \centering
-    \includegraphics[width=0.6\textwidth]{img/activation-functions.eps}
+    \includegraphics[width=0.6\textwidth]{img/activation-functions.png}
     \caption{Popular activation functions\label{fig:activation-functions}}
 \end{figure}
+\end{comment}
 Note that for e.g.\ regression, the output layer can omit the activation
 function~\citep{goodfellow_deep_2016}.
 The calculation of the prediction is basically a concatenation of the functions defined by the
-layers and their neurons, the process of which is called forwardpropagation~\citep{goodfellow_deep_2016}.
+layers and their neurons, the process of which is called
+forwardpropagation~\citep{ponti_everything_2017,goodfellow_deep_2016}.
 \begin{equation}\label{eq:NNconcat}
     \hat{y}=f(\ldots f(f(\x;\T^{(1)});\T^{(2)})\ldots;\T^{(d)})
 \end{equation}
@@ -198,7 +206,15 @@ in conjunction with the output of forwardpropagation on each neuron~\citep{goodf
 For this the chain rule of calculus can be used to modularly, recursively propagate the
 loss backwards to use \ac{GD} (see Figure~\ref{fig:error-backpropagation}).
 % TODO: not a real computation graph, ok?
-\input{figure-code/tikz/backprop-tikz.tex}
+\begin{figure}[ht]
+	\centering
+    \input{figure-code/tikz/backprop-tikz.tex}
+	\caption[Backpropagation of errors through the network.]{%
+        Reverse traversing the network's computation graph,
+        $\cdot \frac{\delta \z_{:,i}^{(l)}}{\delta \w_i^{(l)}}$ is used for
+        updating the neurons parameters\label{fig:error-backpropagation}
+    }
+\end{figure}
 The upstream gradient that is coming from neurons in the next layer is multiplied with the
 jacobian matrix of the current neuron to produce the downstream gradient that is then used by
 the preceding layer~\citep{boue_deep_2018,goodfellow_deep_2016}.
@@ -215,28 +231,74 @@ reached~\citep{goodfellow_deep_2016}.
 Note that the algorithm can be performed with tensors of arbitrary
 dimensionality~\citep{goodfellow_deep_2016}.
 
-CNN
-\begin{itemize}
-    \item usage
-    \item components: conv layer (1d \& 2d), pooling layer, normailization, ReLU, fully connected layer
-    \item architectures ResNet
-        \begin{itemize}
-            \item aggressive downsampling
-            \item $3\times3$ best kernel size
-            \item Gradient saving $\rightarrow$ Res block, Res Bottleneck, Res Grouped
-        \end{itemize}
-\end{itemize}
+\section{Convoluational Neural Nets}
+% basics
+\acp{CNN} are a type of \ac{NN} that is also acyclic, like \acp{MLP}~\citep{chauhan_review_2018}.
+It consists of a variety of components: fully connected layer, activation function,
+convolutional layer, pooling layer~\citep{chauhan_review_2018,ponti_everything_2017}.
+The fully connected layers combined with activation functions are the layers that make up
+\acp{MLP}~\citep{ponti_everything_2017}.
+% FIXME: 2d, 1d conv
+% conv layer
+A convolutional layer has multiple filters which consist of multiple kernels~\citep{chauhan_review_2018}.
+For multi layer input, with $d$ so called channels, a filter has the same amount of kernels as there
+are channels ($d$)~\citep{ponti_everything_2017}.
+A kernel is a $n\times n$ square matrix made up of learnable parameters, so a filter is a tensor
+$n\times n\times d$.
+The convolution operation is the elementwise multiplication between the filter and overlapping
+$n\times n$ subspace of the input (see Figure~\ref{fig:conv-layer})~\citep{ponti_everything_2017}.
+\begin{figure}[ht]
+    \centering
+    \include{figure-code/tikz/conv-layer-tikz}
+    \caption{Convolution operation of a single kernel from a convolutional layer\label{fig:conv-layer}}
+\end{figure}
+The convolution operation is performed for every space in the input, spaces can be skipped if
+stride is introduced~\citep{ponti_everything_2017}.
+Often zero-padding is used to preserve the dimensions height and width between input and output of
+the layer~\citep{ponti_everything_2017}.
+The number of filters a convolutional layer applies is equal to the output channels that the layer
+has which are often called feature maps~\citep{ponti_everything_2017}.
+The result of a convolutional layer is usually fed into a activation function to introduce
+nonlinearity like with fully connected layers.
+The activation is performed on every element in the output und preserves the
+dimensionality~\citep{ponti_everything_2017}.
+% pooling
+Pooling layers are used to reduce the spacial dimension (i.e.\ downsampling) of feature
+maps~\citep{ponti_everything_2017}.
+Pooling layers preserve the number of channels and have no learnable parameters. % FIXME: source
+\begin{figure}[ht]
+    \centering
+    \include{figure-code/tikz/pooling-tikz}%
+    \caption{Pooling layer\label{fig:pool-layer}}
+\end{figure}
+Much like with convolutions, the pooling operation is slid across the height and weight dimensions
+of the channels (possibly with stride) and the pooling operation is
+performed~\citep{ponti_everything_2017,chauhan_review_2018}.
+The most popular kind of pooling is maxpooling~\citep{ponti_everything_2017}.
+For the operation only the maximum value of the current subspace of the current channel is
+taken~\citep{chauhan_review_2018}.
+\begin{figure}[ht]
+    \centering
+    \include{figure-code/tikz/max-pooling-tikz}%
+    \caption{$2\times 2$ max pooling operation with stride 2\label{fig:pool-layer}}
+\end{figure}
+Popular \ac{CNN} architectures are explained in Chapter~\ref{ch:research}.
 
+\section{Recurrent Neural Nets}
+
+\begin{figure}[ht]
+    \centering
+    \include{figure-code/tikz/rnn-tikz}%
+    \caption{Recurrent neural net unroling\label{fig:rnn-unrolling}}
+\end{figure}
 RNN
 \begin{itemize}
-    \item usage
     \item LSTM:\ structure, rollout
     \item attention
 \end{itemize}
 
-Transformers
+\section{Transformers}
 \begin{itemize}
-    \item usage
     \item components: embedding (input \& output), positional encoding, multi-head attention,
         fully connected layer
     \item architecture: embedding \& positional encoding $\rightarrow$ encoder block

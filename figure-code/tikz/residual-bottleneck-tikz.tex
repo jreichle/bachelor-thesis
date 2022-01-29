@@ -1,0 +1,20 @@
+\begin{tikzpicture}[scale=0.6]
+    \node (l1) {conv 1, $1\times1$};
+    \node[right=2mm of l1, label={below:}] (act1) {$ReLU$};
+    \node[right=2mm of act1] (l15) {conv 2, $3\times3$};
+    \node[right=2mm of l15, label={below:}] (act15) {$ReLU$};
+    \node[right=2mm of act15] (l2) {conv 3, $1\times1$};
+    \node[right=2mm of l2,font=\Large,label={below:},inner sep=0,pin={60:$F(\X) + \X$}] (add) {$\oplus$};
+    \node[right=2mm of add, label={below:}] (act2) {$ReLU$};
+
+    \draw[->] (l1) -- (act1);
+    \draw[->] (act1) -- (l15);
+    \draw[->] (l15) -- (act15);
+    \draw[->] (act15) -- (l2);
+    \draw[<-] (l1) -- ++(-3,0) node[below, pos=0.8] {$\X$};
+    \draw[->] (l2) -- (act2) node[above, pos=0.8] {};
+    \draw[->] ($(l1)-(2.5,0)$) to[out=30, in=150] node[below=1ex, midway, align=center]
+        {} node[above, midway] {identity} (add);
+    \draw[decorate, decoration={brace, amplitude=1ex, raise=1cm}] (l2.east) -- node[midway, below=1.2cm]
+        {$F(\X)$} (l1.west);
+\end{tikzpicture}

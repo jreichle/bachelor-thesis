@@ -1,0 +1,19 @@
+\begin{tikzpicture}[scale=0.6]
+    \node (l1) {conv 1};
+    \node[right=4mm of l1] (l15) {pooling};
+    \node[right=4mm of l15, label={below:}] (act1) {$ReLU$};
+    \node[right=4mm of act1] (l2) {conv 2};
+    \node[right=4mm of l2,font=\Large,label={below:},inner sep=0,pin={90:$F(\X) + P(\X)$}] (add)
+        {$\oplus$};
+    \node[right=4mm of add, label={below:}] (act2) {$ReLU$};
+
+    \draw[->] (l1) -- (l15);
+    \draw[->] (l15) -- (act1);
+    \draw[->] (act1) -- (l2);
+    \draw[<-] (l1) -- ++(-2,0) node[below, pos=0.8] {$\X$};
+    \draw[->] (l2) -- (act2) node[above, pos=0.8] {};
+    \draw[->,dashed] ($(l1)-(1.5,0)$) to[out=30, in=150] node[below=1ex, midway, align=center]
+        {$P(\X)$} node[above, midway] {pooling} (add);
+    \draw[decorate, decoration={brace, amplitude=1ex, raise=1cm}] (l2.east) -- node[midway, below=1.2cm]
+        {$F(\X)$} (l1.west);
+\end{tikzpicture}

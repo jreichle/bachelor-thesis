@@ -44,6 +44,16 @@ listed and explained alongside.
         e.g.: Sequence Modeling $\rightarrow$ CNN, RNN, Transformer $\rightarrow$ \ldots
     \item Lexicon Free Models!
     \item Trend: detection moves towards segmentation, recognition away
+    \item for feature extraction:
+        \begin{itemize}
+        \item architectures ResNet
+            \begin{itemize}
+                \item aggressive downsampling
+                \item $3\times3$ best kernel size
+                \item Gradient saving $\rightarrow$ Res block, Res Bottleneck, Res Grouped
+                \item batch normalization
+            \end{itemize}
+    \end{itemize}
 \end{itemize}
 
 \begin{comment}
@@ -335,6 +345,20 @@ Cropped Scene Text Image Recognition
             \item
         \end{itemize}
 \end{itemize}
+
+\begin{figure}[ht]
+    \centering
+    \subfigure[Residual block\label{fig:residual-block}]{%
+        \input{figure-code/tikz/resnet-tikz.tex}%
+    }
+    \subfigure[Residual block with pooling\label{fig:residual-block}]{%
+        \input{figure-code/tikz/residual-pooling-tikz.tex}%
+    }
+    \subfigure[Residual bottleneck block\label{fig:residual-block}]{%
+        \input{figure-code/tikz/residual-bottleneck-tikz.tex}%
+    }
+    \caption{Modules introduced with ResNet\label{fig:resnet}}
+\end{figure}
 
 CTC
 \begin{itemize}

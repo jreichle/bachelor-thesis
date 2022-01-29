@@ -1,14 +1,3 @@
-%%
-%% dbstmpl.sty
-%% von Stefan Brecheisen, LFE fuer Datenbanksysteme am
-%% Institut fuer Informatik der LMU Muenchen
-%%
-%% kleine Anpassungen an das aktuelle CD von Marisa Thoma
-%%
-%% Dieses Latex-Paket definiert sinnvolle Einstellungen und hilfreiche
-%% Befehle zum Erstellen der Ausarbeitung einer Diplom- oder Projektarbeit
-%% an der LFE fuer Datenbanksysteme.
-%%
 \def\fileversion{v1.1}
 \def\filedate{2010/06/21}
 
@@ -23,6 +12,8 @@
 \RequirePackage[german,english]{babel}
 %% sonst: für deutsche Arbeiten:
 %\RequirePackage[english,german]{babel}
+\RequirePackage[T1]{fontenc}
+\RequirePackage[utf8]{inputenc}
 \RequirePackage{german}
 \RequirePackage{amsmath}
 \RequirePackage{amssymb}
@@ -31,7 +22,7 @@
 \RequirePackage[nottoc]{tocbibind}
 \RequirePackage{graphicx}
 \RequirePackage{subfigure}
-\RequirePackage[T1]{fontenc}
+\RequirePackage[font=scriptsize,labelfont=bf]{caption}
 \RequirePackage{verbatim}
 \RequirePackage{acro}
 \RequirePackage[round]{natbib}
@@ -41,16 +32,12 @@
 \RequirePackage{mathtools}
 \RequirePackage{nomencl}
 \RequirePackage{makecell}
-\RequirePackage[font=scriptsize,labelfont=bf]{caption}
 
-% pipeline tree
+%% tikz drawings
 \RequirePackage{tikz-qtree}
-\usetikzlibrary{shadows,trees}
-
-%% NN drawings
 \RequirePackage{latexsym}
 \RequirePackage{tikz}
-\usetikzlibrary{decorations.pathreplacing,fadings}
+\usetikzlibrary{decorations.pathreplacing,fadings,shadows,trees,positioning,matrix,calc,chains}
 \RequirePackage{sidecap}
 
 \makenomenclature
@@ -94,7 +81,7 @@
 %%
 \DeclareAcronym{AP}{short=AP,long=Average Precision}
 \DeclareAcronym{AED}{short=AED,long=Average Edit Distance}
-\DeclareAcronym{CNN}{short=CNN,long=Convolutional Neural Networks}
+\DeclareAcronym{CNN}{short=CNN,long=Convolutional Neural Network}
 \DeclareAcronym{DL}{short=DL,long=Deep Learning}
 \DeclareAcronym{DNN}{short=DNN,long=Deep Neural Network}
 \DeclareAcronym{GD}{short=GD,long=Gradient Descent}
