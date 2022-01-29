@@ -68,26 +68,27 @@ listed and explained alongside.
 \end{comment}
 
 \tikzset{
-    font=\scriptsize,
-    edge from parent fork down,
-    level distance=1.75cm,
-    every node/.style={
-            top color=white,
-            bottom color=blue!25,
-            rectangle,rounded corners,
-            minimum height=6mm,
-            draw=blue!75,
-            very thick,
-            drop shadow,
-            align=center,
-            text depth = 0pt,
-    },
-    edge from parent/.style={draw=blue!50,thick}
 }
 
 \begin{figure}[ht]
     \centering
-    \begin{tikzpicture}
+    \begin{tikzpicture}[
+        font=\scriptsize,
+        edge from parent fork down,
+        level distance=1.75cm,
+        every node/.style={
+                top color=white,
+                bottom color=blue!25,
+                rectangle,rounded corners,
+                minimum height=6mm,
+                draw=blue!75,
+                very thick,
+                drop shadow,
+                align=center,
+                text depth = 0pt,
+        },
+        edge from parent/.style={draw=blue!50,thick}
+    ]
         \Tree [.STS
             [.{STD}
                 [.{Feature \\ Extraction} ]
