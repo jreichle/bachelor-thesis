@@ -1,24 +1,41 @@
-\begin{tikzpicture}[item/.style={circle,draw,thick,align=center},
+\begin{tikzpicture}[item/.style={circle,draw,align=center},
     itemc/.style={item,on chain,join},scale=0.5]
-\begin{scope}[start chain=going right,nodes=itemc,every
-        join/.style={-latex,very thick},local bounding box=chain]
-    \path node (A0) {$A$} node (A1) {$A$} node (A2) {$A$} node[xshift=2em] (At)
-    {$A$};
-\end{scope}
-    \node[left=1em of chain,scale=2] (eq) {$=$};
-    \node[left=2em of eq,item] (AL) {$A$};
+
+    \begin{scope}[start chain=going right,nodes=itemc,every
+            join/.style={-latex},local bounding box=chain]
+            \path node (At-1) {$h^{(t-1)}$} node (At) {$h^{(t)}$} node (At+1) {$h^{(t+1)}$};
+    \end{scope}
+
+    \node[left=1em of chain,scale=1.5] (eq) {$\rightarrow$};
+
+    \node[left=2em of eq,item] (AL) {$h$};
     \path (AL.west) ++ (-1em,2em) coordinate (aux);
-    \draw[very thick,-latex,rounded corners] (AL.east) -| ++ (1em,2em) -- (aux)
-    |- (AL.west);
-    \foreach \X in {0,1,2,t}
-    {\draw[very thick,-latex] (A\X.north) -- ++ (0,2em)
-    node[above,item,fill=gray!10] (h\X) {$h_\X$};
-    \draw[very thick,latex-] (A\X.south) -- ++ (0,-2em)
-    node[below,item,fill=gray!10] (x\X) {$x_\X$};}
-    \draw[white,line width=0.8ex] (AL.north) -- ++ (0,1.9em);
-    \draw[very thick,-latex] (AL.north) -- ++ (0,2em)
-    node[above,item,fill=gray!10] {$h_t$};
-    \draw[very thick,latex-] (AL.south) -- ++ (0,-2em)
-    node[below,item,fill=gray!10] {$x_t$};
-    \path (x2) -- (xt) node[midway,scale=2,font=\bfseries] {\dots};
+    \draw[-latex,rounded corners] (AL.east) -| ++ (1em,2em) -- (aux) |- (AL.west)
+        node[left] (W) {$W$};
+
+    \draw[<-,dashed] (At-1) -- ++(-3,0);
+    \draw[-latex] (At-1) -- (At)
+        node[midway,above] (W) {$W$};
+    \draw[-latex] (At) -- (At+1)
+        node[midway,above] (W) {$W$};
+    \draw[->,dashed] (At+1) -- ++(+3,0);
+
+    \foreach \i in {t-1,t,t+1}
+        {%
+            \draw[-latex] (A\i.north) -- ++ (0,2em)
+                node[above,item] (h\i) {$h_{\i}$};
+            \draw[-latex] (A\i.north) -- ++ (0,2em)
+                node[midway,right] (V\i) {$V$};
+            \draw[latex-] (A\i.south) -- ++ (0,-2em)
+                node[below,item] (x\i) {$x_{\i}$};
+            \draw[latex-] (A\i.south) -- ++ (0,-2em)
+                node[midway,right] (U\i) {$U$};
+        }
+
+        \draw[white,line width=0.8ex] (AL.north) -- ++ (0,1.9em);
+        \draw[-latex] (AL.north) -- ++ (0,2em) node[above,item] {$\hat{y}$}
+                node[midway,right] (V) {$V$};
+        \draw[latex-] (AL.south) -- ++ (0,-2em) node[below,item,] {$x$}
+            node[midway,right] (U) {$U$};
+
 \end{tikzpicture}
