@@ -97,7 +97,8 @@ and~\ref{eq:gradDescb})~\citep{geron_hands-machine_2017}.
 \begin{figure}
     \centering
     \input{figure-code/tikz/gradient-descent-tikz.tex}
-    \caption{Gradient descent for 1-dimensional objective function\label{fig:grad-desc}}
+    \caption{Gradient descent for 1-dimensional objective
+        function~\citep{goodfellow_deep_2016}\label{fig:grad-desc}}
 \end{figure}
 The learning rate constant $\epsilon$ can be adjusted to speed up or slow down the `steps' which
 can have different effects on the convergence~\citep{goodfellow_deep_2016}.
@@ -112,7 +113,7 @@ If the underlying relationship is more complicated, the model can only underfit 
 bias)~\citep{goodfellow_deep_2016}.
 Polynomial Regression has more capacity for example.
 Say the real relationship between features and ground truth now actually is linear;
-the Polynomial Regression model can overfit for statistical outliers in the test set which is why
+the Polynomial Regression model can overfit for statistical outliers in the training set which is why
 in this case the model with the lower capacity can achieve a lower generalization
 error~\citep{geron_hands-machine_2017}.
 Therefore, it is important to improve the bias/variance tradeoff.
@@ -148,7 +149,16 @@ The structure with which the \ac{NN} is build in terms of how many layers, how m
 layer and how they are connected, is called architecture~\citep{goodfellow_deep_2016}.
 The number of layers $d$ is refered to as depths, whereas the dimensionality of those layers is
 called the width $w$~\citep{goodfellow_deep_2016}.
-\input{figure-code/tikz/MLP-tikz.tex}
+\begin{figure}[ht]
+	\centering
+    \input{figure-code/tikz/MLP-tikz.tex}
+	\caption[Network graph for a MLP.]{
+        Network graph of a $(L+1)$-layer perceptron with $D$ input units and $C$ output units.
+        The $l^{\text{th}}$ hidden layer contains $m^{(l)}$ hidden
+        units~\citep{chauhan_review_2018,goodfellow_deep_2016}.
+    }
+	\label{fig:multilayer-perceptron}
+\end{figure}
 A neuron, the basic building block of \acp{NN}, receives input from neurons in the previous layer
 and calculates a single value which is propagated to neurons in the following
 layer~\citep{shrestha_review_2019}.
@@ -162,9 +172,13 @@ more complicated transformations of information and representation~\citep{goodfe
 Here $f$ denotes the function which is performed by a layer of neurons (linearity + activation).
 The parameters of the individual neurons are grouped together to $\T$ ($\T_:,0$ equals 1 for the
 bias term).
-Popular activation functions include ReLU, sigmoid ($\sigma$) and softmax~\citep{shrestha_review_2019}.
+Popular activation functions include ReLU, $\tanh$, sigmoid ($\sigma$) and
+softmax~\citep{shrestha_review_2019}.
 \begin{equation}\label{eq:relu}
     ReLU(x)=\max(0,x)
+\end{equation}
+\begin{equation}\label{eq:tanh}
+    \tanh(x)=\frac{\exp(x)-\exp(-x)}{\exp{x}+\exp{-x}}
 \end{equation}
 \begin{equation}\label{eq:sigmoid}
     \sigma(x)=\frac{1}{1+\exp(-x)}
@@ -175,6 +189,7 @@ Popular activation functions include ReLU, sigmoid ($\sigma$) and softmax~\citep
 While ReLU is the prevalent function for hidden layers, sigmoid (softmax) activation functions,
 used for the output layer, are used to generate a bernoulli (multinouli) distribution which is
 useful for classification tasks~\citep{goodfellow_deep_2016}.
+$\tanh$ is often used in \acp{RNN} like in~\cite{sherstinsky_fundamentals_2020,greff_lstm_2017}.
 \begin{comment}
 \begin{figure}[ht]
     \centering
@@ -238,22 +253,22 @@ dimensionality~\citep{goodfellow_deep_2016}.
 \acp{CNN} are extensively used in computer vision~\citep{chauhan_review_2018}.
 It consists of a variety of components: fully connected layer, activation function,
 convolutional layer, pooling layer~\citep{chauhan_review_2018,ponti_everything_2017}.
-The fully connected layers combined with activation functions are the layers that make up
-\acp{MLP}~\citep{ponti_everything_2017}.
+The fully connected layers are the layers that make up \acp{MLP}~\citep{ponti_everything_2017}.
 % FIXME: 2d, 1d conv
+
 % conv layer
 A convolutional layer has multiple filters which consist of multiple kernels~\citep{chauhan_review_2018}.
 For multi layer input, with $d$ so called channels, a filter has the same amount of kernels as there
 are channels ($d$)~\citep{ponti_everything_2017}.
 A kernel is a $n\times n$ square matrix made up of learnable parameters, so a filter is a tensor
 $n\times n\times d$.
-The convolution operation is the elementwise multiplication between the filter and overlapping
-$n\times n$ subspace of the input (see Figure~\ref{fig:conv-layer})~\citep{ponti_everything_2017}.
 \begin{figure}[ht]
     \centering
     \include{figure-code/tikz/conv-layer-tikz}
-    \caption{Convolution operation of a single kernel from a convolutional layer\label{fig:conv-layer}}
+    \caption{Convolution operation of a single kernel~\citep{chauhan_review_2018}\label{fig:conv-layer}}
 \end{figure}
+The convolution operation is the elementwise multiplication between the filter and overlapping
+$n\times n$ subspace of the input (see Figure~\ref{fig:conv-layer})~\citep{ponti_everything_2017}.
 The convolution operation is performed for every space in the input, spaces can be skipped if
 stride is introduced~\citep{ponti_everything_2017}.
 Often zero-padding is used to preserve the dimensions height and width between input and output of
@@ -264,43 +279,92 @@ The result of a convolutional layer is usually fed into a activation function to
 nonlinearity like with fully connected layers.
 The activation is performed on every element in the output und preserves the
 dimensionality~\citep{ponti_everything_2017}.
+
 % pooling
-Pooling layers are used to reduce the spacial dimension (i.e.\ downsampling) of feature
-maps~\citep{ponti_everything_2017}.
-Pooling layers preserve the number of channels and have no learnable parameters. % FIXME: source
 \begin{figure}[h]
     \centering
     \include{figure-code/tikz/pooling-tikz}%
-    \caption{Pooling layer\label{fig:pool-layer}}
+    \caption{Pooling layer~\citep{chauhan_review_2018}\label{fig:pool-layer}}
 \end{figure}
+% FIXME: source for figure
+Pooling layers are used to reduce the spatial dimension (i.e.\ downsampling) of feature
+maps~\citep{ponti_everything_2017}.
+Pooling layers preserve the number of channels and have no learnable parameters. % FIXME: source
 Much like with convolutions, the pooling operation is slid across the height and weight dimensions
 of the channels (possibly with stride) and the pooling operation is
 performed~\citep{ponti_everything_2017,chauhan_review_2018}.
-The most popular kind of pooling is maxpooling~\citep{ponti_everything_2017}.
-For the operation only the maximum value of the current subspace of the current channel is
-taken~\citep{chauhan_review_2018}.
 \begin{figure}[ht]
     \centering
     \include{figure-code/tikz/max-pooling-tikz}%
-    \caption{$2\times 2$ max pooling operation with stride 2\label{fig:pool-layer}}
+    \caption{$2\times 2$ max pooling operation with stride
+        2~\citep{chauhan_review_2018}\label{fig:pool-layer}}
 \end{figure}
-Popular \ac{CNN} architectures are explained in Chapter~\ref{ch:research}.
+The most popular kind of pooling is maxpooling~\citep{ponti_everything_2017}.
+For the operation only the maximum value of the current subspace of the current channel is
+taken~\citep{chauhan_review_2018}.
+
+When it comes to deep \acp{CNN}, the problem of vanishing/exploding gradients occurs during
+backpropagation.
+ResNet introduced residual blocks with skip connections which pass the gradient to later layers
+to bypass vanishing/exploding~\citep{he_deep_2015}.
+\begin{figure}[ht]
+    \centering
+    \input{figure-code/tikz/resnet-tikz.tex}%
+    \caption{Residual block module with skip connection~\citep{he_deep_2015}\label{fig:skip-conn}}
+\end{figure}
+ResNet and other popular \ac{CNN} architectures are explained in Chapter~\ref{ch:research}.
 
 \section{Recurrent Neural Nets}
 \acp{RNN} are another popular category of \ac{NN} which are used for processing sequential input,
 like text and speech~\citep{chauhan_review_2018}.
+Figure~\ref{fig:rnn-unrolling} shows a simple \ac{RNN}.
 \begin{figure}[ht]
     \centering
     \include{figure-code/tikz/rnn-tikz}%
-    \caption{Recurrent neural net unrolling\label{fig:rnn-unrolling}}
+    \caption{Recurrent neural net unrolling~\citep{goodfellow_deep_2016}\label{fig:rnn-unrolling}}
 \end{figure}
-During a execution run, all unrolled layers share the same weights ($U,V,W$)~\citep{chauhan_review_2018}.
-Vanishing/Exploding gradients
-RNN
+% FIXME: check dimensions of variables -> might need to be bold
+The defining element is the recurrent connection from node $h$ to itself~\citep{goodfellow_deep_2016}.
+A sequence of inputs \x\ is iteratively fed into the \ac{RNN}.
+The current layer of the network takes $x^{(t)}$ and $h^{(t-1)}$ and produces $h^{(t)}$
+(see Equation~\ref{eq:rnn-h}).
+Additionally, $h^{(t)}$ is used to calculate the output $\hat{y}^{(t)}$ (see Equation~\ref{eq:rnn-yh})
+and it is handed to the next layer~\citep{goodfellow_deep_2016}.
+Note that the connection(s) between hidden layers can differ depending on the type of \ac{RNN}
+used~\citep{goodfellow_deep_2016}.
+\begin{equation}\label{eq:rnn-h}
+    h^{(t)} = \tanh(b+Wh^{(t-1)}+Ux^{(t)})
+\end{equation}
+\begin{equation}\label{eq:rnn-yh}
+    \hat{y} = softmax(c + Vh^{(t)})
+\end{equation}
+During an execution run, all unrolled layers share the same weights ($U,V,W$)~\citep{chauhan_review_2018}.
+The example \ac{RNN} produced a output sequence the same length as the input
+sequence, however, this does not have to be the case for \acp{RNN}~\citep{goodfellow_deep_2016}.
+Optimization of the parameters of \acp{RNN} is performed with backpropagation through
+time~\citep{sherstinsky_fundamentals_2020}.
+That is because the unrolled network can be seen as a deep feed forward
+network~\citep{chauhan_review_2018}.
 
-The \ac{LSTM} network was introduced by~\cite{hochreiter_long_1997} to improve longer storing of
-information from earlier layers~\citep{chauhan_review_2018}.
-% FIXME: mention BiLSTM
+The \ac{LSTM} network was introduced by~\cite{hochreiter_long_1997} and modified
+by~\cite{gers_learning_1999} to improve longer storing of information from earlier
+layers~\citep{chauhan_review_2018}.
+The \ac{LSTM} also improves upon the vanishing/exploding gradients problem associated with
+increasingly deep \acp{NN}~\citep{sherstinsky_fundamentals_2020}.
+A so called cell is shown in Figure~\ref{fig:lstm}, it shows the basic structure which represents
+the recurrent building block of \acp{LSTM}~\citep{goodfellow_deep_2016}.
+The three gates (input, forget, output) help make the \ac{LSTM} a widely used \ac{NN} model.
+The gates calculate weights between 0 and 1 (thus the use of $\sigma$) that are used to control
+the flow of information~\citep{goodfellow_deep_2016}.
+The forget gate is part of a self loop which helps to accumulate information longer, the input
+gate helps to focus on the relevant characteristics of the input information
+and the output gate removes irrelevant information for the output as well as the next
+cell~\citep{goodfellow_deep_2016}.
+\begin{figure}[ht]
+    \centering
+    \input{figure-code/tikz/lstm-tikz.tex}
+    \caption{Long short term memory cell~\citep{goodfellow_deep_2016}\label{fig:lstm}}
+\end{figure}
 
 \section{Transformers}
 \begin{itemize}
@@ -309,6 +373,12 @@ information from earlier layers~\citep{chauhan_review_2018}.
     \item architecture: embedding \& positional encoding $\rightarrow$ encoder block
         $\rightarrow$ decoder block $\rightarrow$ softmax \& right shifting
 \end{itemize}
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.4\textwidth]{img/Transformer-Waswani-Attention-2017.png}
+    \caption{Transformer network~\citep{vaswani_attention_2017}\label{fig:transformer}}
+\end{figure}
 
 \section{Scene Text Spotting}
 %% intro

@@ -37,7 +37,9 @@
 \RequirePackage{tikz-qtree}
 \RequirePackage{latexsym}
 \RequirePackage{tikz}
-\usetikzlibrary{decorations.pathreplacing,fadings,shadows,trees,positioning,matrix,calc,chains}
+\usetikzlibrary{%
+    decorations.pathreplacing,fadings,shadows,trees,positioning,matrix,calc,chains,arrows.meta,fit,shapes
+}
 \RequirePackage{sidecap}
 
 \makenomenclature
@@ -52,6 +54,8 @@
 \newcommand{\C}{\mathbb{C}}    % Menge der komplexen Zahlen
 \newcommand{\E}{\mathbb{E}}    % Erwartungswert
 \newcommand{\Xt}{\mathbb{X}}    % Trainingsset
+
+\newcommand{\empt}[2]{$#1^{\langle #2 \rangle}$} % for LSTM tikz
 
 % math notation help
 \newcommand{\w}{\textbf{w}}

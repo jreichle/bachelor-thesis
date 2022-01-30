@@ -1,3 +1,4 @@
+{\scriptsize%
 \begin{tikzpicture}[scale=0.6]
     \node (l1) {conv 1, $1\times1$};
     \node[right=2mm of l1, label={below:}] (act1) {$ReLU$};
@@ -18,3 +19,4 @@
     \draw[decorate, decoration={brace, amplitude=1ex, raise=1cm}] (l2.east) -- node[midway, below=1.2cm]
         {$F(\X)$} (l1.west);
 \end{tikzpicture}
+}
