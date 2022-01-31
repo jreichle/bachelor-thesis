@@ -11,7 +11,7 @@ size(y)
 c = A' * A \ A' * y
 
 
-scatter(x,y,'filled','MarkerFaceColor','blue');
+scatter(x,y,'filled','MarkerFaceColor','black');
 hold on
 fp = fplot(@(x) c(1) + x * c(2), [0 10]);
 set([fp],'LineWidth',2)

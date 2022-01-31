@@ -1,8 +1,8 @@
-{\centering%
+{\scriptsize%
 \begin{tikzpicture}[
     % GLOBAL CFG
     font=\sf \scriptsize,
-    >=LaTeX,
+    %>=LaTeX,
     % Styles
     cell/.style={% For the main box
         rectangle,
@@ -24,7 +24,7 @@
     ct/.style={% For external inputs and outputs
         circle,
         draw,
-        line width = .75pt,
+        %line width = .75pt,
         minimum width=1cm,
         inner sep=1pt,
         },
@@ -53,12 +53,12 @@
     \node [cell, minimum height =4cm, minimum width=6cm] at (0,0){} ;
 
     % Draw inputs named ibox#
-    \node [gt] (ibox1) at (-2,-0.75) {$\sigma^f$};
+    \node [gt] (ibox1) at (-2,-0.75) {$\sigma_f$};
     % forget
-    \node [gt] (ibox2) at (-1.5,-0.75) {$\sigma^i$};
+    \node [gt] (ibox2) at (-1.5,-0.75) {$\sigma_i$};
     % input
     \node [gt, minimum width=1cm] (ibox3) at (-0.5,-0.75) {$\tanh$};
-    \node [gt] (ibox4) at (0.5,-0.75) {$\sigma^o$};
+    \node [gt] (ibox4) at (0.5,-0.75) {$\sigma_o$};
     % output
 
    % Draw opérators   named mux# , add# and func#
@@ -70,18 +70,18 @@
     % memory cell
 
     % Draw External inputs? named as basis c,h,x
-    \node[ct, label={[mylabel]Cell}] (c) at (-4,1.5) {$c^{(t-1)}$};
-    \node[ct, label={[mylabel]Hidden}] (h) at (-4,-1.5) {$h^{(t-1)}$};
+    \node[ct, label={[mylabel]}] (c) at (-4,1.5) {$c^{(t-1)}$};
+    \node[ct, label={[mylabel]}] (h) at (-4,-1.5) {$\hat{y}^{(t-1)}$};
     \node[ct, label={[mylabel]left:Input}] (x) at (-2.5,-3) {$x^{(t)}$};
 
     % Draw External outputs? named as basis c2,h2,x2
-    \node[ct, label={[mylabel]Label1}] (c2) at (4,1.5) {$c^{(t)}$};
-    \node[ct, label={[mylabel]Label2}] (h2) at (4,-1.5) {$h^{(t)}$};
-    \node[ct, label={[mylabel]left:Label3}] (x2) at (2.5,3) {$h^{(t)}$};
+    \node[ct, label={[mylabel]}] (c2) at (4,1.5) {$c^{(t)}$};
+    \node[ct, label={[mylabel]}] (h2) at (4,-1.5) {$\hat{y}^{(t)}$};
+    \node[ct, label={[mylabel]right:Output}] (x2) at (2.5,3) {$\hat{y}^{(t)}$};
 
-    \node (fg) at (6,-0.5) {$\sigma^f$: Forget Gate};
-    \node (ig) at (6,0) {$\sigma^i$: Input Gate};
-    \node (og) at (6,0.5) {$\sigma^o$: Output Gate};
+    \node (fg) at (6,-0.5) {$\sigma_f$: Forget Gate};
+    \node (ig) at (6,0) {$\sigma_i$: Input Gate};
+    \node (og) at (6,0.5) {$\sigma_o$: Output Gate};
 
 % Start connecting all.
     %Intersections and displacements are used.

@@ -14,8 +14,6 @@ Instead of categorizing functional and non-functional requirements, like for tra
 software projects~\citep{zowghi_requirements_2014}, qualities that a \ac{MLS} must possess
 are defined.
 
-% FIXME: end-to-end metric is important, not word spotting! (alphanumeric)
-
 \section{Use Case}
 The problem can be depicted by a use case.
 This use case sets the foundation for determining requirements for an
@@ -225,8 +223,11 @@ text)~\citep{oyedotun_deep_2015,ghosh_visual_2017,chen_text_2021}.
 Therefore, these properties have to be accounted for when determining the viability for an approach.
 Some of these factors do not change the expected prediction (noise), others do (text
 form)\cite{hu_towards_2020}.
-An example for bad image quality in regards to \ac{OCR} can be seen in figure~\ref{fig:bad-example}.
-% FIXME: add \cite{long_scene_2021} difficulties
+% TODO: need source here? all information already presented
+An example for bad image quality in regards to \ac{STS} can be seen in figure~\ref{fig:bad-example}.
+Note that the datasets introduced in Section~\ref{se:sts} include the challenging image properties,
+as \ac{STS} is defined with robustness in mind.
+Therefore, the difference performance and robustness is not clear cut for \ac{STS}.
 
 % Performance efficiency
 Performance efficiency addresses time and resource utilization when the model is in use.

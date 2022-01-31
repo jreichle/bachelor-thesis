@@ -117,8 +117,8 @@ the Polynomial Regression model can overfit for statistical outliers in the trai
 in this case the model with the lower capacity can achieve a lower generalization
 error~\citep{geron_hands-machine_2017}.
 Therefore, it is important to improve the bias/variance tradeoff.
-Aside from model selection, there are different techniques used to prevent overfitting (e.g.
-Regularization)~\citep{goodfellow_deep_2016}.
+Aside from model selection, there are different techniques used to prevent overfitting
+(Regularization)~\citep{goodfellow_deep_2016}.
 \begin{figure}[h]
     \centering
     \subfigure[Linear Regression underfit\label{fig:lin-reg-under}]{%
@@ -251,13 +251,14 @@ dimensionality~\citep{goodfellow_deep_2016}.
 \acp{CNN} are a type of \ac{NN} that is also acyclic, like \acp{MLP}~\citep{chauhan_review_2018}.
 \acp{CNN} are specialized to process a grid of values $\X$ like an image~\citep{goodfellow_deep_2016}.
 \acp{CNN} are extensively used in computer vision~\citep{chauhan_review_2018}.
-It consists of a variety of components: fully connected layer, activation function,
+They consist of a variety of components: fully connected layer, activation function,
 convolutional layer, pooling layer~\citep{chauhan_review_2018,ponti_everything_2017}.
 The fully connected layers are the layers that make up \acp{MLP}~\citep{ponti_everything_2017}.
-% FIXME: 2d, 1d conv
 
+% FIXME: 2d, 1d conv
 % conv layer
-A convolutional layer has multiple filters which consist of multiple kernels~\citep{chauhan_review_2018}.
+A convolutional layer has multiple filters which consist of multiple
+kernels~\citep{chauhan_review_2018}.
 For multi layer input, with $d$ so called channels, a filter has the same amount of kernels as there
 are channels ($d$)~\citep{ponti_everything_2017}.
 A kernel is a $n\times n$ square matrix made up of learnable parameters, so a filter is a tensor
@@ -279,26 +280,30 @@ The result of a convolutional layer is usually fed into a activation function to
 nonlinearity like with fully connected layers.
 The activation is performed on every element in the output und preserves the
 dimensionality~\citep{ponti_everything_2017}.
+In the explained scenario, the filter is slid across a 2d-surface to perform convolution, note that
+this can be restricted to 1d (for e.g.\ audio), or extended to 3d (for e.g. CT
+scans)~\citep{goodfellow_deep_2016}.
 
 % pooling
 \begin{figure}[h]
     \centering
     \include{figure-code/tikz/pooling-tikz}%
-    \caption{Pooling layer~\citep{chauhan_review_2018}\label{fig:pool-layer}}
+    \caption{Pooling layer~\label{fig:pool-layer}}
 \end{figure}
 % FIXME: source for figure
 Pooling layers are used to reduce the spatial dimension (i.e.\ downsampling) of feature
 maps~\citep{ponti_everything_2017}.
-Pooling layers preserve the number of channels and have no learnable parameters. % FIXME: source
-Much like with convolutions, the pooling operation is slid across the height and weight dimensions
-of the channels (possibly with stride) and the pooling operation is
-performed~\citep{ponti_everything_2017,chauhan_review_2018}.
+Pooling layers preserve the number of channels, as the operation is performed to each channel
+separately (see Figure~\ref{fig:pool-layer})~\citep{chauhan_review_2018}.
 \begin{figure}[ht]
     \centering
     \include{figure-code/tikz/max-pooling-tikz}%
     \caption{$2\times 2$ max pooling operation with stride
         2~\citep{chauhan_review_2018}\label{fig:pool-layer}}
 \end{figure}
+Much like with convolutions (in 2d scenario), the pooling operation is slid across the height and
+weight dimensions of the channels (possibly with stride) and the pooling operation is
+performed~\citep{ponti_everything_2017,chauhan_review_2018}.
 The most popular kind of pooling is maxpooling~\citep{ponti_everything_2017}.
 For the operation only the maximum value of the current subspace of the current channel is
 taken~\citep{chauhan_review_2018}.
@@ -330,17 +335,20 @@ The current layer of the network takes $x^{(t)}$ and $h^{(t-1)}$ and produces $h
 (see Equation~\ref{eq:rnn-h}).
 Additionally, $h^{(t)}$ is used to calculate the output $\hat{y}^{(t)}$ (see Equation~\ref{eq:rnn-yh})
 and it is handed to the next layer~\citep{goodfellow_deep_2016}.
-Note that the connection(s) between hidden layers can differ depending on the type of \ac{RNN}
-used~\citep{goodfellow_deep_2016}.
 \begin{equation}\label{eq:rnn-h}
     h^{(t)} = \tanh(b+Wh^{(t-1)}+Ux^{(t)})
 \end{equation}
 \begin{equation}\label{eq:rnn-yh}
-    \hat{y} = softmax(c + Vh^{(t)})
+    \hat{y}^{(t)} = softmax(c + Vh^{(t)})
 \end{equation}
-During an execution run, all unrolled layers share the same weights ($U,V,W$)~\citep{chauhan_review_2018}.
+Note that the connection(s) between hidden layers can differ depending on the type of \ac{RNN}
+used~\citep{goodfellow_deep_2016}.
+During an execution run, all unrolled layers share the same weights
+($U,V,W$)~\citep{chauhan_review_2018}.
 The example \ac{RNN} produced a output sequence the same length as the input
 sequence, however, this does not have to be the case for \acp{RNN}~\citep{goodfellow_deep_2016}.
+Both the input and the output can either be a sequence of variable length or a vector of fixed
+length~\citep{goodfellow_deep_2016}.
 Optimization of the parameters of \acp{RNN} is performed with backpropagation through
 time~\citep{sherstinsky_fundamentals_2020}.
 That is because the unrolled network can be seen as a deep feed forward
@@ -353,6 +361,11 @@ The \ac{LSTM} also improves upon the vanishing/exploding gradients problem assoc
 increasingly deep \acp{NN}~\citep{sherstinsky_fundamentals_2020}.
 A so called cell is shown in Figure~\ref{fig:lstm}, it shows the basic structure which represents
 the recurrent building block of \acp{LSTM}~\citep{goodfellow_deep_2016}.
+\begin{figure}[ht]
+    \centering
+    \input{figure-code/tikz/lstm-tikz.tex}
+    \caption{Long short term memory cell~\citep{goodfellow_deep_2016,yu_review_2019}\label{fig:lstm}}
+\end{figure}
 The three gates (input, forget, output) help make the \ac{LSTM} a widely used \ac{NN} model.
 The gates calculate weights between 0 and 1 (thus the use of $\sigma$) that are used to control
 the flow of information~\citep{goodfellow_deep_2016}.
@@ -360,27 +373,69 @@ The forget gate is part of a self loop which helps to accumulate information lon
 gate helps to focus on the relevant characteristics of the input information
 and the output gate removes irrelevant information for the output as well as the next
 cell~\citep{goodfellow_deep_2016}.
-\begin{figure}[ht]
-    \centering
-    \input{figure-code/tikz/lstm-tikz.tex}
-    \caption{Long short term memory cell~\citep{goodfellow_deep_2016}\label{fig:lstm}}
-\end{figure}
+% FIXME: add attention?
 
 \section{Transformers}
-\begin{itemize}
-    \item components: embedding (input \& output), positional encoding, multi-head attention,
-        fully connected layer
-    \item architecture: embedding \& positional encoding $\rightarrow$ encoder block
-        $\rightarrow$ decoder block $\rightarrow$ softmax \& right shifting
-\end{itemize}
-
+Of the most popular basic strucures for \acp{NN}, the transformers are the newest innovation.
+The paper from~\cite{vaswani_attention_2017} introduced the transfomer architecture which is
+build for processing sequence data and~\cite{dosovitskiy_image_2021} then introduced the vision
+transformer (ViT).
+Explaining the inner workings of transformers in detail exceeds the scope of this thesis.
+In the following the basic building blocks and their effects are described with the example of
+translating sentences.
+Figure~\ref{fig:transformer} shows a transformer network at the abstraction level of components and
+their alignment to build the network.
 \begin{figure}[ht]
     \centering
-    \includegraphics[width=0.4\textwidth]{img/Transformer-Waswani-Attention-2017.png}
+    \includegraphics[width=0.8\textwidth]{img/Transformer-Vaswani-Attention-2017.png}
     \caption{Transformer network~\citep{vaswani_attention_2017}\label{fig:transformer}}
 \end{figure}
+% FIXME: add more sources for all of this:
+The network is made up of multiple multiple encoder and multiple decoder
+blocks ($nx$)~\citep{vaswani_attention_2017}.
+The blocks are preceded by embedding and positional modules~\citep{vaswani_attention_2017}.
+The embedding modules map a word to a vector, also interpreted as a point in space, where similar
+words are close to each other~\citep{vaswani_attention_2017}.
+An example for a embedding space is presented by~\cite{pennington_glove_2014}.
+Because the placing of a word in a sentence determines different meaning or context, positional
+encoding is added to the word embedding~\citep{vaswani_attention_2017}.
+The encoder and decoder blocks contain multi-head attention modules and feedforward networks.
+They also contain skip connections and layer normalization which helps with training the network
+and to keep it stable~\citep{vaswani_attention_2017}.
+A multi-head attention block calculates which words (by now embedded) of the input are
+important for each other word.
+For $n$ words the results are $n$ vectors $\in\R^n$.
+The attention is calculated by a scaled dot product (see
+Figure~\ref{fig:transformer-dot-product})~\citep{vaswani_attention_2017}.
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.5\textwidth]{img/Transformer-Scaled-Dot-Product-Vasani-Attention-2017.png}
+    \caption{Scaled dot product used to compute attention
+        vectors~\citep{vaswani_attention_2017}\label{fig:transformer-dot-product}}
+\end{figure}
+This is calculated multiple times (hence the term multi-head) and the results are merged with
+weighted average, leading to an attention vector for each word in the
+sentence~\citep{vaswani_attention_2017}.
+Each encoder block has one multi-head attention module which calculates the needed attention
+between each word in the original language.
+Each decoder has two multi-head attention modules~\citep{vaswani_attention_2017}.
+One is masked (only already predicted words are used for calculation, others are masked/0), it
+calculates the attention between translated words.
+The second one calculates the attention between each original and translated word.
+Finally the feedforward layers help to transform the attention vectors into digestible form for the
+next encoder/decoder block~\citep{vaswani_attention_2017}.
+The result of the $nx$ encoder blocks are $n$ vectors (one for each word).
+They are fed into the second attention module for the $nx$ decoder
+blocks~\citep{vaswani_attention_2017}.
+The result of the $nx$ decoder blocks is fed into a linear layer and a softmax layer afterwards.
+This creates the prediction, for the next translated word.
+For the next iteration (to generate next translated word) the previous translated words are encoded
+like the original words and fed into the first attention module of the $nx$ decode blocks.
+New translated words are generated with this iteration until until the end of sentence token
+is generated~\citep{vaswani_attention_2017}.
 
-\section{Scene Text Spotting}
+
+\section{Scene Text Spotting}\label{se:sts}
 %% intro
 % def, ocr vs sts
 \ac{OCR} is the concept of extracting typed, handwritten or printed text
@@ -392,7 +447,8 @@ The difficulties arise from diviersity and variability of text, complexity and i
 backgrounds and imperfect imaging conditions.
 In these conditions \ac{OCR} is known as \ac{STS}~\citep{long_scene_2021}.
 % DL influence
-Before the advent of \ac{DL}, researchers in the field had to hand-craft features~\citep{long_scene_2021}.
+Before the advent of \ac{DL}, researchers in the field had to hand-craft
+features~\citep{long_scene_2021}.
 \ac{DL} automates the feature generation process with its representation and learning
 capabilities~\citep{long_scene_2021,goodfellow_deep_2016}.
 Because of this, \ac{DL} methods are the prefered tools for performing \ac{STS}~\citep{long_scene_2021}.
@@ -544,7 +600,7 @@ The Text Orientation column specifies the most complicated orientation that is p
         {\includegraphics[width=0.30\textwidth]{img/Dataset-Examples/IIIT-5k-word-examples.png}}
     \subfigure[\scriptsize MSRA-TD500~\citep{cong_yao_detecting_2012}\label{fig:msra-td500}]
         {\includegraphics[width=0.30\textwidth]{img/Dataset-Examples/MSRA-TD500-examples.png}}
-    \subfigure[\scriptsize Total Text (2017)~\citep{chan_total-text-dataset_2022}\label{fig:total-text}]
+    \subfigure[\scriptsize Total Text (2017)~\citep{chng_total-text_2017}\label{fig:total-text}]
         {\includegraphics[width=0.30\textwidth]{img/Dataset-Examples/Total-Text-examples.png}}
     \subfigure[\scriptsize SCUT CTW1500 (2017)~\citep{yuliang_detecting_2017}\label{fig:SCUT-CWT1500}]
         {\includegraphics[width=0.30\textwidth]{img/Dataset-Examples/SCUT-CWT1500-examples.png}}
