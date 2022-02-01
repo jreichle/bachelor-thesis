@@ -382,29 +382,30 @@ build for processing sequence data and~\cite{dosovitskiy_image_2021} then introd
 transformer (ViT).
 Explaining the inner workings of transformers in detail exceeds the scope of this thesis.
 In the following the basic building blocks and their effects are described with the example of
-translating sentences.
+translating a sentence.
 Figure~\ref{fig:transformer} shows a transformer network at the abstraction level of components and
 their alignment to build the network.
 \begin{figure}[ht]
     \centering
     \includegraphics[width=0.8\textwidth]{img/Transformer-Vaswani-Attention-2017.png}
-    \caption{Transformer network~\citep{vaswani_attention_2017}\label{fig:transformer}}
+    \caption{Transformer model architecture~\citep{vaswani_attention_2017}\label{fig:transformer}}
 \end{figure}
+% FIXME: explain encoder/decoder
 % FIXME: add more sources for all of this:
 The network is made up of multiple multiple encoder and multiple decoder
-blocks ($nx$)~\citep{vaswani_attention_2017}.
+blocks ($Nx$)~\citep{vaswani_attention_2017}.
 The blocks are preceded by embedding and positional modules~\citep{vaswani_attention_2017}.
 The embedding modules map a word to a vector, also interpreted as a point in space, where similar
 words are close to each other~\citep{vaswani_attention_2017}.
 An example for a embedding space is presented by~\cite{pennington_glove_2014}.
-Because the placing of a word in a sentence determines different meaning or context, positional
+Because the placing of a word in a sentence can change the meaning, positional
 encoding is added to the word embedding~\citep{vaswani_attention_2017}.
 The encoder and decoder blocks contain multi-head attention modules and feedforward networks.
-They also contain skip connections and layer normalization which helps with training the network
-and to keep it stable~\citep{vaswani_attention_2017}.
+They also contain skip connections (introduced with residual block~\citep{he_deep_2015}) and layer
+normalization~\citep{vaswani_attention_2017} which helps with training the network and to keep it
+stable~\citep{liu_rethinking_2021}.
 A multi-head attention block calculates which words (by now embedded) of the input are
 important for each other word.
-For $n$ words the results are $n$ vectors $\in\R^n$.
 The attention is calculated by a scaled dot product (see
 Figure~\ref{fig:transformer-dot-product})~\citep{vaswani_attention_2017}.
 \begin{figure}[ht]
@@ -413,9 +414,9 @@ Figure~\ref{fig:transformer-dot-product})~\citep{vaswani_attention_2017}.
     \caption{Scaled dot product used to compute attention
         vectors~\citep{vaswani_attention_2017}\label{fig:transformer-dot-product}}
 \end{figure}
-This is calculated multiple times (hence the term multi-head) and the results are merged with
-weighted average, leading to an attention vector for each word in the
-sentence~\citep{vaswani_attention_2017}.
+This is calculated multiple times (hence the term multi-head) and the results are merged by
+concatenation and a subseding linear layer~\citep{vaswani_attention_2017}.
+This allows the model to use different representations of the information~\citep{vaswani_attention_2017}.
 Each encoder block has one multi-head attention module which calculates the needed attention
 between each word in the original language.
 Each decoder has two multi-head attention modules~\citep{vaswani_attention_2017}.
@@ -424,16 +425,14 @@ calculates the attention between translated words.
 The second one calculates the attention between each original and translated word.
 Finally the feedforward layers help to transform the attention vectors into digestible form for the
 next encoder/decoder block~\citep{vaswani_attention_2017}.
-The result of the $nx$ encoder blocks are $n$ vectors (one for each word).
-They are fed into the second attention module for the $nx$ decoder
+The result of the $Nx$ encoder blocks are fed into the second attention module for the $Nx$ decoder
 blocks~\citep{vaswani_attention_2017}.
-The result of the $nx$ decoder blocks is fed into a linear layer and a softmax layer afterwards.
+The result of the $Nx$ decoder blocks is fed into a linear layer and a softmax layer afterwards.
 This creates the prediction, for the next translated word.
 For the next iteration (to generate next translated word) the previous translated words are encoded
-like the original words and fed into the first attention module of the $nx$ decode blocks.
+like the original words and fed into the first attention module of the $Nx$ decode blocks.
 New translated words are generated with this iteration until until the end of sentence token
 is generated~\citep{vaswani_attention_2017}.
-
 
 \section{Scene Text Spotting}\label{se:sts}
 %% intro
