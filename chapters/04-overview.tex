@@ -6,51 +6,77 @@ First the search for literature which lays the foundation for the subsequent sec
 The a taxonomy is introduced which facilitates the analysis and comparison of techniques.
 Lastly, the advances in the field are placed in the correct position and analyzed.
 
-\section{Literature Search}\label{se:litSearch}
-This section documents the search for literature which provides the content for the subsequent
-overview.
-For this, important pipelines and notable advances along with their properties are researched,
-analysed and presented.
-The literature is identified through searching in the Google Scholar database.
-The search is executed with keywords such as, but not only: Deep Learning, Text Detection,
-Text Recognition, Text Spotting, Scene Text, Pipeline.
-% FIXME: update keywords
-A criterion for further examination is an appropriate amount of citations for the piece of literature
-in question.
-Additionally, literature is selected through citations for and by literature which has already been
-identified as important.
-All research after 2018 which pertains to extracting scene text is regarded as relevant.
-Standard \ac{OCR} solutions may not hold validity in practice, as the image and text conditions can
-vary in the defined problem~\citep{chen_text_2021}.
-The delimination from Section~\ref{se:problem} of course holds for this chapter and only literature
-which concerns advances for the \ac{DL} model architecture will be regarded as important for the
-scope of this thesis.
-This extends to the whole pipeline from preprocessing an image to the final result of the model.
-
-% FIXME: hierarchical graphic with found papers
-% FIXME: describe proceeding
-
 \section{Taxonomy of Pipeline Steps}
 In order to create the overview the necessary steps in the process of \ac{STS} need to be highlighted,
 from preprocessing to classifying the identified text~\citep{long_scene_2021, sourvanos_challenges_2018}.
 The ways in which the respective issues for the steps are solved are identified from literature,
 listed and explained alongside.
-
-\begin{figure}[ht]
+\begin{figure}[h]
     \centering
     \include{figure-code/tikz/taxonomie-tikz}
 \caption{Pipeline taxonomy and respective steps\label{fig:pipelineSteps}}
 \end{figure}
+Figure~\ref{fig:pipelineSteps} shows tasks which are associated with \ac{STS}.
+\ac{STD} and \ac{STR} only incorporate a part of \ac{STS}, while E2E
+incorporate both \ac{STD} and \ac{STR} techniques to solve \ac{STS}~\citep{long_scene_2021}.
+Therefore this section will first discuss the two parts, to then combine them.
+
+For \ac{STD} two main categories of approaches can be identified: segmentation based and segmentation
+free~\citep{long_scene_2021,sheng_centripetaltext_2021,liu_accurate_2020}.
+The segmentation free category draws heavy inspiration from the field of object
+detection~\citep{long_scene_2021,liu_accurate_2020}.
+This is only natural as text detection can be seen as a type of object
+detection~\citep{liu_accurate_2020,long_scene_2021}.
+For object detection inspired \ac{STD} there are mainly two methods: one stage i.e.\ anchor based
+and two stage i.e. \ac{ROI} based~\citep{long_scene_2021}.
+Both localize text instances as a whole~\citep{long_scene_2021,sheng_centripetaltext_2021}.
+One stage or anchor based approaches are modelled after~\cite{liu_ssd_2016} (Single Shot MultiBox
+Detector --- SSD) and~\cite{redmon_you_2016} (You Only Look Once --- YOLO).
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.8\textwidth]{img/STD-seg-free-Liao-TextBoxes-2017.png}
+    \caption{Example for an anchor based, segmentation free STD
+    architecture~\citep{liao_textboxes_2017}\label{fig:STD-segfree}}
+\end{figure}
+The basic approach is explained with the example of~\cite{liao_textboxes_2017} which is based on
+SSD (see Figure~\ref{fig:STD-segfree}).
+It uses 13 layer convolutional network (three blocks of: two or three $3\times3$ conv layers followed
+by a $2\times2$ max pooling layer) for feature extraction~\citep{liao_textboxes_2017}.
+Afterwards come nine additional layers which continuously downsample, the output of six of them
+is separately used as feature maps for \ac{BB} regression~\citep{liao_textboxes_2017}.
+% FIXME: source?
+The downsampling and \ac{BB} regression for different layers helps detect text instances of different
+sizes.
+%
+The \ac{BB} regression is carried out by six text-box layers which predict how probable a text
+instance (c) is in the respective area and predict where the text instance is ($x,y,w,h$).
+These layers are the difference to the SSD approach for normal object
+detection~\citep{liao_textboxes_2017,liu_ssd_2016}.
+Note that the output is not the location of a \ac{BB} but the offset to the
+respective anchor box~\citep{liao_textboxes_2017}.
+Anchor boxes are predefined to give bias towards sizes and aspect ratios of
+text~\citep{liao_textboxes_2017}.
+Additionally, the text-box layers use $1\times5$ filters to adjust to larger aspect
+ratios~\citep{liao_textboxes_2017}.
+Each text-box layer has 72 filters (12 anchor boxes $\cdot$ 6 values per prediction), the filters
+are slided accross the input features generating 12 predicted \ac{BB} per
+position~\citep{liao_textboxes_2017}.
+The \acp{BB} of all layers are then subjected to the process of \ac{NMS} to filter out the best
+\ac{BB} for each possible text instance~\citep{liao_textboxes_2017}.
+%FIXME: umschreiben: erst SSD erklären und dann veränderung für STD?
+
+% FIXME: ROI methods
+The R-CNN which builds the foundation for \ac{ROI} based text detection, was introduced
+by~\cite{girshick_rich_2014} and improved by~\cite{girshick_fast_2015} (Fast
+R-CNN),~\cite{ren_faster_2015} (Faster R-CNN) and~\cite{he_mask_2018} (Mask R-CNN).
+The model introduced by~\cite{jiang_r2cnn_2017} uses Faster R-CNN.
 
 STD
 \begin{itemize}
-    \item Two approaches: regression based --- segmentation based (on the rise)
-    \item Steps:
-        \begin{itemize}
-            \item regression based: feature extraction, bounding box regression, IOU matching
-            \item segmentation based: segment text areas (different granularity: pixel, component,
-                character), assemble text instances (reconstruction)
-        \end{itemize}
+    \item ROI proposal (two stage): feature extraction, ROI proposal, ROI pooling
+            (like R-CNN)
+    \item segmentation based: segment text areas (different granularity: pixel, component,
+        character), assemble text instances (reconstruction)
 \end{itemize}
 
 STR
@@ -82,8 +108,9 @@ STR
         \end{itemize}
 \end{itemize}
 
-STS
+E2E
 \begin{itemize}
+    \item trainable as one?
     \item Bestandteile nicht zwangsweise sequentiell
     \item two step or two stage pipeline
 \end{itemize}
@@ -99,14 +126,6 @@ What is segmentation
 - End to end?
 \end{comment}
 
-\begin{figure}[h]
-    \centering
-    \includegraphics[width=0.60\textwidth]{img/Long-Scene-2021-Pipeline-Changes.png}
-    \includegraphics[width=0.60\textwidth]{img/Long-Scene-2021-STD-Pipelines.png}
-    \includegraphics[width=0.60\textwidth]{img/Chen-Text-2021-STR-Pipeline.png}
-    \caption{Pipelines~\citep{long_scene_2021,chen_text_2021}\label{fig:piplineChanges}}
-\end{figure}
-
 \begin{figure}[ht]
     \centering
     \subfigure[Residual block~\citep{he_deep_2015}\label{fig:residual-block}]{%
@@ -120,6 +139,31 @@ What is segmentation
     }
     \caption{Modules introduced with ResNet\label{fig:resnet}}
 \end{figure}
+
+\section{Literature Search}\label{se:litSearch}
+This section documents the search for literature which provides the content for the subsequent
+overview of innovation.
+For this, important pipelines and notable advances along with their properties are researched,
+analysed and presented.
+The literature is identified through searching in the Google Scholar database.
+The search is executed with keywords such as, but not only: Deep Learning, Text Detection,
+Text Recognition, Text Spotting, Scene Text, Pipeline.
+% FIXME: update keywords
+A criterion for further examination is an appropriate amount of citations for the piece of literature
+in question.
+Additionally, literature is selected through citations for and by literature which has already been
+identified as important.
+All research after 2018 which pertains to extracting scene text is regarded as relevant.
+Standard \ac{OCR} solutions may not hold validity in practice, as the image and text conditions can
+vary in the defined problem~\citep{chen_text_2021}.
+The delimination from Section~\ref{se:problem} of course holds for this chapter and only literature
+which concerns advances for the \ac{DL} model architecture will be regarded as important for the
+scope of this thesis.
+This extends to the whole pipeline from preprocessing an image to the final result of the model.
+
+% FIXME: hierarchical graphic with found papers
+% FIXME: describe proceeding
+
 
 \section{State of the Art Methods}
 

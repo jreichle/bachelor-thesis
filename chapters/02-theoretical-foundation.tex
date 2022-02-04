@@ -7,6 +7,7 @@ exceed the scope of this work.
 Whenever possible heavy mathematical notation is omitted if it does not aid the understanding of the
 reader.
 
+% FIXME: note probabilistic view (distributions, frequentist/bayesian)
 \section{Machine Learning}
 To grasp \ac{DL}, a solid understanding of \ac{ML} has to be developed
 first~\citep{goodfellow_deep_2016}.
@@ -130,6 +131,7 @@ Aside from model selection, there are different techniques used to prevent overf
     \caption{Regression with linear and polynomial model\label{fig:examples}}
 \end{figure}
 
+% FIXME: emphasize difference: feedforward --- fully conv/fully connected
 \section{Deep Learning}
 In \ac{DL}, \acp{DNN} are leveraged to automatically learn new representations of data through
 multiple layers of abstraction.
@@ -220,7 +222,7 @@ The training error is calculated through the objective function and is propagate
 in conjunction with the output of forwardpropagation on each neuron~\citep{goodfellow_deep_2016}.
 For this the chain rule of calculus can be used to modularly, recursively propagate the
 loss backwards to use \ac{GD} (see Figure~\ref{fig:error-backpropagation}).
-% TODO: not a real computation graph, ok?
+% XXX: NNs are not convex
 \begin{figure}[ht]
 	\centering
     \input{figure-code/tikz/backprop-tikz.tex}
@@ -276,7 +278,7 @@ Often zero-padding is used to preserve the dimensions height and width between i
 the layer~\citep{ponti_everything_2017}.
 The number of filters a convolutional layer applies is equal to the output channels that the layer
 has which are often called feature maps~\citep{ponti_everything_2017}.
-The result of a convolutional layer is usually fed into a activation function to introduce
+The result of the convolution is usually fed into a ReLU activation function to introduce
 nonlinearity like with fully connected layers.
 The activation is performed on every element in the output und preserves the
 dimensionality~\citep{ponti_everything_2017}.
@@ -373,9 +375,11 @@ The forget gate is part of a self loop which helps to accumulate information lon
 gate helps to focus on the relevant characteristics of the input information
 and the output gate removes irrelevant information for the output as well as the next
 cell~\citep{goodfellow_deep_2016}.
+% FIXME: add BiLSTMs?
 % FIXME: add attention?
 
 \section{Transformers}
+% FIXME: look into \cite{kloss_learning_2016}
 Of the most popular basic strucures for \acp{NN}, the transformers are the newest innovation.
 The paper from~\cite{vaswani_attention_2017} introduced the transfomer architecture which is
 build for processing sequence data and~\cite{dosovitskiy_image_2021} then introduced the vision
@@ -390,8 +394,7 @@ their alignment to build the network.
     \includegraphics[width=0.8\textwidth]{img/Transformer-Vaswani-Attention-2017.png}
     \caption{Transformer model architecture~\citep{vaswani_attention_2017}\label{fig:transformer}}
 \end{figure}
-% FIXME: explain encoder/decoder
-% FIXME: add more sources for all of this:
+% FIXME: explain encoder/decoder - attention
 The network is made up of multiple multiple encoder and multiple decoder
 blocks ($Nx$)~\citep{vaswani_attention_2017}.
 The blocks are preceded by embedding and positional modules~\citep{vaswani_attention_2017}.

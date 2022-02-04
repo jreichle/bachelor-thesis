@@ -4,7 +4,7 @@
     \node[right=4mm of l1] (l15) {pooling};
     \node[right=4mm of l15, label={below:}] (act1) {$ReLU$};
     \node[right=4mm of act1] (l2) {conv 2};
-    \node[right=4mm of l2,font=\Large,label={below:},inner sep=0,pin={90:$F(\X) + P(\X)$}] (add)
+    \node[right=4mm of l2,font=\small,label={below:},inner sep=0,pin={90:$F(\X) + P(\X)$}] (add)
         {$\oplus$};
     \node[right=4mm of add, label={below:}] (act2) {$ReLU$};
 

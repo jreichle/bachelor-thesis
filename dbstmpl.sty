@@ -25,7 +25,6 @@
 \RequirePackage[font=scriptsize,labelfont=bf]{caption}
 \RequirePackage{verbatim}
 \RequirePackage{acro}
-\RequirePackage{url}
 \RequirePackage{booktabs}
 \RequirePackage{placeins}
 \RequirePackage{mathtools}
@@ -33,7 +32,8 @@
 \RequirePackage{makecell}
 
 %% allow urls to break in bibliography
-\RequirePackage{hyperref}
+\RequirePackage{xurl}
+\RequirePackage[hidelinks]{hyperref}
 \RequirePackage[round]{natbib}
 
 %% tikz drawings
@@ -88,6 +88,7 @@
 %%
 \DeclareAcronym{AP}{short=AP,long=Average Precision}
 \DeclareAcronym{AED}{short=AED,long=Average Edit Distance}
+\DeclareAcronym{BB}{short=BB,long=Bounding Box}
 \DeclareAcronym{CNN}{short=CNN,long=Convolutional Neural Network}
 \DeclareAcronym{DL}{short=DL,long=Deep Learning}
 \DeclareAcronym{DNN}{short=DNN,long=Deep Neural Network}
@@ -98,9 +99,11 @@
 \DeclareAcronym{ML}{short=ML,long=Machine Learning}
 \DeclareAcronym{MLP}{short=MLP,long=Multi Layer Perceptron}
 \DeclareAcronym{MLS}{short=MLS,long=Machine Learning System}
+\DeclareAcronym{NMS}{short=NMS,long=Non Maximum Suppression}
 \DeclareAcronym{NN}{short=NN,long=Neural Network}
 \DeclareAcronym{OCR}{short=OCR,long=Optical Character Recognition}
 \DeclareAcronym{RNN}{short=RNN,long=Recurrent Neural Network}
+\DeclareAcronym{ROI}{short=ROI,long=Region of Interest}
 \DeclareAcronym{STD}{short=STD,long=Scene Text Detection}
 \DeclareAcronym{STR}{short=STR,long=Scene Text Recognition}
 \DeclareAcronym{STS}{short=STS,long=Scene Text Spotting}

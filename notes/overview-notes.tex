@@ -5,6 +5,36 @@ have been accom- plished by replacing a modular processing pipeline with large n
 that are trained end-to-end [37]. In essence, transparency is traded for accuracy.
 This is an unavoidable reality.'\citep{arpteg_software_2018}
 
+Text Perceptron: Towards End-to-End arbitrary-shaped text spotting~\citep{qiao_text_2021}
+\begin{itemize}
+    \item many real world texts appear in arbitrary layouts, quadrangle-based approches nmot well adapted
+        $\rightarrow$ segment text mask, good results for IOU evaluation
+    \item pipelined approaches (not e2e) have suboptimal performance because errors from recognition
+        cannot be utilized for optimizing detection
+    \item Methods proposed for end-to-end trainable network:
+        \begin{itemize}
+            \item end-to-end network for reading irregular text inspired by mask-rcnn
+                approach loses cntext information and needs character-level annotations
+            \item transform irregular text with ROI modue
+        \end{itemize}
+    \item text detection
+        \begin{itemize}
+            \item anchor-based: use anchors to provide region proposals
+            \item segmentation-based: use global semantic segmentation, relies on complicated
+                postprocesses to separate different text instances
+        \end{itemize}
+\end{itemize}
+
+Centripetal Text~\citep{sheng_centripetaltext_2021}
+Two categories to do text detection
+\begin{itemize}
+    \item Component-free methods: treat every text instance as a complete whole $\rightarrow$ directly
+        regress bb/roi like general object detectors RCNN, SSD, often utilize heuristic anchors
+        as prior knowledge
+    \item Component-based methods: model text instances from local perspectives and decompose instances
+        into locally detectable segments and links $\rightarrow$ combine segments into whole words
+\end{itemize}
+
 Scene Text Detection and Recognition~\cite{long_scene_2021}
 Deep learning $\rightarrow$ frees researchers from hand-crafting features, simplifies pipeline,
     improves performance
