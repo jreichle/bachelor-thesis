@@ -3,7 +3,35 @@
 Go down hierarchy and compare most important advances
 \begin{itemize}
     \item Compare: two step, two stage, parallel
+    \item Compare: innovations for specific steps/stages
 \end{itemize}
+
+\begin{table}[ht]
+    \centering\scriptsize
+    \begin{tabular}{p{.1\textwidth}p{.15\textwidth}p{.1\textwidth}p{.55\textwidth}}
+        Task & \multicolumn{2}{c}{Approach} & Shortcommings \\
+        \toprule
+        STD & Seg free & & Curved text~\citep{long_scene_2021} \\
+            & & & Higher aspect ratios~\citep{long_scene_2021,shi_detecting_2017}\\
+            & & & Text orientation~\citep{shi_detecting_2017} \\
+            & & 1-stage & \\
+            & & 2-stage & \\
+            & Seg based & & \\
+            & & Pixel-level & \\
+            & & Component-level & \\
+            & & Character-level & \\
+        \midrule
+        STR & Seg based & & \\
+            & Seg free & & \\
+            & & CTC based &  \\
+            & & Attention based & \\
+        \midrule
+        E2E & 2-step & & \\
+            & Parallel & & \\
+        \bottomrule
+    \end{tabular}
+    \caption{Tasks, method categories and their shortcomings\label{tb:steps-properties}}
+\end{table}
 
 For comparison: which Benchmark Dataset fits the problem the best?
 \begin{itemize}
@@ -13,12 +41,18 @@ For comparison: which Benchmark Dataset fits the problem the best?
             \item Total-Text: shape ropustness
             \item MSRA-TD500: aspect ratio ropustness
         \end{itemize}
-    \item~\cite{yang_learning_2021}:commonly used for oriented text: ICDAR2015, ICDAR2017 MLT, MSRA-TD500
+    \item~\cite{yang_learning_2021}:commonly used for oriented text: ICDAR2015, ICDAR2017 MLT,
+        MSRA-TD500
 \end{itemize}
 
-Important points:
+Detection
 \begin{itemize}
-    \item ResNet is pretty much the Feature Extractor Benchmark
+    \item~\cite{ferrari_textsnake_2018}: many methods have strong assumption that text instances are
+        in linear shape and therefore adopted simple representations (rectangles --- axis aligned
+        or rotated, quadrangles) $\rightarrow$ problem with irregular and curved text
+    \item~\cite{ferrari_textsnake_2018}: some models are specifically designed for arbitrary shapes
+    \item~\cite{shi_detecting_2017}: modular approach instead of whole \acp{BB}
+        $\rightarrow$ good with long aspect ratio and orientation because of flexibility
 \end{itemize}
 
 Recognition

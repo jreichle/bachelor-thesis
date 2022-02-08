@@ -98,7 +98,7 @@ and~\ref{eq:gradDescb})~\citep{geron_hands-machine_2017}.
 \begin{figure}
     \centering
     \input{figure-code/tikz/gradient-descent-tikz.tex}
-    \caption{Gradient descent for 1-dimensional objective
+    \caption[Gradient descent visualization]{Gradient descent for 1-dimensional objective
         function~\citep{goodfellow_deep_2016}\label{fig:grad-desc}}
 \end{figure}
 The learning rate constant $\epsilon$ can be adjusted to speed up or slow down the `steps' which
@@ -128,7 +128,9 @@ Aside from model selection, there are different techniques used to prevent overf
     \subfigure[Polynomial Regression overfit\label{fig:pol-reg-over}]{%
         \includegraphics[width=0.45\textwidth]{img/Poly-Regression-overfit.png}
     }
-    \caption{Regression with linear and polynomial model\label{fig:examples}}
+    \caption[Regression over- and underfitting]{%
+        Regression with linear and polynomial model\label{fig:examples}
+    }
 \end{figure}
 
 % FIXME: emphasize difference: feedforward --- fully conv/fully connected
@@ -154,12 +156,11 @@ called the width $w$~\citep{goodfellow_deep_2016}.
 \begin{figure}[ht]
 	\centering
     \input{figure-code/tikz/MLP-tikz.tex}
-	\caption[Network graph for a MLP.]{
+	\caption[Network graph for a MLP]{%
         Network graph of a $(L+1)$-layer perceptron with $D$ input units and $C$ output units.
         The $l^{\text{th}}$ hidden layer contains $m^{(l)}$ hidden
-        units~\citep{chauhan_review_2018,goodfellow_deep_2016}.
+        units~\citep{chauhan_review_2018,goodfellow_deep_2016}.\label{fig:multilayer-perceptron}
     }
-	\label{fig:multilayer-perceptron}
 \end{figure}
 A neuron, the basic building block of \acp{NN}, receives input from neurons in the previous layer
 and calculates a single value which is propagated to neurons in the following
@@ -192,13 +193,6 @@ While ReLU is the prevalent function for hidden layers, sigmoid (softmax) activa
 used for the output layer, are used to generate a bernoulli (multinouli) distribution which is
 useful for classification tasks~\citep{goodfellow_deep_2016}.
 $\tanh$ is often used in \acp{RNN} like in~\cite{sherstinsky_fundamentals_2020,greff_lstm_2017}.
-\begin{comment}
-\begin{figure}[ht]
-    \centering
-    \includegraphics[width=0.6\textwidth]{img/activation-functions.png}
-    \caption{Popular activation functions\label{fig:activation-functions}}
-\end{figure}
-\end{comment}
 Note that for e.g.\ regression, the output layer can omit the activation
 function~\citep{goodfellow_deep_2016}.
 The calculation of the prediction is basically a concatenation of the functions defined by the
@@ -247,6 +241,7 @@ This calculation is performed until the first layer of the computational graph i
 reached~\citep{goodfellow_deep_2016}.
 Note that the algorithm can be performed with tensors of arbitrary
 dimensionality~\citep{goodfellow_deep_2016}.
+% FIXME: backpropagation/training not really talked about after this, as it exceeds the scope of thesis
 
 \section{Convoluational Neural Nets}
 % basics
@@ -263,12 +258,16 @@ A convolutional layer has multiple filters which consist of multiple
 kernels~\citep{chauhan_review_2018}.
 For multi layer input, with $d$ so called channels, a filter has the same amount of kernels as there
 are channels ($d$)~\citep{ponti_everything_2017}.
+Note that the height and with are refered to as spatial dimensions and the depth is refered to as
+the channel dimension.
 A kernel is a $n\times n$ square matrix made up of learnable parameters, so a filter is a tensor
 $n\times n\times d$.
 \begin{figure}[ht]
     \centering
     \include{figure-code/tikz/conv-layer-tikz}
-    \caption{Convolution operation of a single kernel~\citep{chauhan_review_2018}\label{fig:conv-layer}}
+    \caption[Visualization of a convolution operation]{%
+        Convolution operation of a single kernel~\citep{chauhan_review_2018}\label{fig:conv-layer}
+    }
 \end{figure}
 The convolution operation is the elementwise multiplication between the filter and overlapping
 $n\times n$ subspace of the input (see Figure~\ref{fig:conv-layer})~\citep{ponti_everything_2017}.
@@ -290,9 +289,11 @@ scans)~\citep{goodfellow_deep_2016}.
 \begin{figure}[h]
     \centering
     \include{figure-code/tikz/pooling-tikz}%
-    \caption{Pooling layer~\label{fig:pool-layer}}
+    \caption[Channel dimension preserving of pooling layers]{%
+        Pooling layers preserve channel dimenstions but downsample spatial
+        dimensions\label{fig:pool-layer}
+    }
 \end{figure}
-% FIXME: source for figure
 Pooling layers are used to reduce the spatial dimension (i.e.\ downsampling) of feature
 maps~\citep{ponti_everything_2017}.
 Pooling layers preserve the number of channels, as the operation is performed to each channel
@@ -300,7 +301,7 @@ separately (see Figure~\ref{fig:pool-layer})~\citep{chauhan_review_2018}.
 \begin{figure}[ht]
     \centering
     \include{figure-code/tikz/max-pooling-tikz}%
-    \caption{$2\times 2$ max pooling operation with stride
+    \caption[Visualization of a max pooling operation]{$2\times 2$ max pooling operation with stride
         2~\citep{chauhan_review_2018}\label{fig:pool-layer}}
 \end{figure}
 Much like with convolutions (in 2d scenario), the pooling operation is slid across the height and
@@ -317,9 +318,14 @@ to bypass vanishing/exploding~\citep{he_deep_2015}.
 \begin{figure}[ht]
     \centering
     \input{figure-code/tikz/resnet-tikz.tex}%
-    \caption{Residual block module with skip connection~\citep{he_deep_2015}\label{fig:skip-conn}}
+    \caption[Skip connection introduced by residual blocks]{%
+        Residual block module with skip
+        connection~\citep{he_deep_2015}\label{fig:skip-conn}
+    }
 \end{figure}
 ResNet and other popular \ac{CNN} architectures are explained in Chapter~\ref{ch:research}.
+
+% FIXME: explain ResNet and VGG-16
 
 \section{Recurrent Neural Nets}
 \acp{RNN} are another popular category of \ac{NN} which are used for processing sequential input,
@@ -328,9 +334,12 @@ Figure~\ref{fig:rnn-unrolling} shows a simple \ac{RNN}.
 \begin{figure}[ht]
     \centering
     \include{figure-code/tikz/rnn-tikz}%
-    \caption{Recurrent neural net unrolling~\citep{goodfellow_deep_2016}\label{fig:rnn-unrolling}}
+    \caption[Simple recurrent neural net]{%
+        Recurrent neural net unrolling~\citep{goodfellow_deep_2016}\label{fig:rnn-unrolling}
+    }
 \end{figure}
 % FIXME: check dimensions of variables -> might need to be bold
+% FIXME: h as hidden state
 The defining element is the recurrent connection from node $h$ to itself~\citep{goodfellow_deep_2016}.
 A sequence of inputs \x\ is iteratively fed into the \ac{RNN}.
 The current layer of the network takes $x^{(t)}$ and $h^{(t-1)}$ and produces $h^{(t)}$
@@ -366,7 +375,9 @@ the recurrent building block of \acp{LSTM}~\citep{goodfellow_deep_2016}.
 \begin{figure}[ht]
     \centering
     \input{figure-code/tikz/lstm-tikz.tex}
-    \caption{Long short term memory cell~\citep{goodfellow_deep_2016,yu_review_2019}\label{fig:lstm}}
+    \caption[Long short term memoory cell]{%
+        Long short term memory cell~\citep{goodfellow_deep_2016,yu_review_2019}\label{fig:lstm}
+    }
 \end{figure}
 The three gates (input, forget, output) help make the \ac{LSTM} a widely used \ac{NN} model.
 The gates calculate weights between 0 and 1 (thus the use of $\sigma$) that are used to control
@@ -376,7 +387,7 @@ gate helps to focus on the relevant characteristics of the input information
 and the output gate removes irrelevant information for the output as well as the next
 cell~\citep{goodfellow_deep_2016}.
 % FIXME: add BiLSTMs?
-% FIXME: add attention?
+% FIXME: add vector-sequence,sequence-vector,sequence-sequence(attention)
 
 \section{Transformers}
 % FIXME: look into \cite{kloss_learning_2016}
@@ -392,7 +403,9 @@ their alignment to build the network.
 \begin{figure}[ht]
     \centering
     \includegraphics[width=0.8\textwidth]{img/Transformer-Vaswani-Attention-2017.png}
-    \caption{Transformer model architecture~\citep{vaswani_attention_2017}\label{fig:transformer}}
+    \caption[Transformer architecture]{%
+        Transformer model architecture~\citep{vaswani_attention_2017}\label{fig:transformer}
+    }
 \end{figure}
 % FIXME: explain encoder/decoder - attention
 The network is made up of multiple multiple encoder and multiple decoder
@@ -414,12 +427,15 @@ Figure~\ref{fig:transformer-dot-product})~\citep{vaswani_attention_2017}.
 \begin{figure}[ht]
     \centering
     \includegraphics[width=0.5\textwidth]{img/Transformer-Scaled-Dot-Product-Vasani-Attention-2017.png}
-    \caption{Scaled dot product used to compute attention
-        vectors~\citep{vaswani_attention_2017}\label{fig:transformer-dot-product}}
+    \caption[Computation of an attention mechanism]{%
+        Scaled dot product used to compute attention
+        vectors~\citep{vaswani_attention_2017}\label{fig:transformer-dot-product}
+    }
 \end{figure}
 This is calculated multiple times (hence the term multi-head) and the results are merged by
 concatenation and a subseding linear layer~\citep{vaswani_attention_2017}.
-This allows the model to use different representations of the information~\citep{vaswani_attention_2017}.
+This allows the model to use different representations of the
+information~\citep{vaswani_attention_2017}.
 Each encoder block has one multi-head attention module which calculates the needed attention
 between each word in the original language.
 Each decoder has two multi-head attention modules~\citep{vaswani_attention_2017}.
@@ -528,6 +544,7 @@ According to~\cite{su_relationship_2015}, \ac{AP} can be considered the area und
 Precision-versus-Recall curve.
 \fone\ on the other hand only considers singular instances on that curve~\citep{long_scene_2021} and
 is sensitive to the tradeoff while \ac{AP} is invariant to it~\citep{shi_icdar2017_2017}.
+% FIXME: add mAP
 % STR
 For \ac{STR} the evaluation can be based on character-level or word-level.
 There is no need to match ground truth to prediction, as the image is already

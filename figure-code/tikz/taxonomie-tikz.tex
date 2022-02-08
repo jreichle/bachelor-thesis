@@ -32,21 +32,24 @@
     \node[anchor=south,lroot]{STS}
     [edge from parent fork down]
         child{node [lone] {STD}
-            child{node [ltwo] {Segmentation \\ free}
+            child{node [ltwo] {Anchor \\ based}
                 child[lthree,level1] {node {Feature \\ Extraction}}
                 child[lthree,level2] {node {Text \\ localization}}
+                child[lthree,level3] {node {Filter \\ results}}
             }
             child{node [ltwo] {Segmentation \\ based}
-                child[lthree,level1] {node {Sub-components \\ segmentation}}
-                child[lthree,level2] {node {Text \\ reconstruction}}
+                child[lthree,level1] {node {Feature \\ Extraction}}
+                child[lthree,level2] {node {Sub-components \\ segmentation}}
+                child[lthree,level3] {node {Text \\ reconstruction}}
             }
         }
         %
         child{node [lone] {STR}
             child{node [ltwo] {Segmentation \\ based}
                 child[lthree,level1] {node {Image \\ preprocessing}}
-                child[lthree,level2] {node {Character \\ segmentation}}
-                child[lthree,level3] {node {Character \\ recognition}}
+                child[lthree,level2] {node {Feature \\ extraction}}
+                child[lthree,level3] {node {Character \\ segmentation}}
+                child[lthree,level4] {node {Character \\ recognition}}
             }
             child{node [ltwo] {Segmentation \\ free}
                 child[lthree,level1] {node {Image \\ preprocessing}}
