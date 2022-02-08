@@ -7,7 +7,7 @@ The a taxonomy is introduced which facilitates the analysis and comparison of te
 Lastly, the advances in the field are placed in the correct position and analyzed.
 
 \section{Taxonomy of Pipeline Steps}
-In order to create the overview the necessary steps in the process of \ac{STS} need to be highlighted,
+To create the overview the necessary steps in the process of \ac{STS} needs to be highlighted,
 from preprocessing to classifying the identified
 text~\citep{long_scene_2021, sourvanos_challenges_2018}.
 The ways in which the respective issues for the steps are solved are identified from literature,
@@ -20,30 +20,33 @@ listed and explained alongside.
 Figure~\ref{fig:pipelineSteps} shows tasks which are associated with \ac{STS}.
 \ac{STD} and \ac{STR} only incorporate a part of \ac{STS}, while E2E
 incorporate both \ac{STD} and \ac{STR} techniques to solve \ac{STS}~\citep{long_scene_2021}.
-Therefore this section will first discuss the two parts, to then combine them.
+Therefore this section will first discuss the two parts, to then later combine them.
 
-For \ac{STD} two main categories of approaches can be identified: segmentation based and anchor
-based~\citep{long_scene_2021,sheng_centripetaltext_2021,liu_accurate_2020}.
-% FIXME: anchor based can also be regression based -> change to BB regression
-% FIXME: check whether convolutional predictor always has softmax!!!
-The anchor based category draws heavy inspiration from the field of object
+% FIXME: mehr Allgemeinheit zu den Beispielen!
+For \ac{STD} two main categories of approaches can be identified: segmentation based and \ac{BB}
+regression based~\citep{long_scene_2021,sheng_centripetaltext_2021,liu_accurate_2020}.
+The regression based category draws heavy inspiration from the field of object
 detection~\citep{long_scene_2021,liu_accurate_2020}.
 This is only natural as text detection can be seen as a type of object
 detection~\citep{liu_accurate_2020,long_scene_2021}.
 For object detection inspired \ac{STD} there are two methods: one stage and two
 stage~\citep{long_scene_2021}.
-% FIXME: why one / two
-Both localize text instances as a whole~\citep{long_scene_2021,sheng_centripetaltext_2021}.
+Both localize text instances as a whole (in the form of a
+\ac{BB})~\citep{long_scene_2021,sheng_centripetaltext_2021}.
 One stage approaches are modelled after~\cite{liu_ssd_2016}, Single Shot MultiBox
 Detector (SSD) and~\cite{redmon_you_2016}, You Only Look Once (YOLO).
 \begin{figure}[ht]
     \centering
     \includegraphics[width=0.8\textwidth]{img/STD-seg-free-Liao-TextBoxes-2017.png}
-    \caption[One stage, anchor based STD architecture]{Example for a one stage, anchor based STD
-    architecture~\citep{liao_textboxes_2017}\label{fig:STD-segfree-ssd}}
+    \caption[One stage, BB regression based STD architecture]{%
+        Example for a one stage, BB regression based STD
+        architecture~\citep{liao_textboxes_2017}\label{fig:STD-segfree-ssd}
+    }
 \end{figure}
 The basic approach is explained with the example of~\cite{liao_textboxes_2017} (see
 Figure~\ref{fig:STD-segfree-ssd}) which is based on SSD.%
+Note that the approach is only modeled to recognize horizontal text
+instances~\citep{liao_textboxes_2017}.
 It uses 13 layer convolutional network (three blocks of: two or three $3\times3$ conv layers followed
 by a $2\times2$ max pooling layer) for feature extraction~\citep{liao_textboxes_2017}.
 Afterwards come nine additional layers which continuously downsample, the output of six of them
@@ -74,22 +77,24 @@ by~\cite{girshick_rich_2014} and improved by~\cite{girshick_fast_2015} (Fast
 R-CNN),~\cite{ren_faster_2015} (Faster R-CNN) and~\cite{he_mask_2018} (Mask R-CNN).
 Note that 2-stage methods are fully differentiable and thus end to end trainable since
 Faster R-CNN (like 1-stage methods)~\citep{ren_faster_2015,long_scene_2021}.
-The model introduced by~\cite{jiang_r2cnn_2017} (see Figure~\ref{fig:STD-segfree-rcnn}) uses
-Faster R-CNN.%
+The \ac{STD} approach introduced by~\cite{jiang_r2cnn_2017} (see Figure~\ref{fig:STD-segfree-rcnn})
+uses Faster R-CNN.%
 \begin{figure}[ht]
     \centering
     \includegraphics[width=0.8\textwidth]{img/STD-seg-free-Jiang-R2CNN-2017.png}
-    \caption[Two stage, anchor based STD architecture]{Example for a two stage, anchor based STD
-        architecture~\citep{jiang_r2cnn_2017}\label{fig:STD-segfree-rcnn}}
+    \caption[Two stage, BB regression based STD architecture]{%
+        Example for a two stage, BB regression based STD
+        architecture~\citep{jiang_r2cnn_2017}\label{fig:STD-segfree-rcnn}
+    }
 \end{figure}
 Like with the one stage approach, the two stage approach starts with feature extraction from the
 image with a convolutional layers~\citep{jiang_r2cnn_2017}.
 The generated feature map is used by a \ac{RPN}.
-Like with the previously explained approach, the feature maps are used to regress the offset respective
-to bounding boxes.
+Like with the previously explained approach, the feature maps are used to regress the offset
+respective to bounding boxes.
 The bounding boxes are still axis aligned at this point~\citep{jiang_r2cnn_2017}.
 In contrast to the previous SSD based approach, only one feature map is used in conjunction with
-anchor box regression~\citep{jiang_r2cnn_2017}.
+\ac{BB} regression~\citep{jiang_r2cnn_2017}.
 The \ac{RPN} from Faster R-CNN is adjusted to use smaller scale anchor boxes to adapt to
 text~\citep{jiang_r2cnn_2017}.
 Note that R-CNN and Fast-RCNN used the slower Sequential Search algorithm instead of an
@@ -113,8 +118,8 @@ Because of this, sub-text components can be detected separately and then used to
 instance~\citep{long_scene_2021}.
 Segmentation based methods can roughly be summed up in two categories: pixel based and component
 based~\citep{long_scene_2021}.
-Like with anchor based methods, example architectures are explained in order to describe their
-categories more clearly.
+Like with \ac{BB} regression based methods, example architectures are explained in order to
+describe their categories more clearly.
 The paper~\cite{deng_pixellink_2018} introduced a pixel based \ac{STD} approach.
 \begin{figure}[ht]
     \centering
@@ -133,7 +138,6 @@ Continuous downsampling and and combining those layers with later, upsampled lay
 to combine coarse, higher level information with fine, lower level
 information~\citep{long_fully_2015}.
 The upsampling is performed with bilinear interpolation~\citep{deng_pixellink_2018}.
-% FIXME: is this Conv Attention/Encoder-Decoder?
 Depending on which head is used, the $1\times1$ convolution layers either have 2 or $2\cdot8$ filters.
 Counted together, the model has 18 output channels~\citep{deng_pixellink_2018}.
 The $1\times1$ convolution layers are also used for upsampling (deconvolution,
@@ -142,9 +146,9 @@ The 2 filters are used to predict text/non-text for each pixel, while the other 
 the links~\citep{deng_pixellink_2018}.
 The text/non-text head essentially performs semantic segmentation, that is to categorize each
 pixel to its type~\citep{deng_pixellink_2018}.
+For every neighbor there is a negative and a positive score.
 A pixel has eight neighbors: left, left-down, left-up, right, right-down, right-up, up, down.
 Each of the $2\cdot8$ filters is responsiblde for link a neighbor~\citep{deng_pixellink_2018}.
-% FIXME: look into seglink (next approach)
 \begin{figure}[ht]
     \centering
     \includegraphics[width=1\textwidth]{img/STD-seg-based-CNN-Deng-PixelLink-2018.pdf}
@@ -157,9 +161,10 @@ After both links and text/non-text pixels have been predicted, they are combined
 segmentation~\citep{deng_pixellink_2018}.
 The link layers are used to indicate whether two text pixels are grouped together an thus belong to
 the same instance~\citep{deng_pixellink_2018}.
+The output is a dense prediction map with the same spatial structure as the input
+image~\citep{deng_pixellink_2018}.
 A bounding box can then be extracted by laying minimum area rectangles over the
 instances~\citep{deng_pixellink_2018}.
-% FIXME: final output same spatial structure as inout image
 
 The second segmentation based category for \ac{STD} segments components which are local regions of
 text that can overlap one or more characters~\citep{long_scene_2021}.
@@ -173,8 +178,8 @@ text that can overlap one or more characters~\citep{long_scene_2021}.
 \end{figure}
 The architecture (see Figure~\ref{fig:STD-segbased-component-architecture})
 from~\cite{shi_detecting_2017} is used as an example for this category.
-Like the one-stage, anchor based \ac{STD} approach, the feature extraction \ac{CNN} of this approach
-is taken from SSD, the difference is reflected in the prediction
+Like the one-stage, \ac{BB} regression based \ac{STD} approach, the feature extraction \ac{CNN} of
+this approach is taken from SSD, the difference is reflected in the prediction
 layers~\citep{shi_detecting_2017,liu_ssd_2016}.
 Instead of detecting whole \acp{BB}, the networks predicts both subcomponents and links at multiple
 scales~\citep{shi_detecting_2017}.
@@ -184,13 +189,23 @@ The segments are given by the values $x_s,y_s,w_s,h_s,\theta_s$ which offset an 
 as confidence scores $c_1,c_2$~\citep{shi_detecting_2017}.
 Links are used to separate the segments and are accordingly used to separate neraby
 words~\citep{shi_detecting_2017}.
-% FIXME: how exactly is link predicted --- conv or this calc?
-Within layer links are predicted by $2\cdot$ for the neighbors of a space in the feature map
+The prediction layer applies convolution, like with $c_1,c_2$ for every neighbor and cross layer
+neighbor a positive and a negative value is predicted~\citep{shi_detecting_2017}.
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.5\textwidth]{img/STD-seg-based-links-Shi-Detecting-2017.png}
+    \caption[Predicting links for segmentation based STD]{%
+        Visualization for prediction of links within and cross layers for segmentation based
+        STD~\citep{shi_detecting_2017}\label{fig:STD-segbased-component-links}
+    }
+\end{figure}
+% XXX: are equations really needed?
+Within layer links are predicted for the neighbors of a space in the predicted feature map
 (see Figure~\ref{fig:STD-segbased-component-links} (a),
 Equation~\ref{eq:STD-segbased-subcomp-same-layer})~\citep{shi_detecting_2017}.
 \begin{equation}\label{eq:STD-segbased-subcomp-same-layer}
     \mathcal{N}_{s^{x,y,l}}^w =
-        \frac{{\{s^(x',y',l)\}}_{x-1\leq x'\leq x+1,y-1\leq y'\leq y+1}}{s^{(x,y,l)}}
+        \frac{{\{s^{(x',y',l)}\}}_{x-1\leq x'\leq x+1,y-1\leq y'\leq y+1}}{s^{(x,y,l)}}
 \end{equation}
 The cross layer links on the other hand are predicted by using the 4 cross layer neighors of the
 feature map of the preceding predictor~\citep{shi_detecting_2017}.
@@ -199,31 +214,28 @@ Equation~\ref{eq:STD-segbased-subcomp-cross-layer})~\citep{shi_detecting_2017}.
 \begin{equation}\label{eq:STD-segbased-subcomp-cross-layer}
     \mathcal{N}_{s^{x,y,l}}^c = {\{s^{(x',y',l-1)}\}}_{2x\leq x'\leq 2x+1,2y\leq y'\leq 2y+1}
 \end{equation}
+These cross layer links are used to connect segments on different scales~\citep{shi_detecting_2017}.
+The network architecture designed so that the preceding feature map is twice the sice (spatial
+dimensions) of the current which is necessary to extract the right
+locations~\citep{shi_detecting_2017}.
+Before reconstruction the text instances, segments are filtered by their confidence
+scores~\citep{shi_detecting_2017}.
+To reconstruct, the predictions are taken as a graph: segments are nodes, links are edges.
+Depth-first search is applied to the graph to find connected components and thus text
+instances~\citep{shi_detecting_2017}.
 
-\begin{figure}[ht]
-    \centering
-    \includegraphics[width=0.5\textwidth]{img/STD-seg-based-links-Shi-Detecting-2017.png}
-    \caption[Predicting links for segmentation based STD]{%
-        Visualization for prediction of links within and cross layers for segmentation based
-        STD\label{fig:STD-segbased-component-links}
-    }
-\end{figure}
-
+% FIXME: how to begin?
+Examples
 \begin{itemize}
-    \item Links: connect segments and separate nearby instances
-        \begin{itemize}
-            \item within layer: connect on same layer
-            \item cross layer: connect between layers
-        \end{itemize}
-    \item use within and cross layer links to connect adjacent locations, scales
-    \item Find whole instance by depths-first search
+    \item Segmentation based approach~\cite{liao_scene_2018}
+    \item Segmentation less: (important to mention improvements made)
+        CTC ---~\cite{shi_end--end_2017},
+        Attention ---~\cite{sutskever_sequence_2014}
 \end{itemize}
-
-% FIXME: after all explained: Note that mixtures of the categories are possible in practice,
-%           the categorization is applied to help compare approaches (give example for mixture)
 
 STR
 \begin{itemize}
+    \item mention dependency on lexicons
     \item segmentation-free approach (segmentation-based implicit and explicit out of date)
     \item Steps: Preprocessing, Feature Extraction, Sequence Modelling, Prediction
     \item preprocessing, text enhancement: remove distortions, background; improve resolution,
@@ -260,13 +272,13 @@ E2E
 
 \begin{table}[ht]
     \centering\scriptsize
-    \begin{tabular}{p{.05\textwidth}p{.1\textwidth}p{.15\textwidth}p{.55\textwidth}}
-        Task & \multicolumn{2}{c}{Approach} & Identifying properties \\
+    \begin{tabular}{p{.05\textwidth}p{.09\textwidth}p{.16\textwidth}p{.55\textwidth}}
+        Task & \multicolumn{2}{c}{Approach category} & Identifying properties \\
         \toprule
-        STD & Seg free & & Localize text instance whole \\
+        STD & Seg free & & Localize whole instances  \\
             & & 1-stage & direct \ac{BB} regression \\
             & & 2-stage & find \acp{ROI}, adjust \acp{ROI} for better fit \\
-            & Seg based & & Localize sub text components \\
+            & Seg based & & Localize sub text components to reconstruct instance \\
             & & Pixel-level & Pixel level segmentation \\
             & & Component-level & Sub-component level segmentation \\
         \midrule
@@ -281,6 +293,9 @@ E2E
     \end{tabular}
     \caption{Tasks, method categories and identifying propertis\label{tb:steps-properties}}
 \end{table}
+
+% FIXME: after all explained: Note that mixtures of the categories are possible in practice,
+%           the categorization is applied to help compare approaches (give example for mixture)
 
 \section{Literature Search}\label{se:litSearch}
 This section documents the search for literature which provides the content for the subsequent

@@ -288,7 +288,8 @@ evaluation of recognition methods falls behind the time robustness of recognitio
 with slightly differend bounding box is seldom verified
 
 \textbf{End-to-end system}
-also known as text spotting systems, profiting from idea of designing differentiable computation graphs
+also known as text spotting systems, profiting from idea of designing differentiable computation
+graphs
 \begin{itemize}
     \item Two-step pipeline:
         \begin{itemize}
@@ -319,9 +320,10 @@ from 2018 $\rightarrow$ outdated
         morphological operations
     \item Segmentation: separating structural elements --- implicit and explicit segmentation
     \item Feature extraction: generating salient features --- geometrical, statistical
-    \item Classification: categorizing individual characters to their respective classes --- clustering,
-        neural networks, bayesian models, etc.
-    \item Post-processing: improving and filtering --- contextual approaches, multiple classifiers, dictionary based approaches
+    \item Classification: categorizing individual characters to their respective classes
+        --- clustering, neural networks, bayesian models, etc.
+    \item Post-processing: improving and filtering --- contextual approaches, multiple classifiers,
+        dictionary based approaches
 \end{itemize}
 
 Text Recognition in the Wild: A Survey~\citep{chen_text_2021}
@@ -352,8 +354,8 @@ Cropped Scene Text Image Recognition
     \item Main categories: Segmentation-based --- Segmentation-free \\
         Segmentation-based
         \begin{itemize}
-            \item Approach: locate position of character, apply classifier to recognize each character,
-                group characters into text lines
+            \item Approach: locate position of character, apply classifier to recognize each
+                character, group characters into text lines
             \item substeps: image preprocessing, character segmentation, character recognition
             \item lexicon methods: query time linearly depends on size of lexicon
                 $\rightarrow$ impractical --- solve: higher-order statistical language models

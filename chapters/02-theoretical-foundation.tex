@@ -340,6 +340,7 @@ Figure~\ref{fig:rnn-unrolling} shows a simple \ac{RNN}.
 \end{figure}
 % FIXME: check dimensions of variables -> might need to be bold
 % FIXME: h as hidden state
+% FIXME: unrolling not deep network in the CNN sense
 The defining element is the recurrent connection from node $h$ to itself~\citep{goodfellow_deep_2016}.
 A sequence of inputs \x\ is iteratively fed into the \ac{RNN}.
 The current layer of the network takes $x^{(t)}$ and $h^{(t-1)}$ and produces $h^{(t)}$
@@ -365,10 +366,12 @@ time~\citep{sherstinsky_fundamentals_2020}.
 That is because the unrolled network can be seen as a deep feed forward
 network~\citep{chauhan_review_2018}.
 
+% FIXME: update with Michigan Lecture and http://colah.github.io/posts/2015-08-Understanding-LSTMs/
 The \ac{LSTM} network was introduced by~\cite{hochreiter_long_1997} and modified
 by~\cite{gers_learning_1999} to improve longer storing of information from earlier
 layers~\citep{chauhan_review_2018}.
-The \ac{LSTM} also improves upon the vanishing/exploding gradients problem associated with
+% FIXME: gradient clipping for against exploding gradients
+The \ac{LSTM} also improves upon the vanishing gradients problem associated with
 increasingly deep \acp{NN}~\citep{sherstinsky_fundamentals_2020}.
 A so called cell is shown in Figure~\ref{fig:lstm}, it shows the basic structure which represents
 the recurrent building block of \acp{LSTM}~\citep{goodfellow_deep_2016}.
@@ -379,6 +382,8 @@ the recurrent building block of \acp{LSTM}~\citep{goodfellow_deep_2016}.
         Long short term memory cell~\citep{goodfellow_deep_2016,yu_review_2019}\label{fig:lstm}
     }
 \end{figure}
+% FIXME: update figure according to michigan lecture
+% FIXME: explain nodes and concatenation
 The three gates (input, forget, output) help make the \ac{LSTM} a widely used \ac{NN} model.
 The gates calculate weights between 0 and 1 (thus the use of $\sigma$) that are used to control
 the flow of information~\citep{goodfellow_deep_2016}.
@@ -515,7 +520,8 @@ The difference of metrics for the task manifests itself in the way the values of
 are calculated~\citep{long_scene_2021}.
 Note that the tradeoff between False Positives and Fales Negatives manifests itself in the
 Precision-versus-Recall curve~\citep{su_relationship_2015}.
-\fone\ is also refered to as the harmonic mean (between Precision and Recall)~\citep{he_icpr2018_2018}.
+\fone\ is also refered to as the harmonic mean (between Precision and
+Recall)~\citep{he_icpr2018_2018}.
 % XXX: PvR curve figure
 % XXX: introduce ROC curve --- ratio of true positive rate and false positive rate, and
 %           relationship to PvR curve/AP
