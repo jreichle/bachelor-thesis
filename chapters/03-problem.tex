@@ -2,7 +2,6 @@
 This chapter entails an analysis of the problem which is the research question's foundation.
 It is crucial, as the quality of requirements ultimately determines the quality of the overview and
 subsequent analysis.
-% FIXME: source for this?
 
 Requirements for a software system that involves \ac{ML} and thus \ac{DL} differs from
 the traditional approach. The data-driven software components are not entirely defined by the
@@ -74,12 +73,19 @@ Because the only the Model Selection substage of the lifecycle is performed, the
 qualities are not relevant for this thesis, as they concern the operational aspect of \acp{MLS}.
 
 % FIXME: make figure for system
-
 In~\cite{nakamichi_requirements-driven_2020,siebert_construction_2021} systematic approaches for
 identification and documentation of qualities are detailed.
 In \acp{MLS} various entities interact to in order to produce the desired functionality.
 The paper~\cite{nakamichi_requirements-driven_2020} suggests that in order to adequately evaluate
-the qualities, it is essential to not only consider the model but the entire \ac{MLS}.
+the qualities, it is essential to not only consider the model but the entire \ac{MLS}
+(see Figure~\citep{nakamichi_requirements-driven_2020}).
+\begin{figure}[ht]
+    \centering
+    \input{figure-code/tikz/MLS-tikz.tex}
+    \caption[Machine learning system entities]{%
+        Machine learning system entities~\citep{nakamichi_requirements-driven_2020}\label{fig:MLS}
+    }
+\end{figure}
 These entities are data, model, environment,
 system/infrastructure~\citep{nakamichi_requirements-driven_2020, siebert_construction_2021}.
 The article~\cite{siebert_construction_2021} differentiates between system and infrastrucure.
@@ -87,7 +93,6 @@ The infrastrucure represents given hardware and available libraries, whereas the
 the software that surrounds the model in the runtime environment.
 The data view pertains to the quality of development and runtime
 data~\citep{siebert_construction_2021}.
-% FIXME: differentiate from what is refered to as model in normal DL literature
 The model consists of subcomponents organized in directed acyclc graph building a
 pipeline.
 This directed acyclic graph depicts everything from processing the images to the extracted
@@ -101,6 +106,7 @@ That is why the systematic approaches cannot be performed in the scope of this t
 For example~\cite{siebert_construction_2021} proposes to follow the systematic CRISP-DM approach of
 identifying qualities.
 It cannot be performed due to the lack of data and the other entities derived from the use case.
+
 The Table~\ref{tb:LiteratureQualitiesModel} lists all qualities that pertain to the model entity.
 Different qualities are \textit{grouped together} for their similarities.
 Because of their properties they can be evaluated jointly.
@@ -169,7 +175,7 @@ sense of certainty.
     \end{tabular}
     \caption{MLS qualities identified for model entity\label{tb:LiteratureQualitiesModel}}
 \end{table}
-\FloatBarrier
+\FloatBarrier%
 
 \section{Quality Relevancy}
 In addition to the qualities that arise directly from the use case, literature reveals a number of

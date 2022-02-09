@@ -6,40 +6,40 @@
 
     \begin{scope}[start chain=going right,nodes=itemc,every
             join/.style={->},local bounding box=chain]
-            \path node (At-1) {$h^{(t-1)}$} node (At) {$h^{(t)}$} node (At+1) {$h^{(t+1)}$};
+            \path node (At-1) {$\h^{(t-1)}$} node (At) {$\h^{(t)}$} node (At+1) {$\h^{(t+1)}$};
     \end{scope}
 
     \node[left=2em of chain,scale=1.5] (eq) {$\rightarrow$};
 
-    \node[left=2em of eq,item] (AL) {$h$};
+    \node[left=2em of eq,item] (AL) {$\h$};
     \path (AL.west) ++ (-1em,2em) coordinate (aux);
     \draw[->,rounded corners] (AL.east) -| ++ (1em,2em) -- (aux) |- (AL.west)
-        node[left] (W) {$W$};
+        node[left] (W) {};
 
     \draw[<-,dashed] (At-1) -- ++(-2,0);
     \draw[->] (At-1) -- (At)
-        node[midway,above] (W) {$W$};
+        node[midway,above] (W) {};
     \draw[->] (At) -- (At+1)
-        node[midway,above] (W) {$W$};
+        node[midway,above] (W) {};
     \draw[->,dashed] (At+1) -- ++(+2,0);
 
     \foreach \i in {t-1,t,t+1}
         {%
             \draw[->] (A\i.north) -- ++ (0,2em)
-                node[above,item] (h\i) {$\hat{y}_{\i}$};
+                node[above,item] (h\i) {$\hat{\y}_{\i}$};
             \draw[->] (A\i.north) -- ++ (0,2em)
-                node[midway,right] (V\i) {$V$};
+                node[midway,right] (V\i) {};
             \draw[<-] (A\i.south) -- ++ (0,-2em)
-                node[below,item] (x\i) {$x_{\i}$};
+                node[below,item] (x\i) {$\x_{\i}$};
             \draw[<-] (A\i.south) -- ++ (0,-2em)
-                node[midway,right] (U\i) {$U$};
+                node[midway,right] (U\i) {};
         }
 
     \draw[white,line width=0.8ex] (AL.north) -- ++ (0,1.9em);
-    \draw[->] (AL.north) -- ++ (0,2em) node[above,item] {$\hat{y}$}
-            node[midway,right] (V) {$V$};
-    \draw[<-] (AL.south) -- ++ (0,-2em) node[below,item,] {$x$}
-        node[midway,right] (U) {$U$};
+    \draw[->] (AL.north) -- ++ (0,2em) node[above,item] {$\hat{\y}$}
+            node[midway,right] (V) {};
+    \draw[<-] (AL.south) -- ++ (0,-2em) node[below,item,] {$\x$}
+        node[midway,right] (U) {};
 
 \end{tikzpicture}
 }

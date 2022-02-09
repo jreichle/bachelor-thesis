@@ -7,7 +7,7 @@ exceed the scope of this work.
 Whenever possible heavy mathematical notation is omitted if it does not aid the understanding of the
 reader.
 
-% FIXME: note probabilistic view (distributions, frequentist/bayesian)
+% XXX: note probabilistic view (distributions, frequentist/bayesian)
 \section{Machine Learning}
 To grasp \ac{DL}, a solid understanding of \ac{ML} has to be developed
 first~\citep{goodfellow_deep_2016}.
@@ -133,13 +133,16 @@ Aside from model selection, there are different techniques used to prevent overf
     }
 \end{figure}
 
-% FIXME: emphasize difference: feedforward --- fully conv/fully connected
 \section{Deep Learning}
 In \ac{DL}, \acp{DNN} are leveraged to automatically learn new representations of data through
 multiple layers of abstraction.
 This makes \acp{DNN} powerful function approximators~\citep{goodfellow_deep_2016}.
+\ac{DL} has only caught on in the recent years as the big computational cost has been met
+by improvement in computer hardware as well as in automatic feature
+learning~\citep{ponti_everything_2017, chen_text_2021}.
 In this section the basics of \acp{NN} are explained and popular basic architectures thereof are
 introduced.
+% XXX: add freeing of researchers from manually crafting features \cite{long_scene_2021}
 
 The most basic \ac{NN} is called a feedforward \ac{NN} or \ac{MLP} where the information only
 flows in one direction (in contrast to \acp{RNN} or Transformers)~\citep{goodfellow_deep_2016}.
@@ -241,7 +244,6 @@ This calculation is performed until the first layer of the computational graph i
 reached~\citep{goodfellow_deep_2016}.
 Note that the algorithm can be performed with tensors of arbitrary
 dimensionality~\citep{goodfellow_deep_2016}.
-% FIXME: backpropagation/training not really talked about after this, as it exceeds the scope of thesis
 
 \section{Convoluational Neural Nets}
 % basics
@@ -252,8 +254,8 @@ They consist of a variety of components: fully connected layer, activation funct
 convolutional layer, pooling layer~\citep{chauhan_review_2018,ponti_everything_2017}.
 The fully connected layers are the layers that make up \acp{MLP}~\citep{ponti_everything_2017}.
 
-% FIXME: 2d, 1d conv
 % conv layer
+% FIXME: convolution operation mostly used with same padding
 A convolutional layer has multiple filters which consist of multiple
 kernels~\citep{chauhan_review_2018}.
 For multi layer input, with $d$ so called channels, a filter has the same amount of kernels as there
@@ -325,9 +327,8 @@ to bypass vanishing/exploding~\citep{he_deep_2015}.
 \end{figure}
 ResNet and other popular \ac{CNN} architectures are explained in Chapter~\ref{ch:research}.
 
-% FIXME: explain ResNet and VGG-16
-
 \section{Recurrent Neural Nets}
+% FIXME: input often tokenized (like for transformer)
 \acp{RNN} are another popular category of \ac{NN} which are used for processing sequential input,
 like text and speech~\citep{chauhan_review_2018}.
 Figure~\ref{fig:rnn-unrolling} shows a simple \ac{RNN}.
@@ -339,51 +340,50 @@ Figure~\ref{fig:rnn-unrolling} shows a simple \ac{RNN}.
     }
 \end{figure}
 % FIXME: check dimensions of variables -> might need to be bold
-% FIXME: h as hidden state
-% FIXME: unrolling not deep network in the CNN sense
-The defining element is the recurrent connection from node $h$ to itself~\citep{goodfellow_deep_2016}.
-A sequence of inputs \x\ is iteratively fed into the \ac{RNN}.
-The current layer of the network takes $x^{(t)}$ and $h^{(t-1)}$ and produces $h^{(t)}$
+The defining element is the recurrent connection from node $\h$ to itself~\citep{goodfellow_deep_2016}.
+A sequence of inputs \X\ is iteratively fed into the \ac{RNN}.
+The current layer of the network takes $\x^{(t)}$ and $\h^{(t-1)}$ and produces $\h^{(t)}$
 (see Equation~\ref{eq:rnn-h}).
-Additionally, $h^{(t)}$ is used to calculate the output $\hat{y}^{(t)}$ (see Equation~\ref{eq:rnn-yh})
+Additionally, $\h^{(t)}$ is used to calculate the output $\hat{\y}^{(t)}$ (see Equation~\ref{eq:rnn-yh})
 and it is handed to the next layer~\citep{goodfellow_deep_2016}.
+$\h^{(t)}$ is thoght of as a hidden state which stores information from previous
+inputs~\citep{goodfellow_deep_2016}.
 \begin{equation}\label{eq:rnn-h}
-    h^{(t)} = \tanh(b+Wh^{(t-1)}+Ux^{(t)})
+    \h^{(t)} = \tanh(b+W\h^{(t-1)}+U\x^{(t)})
 \end{equation}
 \begin{equation}\label{eq:rnn-yh}
-    \hat{y}^{(t)} = softmax(c + Vh^{(t)})
+    \hat{\y}^{(t)} = softmax(c + V\h^{(t)})
 \end{equation}
-Note that the connection(s) between hidden layers can differ depending on the type of \ac{RNN}
+Note that the connection between hidden layers can differ depending on the type of \ac{RNN}
 used~\citep{goodfellow_deep_2016}.
 During an execution run, all unrolled layers share the same weights
 ($U,V,W$)~\citep{chauhan_review_2018}.
+This makes gradients from backpropagation vulnerable to exploding/vanishing gradients if the
+singular values of those weight matrices are $>1$ or $<1$~\citep{goodfellow_deep_2016}.
 The example \ac{RNN} produced a output sequence the same length as the input
 sequence, however, this does not have to be the case for \acp{RNN}~\citep{goodfellow_deep_2016}.
 Both the input and the output can either be a sequence of variable length or a vector of fixed
 length~\citep{goodfellow_deep_2016}.
-Optimization of the parameters of \acp{RNN} is performed with backpropagation through
+Optimization of the parameters of \acp{RNN} is performed with (truncated) backpropagation through
 time~\citep{sherstinsky_fundamentals_2020}.
-That is because the unrolled network can be seen as a deep feed forward
-network~\citep{chauhan_review_2018}.
 
 % FIXME: update with Michigan Lecture and http://colah.github.io/posts/2015-08-Understanding-LSTMs/
 The \ac{LSTM} network was introduced by~\cite{hochreiter_long_1997} and modified
 by~\cite{gers_learning_1999} to improve longer storing of information from earlier
 layers~\citep{chauhan_review_2018}.
-% FIXME: gradient clipping for against exploding gradients
 The \ac{LSTM} also improves upon the vanishing gradients problem associated with
-increasingly deep \acp{NN}~\citep{sherstinsky_fundamentals_2020}.
+increasingly deep \acp{NN}~\citep{sherstinsky_fundamentals_2020} (clipping gradients is often used
+to help with exploding gradients~\citep{goodfellow_deep_2016}).
 A so called cell is shown in Figure~\ref{fig:lstm}, it shows the basic structure which represents
 the recurrent building block of \acp{LSTM}~\citep{goodfellow_deep_2016}.
 \begin{figure}[ht]
     \centering
     \input{figure-code/tikz/lstm-tikz.tex}
     \caption[Long short term memoory cell]{%
-        Long short term memory cell~\citep{goodfellow_deep_2016,yu_review_2019}\label{fig:lstm}
+        Long short term memory cell, merged lines stack vectors, split lines duplicate
+        vector~\citep{goodfellow_deep_2016,yu_review_2019}\label{fig:lstm}
     }
 \end{figure}
-% FIXME: update figure according to michigan lecture
-% FIXME: explain nodes and concatenation
 The three gates (input, forget, output) help make the \ac{LSTM} a widely used \ac{NN} model.
 The gates calculate weights between 0 and 1 (thus the use of $\sigma$) that are used to control
 the flow of information~\citep{goodfellow_deep_2016}.
@@ -396,6 +396,7 @@ cell~\citep{goodfellow_deep_2016}.
 
 \section{Transformers}
 % FIXME: look into \cite{kloss_learning_2016}
+% FIXME: either improve or remove
 Of the most popular basic strucures for \acp{NN}, the transformers are the newest innovation.
 The paper from~\cite{vaswani_attention_2017} introduced the transfomer architecture which is
 build for processing sequence data and~\cite{dosovitskiy_image_2021} then introduced the vision
@@ -412,7 +413,6 @@ their alignment to build the network.
         Transformer model architecture~\citep{vaswani_attention_2017}\label{fig:transformer}
     }
 \end{figure}
-% FIXME: explain encoder/decoder - attention
 The network is made up of multiple multiple encoder and multiple decoder
 blocks ($Nx$)~\citep{vaswani_attention_2017}.
 The blocks are preceded by embedding and positional modules~\citep{vaswani_attention_2017}.
@@ -550,7 +550,6 @@ According to~\cite{su_relationship_2015}, \ac{AP} can be considered the area und
 Precision-versus-Recall curve.
 \fone\ on the other hand only considers singular instances on that curve~\citep{long_scene_2021} and
 is sensitive to the tradeoff while \ac{AP} is invariant to it~\citep{shi_icdar2017_2017}.
-% FIXME: add mAP
 % STR
 For \ac{STR} the evaluation can be based on character-level or word-level.
 There is no need to match ground truth to prediction, as the image is already
@@ -613,7 +612,7 @@ The second and third column indicate whether the dataset provides annotations fo
 The Text Orientation column specifies the most complicated orientation that is present in the dataset
 (Curved $\subset$ Multi-oriented $\subset$ Horizontal).
 
-\begin{figure}[h]
+\begin{figure}[ht]
     \centering\scriptsize
     \subfigure[\scriptsize ICDAR (2013)~\citep{karatzas_icdar_2013}\label{fig:ICDAR-2013}]
         {\includegraphics[width=0.30\textwidth]{img/Dataset-Examples/icdar-2013-examples.png}}

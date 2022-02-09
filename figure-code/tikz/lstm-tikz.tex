@@ -1,7 +1,7 @@
 {\scriptsize%
 \begin{tikzpicture}[
     % GLOBAL CFG
-    font=\sf \scriptsize,
+    font= \scriptsize,
     %>=LaTeX,
     % Styles
     cell/.style={% For the main box
@@ -70,14 +70,14 @@
     % memory cell
 
     % Draw External inputs? named as basis c,h,x
-    \node[ct, label={[mylabel]}] (c) at (-4,1.5) {$c^{(t-1)}$};
-    \node[ct, label={[mylabel]}] (h) at (-4,-1.5) {$\hat{y}^{(t-1)}$};
-    \node[ct, label={[mylabel]left:Input}] (x) at (-2.5,-3) {$x^{(t)}$};
+    \node[ct, label={[mylabel]}] (c) at (-4,1.5) {$\cb^{(t-1)}$};
+    \node[ct, label={[mylabel]}] (h) at (-4,-1.5) {$\hat{\y}^{(t-1)}$};
+    \node[ct, label={[mylabel]left:Input}] (x) at (-2.5,-3) {$\x^{(t)}$};
 
     % Draw External outputs? named as basis c2,h2,x2
-    \node[ct, label={[mylabel]}] (c2) at (4,1.5) {$c^{(t)}$};
-    \node[ct, label={[mylabel]}] (h2) at (4,-1.5) {$\hat{y}^{(t)}$};
-    \node[ct, label={[mylabel]right:Output}] (x2) at (2.5,3) {$\hat{y}^{(t)}$};
+    \node[ct, label={[mylabel]}] (c2) at (4,1.5) {$\cb^{(t)}$};
+    \node[ct, label={[mylabel]}] (h2) at (4,-1.5) {$\hat{\y}^{(t)}$};
+    \node[ct, label={[mylabel]right:Output}] (x2) at (2.5,3) {$\hat{\y}^{(t)}$};
 
     \node (fg) at (6,-0.5) {$\sigma_f$: Forget Gate};
     \node (ig) at (6,0) {$\sigma_i$: Input Gate};

@@ -1,12 +1,20 @@
 \chapter{Technique Overview}\label{ch:research}
-This part of the thesis constitutes the main part.
 The objective is to create an overview of techniques in the field which may be used to solve the
 problem detailed in Chapter~\ref{ch:problem}.
-First the search for literature which lays the foundation for the subsequent sections, is documented.
-The a taxonomy is introduced which facilitates the analysis and comparison of techniques.
+According to the methodology detailed in~\ref{se:methodology}, first a taxonomy is introduced
+which facilitates the analysis and comparison of techniques.
+The subsequent search for literature which lays the foundation for an overview over current research
+is documented.
 Lastly, the advances in the field are placed in the correct position and analyzed.
 
 \section{Taxonomy of Pipeline Steps}
+Before getting into current research level, a base of knowledge about the field has to be layed.
+A taxonomy is created for this which is useful to classify and give context to innovations in the
+field.
+The partition of tasks and categorization of approaches is conducted according to overview literature
+such as~\cite{long_scene_2021,chen_text_2021,cong_comparative_2019} and related work sections of
+research in the field such
+as~\cite{qiao_text_2021,sheng_centripetaltext_2021,liu_accurate_2020,deng_pixellink_2018}.
 To create the overview the necessary steps in the process of \ac{STS} needs to be highlighted,
 from preprocessing to classifying the identified
 text~\citep{long_scene_2021, sourvanos_challenges_2018}.
@@ -17,12 +25,12 @@ listed and explained alongside.
     \include{figure-code/tikz/taxonomie-tikz}
 \caption{Pipeline taxonomy and respective steps\label{fig:pipelineSteps}}
 \end{figure}
-Figure~\ref{fig:pipelineSteps} shows tasks which are associated with \ac{STS}.
+Figure~\ref{fig:pipelineSteps} shows tasks and their respective approaches which are associated
+with \ac{STS}.
 \ac{STD} and \ac{STR} only incorporate a part of \ac{STS}, while E2E
 incorporate both \ac{STD} and \ac{STR} techniques to solve \ac{STS}~\citep{long_scene_2021}.
 Therefore this section will first discuss the two parts, to then later combine them.
 
-% FIXME: mehr Allgemeinheit zu den Beispielen!
 For \ac{STD} two main categories of approaches can be identified: segmentation based and \ac{BB}
 regression based~\citep{long_scene_2021,sheng_centripetaltext_2021,liu_accurate_2020}.
 The regression based category draws heavy inspiration from the field of object
@@ -35,6 +43,9 @@ Both localize text instances as a whole (in the form of a
 \ac{BB})~\citep{long_scene_2021,sheng_centripetaltext_2021}.
 One stage approaches are modelled after~\cite{liu_ssd_2016}, Single Shot MultiBox
 Detector (SSD) and~\cite{redmon_you_2016}, You Only Look Once (YOLO).
+They have in comon that \acp{BB} are regressed once and not changed or optimized
+afterwards~\citep{redmon_you_2016,liu_ssd_2016}, as opposed to the \ac{ROI} based approach with two
+stages~\citep{girshick_rich_2014}.
 \begin{figure}[ht]
     \centering
     \includegraphics[width=0.8\textwidth]{img/STD-seg-free-Liao-TextBoxes-2017.png}
@@ -44,11 +55,13 @@ Detector (SSD) and~\cite{redmon_you_2016}, You Only Look Once (YOLO).
     }
 \end{figure}
 The basic approach is explained with the example of~\cite{liao_textboxes_2017} (see
-Figure~\ref{fig:STD-segfree-ssd}) which is based on SSD.%
-Note that the approach is only modeled to recognize horizontal text
-instances~\citep{liao_textboxes_2017}.
-It uses 13 layer convolutional network (three blocks of: two or three $3\times3$ conv layers followed
-by a $2\times2$ max pooling layer) for feature extraction~\citep{liao_textboxes_2017}.
+Figure~\ref{fig:STD-segfree-ssd}) which is based on SSD.\
+Note that the approach is modeled to recognize horizontal text instances~\citep{liao_textboxes_2017}.
+It uses 13 layer convolutional network inspired by the VGG architecture (blocks of: two or
+three $3\times3$ conv layers followed by a $2\times2$ max pooling layer with stride 2) for feature
+extraction~\citep{liao_textboxes_2017,simonyan_very_2015}.
+Note that the spatial padding added for convolution ensures that spatial dimensions are
+preserved~\citep{simonyan_very_2015}.
 Afterwards come nine additional layers which continuously downsample, the output of six of them
 is separately used as feature maps for \ac{BB} regression~\citep{liao_textboxes_2017}.
 The downsampling and \ac{BB} regression for different layers helps detect text instances of different
@@ -77,8 +90,12 @@ by~\cite{girshick_rich_2014} and improved by~\cite{girshick_fast_2015} (Fast
 R-CNN),~\cite{ren_faster_2015} (Faster R-CNN) and~\cite{he_mask_2018} (Mask R-CNN).
 Note that 2-stage methods are fully differentiable and thus end to end trainable since
 Faster R-CNN (like 1-stage methods)~\citep{ren_faster_2015,long_scene_2021}.
+The two stages consist of: \acp{ROI} regression, \acp{BB}
+adjustments~\citep{jiang_r2cnn_2017, ren_faster_2015}.
 The \ac{STD} approach introduced by~\cite{jiang_r2cnn_2017} (see Figure~\ref{fig:STD-segfree-rcnn})
 uses Faster R-CNN.%
+Unlike the previous approach, the architecture is designed to detect multioriented text instances
+as such~\citep{jiang_r2cnn_2017,liao_textboxes_2017}.
 \begin{figure}[ht]
     \centering
     \includegraphics[width=0.8\textwidth]{img/STD-seg-free-Jiang-R2CNN-2017.png}
@@ -89,6 +106,8 @@ uses Faster R-CNN.%
 \end{figure}
 Like with the one stage approach, the two stage approach starts with feature extraction from the
 image with a convolutional layers~\citep{jiang_r2cnn_2017}.
+Feature extraction can be performed with the VGG architecture~\citep{jiang_r2cnn_2017}, like in
+the previous approach.
 The generated feature map is used by a \ac{RPN}.
 Like with the previously explained approach, the feature maps are used to regress the offset
 respective to bounding boxes.
@@ -131,9 +150,12 @@ The paper~\cite{deng_pixellink_2018} introduced a pixel based \ac{STD} approach.
 \end{figure}
 Figure~\ref{fig:STD-segbased-pixel-architecture} shows the approch's architecture.
 Figure~\ref{fig:STD-segbased-pixel-CNN} shows the \ac{CNN} structure for feature extraction
-(until fc6\&7) followed by the head which either predicts text/non-text or
+(until conv5) which is basically VGG architecture with the fully connected layers exchanged with
+another convolutional stage~\citep{deng_pixellink_2018}.
+The feature extraction followed by two heads which either predict text/non-text or
 links~\citep{deng_pixellink_2018}.
-The feature extraction structure is inspired by~\cite{long_fully_2015}.
+The structure which combines downsampled feature maps with later upsampled ones is inspired
+by~\cite{long_fully_2015}.
 Continuous downsampling and and combining those layers with later, upsampled layers helps
 to combine coarse, higher level information with fine, lower level
 information~\citep{long_fully_2015}.
@@ -179,8 +201,8 @@ text that can overlap one or more characters~\citep{long_scene_2021}.
 The architecture (see Figure~\ref{fig:STD-segbased-component-architecture})
 from~\cite{shi_detecting_2017} is used as an example for this category.
 Like the one-stage, \ac{BB} regression based \ac{STD} approach, the feature extraction \ac{CNN} of
-this approach is taken from SSD, the difference is reflected in the prediction
-layers~\citep{shi_detecting_2017,liu_ssd_2016}.
+this approach is taken from SSD and thus VGG, the difference is reflected in the prediction
+layers~\citep{shi_detecting_2017,liu_ssd_2016,simonyan_very_2015}.
 Instead of detecting whole \acp{BB}, the networks predicts both subcomponents and links at multiple
 scales~\citep{shi_detecting_2017}.
 The convolutional prediction is carried out with seven $3\times3$ filters followed by a softmax
@@ -233,10 +255,9 @@ Examples
         Attention ---~\cite{sutskever_sequence_2014}
 \end{itemize}
 
-STR
+Segmentation less
 \begin{itemize}
     \item mention dependency on lexicons
-    \item segmentation-free approach (segmentation-based implicit and explicit out of date)
     \item Steps: Preprocessing, Feature Extraction, Sequence Modelling, Prediction
     \item preprocessing, text enhancement: remove distortions, background; improve resolution,
         recover degraded text
@@ -293,19 +314,25 @@ E2E
     \end{tabular}
     \caption{Tasks, method categories and identifying propertis\label{tb:steps-properties}}
 \end{table}
-
 % FIXME: after all explained: Note that mixtures of the categories are possible in practice,
 %           the categorization is applied to help compare approaches (give example for mixture)
 
 \section{Literature Search}\label{se:litSearch}
+% FIXME: literature quellen reinbringen
 This section documents the search for literature which provides the content for the subsequent
 overview of innovation.
-For this, important pipelines and notable advances along with their properties are researched,
-analysed and presented.
+For this, important \ac{DL} techniques and notable advances along with their properties are researched
+and presented.
+For a literature review, it is important to report how the information was found and
+synthesized~\citep{torraco_writing_2005}.
+The strategy for researching current research is most important for a literature
+review~\citep{snyder_literature_2019}.
+This includes databases and keywords that were used, as well as exclusion criteria that were
+enforced~\citep{torraco_writing_2005}.
 The literature is identified through searching in the Google Scholar database.
 The search is executed with keywords such as, but not only: Deep Learning, Text Detection,
 Text Recognition, Text Spotting, Scene Text, Pipeline.
-% FIXME: update keywords
+% XXX: update keywords
 A criterion for further examination is an appropriate amount of citations for the piece of literature
 in question.
 Additionally, literature is selected through citations for and by literature which has already been
