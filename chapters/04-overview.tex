@@ -284,34 +284,38 @@ mechanism in the prediciton stage.
 The approach adds a geometry branch parallel to the charcater segmentation which helps with with
 putting the identified characters in the right sequence (see
 Figure~\ref{fig:STR-segbased-architecture})~\citep{wan_textscanner_2020}.
-Encoder-decoder based approaches can again be divided into CTC based and Encoder-Decoder based
+Encoder-decoder based approaches can again be divided into \ac{CTC} based and Encoder-Decoder based
 approaches (see Figure~\ref{fig:str-pipelines})~\citep{long_scene_2021,cong_comparative_2019}.
-Like with \ac{STD} the different approaches are explained with examples.
+Often preprocessing steps are performed to remove distortions, rectify curved text,
+remove disruptive background, improve resolutions or recover degraded text.
+Especially the rectifying curved text (see Figure~\ref{fig:STN-application}) with the help of
+thin-plate spines~\citep{bookstein_principal_1989} or spatial transformer
+networks~\citep{jaderberg_spatial_2015} shows great improvement for \ac{STR}
+performance~\citep{long_scene_2021,chen_text_2021}.
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.4\textwidth]{img/STN-result-Liu-STAR-2016.png}
+    \caption[Text rectification application]{%
+        Application of spatial transformer network to rectify curved
+        text~\citep{liu_star-net_2016}\label{fig:STN-application}
+    }
+\end{figure}
+For feature extraction different \ac{CNN} architectures can be chosen.
+The tradeoff between performance and memory \& computation cost determines what \ac{CNN} should be
+chosen~\citep{chen_text_2021}.
+An example for a deep and powerful \ac{CNN} are ResNets~\citep{he_deep_2015} which are often used
+for benchmark purposes~\citep{chen_text_2021,long_scene_2021}.
+Efficient feature extraction can e.g.\ be performed with binary convolutional
+nets~\citep{liu_scut-ctw1500_2022}.
+For the sequence modelling and transcription steps first~\cite{shi_end--end_2017} (\ac{CTC} based)
+and then~\cite{ghosh_visual_2017} (attention based) will be used as examples.
+
 
 \begin{itemize}
-    \item Steps: Preprocessing, Feature Extraction, Sequence Modelling, Prediction
-    \item preprocessing, text enhancement: remove distortions, background; improve resolution,
-        recover degraded text
-        \begin{itemize}
-            \item Spatial Transformer Networks (for distortions)
-        \end{itemize}
-    \item feature extraction: encode image into feature space
-        \begin{itemize}
-            \item ResNet
-                \begin{itemize}
-                    \item aggressive downsampling
-                    \item $3\times3$ best kernel size
-                    \item Gradient saving $\rightarrow$ Res block, Res Bottleneck, Res Grouped
-                    \item batch normalization
-                    \item 32,50,150,\ldots
-                \end{itemize}
-            \item GoogLeNet
-        \end{itemize}
-    \item Sequence $\rightarrow$ Encoder
     \item Prediction $\rightarrow$ Decoder (mention improvements made!)
         \begin{itemize}
-            \item CTC ---~\cite{shi_end--end_2017}, \\
-            \item Attention ---~\cite{ghosh_visual_2017} (inspired
+            \item CTC:~\cite{shi_end--end_2017}, \\
+            \item Attention:~\cite{ghosh_visual_2017} (inspired
                 by~\cite{bahdanau_neural_2016,xu_show_2016})
                 Difference Attention and Encoder-Decoder (Long)!
         \end{itemize}
@@ -337,12 +341,12 @@ E2E
             & & Component-level & Sub-component level segmentation \\
         \midrule
         STR & Seg based & & Character segmentation and classification\\
-            & Seg free & & Text instance recognition \\
-            & & CTC based &  \\
+            & Encoder Decoder based & & Text instance recognition \\
+            & & CTC based & CTC rule \\
             & & Attention based & Attention Mechanism \\
         \midrule
-        E2E & 2-step & & \\
-            & Parallel & & \\
+        E2E & 2 step & & Images are cropped for STR \\
+        E2E & 2 stage & & Features are cropped for STR \\
         \bottomrule
     \end{tabular}
     \caption{Tasks, method categories and identifying propertis\label{tb:steps-properties}}
@@ -350,7 +354,7 @@ E2E
 % FIXME: after all explained: Note that mixtures of the categories are possible in practice,
 %           the categorization is applied to help compare approaches (give example for mixture)
 
-\section{Literature Search}\label{se:litSearch}
+\section{State of the Art Methods}
 This section documents the search for literature which provides the content for the subsequent
 overview of innovation.
 For this, important \ac{DL} techniques and notable advances along with their properties are researched
@@ -376,12 +380,9 @@ The delimination from Section~\ref{se:problem} of course holds for this chapter 
 which concerns advances for the \ac{DL} model architecture will be regarded as important for the
 scope of this thesis.
 This extends to the whole pipeline from preprocessing an image to the final result of the model.
-
 % FIXME: hierarchical graphic with found papers
 % FIXME: describe proceeding
 
-
-\section{State of the Art Methods}
 
 text enhancement:~\cite{chen_text_2021}
 model pruning:~\cite{niu_26ms_2019}
