@@ -32,23 +32,23 @@
     \node[anchor=south,lroot]{STR}
     [edge from parent fork down]
         child{node [ltwo] {Segmentation \\ based}
-            child[lthree,level1] {node {Image \\ preprocessing}}
-            child[lthree,level2] {node {Feature \\ extraction}}
-            child[lthree,level3] {node {Character \\ segmentation}}
-            child[lthree,level4] {node {Character \\ recognition}}
+            child[lthree,level1] {node {Feature \\ extraction}}
+            child[lthree,level2] {node {Character \\ segmentation}}
+            child[lthree,level3] {node {Character \\ recognition}}
+            child[lthree,level4] {node {Word \\ formation}}
         }
-        child{node [lone] {Segmentation \\ free}
+        child{node [lone] {Encoder \\ decoder based}
             child{node [ltwo] {CTC}
                 child[lthree,level1] {node {Image \\ preprocessing}}
                 child[lthree,level2] {node {Feature \\ extraction}}
                 child[lthree,level3] {node {Sequence \\ modelling}}
                 child[lthree,level4] {node {CTC rule \\ application}}
             }
-            child{node [ltwo] {Encoder-Decoder}
+            child{node [ltwo] {Attention}
                 child[lthree,level1] {node {Image \\ preprocessing}}
                 child[lthree,level2] {node {Feature \\ extraction}}
                 child[lthree,level3] {node {Sequence \\ modelling}}
-                child[lthree,level4] {node {Sequence \\ decoder}}
+                child[lthree,level4] {node {Attention \\ mechanism}}
             }
         };
 \end{tikzpicture}

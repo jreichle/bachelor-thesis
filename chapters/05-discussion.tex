@@ -53,12 +53,20 @@ For comparison: which Benchmark Dataset fits the problem the best?
 
 Detection
 \begin{itemize}
-    \item~\cite{ferrari_textsnake_2018}: many methods have strong assumption that text instances are
-        in linear shape and therefore adopted simple representations (rectangles --- axis aligned
-        or rotated, quadrangles) $\rightarrow$ problem with irregular and curved text
-    \item~\cite{ferrari_textsnake_2018}: some models are specifically designed for arbitrary shapes
-    \item~\cite{shi_detecting_2017}: modular approach instead of whole \acp{BB}
-        $\rightarrow$ good with long aspect ratio and orientation because of flexibility
+    \item BB regression
+        \begin{itemize}
+            \item~\cite{ferrari_textsnake_2018}: many methods have strong assumption that text
+                instances are in linear shape and therefore adopted simple representations
+                (rectangles --- axis aligned or rotated, quadrangles)
+                $\rightarrow$ problem with irregular and curved text
+        \end{itemize}
+    \item Segmentation
+        \begin{itemize}
+            \item~\cite{ferrari_textsnake_2018}: some models are specifically designed for
+                arbitrary shapes
+            \item~\cite{shi_detecting_2017}: modular approach instead of whole \acp{BB}
+                $\rightarrow$ good with long aspect ratio and orientation because of flexibility
+        \end{itemize}
 \end{itemize}
 
 Recognition
@@ -94,6 +102,7 @@ Recognition
                         training problem, leading to degradation of accuracy
                     \item~\cite{xie_aggregation_2019}: can be adopted to 2D prediction but
                         memory and time consumption are to big then
+                    \item~\cite{cheng_focusing_2017}: attention drift bad
                 \end{itemize}
             \item look into~\cite{cong_comparative_2019} for CTC --- Attention comparison
         \end{itemize}
