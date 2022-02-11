@@ -1,0 +1,55 @@
+\resizebox{0.6\linewidth}{!}{%
+\begin{tikzpicture}[
+    every node/.style={draw=black,thin,anchor=west, minimum height=2.5em},
+    lroot/.style={%
+        edge from parent fork down,
+        level distance=0.5cm,
+        text centered, text width=3cm},
+    lone/.style={%
+        text centered, text width=3cm,
+        level distance=0.5cm},
+    ltwo/.style={%
+        text centered, text width=3cm,
+        level distance=0.5cm},
+    lthree/.style={%
+        rounded corners,
+        grow=down, xshift=-0.8cm,
+        text centered, text width=3cm,
+        edge from parent path={(\tikzparentnode.205) |- (\tikzchildnode.west)}},
+    level1/.style ={level distance=1.2cm},
+    level2/.style ={level distance=2.4cm},
+    level3/.style ={level distance=3.6cm},
+    level4/.style ={level distance=4.8cm},
+    level5/.style ={level distance=6.0cm},
+    level 1/.style={sibling distance=6cm},
+    level 1/.append style={level distance=1.5cm},
+    level 2/.style={sibling distance=5cm},
+    level 2/.append style={level distance=1.5cm},
+]
+%   \draw[help lines] (0,0) grid (4,3);
+
+    % lroot
+    \node[anchor=south,lroot]{STR}
+    [edge from parent fork down]
+        child{node [ltwo] {Segmentation \\ based}
+            child[lthree,level1] {node {Image \\ preprocessing}}
+            child[lthree,level2] {node {Feature \\ extraction}}
+            child[lthree,level3] {node {Character \\ segmentation}}
+            child[lthree,level4] {node {Character \\ recognition}}
+        }
+        child{node [lone] {Segmentation \\ free}
+            child{node [ltwo] {CTC}
+                child[lthree,level1] {node {Image \\ preprocessing}}
+                child[lthree,level2] {node {Feature \\ extraction}}
+                child[lthree,level3] {node {Sequence \\ modelling}}
+                child[lthree,level4] {node {CTC rule \\ application}}
+            }
+            child{node [ltwo] {Encoder-Decoder}
+                child[lthree,level1] {node {Image \\ preprocessing}}
+                child[lthree,level2] {node {Feature \\ extraction}}
+                child[lthree,level3] {node {Sequence \\ modelling}}
+                child[lthree,level4] {node {Sequence \\ decoder}}
+            }
+        };
+\end{tikzpicture}
+}%

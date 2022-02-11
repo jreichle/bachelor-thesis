@@ -262,8 +262,6 @@ For multi layer input, with $d$ so called channels, a filter has the same amount
 are channels ($d$)~\citep{ponti_everything_2017}.
 Note that the height and with are refered to as spatial dimensions and the depth is refered to as
 the channel dimension.
-A kernel is a $n\times n$ square matrix made up of learnable parameters, so a filter is a tensor
-$n\times n\times d$.
 \begin{figure}[ht]
     \centering
     \include{figure-code/tikz/conv-layer-tikz}
@@ -271,6 +269,8 @@ $n\times n\times d$.
         Convolution operation of a single kernel~\citep{chauhan_review_2018}\label{fig:conv-layer}
     }
 \end{figure}
+A kernel is a $n\times n$ square matrix made up of learnable parameters, so a filter is a tensor
+$n\times n\times d$.
 The convolution operation is the elementwise multiplication between the filter and overlapping
 $n\times n$ subspace of the input (see Figure~\ref{fig:conv-layer})~\citep{ponti_everything_2017}.
 The convolution operation is performed for every space in the input, spaces can be skipped if
@@ -325,7 +325,6 @@ to bypass vanishing/exploding~\citep{he_deep_2015}.
         connection~\citep{he_deep_2015}\label{fig:skip-conn}
     }
 \end{figure}
-ResNet and other popular \ac{CNN} architectures are explained in Chapter~\ref{ch:research}.
 
 \section{Recurrent Neural Nets}
 % FIXME: input often tokenized (like for transformer)
@@ -371,11 +370,6 @@ time~\citep{sherstinsky_fundamentals_2020}.
 The \ac{LSTM} network was introduced by~\cite{hochreiter_long_1997} and modified
 by~\cite{gers_learning_1999} to improve longer storing of information from earlier
 layers~\citep{chauhan_review_2018}.
-The \ac{LSTM} also improves upon the vanishing gradients problem associated with
-increasingly deep \acp{NN}~\citep{sherstinsky_fundamentals_2020} (clipping gradients is often used
-to help with exploding gradients~\citep{goodfellow_deep_2016}).
-A so called cell is shown in Figure~\ref{fig:lstm}, it shows the basic structure which represents
-the recurrent building block of \acp{LSTM}~\citep{goodfellow_deep_2016}.
 \begin{figure}[ht]
     \centering
     \input{figure-code/tikz/lstm-tikz.tex}
@@ -384,6 +378,11 @@ the recurrent building block of \acp{LSTM}~\citep{goodfellow_deep_2016}.
         vector~\citep{goodfellow_deep_2016,yu_review_2019}\label{fig:lstm}
     }
 \end{figure}
+The \ac{LSTM} also improves upon the vanishing gradients problem associated with
+increasingly deep \acp{NN}~\citep{sherstinsky_fundamentals_2020} (clipping gradients is often used
+to help with exploding gradients~\citep{goodfellow_deep_2016}).
+A so called cell is shown in Figure~\ref{fig:lstm}, it shows the basic structure which represents
+the recurrent building block of \acp{LSTM}~\citep{goodfellow_deep_2016}.
 The three gates (input, forget, output) help make the \ac{LSTM} a widely used \ac{NN} model.
 The gates calculate weights between 0 and 1 (thus the use of $\sigma$) that are used to control
 the flow of information~\citep{goodfellow_deep_2016}.
@@ -401,11 +400,6 @@ Of the most popular basic strucures for \acp{NN}, the transformers are the newes
 The paper from~\cite{vaswani_attention_2017} introduced the transfomer architecture which is
 build for processing sequence data and~\cite{dosovitskiy_image_2021} then introduced the vision
 transformer (ViT).
-Explaining the inner workings of transformers in detail exceeds the scope of this thesis.
-In the following the basic building blocks and their effects are described with the example of
-translating a sentence.
-Figure~\ref{fig:transformer} shows a transformer network at the abstraction level of components and
-their alignment to build the network.
 \begin{figure}[ht]
     \centering
     \includegraphics[width=0.8\textwidth]{img/Transformer-Vaswani-Attention-2017.png}
@@ -413,6 +407,11 @@ their alignment to build the network.
         Transformer model architecture~\citep{vaswani_attention_2017}\label{fig:transformer}
     }
 \end{figure}
+Explaining the inner workings of transformers in detail exceeds the scope of this thesis.
+In the following the basic building blocks and their effects are described with the example of
+translating a sentence.
+Figure~\ref{fig:transformer} shows a transformer network at the abstraction level of components and
+their alignment to build the network.
 The network is made up of multiple multiple encoder and multiple decoder
 blocks ($Nx$)~\citep{vaswani_attention_2017}.
 The blocks are preceded by embedding and positional modules~\citep{vaswani_attention_2017}.
@@ -474,10 +473,11 @@ Before the advent of \ac{DL}, researchers in the field had to hand-craft
 features~\citep{long_scene_2021}.
 \ac{DL} automates the feature generation process with its representation and learning
 capabilities~\citep{long_scene_2021,goodfellow_deep_2016}.
-Because of this, \ac{DL} methods are the prefered tools for performing \ac{STS}~\citep{long_scene_2021}.
+Because of this, \ac{DL} methods are the prefered tools for performing
+\ac{STS}~\citep{long_scene_2021}.
+% STD, STR, end to end
 \ac{OCR} and \ac{STS} are often divided into two subcategories (Scene) Text Detection and (Scene)
 Text Recognition~\citep{zhao_improving_2020, long_scene_2021,chen_text_2021}.
-% STD, STR, end to end
 For \ac{STD} the task is to localize text instances in the image, whereas the \ac{STR} task
 is to recognize/categorize text from already cropped images~\citep{chen_text_2021}.
 Note that a system which performs both \ac{STR} and \ac{STD} in one continuous pipeline are called
@@ -551,9 +551,13 @@ Precision-versus-Recall curve.
 \fone\ on the other hand only considers singular instances on that curve~\citep{long_scene_2021} and
 is sensitive to the tradeoff while \ac{AP} is invariant to it~\citep{shi_icdar2017_2017}.
 % STR
+% FIXME: lexicons, context
 For \ac{STR} the evaluation can be based on character-level or word-level.
 There is no need to match ground truth to prediction, as the image is already
 cropped~\citep{long_scene_2021}.
+Often lexicons which contain possible words, are used by \ac{STR}.
+Testing as well as real world performance can depend strongly on these
+lexicons~\citep{chen_text_2021,long_scene_2021}.
 The equations~\ref{eq:wordRecognitionAccuracy} and~\ref{eq:wordErrorRate} show metrics based on
 word level~\citep{chen_text_2021}.
 \begin{equation}\label{eq:wordRecognitionAccuracy}
@@ -572,12 +576,13 @@ number of text lines~\citep{shi_icdar2017_2017}.
 For \ac{STR} \ac{NED} is used over the whole dataset~\citep{karatzas_icdar_2013}.
 \ac{STS} is oriented to both \ac{STD} and \ac{STR}.
 The prediction has to be matched to the ground truth like for \ac{STD}~\citep{long_scene_2021}.
-For comparing predictions and matched the respective ground truths that have been matched, \ac{NED} is
-used~\citep{chen_text_2021}.
+For comparing predictions and matched the respective ground truths that have been matched, \ac{NED}
+is used~\citep{chen_text_2021}.
 For end-to-end recognition~\citep{karatzas_icdar_2013,karatzas_icdar_2015}, the main evaluation
 protocols that are used include Precision, Recall, \fone\ and \ac{AED}~\citep{chen_text_2021}.
 A sample is considered a True positive if the \ac{NED} distance between predictions and
-matched ground truths is equal to 0~\citep{sun_icdar_2019} (on sample can have multiple text instances).
+matched ground truths is equal to 0~\citep{sun_icdar_2019} (on sample can have multiple text
+instances).
 \ac{AED} is the sum of \ac{NED} values devided by the number of pictures~\citep{chen_text_2021}.
 Note that competitions often define their own variants of the metrics,
 e.g.~\cite{he_icpr2018_2018,shi_icdar2017_2017}.
@@ -596,7 +601,7 @@ characteristics.
                                                         noise~\citep{long_scene_2021} \\
         ICDAR (2015) & \checkmark& \checkmark&Multi-oriented& Low resolution, small text
                                                                 instances~\citep{liao_mask_2020} \\
-        MSRA-TD500 (2012) & \checkmark&&Multi-Oriented& Extreme aspect ratios~\citep{liao_mask_2020} \\
+        MSRA-TD500 (2012) & \checkmark&&Multi-Oriented& Extreme aspect ratios~\citep{liao_mask_2020}\\
         ICDAR MLT (2017) & \checkmark&\checkmark&Curved& Multilingual~\citep{long_scene_2021}  \\
         SCUT CTW1500 (2017)& \checkmark& &Curved& --- \\
         Total-Text (2017) & \checkmark& \checkmark&Curved& --- \\

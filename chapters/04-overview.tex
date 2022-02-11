@@ -22,17 +22,23 @@ The ways in which the respective issues for the steps are solved are identified 
 listed and explained alongside.
 \begin{figure}[h]
     \centering
-    \include{figure-code/tikz/taxonomie-tikz}
-\caption{Pipeline taxonomy and respective steps\label{fig:pipelineSteps}}
+    \include{figure-code/tikz/taxonomie-E2E-tikz}
+    \caption{Different E2E Pipelines\label{fig:e2e-pipelines}}
 \end{figure}
-Figure~\ref{fig:pipelineSteps} shows tasks and their respective approaches which are associated
-with \ac{STS}.
-\ac{STD} and \ac{STR} only incorporate a part of \ac{STS}, while E2E
+Figure~\ref{fig:e2e-pipelines} shows two pipelines categories for end to end \ac{STS}
+approaches~\citep{long_scene_2021}.
+\ac{STD} and \ac{STR} only incorporate a part of \ac{STS}, while end to end approaches.
 incorporate both \ac{STD} and \ac{STR} techniques to solve \ac{STS}~\citep{long_scene_2021}.
 Therefore this section will first discuss the two parts, to then later combine them.
 
 For \ac{STD} two main categories of approaches can be identified: segmentation based and \ac{BB}
-regression based~\citep{long_scene_2021,sheng_centripetaltext_2021,liu_accurate_2020}.
+regression based (see
+Figure~\ref{fig:STD-pipelines})~\citep{long_scene_2021,sheng_centripetaltext_2021,liu_accurate_2020}.
+\begin{figure}[h]
+    \centering
+    \include{figure-code/tikz/taxonomie-STD-tikz}
+    \caption{Different STD Pipelines\label{fig:STD-pipelines}}
+\end{figure}
 The regression based category draws heavy inspiration from the field of object
 detection~\citep{long_scene_2021,liu_accurate_2020}.
 This is only natural as text detection can be seen as a type of object
@@ -139,7 +145,6 @@ Segmentation based methods can roughly be summed up in two categories: pixel bas
 based~\citep{long_scene_2021}.
 Like with \ac{BB} regression based methods, example architectures are explained in order to
 describe their categories more clearly.
-The paper~\cite{deng_pixellink_2018} introduced a pixel based \ac{STD} approach.
 \begin{figure}[ht]
     \centering
     \includegraphics[width=0.7\textwidth]{img/STD-seg-based-architecture-Deng-PixelLink-2018.png}
@@ -148,10 +153,19 @@ The paper~\cite{deng_pixellink_2018} introduced a pixel based \ac{STD} approach.
         architecture~\citep{deng_pixellink_2018}\label{fig:STD-segbased-pixel-architecture}
     }
 \end{figure}
+The paper~\cite{deng_pixellink_2018} introduced a pixel based \ac{STD} approach.
 Figure~\ref{fig:STD-segbased-pixel-architecture} shows the approch's architecture.
 Figure~\ref{fig:STD-segbased-pixel-CNN} shows the \ac{CNN} structure for feature extraction
 (until conv5) which is basically VGG architecture with the fully connected layers exchanged with
 another convolutional stage~\citep{deng_pixellink_2018}.
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.35\textwidth]{img/STD-seg-based-CNN-Deng-PixelLink-2018.png}
+    \caption[Feature extractor and prediction head for pixel segmentation]{%
+        PixelNet CNN feature extractor with head structure for pixel
+        segmentation\label{fig:STD-segbased-pixel-CNN}
+    }
+\end{figure}
 The feature extraction followed by two heads which either predict text/non-text or
 links~\citep{deng_pixellink_2018}.
 The structure which combines downsampled feature maps with later upsampled ones is inspired
@@ -171,14 +185,6 @@ pixel to its type~\citep{deng_pixellink_2018}.
 For every neighbor there is a negative and a positive score.
 A pixel has eight neighbors: left, left-down, left-up, right, right-down, right-up, up, down.
 Each of the $2\cdot8$ filters is responsiblde for link a neighbor~\citep{deng_pixellink_2018}.
-\begin{figure}[ht]
-    \centering
-    \includegraphics[width=1\textwidth]{img/STD-seg-based-CNN-Deng-PixelLink-2018.pdf}
-    \caption[Feature extractor and prediction head for pixel segmentation]{%
-        PixelNet CNN feature extractor with head structure for pixel
-        segmentation\label{fig:STD-segbased-pixel-CNN}
-    }
-\end{figure}
 After both links and text/non-text pixels have been predicted, they are combined for instance
 segmentation~\citep{deng_pixellink_2018}.
 The link layers are used to indicate whether two text pixels are grouped together an thus belong to
@@ -246,18 +252,34 @@ To reconstruct, the predictions are taken as a graph: segments are nodes, links 
 Depth-first search is applied to the graph to find connected components and thus text
 instances~\citep{shi_detecting_2017}.
 
-% FIXME: how to begin?
-Examples
-\begin{itemize}
-    \item Segmentation based approach~\cite{liao_scene_2018}
-    \item Segmentation less: (important to mention improvements made)
-        CTC ---~\cite{shi_end--end_2017},
-        Attention ---~\cite{sutskever_sequence_2014}
-\end{itemize}
+For \ac{STD} two main categories of approaches can be identified: segmentation based and \ac{BB}
+regression based (see
+Figure~\ref{fig:STD-pipelines})~\citep{long_scene_2021,sheng_centripetaltext_2021,liu_accurate_2020}.
+For \ac{STR} two main categories of approaches can be identified: segmentation based and segmentation
+less~\citep{chen_text_2021}.
+Segmentation less approaches can again be divided into CTC based and Encoder-Decoder based
+approaches (see Figure~\ref{fig:str-pipelines})~\citep{long_scene_2021,cong_comparative_2019}.
+\begin{figure}[h]
+    \centering
+    \include{figure-code/tikz/taxonomie-STR-tikz}
+    \caption{Different STR Pipelines\label{fig:str-pipelines}}
+\end{figure}
+Like with \ac{STD} the different approaches are explained with examples.
+For segmentation based \ac{STR} the approach introduced by~\cite{liao_scene_2018} (see
+Figure~\ref{fig:STR-segbased-architecture}) is used.
+\begin{figure}[h]
+    \centering
+    \include{img/STR-seg-based-Liao-Scene-2018.png}
+    \caption[Segmentation based STR architecture]{%
+        Example for a segmentation based STR
+        architecture~\citep{liao_scene_2018}\label{fig:STR-segbased-architecture}
+    }
+\end{figure}
+The architecture is similar to~\cite{deng_pixellink_2018} which introduced a segmentation based
+\ac{STR} approach.
 
-Segmentation less
+Segmentation less~\cite{liao_scene_2018}
 \begin{itemize}
-    \item mention dependency on lexicons
     \item Steps: Preprocessing, Feature Extraction, Sequence Modelling, Prediction
     \item preprocessing, text enhancement: remove distortions, background; improve resolution,
         recover degraded text
@@ -276,11 +298,13 @@ Segmentation less
                 \end{itemize}
             \item GoogLeNet
         \end{itemize}
-    \item Sequence and Prediction
+    \item Sequence $\rightarrow$ Encoder
+    \item Prediction $\rightarrow$ Decoder (mention improvements made!)
         \begin{itemize}
-            \item CTC
-            \item Encode-Decoder/Attention
-            \item Lexicon Free Models!
+            \item CTC ---~\cite{shi_end--end_2017}, \\
+            \item Attention ---~\cite{ghosh_visual_2017} (inspired
+                by~\cite{bahdanau_neural_2016,xu_show_2016})
+                Difference Attention and Encoder-Decoder (Long)!
         \end{itemize}
 \end{itemize}
 
@@ -306,7 +330,7 @@ E2E
         STR & Seg based & & Character segmentation and classification\\
             & Seg free & & Text instance recognition \\
             & & CTC based &  \\
-            & & Attention based & Encoder-Decoder Mechanism \\
+            & & Attention based & Attention Mechanism \\
         \midrule
         E2E & 2-step & & \\
             & Parallel & & \\
@@ -318,7 +342,6 @@ E2E
 %           the categorization is applied to help compare approaches (give example for mixture)
 
 \section{Literature Search}\label{se:litSearch}
-% FIXME: literature quellen reinbringen
 This section documents the search for literature which provides the content for the subsequent
 overview of innovation.
 For this, important \ac{DL} techniques and notable advances along with their properties are researched

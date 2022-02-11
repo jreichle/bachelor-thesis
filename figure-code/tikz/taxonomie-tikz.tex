@@ -60,45 +60,15 @@
         }
         %
         child{node [lone] {E2E}
+            child{node [ltwo] {Two Step}
+                child[lthree,level1] {node {STD \\ }}
+                child[lthree,level2] {node {STR with \\ cropped images}}
+            }
             child{node [ltwo] {Two Stage}
                 child[lthree,level1] {node {STD}}
                 child[lthree,level2] {node {STR with \\ feature maps}}
-            }
-            child{node [ltwo] {One Stage}
-                child[lthree,level1] {node {STD \& STR \\ Parallel}}
             }
         };
 
 \end{tikzpicture}
 }%
-
-
-\begin{comment}
-\begin{tikzpicture}[
-    font=\scriptsize,
-    edge from parent fork down,
-    level distance=1.75cm,
-    every node/.style={
-            rectangle,
-            minimum height=6mm,
-            align=center,
-            text depth = 0pt,
-    },
-    edge from parent/.style={draw=black},
-    category/.style={Rectangle},
-    step/.style={Circle}
-]
-    \Tree [.STS
-        [.{STD}
-            [.{Feature \\ Extraction} ]
-            [.{BB Regression} ]
-        ]
-        [.{STR}
-            [.{Preprocessing} ]
-            [.{Feature \\ Extraction} ]
-            [.{Sequence \\ Modelling} ]
-            [.{Prediction} ]
-        ]
-    ]
-\end{tikzpicture}
-\end{comment}

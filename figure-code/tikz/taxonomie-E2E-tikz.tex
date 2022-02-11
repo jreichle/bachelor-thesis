@@ -1,0 +1,40 @@
+\resizebox{0.4\linewidth}{!}{%
+\begin{tikzpicture}[
+    every node/.style={draw=black,thin,anchor=west, minimum height=2.5em},
+    lroot/.style={%
+        edge from parent fork down,
+        level distance=0.5cm,
+        text centered, text width=3cm},
+    lone/.style={%
+        text centered, text width=3cm,
+        level distance=0.5cm},
+    ltwo/.style={%
+        rounded corners,
+        grow=down, xshift=-0.8cm,
+        text centered, text width=3cm,
+        edge from parent path={(\tikzparentnode.205) |- (\tikzchildnode.west)}},
+    level1/.style ={level distance=1.2cm},
+    level2/.style ={level distance=2.4cm},
+    level3/.style ={level distance=3.6cm},
+    level4/.style ={level distance=4.8cm},
+    level5/.style ={level distance=6.0cm},
+    level 1/.style={sibling distance=4cm},
+    level 1/.append style={level distance=1.5cm},
+]
+%   \draw[help lines] (0,0) grid (4,3);
+
+    % lroot
+    \node[anchor=south,lroot]{E2E}
+    [edge from parent fork down]
+            child{node [lone] {Two Step}
+                child[ltwo,level1] {node {STD \\ }}
+                child[ltwo,level2] {node {STR with \\ cropped images}}
+            }
+            child{node [lone] {Two Stage}
+                child[ltwo,level1] {node {STD}}
+                child[ltwo,level2] {node {STR with \\ feature maps}}
+            };
+        %
+
+\end{tikzpicture}
+}%
