@@ -245,7 +245,7 @@ reached~\citep{goodfellow_deep_2016}.
 Note that the algorithm can be performed with tensors of arbitrary
 dimensionality~\citep{goodfellow_deep_2016}.
 
-\section{Convoluational Neural Nets}
+\section{Convoluational Neural Nets}\label{se:cnn}
 % basics
 \acp{CNN} are a type of \ac{NN} that is also acyclic, like \acp{MLP}~\citep{chauhan_review_2018}.
 \acp{CNN} are specialized to process a grid of values $\X$ like an image~\citep{goodfellow_deep_2016}.
@@ -313,10 +313,18 @@ The most popular kind of pooling is maxpooling~\citep{ponti_everything_2017}.
 For the operation only the maximum value of the current subspace of the current channel is
 taken~\citep{chauhan_review_2018}.
 
+% FIXME: receptive fields!
 When it comes to deep \acp{CNN}, the problem of vanishing/exploding gradients occurs during
 backpropagation.
+This problem can be impede convergence~\citep{he_deep_2015}.
+It can be solved by normalized intitialization of the network's weights and intermediate
+batch normalization layers~\citep{he_deep_2015,bjorck_understanding_2018}.
+Layer normalization can also be used~\citep{liu_rethinking_2021,ba_layer_2016}.
 ResNet introduced residual blocks with skip connections which pass the gradient to later layers
-to bypass vanishing/exploding~\citep{he_deep_2015}.
+to bypass exedingly deep \ac{NN} to overcome the degradation problem (deep \ac{NN} perform
+worse than shallow ones)~\citep{he_deep_2015}.
+These skip connections basically map the identity of ealier layer to later
+layers~\citep{he_deep_2015}.
 \begin{figure}[ht]
     \centering
     \input{figure-code/tikz/resnet-tikz.tex}%

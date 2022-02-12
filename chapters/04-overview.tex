@@ -161,6 +161,7 @@ instances of text~\citep{deng_pixellink_2018}.
 Figure~\ref{fig:STD-segbased-pixel-CNN} shows the \ac{CNN} structure for feature extraction
 (until conv5) which is basically VGG architecture with the fully connected layers exchanged with
 another convolutional stage~\citep{deng_pixellink_2018}.
+% FIXME: essentially CNN encoder decoder~\citep{badrinarayanan_segnet_2017}
 \begin{figure}[ht]
     \centering
     \includegraphics[width=0.35\textwidth]{img/STD-seg-based-CNN-Deng-PixelLink-2018.png}
@@ -257,7 +258,7 @@ Depth-first search is applied to the graph to find connected components and thus
 instances~\citep{shi_detecting_2017}.
 
 For \ac{STR} two main categories of approaches can be identified: segmentation based and
-encoder-decoder based (see Figure~\ref{fig:str-pipelines})~\citep{chen_text_2021}.
+encoder decoder based (see Figure~\ref{fig:str-pipelines})~\citep{chen_text_2021}.
 \begin{figure}[h]
     \centering
     \include{figure-code/tikz/taxonomie-STR-tikz}
@@ -267,9 +268,10 @@ Segmentation based approaches for \ac{STR} are similar to segmentation based app
 After feature extraction, the subtext components (characters for \ac{STR}) are
 segmented~\citep{chen_text_2021}.
 Instead of reconstructing a \ac{BB}, the characters are classified to recognize the
-text~\citep{chen_text_2021}.
-Because of their similarity to \ac{STD} and the recent domiance of encoder-decoder based
-approaches~\citep{chen_text_2021,long_scene_2021}, only the later will be explained with examples.
+text and are then used to form the text instance~\citep{chen_text_2021}.
+Because of their similarity to \ac{STD} and the recent domiance of encoder decoder based
+approaches~\citep{chen_text_2021,long_scene_2021}, only the later will be explained in detail with
+examples.
 The approach from~\cite{wan_textscanner_2020} can be used as an example, should the reader feel the
 need to read up on segmentation based methods for \ac{STD} that do not include an encoder decoder
 mechanism in the prediciton stage.
@@ -284,11 +286,33 @@ mechanism in the prediciton stage.
 The approach adds a geometry branch parallel to the charcater segmentation which helps with with
 putting the identified characters in the right sequence (see
 Figure~\ref{fig:STR-segbased-architecture})~\citep{wan_textscanner_2020}.
-Encoder-decoder based approaches can again be divided into \ac{CTC} based and Encoder-Decoder based
-approaches (see Figure~\ref{fig:str-pipelines})~\citep{long_scene_2021,cong_comparative_2019}.
+
+Encoder-decoder based approaches can again be divided into \ac{CTC} based and attention based
+approaches (see
+Figure~\ref{fig:STR-segbased-architecture})~\citep{long_scene_2021,cong_comparative_2019}.
+\begin{figure}[h]
+    \centering
+    \include{figure-code/tikz/encoder-decoder-rec-tikz}%
+    \includegraphics[width=0.7\textwidth]{img/Encoder-Decoder-Conv-Badrinarayanan-SegNet-2017.png}
+    \caption[Encoder decoder architectures]{%
+        Encoder decoder architecture with \acp{RNN} and \acp{CNN}
+        respectively~\citep{cho_learning_2014,badrinarayanan_segnet_2017}\label{fig:bilstm}
+    }
+\end{figure}
+The \ac{RNN} encoder decoder can be used to transform a sequence of variable length into another
+sequence with different variable length~\citep{cho_learning_2014}.
+The encoder processes the input sequence and crafts a representation vector that encodes information
+and context for the whole input sequence which can then be used for every time step in the decoder
+network~\citep{cho_learning_2014}.
+The \ac{CNN} encoder decoder architecture was already introduced with the pixel-level,
+segmentation example for \ac{STD} (see
+Figure~\ref{fig:STD-segbased-pixel-CNN})~\citep{deng_pixellink_2018}.
+Continuous downsampling and and combining those layers with later, upsampled layers helps to generate
+context for image features by combining coarse, higher level information with fine, lower level
+information~\citep{long_fully_2015,badrinarayanan_segnet_2017}.
 Often preprocessing steps are performed to remove distortions, rectify curved text,
 remove disruptive background, improve resolutions or recover degraded text.
-Especially the rectifying curved text (see Figure~\ref{fig:STN-application}) with the help of
+Especially rectifying curved text (see Figure~\ref{fig:STN-application}) with the help of
 thin-plate spines~\citep{bookstein_principal_1989} or spatial transformer
 networks~\citep{jaderberg_spatial_2015} shows great improvement for \ac{STR}
 performance~\citep{long_scene_2021,chen_text_2021}.
@@ -305,16 +329,67 @@ The tradeoff between performance and memory \& computation cost determines what 
 chosen~\citep{chen_text_2021}.
 An example for a deep and powerful \ac{CNN} are ResNets~\citep{he_deep_2015} which are often used
 for benchmark purposes~\citep{chen_text_2021,long_scene_2021}.
+Refer to Section~\ref{se:cnn} for more information on ResNets.
 Efficient feature extraction can e.g.\ be performed with binary convolutional
 nets~\citep{liu_scut-ctw1500_2022}.
 For the sequence modelling and transcription steps first~\cite{shi_end--end_2017} (\ac{CTC} based)
 and then~\cite{ghosh_visual_2017} (attention based) will be used as examples.
-
+For~\cite{shi_end--end_2017} the convolutional feature maps are converted to a feature sequence
+with a (see Figure~\ref{fig:STR-CTC-seq-feat}).
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.3\textwidth]{img/STR-encdec-sequence-feat.png}
+    \caption[Sequential feature extraction from convolution feature maps]{%
+        Sequential feature extraction from convolution feature
+        maps~\citep{shi_end--end_2017}\label{fig:STR-CTC-seq-feat}
+    }
+\end{figure}
+The sequence is generated by taking column out of the feature maps from left to
+right~\citep{shi_end--end_2017}.
+This is possible because the parts of the feature map correspond to a spatial region of the
+original image~\citep{shi_end--end_2017,goodfellow_deep_2016}.
+The generated sequence features are feed into a deep \ac{BiLSTM}.
+Figure~\ref{fig:bilstm} shows one layer which is made up of an \ac{LSTM} which processes the
+sequence in the correct order and another \ac{LSTM} which processes the sequence
+backwards~\citep{shi_end--end_2017}.
+An \ac{LSTM} processed a sequence to gather context from ealier input for laterr
+outputs~\citep{shi_end--end_2017,goodfellow_deep_2016}.
+The \ac{BiLSTM} allows to gather context of later input for ealier outputs~\citep{shi_end--end_2017}.
+This is important since a character might comprises more than one steps in the sequence
+data~\citep{shi_end--end_2017}.
+\begin{figure}[ht]
+    \centering
+    \include{figure-code/tikz/bilstm-tikz}%
+    \caption[Bidirectional LSTM]{%
+        Bidirectional LSTM~\citep{goodfellow_deep_2016}\label{fig:bilstm}
+    }
+\end{figure}
+The generated encoded features with embedded context are then used for transcribing the final
+output~\citep{shi_end--end_2017}.
+The transciption uses conditional probibilities to convert the per-frame featues encoded by the
+deep \ac{BiLSTM} into the label sequence which is the text instance
+prediction~\citep{shi_end--end_2017}.
+This process uses the conditional probabilities $p(l\|\Y)$ that are defined by~\cite{graves_connectionist_2006},
+which is why the category of approaches is called \ac{CTC} based.
+$l$ stands for the label sequence and \Y\ stands for the per-frame features~\citep{shi_end--end_2017}.
+Each frame $\y_t$ is a probability distribution over the possible character and a `blank'
+character~\citep{shi_end--end_2017,graves_connectionist_2006}.
+It is distinguished between lexicon based and lexicon free transcription~\citep{shi_end--end_2017}.
+Lexicon free transcription uses the most probable character or blank (-) at each frame.
+\[\text{HHH-eellll-lll-\-oo-\-\-}\]
+Then all duplicate characters are discarded.
+\[\text{H-el-l-o}\]
+At last all blanks are discarded, leaving the final prediction~\citep{shi_end--end_2017}.
+\[\text{Hello}\]
+For lexicon based transcription the combination of \Y ist checked for similarity to words in the
+lexicon based on the levenstein distance (like the metrics \ac{AED}, \ac{NED} defined in
+Section~\ref{se:sts})~\citep{shi_end--end_2017}.
+The word in the lexicon with the largest probability to be derived from \Y is
+chosen~\citep{shi_end--end_2017}.
 
 \begin{itemize}
-    \item Prediction $\rightarrow$ Decoder (mention improvements made!)
+    \item Prediction
         \begin{itemize}
-            \item CTC:~\cite{shi_end--end_2017}, \\
             \item Attention:~\cite{ghosh_visual_2017} (inspired
                 by~\cite{bahdanau_neural_2016,xu_show_2016})
                 Difference Attention and Encoder-Decoder (Long)!
@@ -341,12 +416,12 @@ E2E
             & & Component-level & Sub-component level segmentation \\
         \midrule
         STR & Seg based & & Character segmentation and classification\\
-            & Encoder Decoder based & & Text instance recognition \\
+            & Encoder Decoder based & & Sequence recognition \\
             & & CTC based & CTC rule \\
             & & Attention based & Attention Mechanism \\
         \midrule
         E2E & 2 step & & Images are cropped for STR \\
-        E2E & 2 stage & & Features are cropped for STR \\
+            & 2 stage & & Features are cropped for STR \\
         \bottomrule
     \end{tabular}
     \caption{Tasks, method categories and identifying propertis\label{tb:steps-properties}}
@@ -382,8 +457,3 @@ scope of this thesis.
 This extends to the whole pipeline from preprocessing an image to the final result of the model.
 % FIXME: hierarchical graphic with found papers
 % FIXME: describe proceeding
-
-
-text enhancement:~\cite{chen_text_2021}
-model pruning:~\cite{niu_26ms_2019}
-integer inference:~\cite{ignatov_ai_2019}

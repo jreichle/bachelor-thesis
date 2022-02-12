@@ -1,0 +1,79 @@
+{\scriptsize%
+\begin{tikzpicture}[scale=0.5]
+	\node[rectangle] (Y0) at (0, 0) {$\dots$};
+	\node[rectangle, draw, right=2em of Y0, minimum height=1cm, minimum width=1cm] (RNN)
+        {LSTM$_\rightarrow$};
+	\node[rectangle, right=of RNN, draw, minimum height=1cm, minimum width=1cm] (RNN2)
+        {LSTM$_\rightarrow$};
+	\node[rectangle, right=of RNN2, draw, minimum height=1cm, minimum width=1cm] (RNN3)
+        {LSTM$_\rightarrow$};
+	\node[rectangle, right= of RNN3, draw, minimum height=1cm, minimum width=1cm] (RNN4)
+        {LSTM$_\rightarrow$};
+	\node[rectangle, right=2em of RNN4] (RNN5) {$\dots$};
+
+
+	\node[rectangle, above=of RNN4, draw, minimum height=1cm, minimum width=1cm] (R25)
+        {LSTM$_\leftarrow$};
+	\node[rectangle, left=of R25, minimum height=1cm, minimum width=1cm, draw] (R24)
+        {LSTM$_\leftarrow$};
+	\node[rectangle, left=of R24, draw, minimum height=1cm, minimum width=1cm] (R23)
+        {LSTM$_\leftarrow$};
+	\node[rectangle, left=of R23, draw, minimum height=1cm, minimum width=1cm] (R22)
+        {LSTM$_\leftarrow$};
+	\node[rectangle, left=2em of R22] (R21) {$\dots$};
+	\node[right=2em of R25] (Y20) {$\dots$};
+
+	\node[below=of RNN] (X1) {$\x_2$};
+	\node[below=of RNN2] (X2) {$\x_3$};
+	\node[below=of RNN3] (X3) {$\x_4$};
+	\node[below=of RNN4] (X4) {$\x_5$};
+	\node[above=of R25] (Y5) {$\h_5$};
+	\node[above=of R24] (Y4) {$\h_4$};
+	\node[above=of R23] (Y3) {$\h_3$};
+	\node[above=of R22] (Y2) {$\h_2$};
+	\node[rectangle, left=3.2em of Y2] (Y1) {$\dots$};
+	\node[right=3.2em of Y5] (Y6) {$\dots$};
+
+	\draw[-stealth] (X1) -- (RNN);
+	\draw[-stealth] (X2) -- (RNN2);
+	\draw[-stealth] (X3) -- (RNN3);
+	\draw[-stealth] (X4) -- (RNN4);
+	\draw[-stealth] (Y0) -- (RNN);
+	\draw[-stealth] (RNN) -- node[above, pos=0.35] {} (RNN2);
+	\draw[-stealth] (RNN2) -- node[above, pos=0.35] {} (RNN3);
+	\draw[-stealth] (RNN3) -- node[above, pos=0.35] {} (RNN4);
+	\draw[-stealth, densely dotted] (RNN4) -- (RNN5);
+	\node[below=4em of Y0] (d) {\dots};
+	\node[below=4em of RNN5] (d) {\dots};
+
+	\path[-stealth, white] (X1) edge[bend left=45] (R22);
+	\path[-stealth] (X1) edge[bend left=45] (R22);
+	\path[-stealth, white] (X2) edge[bend left=45] (R23);
+	\path[-stealth] (X2) edge[bend left=45] (R23);
+	\path[-stealth, white] (X3) edge[bend left=45] (R24);
+	\path[-stealth] (X3) edge[bend left=45] (R24);
+	\path[-stealth, white] (X4) edge[bend left=45] (R25);
+	\path[-stealth] (X4) edge[bend left=45] (R25);
+	\draw[-stealth, densely dotted] (Y20) -- (R25);
+
+	\draw[-stealth] (R22) -- (Y2);
+	\draw[-stealth] (R23) -- (Y3);
+	\draw[-stealth] (R24) -- (Y4);
+	\draw[-stealth] (R25) -- (Y5);
+
+	\draw[stealth-, densely dotted] (R21) -- (R22);
+	\draw[stealth-] (R22) -- node[above, pos=0.65] {} (R23);
+	\draw[stealth-] (R23) -- node[above, pos=0.65] {} (R24);
+	\draw[stealth-] (R24) -- node[above, pos=0.65] {} (R25);
+	\draw[-stealth, densely dotted] (Y20) -- (R25);
+
+	\path[-stealth, white] (RNN) edge[bend right=45] (Y2);
+	\path[-stealth] (RNN) edge[bend right=45] (Y2);
+	\path[-stealth, white] (RNN2) edge[bend right=45] (Y3);
+	\path[-stealth] (RNN2) edge[bend right=45] (Y3);
+	\path[-stealth, white] (RNN3) edge[bend right=45] (Y4);
+	\path[-stealth] (RNN3) edge[bend right=45] (Y4);
+	\path[-stealth, white] (RNN4) edge[bend right=45] (Y5);
+	\path[-stealth] (RNN4) edge[bend right=45] (Y5);
+\end{tikzpicture}
+}
