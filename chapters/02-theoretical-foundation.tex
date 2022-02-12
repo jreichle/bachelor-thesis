@@ -336,6 +336,7 @@ layers~\citep{he_deep_2015}.
 
 \section{Recurrent Neural Nets}
 % FIXME: input often tokenized (like for transformer)
+% FIXME: add vector-sequence,sequence-vector,sequence-sequence
 \acp{RNN} are another popular category of \ac{NN} which are used for processing sequential input,
 like text and speech~\citep{chauhan_review_2018}.
 Figure~\ref{fig:rnn-unrolling} shows a simple \ac{RNN}.
@@ -346,12 +347,13 @@ Figure~\ref{fig:rnn-unrolling} shows a simple \ac{RNN}.
         Recurrent neural net unrolling~\citep{goodfellow_deep_2016}\label{fig:rnn-unrolling}
     }
 \end{figure}
-% FIXME: check dimensions of variables -> might need to be bold
-The defining element is the recurrent connection from node $\h$ to itself~\citep{goodfellow_deep_2016}.
+The defining element is the recurrent connection from node $\h$ to
+itself~\citep{goodfellow_deep_2016}.
 A sequence of inputs \X\ is iteratively fed into the \ac{RNN}.
 The current layer of the network takes $\x^{(t)}$ and $\h^{(t-1)}$ and produces $\h^{(t)}$
 (see Equation~\ref{eq:rnn-h}).
-Additionally, $\h^{(t)}$ is used to calculate the output $\hat{\y}^{(t)}$ (see Equation~\ref{eq:rnn-yh})
+Additionally, $\h^{(t)}$ is used to calculate the output $\hat{\y}^{(t)}$ (see
+Equation~\ref{eq:rnn-yh})
 and it is handed to the next layer~\citep{goodfellow_deep_2016}.
 $\h^{(t)}$ is thoght of as a hidden state which stores information from previous
 inputs~\citep{goodfellow_deep_2016}.
@@ -374,7 +376,7 @@ length~\citep{goodfellow_deep_2016}.
 Optimization of the parameters of \acp{RNN} is performed with (truncated) backpropagation through
 time~\citep{sherstinsky_fundamentals_2020}.
 
-% FIXME: update with Michigan Lecture and http://colah.github.io/posts/2015-08-Understanding-LSTMs/
+% XXX: update with Michigan Lecture and http://colah.github.io/posts/2015-08-Understanding-LSTMs/
 The \ac{LSTM} network was introduced by~\cite{hochreiter_long_1997} and modified
 by~\cite{gers_learning_1999} to improve longer storing of information from earlier
 layers~\citep{chauhan_review_2018}.
@@ -398,8 +400,41 @@ The forget gate is part of a self loop which helps to accumulate information lon
 gate helps to focus on the relevant characteristics of the input information
 and the output gate removes irrelevant information for the output as well as the next
 cell~\citep{goodfellow_deep_2016}.
-% FIXME: add BiLSTMs?
-% FIXME: add vector-sequence,sequence-vector,sequence-sequence(attention)
+\begin{equation}\label{eq:lstm-gates}
+    \begin{pmatrix}
+        \textbf{i}_t \\
+        \textbf{f}_t \\
+        \textbf{o}_t \\
+        \textbf{g}_t
+    \end{pmatrix}
+    =
+    \begin{pmatrix}
+        \sigma \\
+        \sigma \\
+        \sigma \\
+        \tanh
+    \end{pmatrix}
+    T
+    \begin{pmatrix}
+        \x_{t} \\
+        \h_{t-1}
+    \end{pmatrix}
+\end{equation}
+\begin{equation}\label{eq:lstm-c}
+    \textbf{c}_t=\textbf{f}_t\otimes \textbf{c}_{t-1} + \textbf{i}_t\otimes \textbf{g}_t
+\end{equation}
+\begin{equation}\label{eq:lstm-h}
+    \h_t=\textbf{o}_t\otimes\tanh(\textbf{c}_t)
+\end{equation}
+The Equations~\ref{eq:lstm-gates},~\ref{eq:lstm-c} and~\ref{eq:lstm-h} show the calculations
+performed for a single timestep~\citep{xu_show_2016}.
+$\sigma$ and $\tanh$ denote the application of activation functions after the weight matrix $T$
+is multiplied by the stacked input $\x_t,\h_{t-1}$~\citep{zaremba_recurrent_2015}.
+$\textbf{i}_t,\textbf{f}_t,\textbf{o}_t$ are the output of the input gate, forget gate and output
+gate.
+$\textbf{c}_t,\textbf{h}_t$ are the cell states and outputs to the next step or the
+prediction sequence~\citep{zaremba_recurrent_2015}.
+
 
 \section{Transformers}
 % FIXME: look into \cite{kloss_learning_2016}
@@ -444,6 +479,7 @@ Figure~\ref{fig:transformer-dot-product})~\citep{vaswani_attention_2017}.
         vectors~\citep{vaswani_attention_2017}\label{fig:transformer-dot-product}
     }
 \end{figure}
+% FIXME: use ihttps://github.com/janosh/tikz/tree/main/assets/self-attention nstead
 This is calculated multiple times (hence the term multi-head) and the results are merged by
 concatenation and a subseding linear layer~\citep{vaswani_attention_2017}.
 This allows the model to use different representations of the
