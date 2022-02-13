@@ -51,6 +51,23 @@ For comparison: which Benchmark Dataset fits the problem the best?
         MSRA-TD500
 \end{itemize}
 
+E2E
+\begin{itemize}
+    \item 2 step
+        \begin{itemize}
+            \item~\cite{chen_text_2021}: errors can accumulate between STD and STR
+            \item~\cite{long_scene_2021}: propagation of error between detection and recognition
+        \end{itemize}
+    \item 2 stage
+        \begin{itemize}
+            \item~\cite{chen_text_2021}: can prevent errors from being accumulated during training
+            \item~\cite{chen_text_2021}: share information between STD and STR
+                $\rightarrow$ optimize jointly to improve performance
+            \item~\cite{chen_text_2021}: exhibit competitive performance with faster interference
+                and smaller storage requirements
+        \end{itemize}
+\end{itemize}
+
 Detection
 \begin{itemize}
     \item BB regression

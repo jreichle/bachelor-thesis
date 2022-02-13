@@ -10,20 +10,41 @@ Lastly, the advances in the field are placed in the correct position and analyze
 \section{Taxonomy of Pipeline Steps}
 Before getting into current research level, a base of knowledge about the field has to be layed.
 A taxonomy is created for this which is useful to classify and give context to innovations in the
-field.
-\begin{figure}[b]
-    \centering
-    \include{figure-code/tikz/taxonomie-E2E-tikz}
-    \caption{Different E2E Pipelines\label{fig:e2e-pipelines}}
-\end{figure}
+field (see Table~\ref{tb:steps-properties}).
+\begin{table}[ht]
+    \centering\scriptsize
+    \begin{tabular}{p{.05\textwidth}p{.09\textwidth}p{.16\textwidth}p{.55\textwidth}}
+        Task & \multicolumn{2}{c}{Approach category} & Identifying properties \\
+        \toprule
+        STD & Seg free & & Localize whole instances  \\
+            & & 1-stage & direct \ac{BB} regression \\
+            & & 2-stage & find \acp{ROI}, adjust \acp{ROI} for better fit \\
+            & Seg based & & Localize sub text components to reconstruct instance \\
+            & & Pixel-level & Pixel level segmentation \\
+            & & Component-level & Sub-component level segmentation \\
+        \midrule
+        STR & Seg based & & Character segmentation and classification\\
+            & Encoder Decoder based & & Sequence recognition \\
+            & & CTC based & CTC rule transciption \\
+            & & Attention based & Attention Mechanism \\
+        \midrule
+        E2E & 2 step & & Images are cropped for STR \\
+            & 2 stage & & Features are cropped for STR \\
+        \bottomrule
+    \end{tabular}
+    \caption{Tasks, method categories and identifying propertis\label{tb:steps-properties}}
+\end{table}
 The partition of tasks and categorization of approaches is conducted according to overview literature
 such as~\cite{long_scene_2021,chen_text_2021,cong_comparative_2019} and related research in the
 field such as~\cite{qiao_text_2021,sheng_centripetaltext_2021,liu_accurate_2020,deng_pixellink_2018}.
+Note that there can be approaches which blend different categories into one, the taxonomy
+is merely used to facilitate an overview and to enable a clearer comparison.
 To create the overview the necessary steps in the process of \ac{STS} need to be highlighted,
 from preprocessing to classifying the identified
 text~\citep{long_scene_2021, sourvanos_challenges_2018}.
 The ways in which the respective issues for the steps are solved are identified from literature,
 listed and explained alongside.
+Note that details which are not essential are abstracted away.
 Figure~\ref{fig:e2e-pipelines} shows two pipelines categories for end to end \ac{STS}
 approaches~\citep{long_scene_2021}.
 \ac{STD} and \ac{STR} only incorporate a part of \ac{STS}, while end to end approaches
@@ -90,8 +111,8 @@ are slided accross the input features generating 12 predicted \ac{BB} per
 position~\citep{liao_textboxes_2017}.
 The \acp{BB} of all layers are then subjected to the process of \ac{NMS} to filter out the best
 \ac{BB} for each possible text instance~\citep{liao_textboxes_2017}.
-For this \ac{NMS} is used: of all detections which overlap more than a threshhold $\phi$ only the
-with the highest confidence score ($c$) is kept~\citep{hosang_learning_2017}.
+For this \ac{NMS} is used: of all detections which overlap (\ac{IOU}) more than a threshhold
+$\phi$ only the with the highest confidence score ($c$) is kept~\citep{hosang_learning_2017}.
 
 The R-CNN which builds the foundation for \ac{ROI} based text detection, was introduced
 by~\cite{girshick_rich_2014} and improved by~\cite{girshick_fast_2015} (Fast
@@ -274,7 +295,7 @@ Because of their similarity to \ac{STD} and the recent domiance of encoder decod
 approaches~\citep{chen_text_2021,long_scene_2021}, only the later will be explained in detail with
 examples.
 The approach from~\cite{wan_textscanner_2020} can be used as an example, should the reader feel the
-need to read up on segmentation based methods for \ac{STD} that do not include an encoder decoder
+need to read up on segmentation based methods for \ac{STR} that do not include an encoder decoder
 mechanism in the prediciton stage.
 \begin{figure}[h]
     \centering
@@ -288,9 +309,6 @@ The approach adds a geometry branch parallel to the charcater segmentation which
 putting the identified characters in the right sequence (see
 Figure~\ref{fig:STR-segbased-architecture})~\citep{wan_textscanner_2020}.
 
-Encoder-decoder based approaches can again be divided into \ac{CTC} based and attention based
-approaches (see
-Figure~\ref{fig:STR-segbased-architecture})~\citep{long_scene_2021,cong_comparative_2019}.
 \begin{figure}[h]
     \centering
     \include{figure-code/tikz/encoder-decoder-rec-tikz}%
@@ -311,6 +329,9 @@ Figure~\ref{fig:STD-segbased-pixel-CNN})~\citep{deng_pixellink_2018}.
 Continuous downsampling and and combining those layers with later, upsampled layers helps to generate
 context for image features by combining coarse, higher level information with fine, lower level
 information~\citep{long_fully_2015,badrinarayanan_segnet_2017}.
+Encoder-decoder based approaches can again be divided into \ac{CTC} based and attention based
+approaches (see
+Figure~\ref{fig:STR-segbased-architecture})~\citep{long_scene_2021,cong_comparative_2019}.
 Often preprocessing steps are performed to remove distortions, rectify curved text,
 remove disruptive background, improve resolutions or recover degraded text.
 Especially rectifying curved text (see Figure~\ref{fig:STN-application}) with the help of
@@ -370,8 +391,9 @@ output~\citep{shi_end--end_2017}.
 The transciption uses conditional probibilities to convert the per-frame featues encoded by the
 deep \ac{BiLSTM} into the label sequence which is the text instance
 prediction~\citep{shi_end--end_2017}.
-This process uses the conditional probabilities $p(l\|\Y)$ that are defined by~\cite{graves_connectionist_2006},
-which is why the category of approaches is called \ac{CTC} based.
+This process uses the conditional probabilities $p(l\|\Y)$ that are defined
+by~\cite{graves_connectionist_2006}, which is why the category of approaches is called
+\ac{CTC} based.
 $l$ stands for the label sequence and \Y\ stands for the per-frame features~\citep{shi_end--end_2017}.
 Each frame $\y_t$ is a probability distribution over the possible character and a `blank'
 character~\citep{shi_end--end_2017,graves_connectionist_2006}.
@@ -396,61 +418,101 @@ important for each timestep~\citep{ghosh_visual_2017}.
 \begin{figure}[h]
     \centering
     \includegraphics[width=0.7\textwidth]{img/STR-encdec-attention-Gosh-Visual-2017.png}
-    \caption[Encoder decoder based STR architecture with attention mechanism]{%
+    \caption[Encoder decoder \& attention based STR architecture]{%
         Encoder decoder based STR architecture with attention
         mechanism~\citep{ghosh_visual_2017}\label{fig:STR-attention}
     }
 \end{figure}
 Figure~\ref{fig:STR-attention} shows the network architecture~\citep{ghosh_visual_2017}.
 The \ac{CNN} performs feature extraction and encoding~\citep{ghosh_visual_2017}.
-The \ac{CNN} architecture introduced by~\cite{jaderberg_deep_2015} is used.
-% FIXME: explain why this CNN
-The feature map is then converted into feature vector like in
+% FIXME: The \ac{CNN} architecture introduced by~\cite{jaderberg_deep_2015} is used.
+The feature map is then converted into feature vectors like in
 Figure~\ref{fig:STR-CTC-seq-feat}~\citep{ghosh_visual_2017,shi_end--end_2017}.
 The attention mechanism is placed between the encoder \ac{CNN} and the decoder
 \ac{LSTM}~\citep{ghosh_visual_2017}.
+This mechanism uses a weighted combination of the softmax activation ($\beta_{t,i}$) of the \ac{MLP}
+output ($\Phi$) and the feature vectors to encode the relative importance of the image parts at
+each time step (see Equations~\ref{eq:attention-weighted-combination}
+and~\ref{eq:attention-gate-values})~\citep{ghosh_visual_2017,xu_show_2016}.
+\begin{equation}\label{eq:attention-weighted-combination}
+    \hat{\textbf{z}}_t=\sum_{i=1}^{K}\boldsymbol{\beta_{t,i}}\cdot x_i
+\end{equation}
+\begin{equation}\label{eq:attention-gate-values}
+    \boldsymbol{\beta}_{t}=softmax(\Phi(\x_i,\h_{t-1}))
+\end{equation}
+Like with the previous approach, the networks output vectors at each time step represent a
+probability distribution over all possible characters~\citep{ghosh_visual_2017}.
+The transciption process again has the option to be used with a lexicon and
+without~\citep{ghosh_visual_2017}.
+The basic process without a lexicon leverages the beam search algorithm~\citep{ghosh_visual_2017}
+to find the sequence $w=[c_1,c_2,\ldots,c_n]$ with the highest
+probability~\citep{ghosh_visual_2017}.
+For lexicons the beam search algorithm is adjusted so that any sequences that that do not belong
+to a word in the lexicon fall out of contention~\citep{ghosh_visual_2017}.
+Besides the possibility to use a lexicon, the approach can also incorporate language priors into
+the beam search process.
+These priors leverage knowledge about the language that is recognized~\citep{ghosh_visual_2017}.
 
+As mentioned, \ac{STD} and \ac{STR} are only parts of the task that is at the center of this thesis.
+\ac{STS} can be performed in two ways (see Figure~\ref{fig:e2e-pipelines}).
+(1) Run \ac{STD}, crop the image at the resulting bounding boxes, run \ac{STR}.
+(2) Run \ac{STD}, crop feature maps, run adjusted \ac{STR}~\citep{chen_text_2021,long_scene_2021}.
+\begin{comment}
+\begin{figure}[ht]
+    \centering
+    \subfigure[2 step pipeline consisting of separate STD and STR\label{fig:e2e-2-step}]{%
+        \includegraphics[width=0.65\textwidth]{img/E2E-2-step-Long-Scene-2021.png}
+    }
+    \subfigure[2 stage pipeline consisting of one joint architecture for STS\label{fig:e2e-2-stage}]{%
+        \includegraphics[width=0.65\textwidth]{img/E2E-2-stage-Long-Scene-2021.png}
+    }
+    \caption[Different end to end pipelines for STS]{%
+        Different end to end pipelines for STS~\citep{long_scene_2021}\label{fig:looooong}
+    }
+\end{figure}
+\end{comment}
+\begin{figure}[b]
+    \centering
+    \include{figure-code/tikz/taxonomie-E2E-tikz}
+    \caption{Different E2E Pipelines\label{fig:e2e-pipelines}}
+\end{figure}
+Two step methods can modularly be combined~\citep{liao_textboxes_2017}.
+The \ac{STD} approach from~\cite{liao_textboxes_2017} can be combined with the CTC based \ac{STR}
+from~\cite{shi_end--end_2017}.
+Note that for the two modular approaches can still be adjusted to better fit
+together~\citep{liao_textboxes_2017}.
+The two stage approach that is used as an example was introduced by~\cite{busta_deep_2017}.
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.95\textwidth]{img/E2E-two-stage-architecture-Bust-Deep-2017.png}
+    \caption[2 stage STS architecture]{%
+        2 stage STS architecture~\citep{busta_deep_2017}\label{fig:e2e-2-stage}
+    }
+\end{figure}
+The approach essentially combines \ac{BB} based \ac{ROI} \ac{STD} with encoder decoder based \ac{CTC}
+\ac{STR}.
+After extracting features with a \ac{CNN}, the approach first generates \acp{ROI}.
+All \acp{ROI} with a certainty score above a threshhold are passed over to the recognition
+module~\citep{busta_deep_2017}.
+The combination of detection and recognition is made possible by bilinear
+sampling~\cite{busta_deep_2017}.
+This technique helps to collect the correct spatial features in terms of placing, size and rotation
+to pass to the recognition part~\citep{busta_deep_2017}.
+Note that the transformation normalized the rotation of the \acp{ROI}~\citep{busta_deep_2017}.
+At this point \acp{ROI} with a confidence score under a threshhold are
+discarded~\citep{busta_deep_2017}.
+The transformed \ac{ROI} features are then processed by a \ac{CNN} which transforms the feature maps
+into one feature map whose height is defined by the predictable characters and the width is defined
+by the spatial features of the \ac{ROI}~\citep{busta_deep_2017}.
+The resulting values can be tranformed into \ac{CTC} probability
+distributions~\citep{busta_deep_2017,graves_connectionist_2006}.
+Then the \ac{CTC} transcription rule can be applied to generate the final result.
+As with normal \ac{ROI} based approaches, a text instances can be mapped to multiple
+predictions~\citep{ren_faster_2016,busta_deep_2017}.
+Instead of performing \ac{NMS} with the help of the certainty score of \acp{ROI}, the filtering
+is performed with certainty scores which are generated in the recognition phase of the
+model~\citep{busta_deep_2017}.
 
-
-\begin{itemize}
-    \item lexicon free approach
-    \item adjustment of beam search algorithm for even better performance through weak explicit
-        language models (prefix probabilities, not fixed lexicon)
-    \item beam search to include lexicon when available
-\end{itemize}
-
-
-E2E
-\begin{itemize}
-    \item two step or two stage pipeline
-    \item Bestandteile nicht zwangsweise sequentiell
-\end{itemize}
-
-\begin{table}[ht]
-    \centering\scriptsize
-    \begin{tabular}{p{.05\textwidth}p{.09\textwidth}p{.16\textwidth}p{.55\textwidth}}
-        Task & \multicolumn{2}{c}{Approach category} & Identifying properties \\
-        \toprule
-        STD & Seg free & & Localize whole instances  \\
-            & & 1-stage & direct \ac{BB} regression \\
-            & & 2-stage & find \acp{ROI}, adjust \acp{ROI} for better fit \\
-            & Seg based & & Localize sub text components to reconstruct instance \\
-            & & Pixel-level & Pixel level segmentation \\
-            & & Component-level & Sub-component level segmentation \\
-        \midrule
-        STR & Seg based & & Character segmentation and classification\\
-            & Encoder Decoder based & & Sequence recognition \\
-            & & CTC based & CTC rule transciption \\
-            & & Attention based & Attention Mechanism \\
-        \midrule
-        E2E & 2 step & & Images are cropped for STR \\
-            & 2 stage & & Features are cropped for STR \\
-        \bottomrule
-    \end{tabular}
-    \caption{Tasks, method categories and identifying propertis\label{tb:steps-properties}}
-\end{table}
-% FIXME: after all explained: Note that mixtures of the categories are possible in practice,
-%           the categorization is applied to help compare approaches (give example for mixture)
 
 \section{State of the Art Methods}
 This section documents the search for literature which provides the content for the subsequent
