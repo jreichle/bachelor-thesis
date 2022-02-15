@@ -1,0 +1,33 @@
+\resizebox{0.55\linewidth}{!}{\scriptsize%
+\begin{tikzpicture}[%
+    item/.style={circle,draw,align=center,minimum width=1.5cm},
+    itemc/.style={item,on chain,join},scale=0.5,
+]
+    \node[rectangle,minimum size=1.5cm,draw=black] (At+1) {CNN};
+
+    \node[right=2em of At+1,rectangle,draw=black] (feat) {Feture Vector};
+
+
+    \node[right=2em of feat,item] (Bt-1) {$\h^{(1)}$};
+    \node[right=2em of Bt-1,item] (Bt) {$\h^{(2)}$};
+    \node[right=2em of Bt,item] (Bt+1) {$\h^{(3)}$};
+
+    \draw[->] (Bt-1) -- (Bt)
+        node[midway,above] (W) {};
+    \draw[->] (Bt) -- (Bt+1)
+        node[midway,above] (W) {};
+    \draw[->,dashed] (Bt+1) -- ++(+2,0) node[right] (end) {};
+
+    \draw[->] (Bt-1.north) -- ++ (0,2em) node[above,item] (h1) {$\hat{\y}^{(1)}$};
+    \draw[->] (Bt.north) -- ++ (0,2em) node[above,item] (h2) {$\hat{\y}^{(2)}$};
+    \draw[->] (Bt+1.north) -- ++ (0,2em) node[above,item] (h3) {$\hat{\y}^{(3)}$};
+
+
+    \draw[->] (h1) -- (Bt);
+    \draw[->] (h2) -- (Bt+1);
+    \draw[->,dashed] (h3) -- (end);
+
+    \draw[->] (At+1.east) -- (feat.west);
+    \draw[->] (feat.east) -- (Bt-1.west);
+\end{tikzpicture}
+}

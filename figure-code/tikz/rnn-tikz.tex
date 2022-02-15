@@ -1,6 +1,6 @@
 {\scriptsize%
 \begin{tikzpicture}[%
-    item/.style={circle,draw,align=center},
+    item/.style={circle,draw,align=center,minimum width=1.0cm},
     itemc/.style={item,on chain,join},scale=0.5,
 ]
 
@@ -26,11 +26,11 @@
     \foreach \i in {t-1,t,t+1}
         {%
             \draw[->] (A\i.north) -- ++ (0,2em)
-                node[above,item] (h\i) {$\hat{\y}_{\i}$};
+                node[above,item] (h\i) {$\hat{\y}^{\i}$};
             \draw[->] (A\i.north) -- ++ (0,2em)
                 node[midway,right] (V\i) {};
             \draw[<-] (A\i.south) -- ++ (0,-2em)
-                node[below,item] (x\i) {$\x_{\i}$};
+                node[below,item] (x\i) {$\x^{\i}$};
             \draw[<-] (A\i.south) -- ++ (0,-2em)
                 node[midway,right] (U\i) {};
         }

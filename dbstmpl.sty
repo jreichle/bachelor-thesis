@@ -31,6 +31,8 @@
 \RequirePackage{nomencl}
 \RequirePackage{makecell}
 
+%% wider tables
+
 %% allow urls to break in bibliography
 \RequirePackage{xurl}
 \RequirePackage[hidelinks]{hyperref}
@@ -41,7 +43,8 @@
 \RequirePackage{latexsym}
 \RequirePackage{tikz}
 \usetikzlibrary{%
-    decorations.pathreplacing,fadings,shadows,trees,positioning,matrix,calc,chains,arrows.meta,fit,shapes
+    decorations.pathreplacing,fadings,shadows,trees,positioning,matrix,calc,chains,arrows.meta,
+    fit,shapes
 }
 \RequirePackage{sidecap}
 
@@ -74,6 +77,8 @@
 \newcommand{\T}{\boldsymbol{\theta}}
 
 \newcommand{\fone}{$F_1$-Score}
+\newcommand{\sfmx}{\textsf{softmax}}
+\newcommand{\relu}{\textsf{ReLU}}
 
 %%
 %% Mathe Befehle
@@ -97,6 +102,8 @@
 \DeclareAcronym{CTC}{short=CTC,long=Connectionist Temporal Classification}
 \DeclareAcronym{DL}{short=DL,long=Deep Learning}
 \DeclareAcronym{DNN}{short=DNN,long=Deep Neural Network}
+\DeclareAcronym{EnDe}{short=EnDe,long=Encoder Decoder}
+\DeclareAcronym{FCN}{short=FCN,long=Fully Convolutional Neural Network}
 \DeclareAcronym{GD}{short=GD,long=Gradient Descent}
 \DeclareAcronym{IOU}{short=IOU,long=Intersection over Union}
 \DeclareAcronym{LSTM}{short=LSTM,long=Long Short Term Memory}
@@ -104,6 +111,7 @@
 \DeclareAcronym{ML}{short=ML,long=Machine Learning}
 \DeclareAcronym{MLP}{short=MLP,long=Multi Layer Perceptron}
 \DeclareAcronym{MLS}{short=MLS,long=Machine Learning System}
+\DeclareAcronym{MSE}{short=MSE,long=Mean Squared Error}
 \DeclareAcronym{NMS}{short=NMS,long=Non Maximum Suppression}
 \DeclareAcronym{NN}{short=NN,long=Neural Network}
 \DeclareAcronym{OCR}{short=OCR,long=Optical Character Recognition}

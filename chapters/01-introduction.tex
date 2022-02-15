@@ -2,7 +2,7 @@
 \section{Motivation}
 Digitization can be described as transforming analog information into a digital
 respresentation~\citep{imgrund_approaching_2018}.
-Information systems in conjunction with digitization helps to optimize efficiency and productivity
+Information systems in conjunction with digitization help to optimize efficiency and productivity
 for business performance, as well as to reduce costs~\citep{imgrund_approaching_2018}.
 This facilitates the growing need for automation~\citep{imgrund_approaching_2018}.
 Additionally, a comprehensive information system with such digitized information allows a company
@@ -42,8 +42,8 @@ implemented and tested on the specific problem or representative dataset~\citep{
 This justifies the need to create an overview rather than pointing out a single approach which is
 deemed the most promissing.
 In order to create the overview the necessary steps in the process of \ac{STS} need to be highlighted,
-from preprocessing to classifying the identified
-text~\citep{long_scene_2021, sourvanos_challenges_2018}.
+from localizing possible text instances to predicting the characters or
+words~\citep{long_scene_2021, sourvanos_challenges_2018}.
 The ways in which the respective issues for the steps are solved need to be
 identified from literature, listed and explained alongside.
 
@@ -73,7 +73,7 @@ Abgrenzung für Training NN
 The methodology of this thesis can be labeled as a literature review~\citep{snyder_literature_2019,
 torraco_writing_2005}.
 The goal is to provide an overview over current \ac{DL} techniques that can help in
-choosing which to implement and test to solve the specific problem of \ac{STS}, defined in
+choosing which to implement and to test to solve the specific problem of \ac{STS}, defined in
 Section~\ref{se:problem} and more detailed in Chapter~\ref{ch:problem}.
 
 The research question guiding the process is most crucial~\citep{snyder_literature_2019}:
@@ -87,7 +87,7 @@ which covers \ac{OCR} under challenging scene text conditions.
 
 For a literature review, it is important to report how the information was found and
 synthesized~\citep{torraco_writing_2005}.
-Therefore, each section in the overview contains a paragraph about it.
+Therefore, each section in the overview contains a paragraph about said information.
 Before getting into current research level, a foundation of knowledge about the field must be layed.
 A taxonomy is created for this which is useful to classify and give context to innovations in the
 field.
@@ -98,7 +98,7 @@ as~\cite{qiao_text_2021,sheng_centripetaltext_2021,liu_accurate_2020,deng_pixell
 The taxonomy is determined according to the requirement for clarity of subsequent provision of
 current research.
 
-The strategy for researching current research is most important for a literature
+The strategy for researching current innovations is most important for a literature
 review~\citep{snyder_literature_2019}.
 This includes determining databases and keywords that are used, as well as exclusion criteria
 that are enforced~\citep{torraco_writing_2005}.
@@ -114,7 +114,7 @@ An important criterion is that the paper contributes to the \ac{ML} model.
 This extends to the whole pipeline from preprocessing an image to the final result of the model.
 The identified literature is synthesized into an overview that is aligned according to the taxonomy.
 
-In the analysis possibly viable approaches are compared with the qualities defined
+In the analysis possibly viable approaches are compared with the required qualities defined
 in Chapter~\ref{ch:problem}.
 The comparison will be organized according the taxonomy which facilitates the clarity and
 comprehensibility.
@@ -130,14 +130,16 @@ In the subsequent analysis different approaches are highlighted for their theore
 
 In the following, the structure of this thesis is listed and each chapter's expected
 result is detailed along with its benefits for the overall objective of producing an overview of
-state of the art scene text \ac{OCR} relevant for the problem described in Section~\ref{se:problem}.
-Chapter~\ref{ch:theoretical} lays the foundation for later chapters.
+state of the art \ac{STS} relevant for the problem described in Section~\ref{se:problem}.
+Chapter~\ref{ch:theoretical} lays the theoretical foundation for later chapters.
 This includes general principles of \ac{DL} and by extension \ac{ML} but also of \ac{STS}.
 In Chapter~\ref{ch:problem} the problem from Section~\ref{se:problem} is addressed in more detail.
 The result shall be a firm understanding of qualities that a solution must possess.
 These requirements are the point of focus for the further examination of techniques.
-After laying the foundation, in Chapter~\ref{ch:research} current research in regards to the
+In Chapter~\ref{ch:research} current research in regards to the
 identified requirements is examined.
+The overview is twofold: a taxonomy for the pipeline and its approaches as well as innovations in
+current research.
 The resulting overview can be viewed as a basis for a decision when it comes implementing a practical
 solution.
 Therefore, it enables the discussion in Chapter~\ref{ch:discussion}.

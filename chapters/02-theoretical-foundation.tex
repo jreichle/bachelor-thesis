@@ -39,9 +39,9 @@ approximation~\citep{goodfellow_deep_2016}.
 
 The performance of a model measures how well the task can be completed.
 Depending on the task of the \ac{MLS}, different quantitative measures are used.
-The metric Mean Squared Error (see Equation~\ref{eq:mse}) can be used for Linear Regression.
+The metric \ac{MSE} (see Equation~\ref{eq:mse}) can be used for Linear Regression.
 \begin{equation}\label{eq:mse}
-    MSE =\frac{1}{m}\norm{{(\hat{\textbf{y}} - \textbf{y})}}^2
+    \textsf{MSE} =\frac{1}{m}\norm{{(\hat{\textbf{y}} - \textbf{y})}}^2
         =\frac{1}{m}\sum_{i=1}^m {((\w^T \x^{(i)} + b) - \yti)}^2
 \end{equation}
 Here $m$ denotes the number of examples $\xti$ with the associated targets $\yti$, used to calculate
@@ -53,8 +53,8 @@ The test set is a part of the available data~\citep{geron_hands-machine_2017, go
 The generalization error can be divided into three components.
 The bias error arises from simplifying assumptions for the model, the variance error measures the
 variation in the model outcome depending on the data used for training.
-Both these errors are influenced by the model's capacity which is why the relationship between them
-is call the Bias/Variance tradeoff.
+Both these errors are influenced by the model's representation capacity which is why the
+relationship between them is call the Bias/Variance tradeoff.
 Lastly the irreducible error stems from not having measured all data as well as the variation
 in real data and cannot be
 reduced~\citep{ashmore_assuring_2021, james_introduction_2013,geron_hands-machine_2017}.
@@ -71,14 +71,15 @@ value but to learn properties about the data and to leverage them for representa
 like compressing or denoising the data~\citep{goodfellow_deep_2016,geron_hands-machine_2017}.
 In most cases training can be described as an optimization problem, i.e.\ as minimizing a
 function --- the so called objective or loss function $L$~\citep{goodfellow_deep_2016}.
-The MSE introduced earlier can be used for Linear Regression (see Equation~\ref{eq:mseOpt}).
+The \ac{MSE} introduced earlier can be used for Linear Regression (see Equation~\ref{eq:mseOpt}).
 This objective function has properties which make it suitable for models which have linear
 output~\citep{goodfellow_deep_2016}.
 \begin{equation}\label{eq:mseOpt}
-    \min_{\w,b} MSE(\w,b)
+    \min_{\w,b} \textsf{MSE}(\w,b)
 \end{equation}
-Note that for minimization the MSE is a function of $\w,b$ and not of $\x$, in terms of
-predicting a value the MSE is a function of $\x$ parametrized by $\w,b$ (see Equation~\ref{eq:mseOpt}).
+Note that for minimization the \ac{MSE} is a function of $\w,b$ and not of $\x$, in terms of
+predicting a value the \ac{MSE} is a function of $\x$ parametrized by $\w,b$ (see
+Equation~\ref{eq:mseOpt}).
 In Equation~\ref{eq:linReg} \w,$b$ are parameters that have to be learned in order to minimize
 the generalization error~\citep{james_introduction_2013,geron_hands-machine_2017}.
 For other tasks such as binary classification, the metric (e.g. \fone) and the
@@ -89,17 +90,21 @@ As the name suggests, the gradient is used to iteratively update the parameters 
 at a minimum of the objective function (see Equation~\ref{eq:gradDescW}
 and~\ref{eq:gradDescb})~\citep{geron_hands-machine_2017}.
 \begin{equation}\label{eq:gradDescW}
-    \w'\leftarrow \w-\epsilon\cdot\nabla_{\w} MSE(\w,b) = \w-\frac{2\epsilon}{m}\Xt^T (\Xt\w+b-\y)
+    \w'\leftarrow \w-\epsilon\cdot\nabla_{\w} \textsf{MSE}(\w,b)
+        = \w-\frac{2\epsilon}{m}\Xt^T (\Xt\w+b-\y)
 \end{equation}
 \begin{equation}\label{eq:gradDescb}
-    b'\leftarrow b-\epsilon\cdot\frac{\delta}{\delta b} MSE(\w,b) = b-\frac{2\epsilon}{m}(\Xt\w+b-\y)
+    b'\leftarrow b-\epsilon\cdot\frac{\delta}{\delta b} \textsf{MSE}(\w,b)
+        = b-\frac{2\epsilon}{m}(\Xt\w+b-\y)
 \end{equation}
 
-\begin{figure}
+\begin{figure}[hb]
     \centering
     \input{figure-code/tikz/gradient-descent-tikz.tex}
-    \caption[Gradient descent visualization]{Gradient descent for 1-dimensional objective
-        function~\citep{goodfellow_deep_2016}\label{fig:grad-desc}}
+    \caption[Gradient descent visualization]{%
+        Visualization for gradient descent for
+        a 1-dimensional objective function~\citep{goodfellow_deep_2016}\label{fig:grad-desc}
+    }
 \end{figure}
 The learning rate constant $\epsilon$ can be adjusted to speed up or slow down the `steps' which
 can have different effects on the convergence~\citep{goodfellow_deep_2016}.
@@ -146,9 +151,9 @@ introduced.
 
 The most basic \ac{NN} is called a feedforward \ac{NN} or \ac{MLP} where the information only
 flows in one direction (in contrast to \acp{RNN} or Transformers)~\citep{goodfellow_deep_2016}.
-The network is made up of artificial neurons.
-These neurons are arranged as a directed acyclic graph with multiple so
-called layers~\citep{goodfellow_deep_2016}.
+The network is made up of so called artificial neurons.
+These neurons are arranged as a directed acyclic graph arranged in multiple
+layers~\citep{goodfellow_deep_2016}.
 The first layer which receives the input features $\x$ is called the input layer, the last layer
 which outputs the final estimation of $\hat{y}$ or $\hat{\y}$ is called the output layer, all layers in between
 are called the hidden layers~\citep{shrestha_review_2019}.
@@ -176,12 +181,12 @@ more complicated transformations of information and representation~\citep{goodfe
     f(\x;\T) = g(\T\x)=\z
 \end{equation}
 Here $f$ denotes the function which is performed by a layer of neurons (linearity + activation).
-The parameters of the individual neurons are grouped together to $\T$ ($\T_:,0$ equals 1 for the
+The parameters of the individual neurons are grouped together to $\T$ ($\T_{:,0}$ equals 1 for the
 bias term).
-Popular activation functions include ReLU, $\tanh$, sigmoid ($\sigma$) and
-softmax~\citep{shrestha_review_2019}.
+Popular activation functions include \relu, $\tanh$, sigmoid ($\sigma$) and
+\sfmx~\citep{shrestha_review_2019}.
 \begin{equation}\label{eq:relu}
-    ReLU(x)=\max(0,x)
+    \relu(x)=\max(0,x)
 \end{equation}
 \begin{equation}\label{eq:tanh}
     \tanh(x)=\frac{\exp(x)-\exp(-x)}{\exp{x}+\exp{-x}}
@@ -190,12 +195,12 @@ softmax~\citep{shrestha_review_2019}.
     \sigma(x)=\frac{1}{1+\exp(-x)}
 \end{equation}
 \begin{equation}\label{eq:softmax}
-    {softmax(\x)}_i = \frac{\exp(x_i)}{\sum_j \exp(x_j)}
+    {\sfmx(\x)}_i = \frac{\exp(x_i)}{\sum_j \exp(x_j)}
 \end{equation}
-While ReLU is the prevalent function for hidden layers, sigmoid (softmax) activation functions,
-used for the output layer, are used to generate a bernoulli (multinouli) distribution which is
-useful for classification tasks~\citep{goodfellow_deep_2016}.
+While \relu\ is the prevalent function for feedforward \ac{NN}~\citep{goodfellow_deep_2016},
 $\tanh$ is often used in \acp{RNN} like in~\cite{sherstinsky_fundamentals_2020,greff_lstm_2017}.
+Sigmoid (\sfmx) activation functions, used for the output layer, are used to generate a bernoulli
+(multinouli) distribution which is useful for classification tasks~\citep{goodfellow_deep_2016}.
 Note that for e.g.\ regression, the output layer can omit the activation
 function~\citep{goodfellow_deep_2016}.
 The calculation of the prediction is basically a concatenation of the functions defined by the
@@ -226,7 +231,7 @@ loss backwards to use \ac{GD} (see Figure~\ref{fig:error-backpropagation}).
 	\caption[Backpropagation of errors through the network.]{%
         Reverse traversing the network's computation graph,
         $\cdot \frac{\delta \z_{:,i}^{(l)}}{\delta \w_i^{(l)}}$ is used for
-        updating the neurons parameters\label{fig:error-backpropagation}
+        updating the neurons parameters with gradient descent\label{fig:error-backpropagation}
     }
 \end{figure}
 The upstream gradient that is coming from neurons in the next layer is multiplied with the
@@ -239,7 +244,8 @@ the preceding layer~\citep{boue_deep_2018,goodfellow_deep_2016}.
     \frac{\delta L}{\delta\x} = \frac{\delta L}{\delta\z}\frac{\delta\z}{\delta\x}
 \end{equation}
 The result of Equation~\ref{eq:backPropNeuronW} is used to update the neuron's weights \w\ while
-the result of Equation~\ref{eq:backPropNeuronX} is used for further propagation~\citep{boue_deep_2018}.
+the result of Equation~\ref{eq:backPropNeuronX} is used for further
+propagation~\citep{boue_deep_2018}.
 This calculation is performed until the first layer of the computational graph is
 reached~\citep{goodfellow_deep_2016}.
 Note that the algorithm can be performed with tensors of arbitrary
@@ -247,7 +253,8 @@ dimensionality~\citep{goodfellow_deep_2016}.
 
 \section{Convoluational Neural Nets}\label{se:cnn}
 % basics
-\acp{CNN} are a type of \ac{NN} that is also acyclic, like \acp{MLP}~\citep{chauhan_review_2018}.
+\acp{CNN} are a type of \ac{NN} that is also acyclic or feedforward, like
+\acp{MLP}~\citep{chauhan_review_2018}.
 \acp{CNN} are specialized to process a grid of values $\X$ like an image~\citep{goodfellow_deep_2016}.
 \acp{CNN} are extensively used in computer vision~\citep{chauhan_review_2018}.
 They consist of a variety of components: fully connected layer, activation function,
@@ -260,7 +267,7 @@ A convolutional layer has multiple filters which consist of multiple
 kernels~\citep{chauhan_review_2018}.
 For multi layer input, with $d$ so called channels, a filter has the same amount of kernels as there
 are channels ($d$)~\citep{ponti_everything_2017}.
-Note that the height and with are refered to as spatial dimensions and the depth is refered to as
+Note that the height and width are refered to as spatial dimensions and the depth is refered to as
 the channel dimension.
 \begin{figure}[ht]
     \centering
@@ -275,11 +282,11 @@ The convolution operation is the elementwise multiplication between the filter a
 $n\times n$ subspace of the input (see Figure~\ref{fig:conv-layer})~\citep{ponti_everything_2017}.
 The convolution operation is performed for every space in the input, spaces can be skipped if
 stride is introduced~\citep{ponti_everything_2017}.
-Often zero-padding is used to preserve the dimensions height and width between input and output of
+Often zero-padding is used to preserve the spatial dimensions between input and output of
 the layer~\citep{ponti_everything_2017}.
 The number of filters a convolutional layer applies is equal to the output channels that the layer
 has which are often called feature maps~\citep{ponti_everything_2017}.
-The result of the convolution is usually fed into a ReLU activation function to introduce
+The result of the convolution is usually fed into a \relu\ activation function to introduce
 nonlinearity like with fully connected layers.
 The activation is performed on every element in the output und preserves the
 dimensionality~\citep{ponti_everything_2017}.
@@ -303,17 +310,19 @@ separately (see Figure~\ref{fig:pool-layer})~\citep{chauhan_review_2018}.
 \begin{figure}[ht]
     \centering
     \include{figure-code/tikz/max-pooling-tikz}%
-    \caption[Visualization of a max pooling operation]{$2\times 2$ max pooling operation with stride
-        2~\citep{chauhan_review_2018}\label{fig:pool-layer}}
+    \caption[Visualization of a max pooling operation]{%
+        $2\times 2$ max pooling operation with stride
+        2~\citep{chauhan_review_2018}\label{fig:maxpool}
+    }
 \end{figure}
 Much like with convolutions (in 2d scenario), the pooling operation is slid across the height and
 weight dimensions of the channels (possibly with stride) and the pooling operation is
 performed~\citep{ponti_everything_2017,chauhan_review_2018}.
 The most popular kind of pooling is maxpooling~\citep{ponti_everything_2017}.
 For the operation only the maximum value of the current subspace of the current channel is
-taken~\citep{chauhan_review_2018}.
+taken (see Figure~\ref{fig:maxpool})~\citep{chauhan_review_2018}.
 
-% FIXME: receptive fields!
+% XXX: receptive fields!
 When it comes to deep \acp{CNN}, the problem of vanishing/exploding gradients occurs during
 backpropagation.
 This problem can be impede convergence~\citep{he_deep_2015}.
@@ -335,7 +344,7 @@ layers~\citep{he_deep_2015}.
 \end{figure}
 
 \section{Recurrent Neural Nets}
-% FIXME: input often tokenized (like for transformer)
+% FIXME: input often tokenized (like for transformer)~\cite{cho_learning_2014,asadi_encoder-decoder_2020}
 % FIXME: add vector-sequence,sequence-vector,sequence-sequence
 \acp{RNN} are another popular category of \ac{NN} which are used for processing sequential input,
 like text and speech~\citep{chauhan_review_2018}.
@@ -355,20 +364,21 @@ The current layer of the network takes $\x^{(t)}$ and $\h^{(t-1)}$ and produces 
 Additionally, $\h^{(t)}$ is used to calculate the output $\hat{\y}^{(t)}$ (see
 Equation~\ref{eq:rnn-yh})
 and it is handed to the next layer~\citep{goodfellow_deep_2016}.
-$\h^{(t)}$ is thoght of as a hidden state which stores information from previous
+$\h^{(t)}$ is thought of as a hidden state which stores information from previous
 inputs~\citep{goodfellow_deep_2016}.
 \begin{equation}\label{eq:rnn-h}
     \h^{(t)} = \tanh(b+W\h^{(t-1)}+U\x^{(t)})
 \end{equation}
 \begin{equation}\label{eq:rnn-yh}
-    \hat{\y}^{(t)} = softmax(c + V\h^{(t)})
+    \hat{\y}^{(t)} = \sfmx(c + V\h^{(t)})
 \end{equation}
 Note that the connection between hidden layers can differ depending on the type of \ac{RNN}
 used~\citep{goodfellow_deep_2016}.
 During an execution run, all unrolled layers share the same weights
 ($U,V,W$)~\citep{chauhan_review_2018}.
 This makes gradients from backpropagation vulnerable to exploding/vanishing gradients if the
-singular values of those weight matrices are $>1$ or $<1$~\citep{goodfellow_deep_2016}.
+singular values of those weight matrices are $>1$ or
+$<1$~\citep{goodfellow_deep_2016,pascanu_difficulty_2013}.
 The example \ac{RNN} produced a output sequence the same length as the input
 sequence, however, this does not have to be the case for \acp{RNN}~\citep{goodfellow_deep_2016}.
 Both the input and the output can either be a sequence of variable length or a vector of fixed
@@ -435,6 +445,42 @@ gate.
 $\textbf{c}_t,\textbf{h}_t$ are the cell states and outputs to the next step or the
 prediction sequence~\citep{zaremba_recurrent_2015}.
 
+\acp{RNN} are often used with the \ac{EnDe} mechanism introduced by~\cite{cho_learning_2014}.
+This mechanism is a structure for \ac{NN} that is used for a variety of problems.
+The \ac{EnDe} mechanism entails two parts: The encoded which transforms the input into a
+different representation, it compresses all the information from the input into a feature vector;
+the decoder uses that the extracted features to generate the output
+predictions~\citep{asadi_encoder-decoder_2020,cho_learning_2014}.
+The decoder can thus use the whole input context at once~\citep{asadi_encoder-decoder_2020}.
+The output associated with decoders is sequential~\citep{asadi_encoder-decoder_2020}.
+The mechanism can be implemented in different ways.
+Both purely \acp{RNN} based~\citep{cho_learning_2014} implementations and mixtures along with
+\acp{CNN}~\citep{ghosh_visual_2017} exist~\citep{asadi_encoder-decoder_2020}.
+The \ac{RNN} \ac{EnDe} can be used to transform a sequence of variable length into another
+sequence with different variable length~\citep{cho_learning_2014}.
+The encoder processes the input sequence and crafts a representation vector that encodes information
+and context for the whole input sequence which can then be used for every time step in the decoder
+network (see Figure~\ref{fig:enc-dec-rnn})~\citep{cho_learning_2014}.
+\begin{figure}[h]
+    \centering
+    \include{figure-code/tikz/encoder-decoder-rec-tikz}%
+    \caption[Sequence to sequence encoder decoder architecture]{%
+        Sequence to sequence encoder decoder
+        architecture~\citep{cho_learning_2014}\label{fig:enc-dec-rnn}
+    }
+\end{figure}
+An example use for an \ac{EnDe} architecture with a \ac{CNN} encoder and a \ac{RNN} decoder
+would be image captioning~\citep{asadi_encoder-decoder_2020}.
+The image is encoded into a vector which includes context for the whole
+image~\citep{asadi_encoder-decoder_2020}.
+\begin{figure}[h]
+    \centering
+    \include{figure-code/tikz/encoder-decoder-convrec-tikz}%
+    \caption[Image to sequence encoder decoder architecture]{%
+        Image to sequence encoder decoder
+        architecture~\citep{asadi_encoder-decoder_2020}\label{fig:enc-dec-cnn}
+    }
+\end{figure}
 
 \section{Transformers}
 % FIXME: look into \cite{kloss_learning_2016}
@@ -494,7 +540,7 @@ Finally the feedforward layers help to transform the attention vectors into dige
 next encoder/decoder block~\citep{vaswani_attention_2017}.
 The result of the $Nx$ encoder blocks are fed into the second attention module for the $Nx$ decoder
 blocks~\citep{vaswani_attention_2017}.
-The result of the $Nx$ decoder blocks is fed into a linear layer and a softmax layer afterwards.
+The result of the $Nx$ decoder blocks is fed into a linear layer and a \sfmx layer afterwards.
 This creates the prediction, for the next translated word.
 For the next iteration (to generate next translated word) the previous translated words are encoded
 like the original words and fed into the first attention module of the $Nx$ decode blocks.
@@ -660,22 +706,5 @@ to the Incidental Text Competition dataset~\citep{karatzas_icdar_2015}.
 The second and third column indicate whether the dataset provides annotations for the tasks.
 The Text Orientation column specifies the most complicated orientation that is present in the dataset
 (Curved $\subset$ Multi-oriented $\subset$ Horizontal).
-
-\begin{figure}[ht]
-    \centering\scriptsize
-    \subfigure[\scriptsize ICDAR (2013)~\citep{karatzas_icdar_2013}\label{fig:ICDAR-2013}]
-        {\includegraphics[width=0.30\textwidth]{img/Dataset-Examples/icdar-2013-examples.png}}
-    \subfigure[\scriptsize ICDAR (2015)~\citep{karatzas_icdar_2015}\label{fig:ICDAR-2015}]
-        {\includegraphics[width=0.30\textwidth]{img/Dataset-Examples/icdar-2015-examples.png}}
-    \subfigure[\scriptsize ICDAR MLT (2017)~\citep{nayef_icdar2017_2017}\label{fig:ICDAR-2017}]
-        {\includegraphics[width=0.30\textwidth]{img/Dataset-Examples/icdar-mlt-2017-examples.png}}
-    \subfigure[\scriptsize IIIT 5k Word (2012)~\citep{mishra_scene_2012}\label{fig:IIIT-5k}]
-        {\includegraphics[width=0.30\textwidth]{img/Dataset-Examples/IIIT-5k-word-examples.png}}
-    \subfigure[\scriptsize MSRA-TD500~\citep{cong_yao_detecting_2012}\label{fig:msra-td500}]
-        {\includegraphics[width=0.30\textwidth]{img/Dataset-Examples/MSRA-TD500-examples.png}}
-    \subfigure[\scriptsize Total Text (2017)~\citep{chng_total-text_2017}\label{fig:total-text}]
-        {\includegraphics[width=0.30\textwidth]{img/Dataset-Examples/Total-Text-examples.png}}
-    \subfigure[\scriptsize SCUT CTW1500 (2017)~\citep{yuliang_detecting_2017}\label{fig:SCUT-CWT1500}]
-        {\includegraphics[width=0.30\textwidth]{img/Dataset-Examples/SCUT-CWT1500-examples.png}}
-    \caption{Benchmark Data Set Examples\label{fig:dataset-examples}}
-\end{figure}
+A collection of images which shows representational examples taken out of benchmark datasets, can
+be found in the Appendix~\ref{ch:app-datasets}.

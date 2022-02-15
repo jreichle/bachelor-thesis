@@ -1,5 +1,5 @@
 \chapter{Discussion}\label{ch:discussion}
-\section{Analysis}
+\section{Analysis}\label{se:analysis}
 Go down hierarchy and compare most important advances
 \begin{itemize}
     \item Compare: two step, two stage
@@ -70,6 +70,8 @@ E2E
 
 Detection
 \begin{itemize}
+    \item~\cite{wang_efficient_2019}: two main challenges for STD:
+        trade-off between speed and accuracy; model arbitrary-shaped text instance
     \item BB regression
         \begin{itemize}
             \item~\cite{ferrari_textsnake_2018}: many methods have strong assumption that text
@@ -83,11 +85,14 @@ Detection
                 arbitrary shapes
             \item~\cite{shi_detecting_2017}: modular approach instead of whole \acp{BB}
                 $\rightarrow$ good with long aspect ratio and orientation because of flexibility
+            \item~\cite{dai_fused_2018}: often need several stages and components for final result
+                $\rightarrow$ inefficient
         \end{itemize}
 \end{itemize}
 
 Recognition
 \begin{itemize}
+    \item research~\cite{wan_vocabulary_2020} $\rightarrow$ vocabulary reliance
     \item Ability to cope with 2d text:
         CTC has problems,
         Attention/Encoder-Decoder based can be extended to work
