@@ -3,53 +3,10 @@
 Go down hierarchy and compare most important advances
 \begin{itemize}
     \item Compare: two step, two stage
-    \item Compare: innovations for specific categories
+    \item Compare: STD/STR pipelines
+    \item In which way are innovations going?
 \end{itemize}
-
 Comparing numbers on benchmarks and not looking at quanitative data would result in fallacy.
-
-\begin{table}[ht]
-    \centering\scriptsize
-    \begin{tabular}{p{.1\textwidth}p{.15\textwidth}p{.1\textwidth}p{.55\textwidth}}
-        Task & \multicolumn{2}{c}{Approach} & Shortcommings \\
-        \toprule
-        STD & Seg free
-              & & Curved text~\citep{long_scene_2021} \\
-            & & & Higher aspect ratios~\citep{long_scene_2021,shi_detecting_2017}\\
-            & & & Text orientation~\citep{shi_detecting_2017} \\
-            & & 1-stage & \\
-            & & 2-stage & \\
-            & Seg based & & \\
-            & & Pixel-level & \\
-            & & Component-level & \\
-            & & Character-level & \\
-        \midrule
-        STR & Seg based
-              & & Accurate detection of individual characters is hard~\citep{chen_text_2021} \\
-            & & & Contextual information between character gets lost~\citep{chen_text_2021}\\
-            & Seg free & & \\
-            & & CTC based &  \\
-            & & Attention based
-                & Sentence recognition \\
-        \midrule
-        E2E & 2-step & & \\
-            & Parallel & & \\
-        \bottomrule
-    \end{tabular}
-    \caption{Tasks, method categories and their shortcomings\label{tb:steps-properties}}
-\end{table}
-
-For comparison: which Benchmark Dataset fits the problem the best?
-\begin{itemize}
-    \item~\cite{liao_mask_2020}:
-        \begin{itemize}
-            \item Rotated ICDAR 2013 (changed normal icdar): rotation robustness
-            \item Total-Text: shape ropustness
-            \item MSRA-TD500: aspect ratio ropustness
-        \end{itemize}
-    \item~\cite{yang_learning_2021}: commonly used for oriented text: ICDAR2015, ICDAR2017 MLT,
-        MSRA-TD500
-\end{itemize}
 
 E2E
 \begin{itemize}
@@ -65,12 +22,23 @@ E2E
                 $\rightarrow$ optimize jointly to improve performance
             \item~\cite{chen_text_2021}: exhibit competitive performance with faster interference
                 and smaller storage requirements
+            \item~\cite{liu_fots_2018}: sharing features significantly speeds up the network
+                by not needing a second \ac{CNN} feature extractor
         \end{itemize}
 \end{itemize}
 
 Detection
 \begin{itemize}
-    \item~\cite{wang_efficient_2019}: two main challenges for STD:
+    \item reference tables found in overview!
+        \begin{itemize}
+            \item only curved or multi-orientated text solutions
+            \item mostly focused on performance/robustness rather than efficiency
+            \item for regresseion based: how to deal with orientation?
+            \item segmentation mostly curved, regression mostly oriented
+            \item while BB methods deal with orientation representations, pixel segmentation methods
+                mostly find innovations that help separate text instances
+        \end{itemize}
+    \item~\cite{wang_efficient_2019}: two main challenges for \ac{STD}:
         trade-off between speed and accuracy; model arbitrary-shaped text instance
     \item BB regression
         \begin{itemize}
@@ -78,6 +46,9 @@ Detection
                 instances are in linear shape and therefore adopted simple representations
                 (rectangles --- axis aligned or rotated, quadrangles)
                 $\rightarrow$ problem with irregular and curved text
+            \item~\citep{long_scene_2021}: Curved text
+            \item~\cite{long_scene_2021,shi_detecting_2017}: Higher aspect ratios
+            \item~\cite{shi_detecting_2017}: Text orientation
         \end{itemize}
     \item Segmentation
         \begin{itemize}
@@ -92,6 +63,12 @@ Detection
 
 Recognition
 \begin{itemize}
+    \item reference tables found in overview!
+        \begin{itemize}
+            \item mostly attention based
+            \item concerned with curved text $\rightarrow$ a lot of rectification innovation
+            \item both unconstrained and with lexicons
+        \end{itemize}
     \item research~\cite{wan_vocabulary_2020} $\rightarrow$ vocabulary reliance
     \item Ability to cope with 2d text:
         CTC has problems,
@@ -103,6 +80,8 @@ Recognition
                 or time-step in the input sequence $\rightarrow$ inconvenient pre-segmentation and
                 post-processing stages
             \item~\cite{shi_end--end_2017}: character annotations needed for training
+            \item~\citep{chen_text_2021}: Accurate detection of individual characters is hard
+            \item~\citep{chen_text_2021}: Contextual information between character gets lost
         \end{itemize}
     \item Sequence based
         \begin{itemize}
@@ -153,6 +132,8 @@ Threats to validity!
         annotations for those datasets
     \item~\cite{chen_text_2021}: inconsistency of datasets, priors and testing environments make
         comparison difficult
+    \item cutof at 100 cit $\rightarrow$ newer publications might be equally impactful but not
+        not enough time for more citations
 \end{itemize}
 
 \section{Outlook}

@@ -342,6 +342,7 @@ layers~\citep{he_deep_2015}.
         connection~\citep{he_deep_2015}\label{fig:skip-conn}
     }
 \end{figure}
+% FIXME: feature pyramid network
 
 \section{Recurrent Neural Nets}
 % FIXME: input often tokenized (like for transformer)~\cite{cho_learning_2014,asadi_encoder-decoder_2020}
@@ -481,71 +482,6 @@ image~\citep{asadi_encoder-decoder_2020}.
         architecture~\citep{asadi_encoder-decoder_2020}\label{fig:enc-dec-cnn}
     }
 \end{figure}
-
-\section{Transformers}
-% FIXME: look into \cite{kloss_learning_2016}
-% FIXME: either improve or remove
-Of the most popular basic strucures for \acp{NN}, the transformers are the newest innovation.
-The paper from~\cite{vaswani_attention_2017} introduced the transfomer architecture which is
-build for processing sequence data and~\cite{dosovitskiy_image_2021} then introduced the vision
-transformer (ViT).
-\begin{figure}[ht]
-    \centering
-    \includegraphics[width=0.8\textwidth]{img/Transformer-Vaswani-Attention-2017.png}
-    \caption[Transformer architecture]{%
-        Transformer model architecture~\citep{vaswani_attention_2017}\label{fig:transformer}
-    }
-\end{figure}
-Explaining the inner workings of transformers in detail exceeds the scope of this thesis.
-In the following the basic building blocks and their effects are described with the example of
-translating a sentence.
-Figure~\ref{fig:transformer} shows a transformer network at the abstraction level of components and
-their alignment to build the network.
-The network is made up of multiple multiple encoder and multiple decoder
-blocks ($Nx$)~\citep{vaswani_attention_2017}.
-The blocks are preceded by embedding and positional modules~\citep{vaswani_attention_2017}.
-The embedding modules map a word to a vector, also interpreted as a point in space, where similar
-words are close to each other~\citep{vaswani_attention_2017}.
-An example for a embedding space is presented by~\cite{pennington_glove_2014}.
-Because the placing of a word in a sentence can change the meaning, positional
-encoding is added to the word embedding~\citep{vaswani_attention_2017}.
-The encoder and decoder blocks contain multi-head attention modules and feedforward networks.
-They also contain skip connections (introduced with residual block~\citep{he_deep_2015}) and layer
-normalization~\citep{vaswani_attention_2017} which helps with training the network and to keep it
-stable~\citep{liu_rethinking_2021}.
-A multi-head attention block calculates which words (by now embedded) of the input are
-important for each other word.
-The attention is calculated by a scaled dot product (see
-Figure~\ref{fig:transformer-dot-product})~\citep{vaswani_attention_2017}.
-\begin{figure}[ht]
-    \centering
-    \includegraphics[width=0.5\textwidth]{img/Transformer-Scaled-Dot-Product-Vasani-Attention-2017.png}
-    \caption[Computation of an attention mechanism]{%
-        Scaled dot product used to compute attention
-        vectors~\citep{vaswani_attention_2017}\label{fig:transformer-dot-product}
-    }
-\end{figure}
-% FIXME: use ihttps://github.com/janosh/tikz/tree/main/assets/self-attention nstead
-This is calculated multiple times (hence the term multi-head) and the results are merged by
-concatenation and a subseding linear layer~\citep{vaswani_attention_2017}.
-This allows the model to use different representations of the
-information~\citep{vaswani_attention_2017}.
-Each encoder block has one multi-head attention module which calculates the needed attention
-between each word in the original language.
-Each decoder has two multi-head attention modules~\citep{vaswani_attention_2017}.
-One is masked (only already predicted words are used for calculation, others are masked/0), it
-calculates the attention between translated words.
-The second one calculates the attention between each original and translated word.
-Finally the feedforward layers help to transform the attention vectors into digestible form for the
-next encoder/decoder block~\citep{vaswani_attention_2017}.
-The result of the $Nx$ encoder blocks are fed into the second attention module for the $Nx$ decoder
-blocks~\citep{vaswani_attention_2017}.
-The result of the $Nx$ decoder blocks is fed into a linear layer and a \sfmx layer afterwards.
-This creates the prediction, for the next translated word.
-For the next iteration (to generate next translated word) the previous translated words are encoded
-like the original words and fed into the first attention module of the $Nx$ decode blocks.
-New translated words are generated with this iteration until until the end of sentence token
-is generated~\citep{vaswani_attention_2017}.
 
 \section{Scene Text Spotting}\label{se:sts}
 %% intro
