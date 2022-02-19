@@ -6,16 +6,17 @@ The subsequent search for literature which lays the foundation for an overview o
 is documented.
 Lastly, the advances in the field are placed in the correct position and analyzed.
 
-\section{Taxonomy of Pipeline Steps}
+% FIXME: show difference between axis-aligned, rotated and quadrilateral
+\section{Taxonomy of Pipeline Steps}\label{se:taxonomy}
 Before getting into current research level, a base of knowledge about the field has to be layed.
 \begin{table}[h]
     \centering\scriptsize
-    \begin{tabular}{p{.04\textwidth}p{.11\textwidth}p{.15\textwidth}p{.55\textwidth}}
+    \begin{tabular}{p{.04\textwidth}p{.11\textwidth}p{.16\textwidth}p{.55\textwidth}}
         Task & \multicolumn{2}{c}{Approach category} & Identifying properties \\
         \toprule
         STD & Seg free & & Localize whole instances  \\
-            & & 1-stage & direct \ac{BB} regression \\
-            & & 2-stage & find \acp{ROI}, adjust \acp{ROI} for better fit \\
+            & & 1-stage & direct BB regression \\
+            & & 2-stage & find ROIs, adjust ROIs for better fit \\
             & Seg based & & Localize sub text components to reconstruct instance \\
             & & Pixel-level & Pixel level segmentation \\
             & & Component-level & Sub-component level segmentation \\
@@ -57,7 +58,7 @@ Figure~\ref{fig:STD-pipelines})~\citep{long_scene_2021,sheng_centripetaltext_202
 \begin{figure}[ht]
     \centering
     \include{figure-code/tikz/taxonomie-STD-tikz}
-    \caption{Different STD Pipelines\label{fig:STD-pipelines}}
+    \caption{Different STD pipelines\label{fig:STD-pipelines}}
 \end{figure}
 The regression based category draws heavy inspiration from the field of object
 detection~\citep{long_scene_2021,liu_accurate_2020}.
@@ -174,10 +175,10 @@ instance~\citep{long_scene_2021}.
 \end{figure}
 Segmentation based methods can roughly be summed up in two categories: pixel based and component
 based~\citep{long_scene_2021}.
-Segmentation based approaches mostly rely on \acp{FCN}~\citep{dai_fused_2018}.
 Like with \ac{BB} regression based methods, example architectures are explained in order to
 describe their categories more clearly.
 The paper~\cite{deng_pixellink_2018} introduced a pixel based \ac{STD} approach.
+Segmentation based approaches at pixel level mostly rely on \acp{FCN}~\citep{dai_fused_2018}.
 Figure~\ref{fig:STD-segbased-pixel-architecture} shows its pipeline.
 First segmentation creates a dense segmentation maps which are used to then segregate different
 instances of text~\citep{deng_pixellink_2018}.
@@ -284,7 +285,7 @@ For \ac{STR} two main categories of approaches can be identified: segmentation b
 \begin{figure}[h]
     \centering
     \include{figure-code/tikz/taxonomie-STR-tikz}
-    \caption{Different STR Pipelines\label{fig:str-pipelines}}
+    \caption{Different STR pipelines\label{fig:str-pipelines}}
 \end{figure}
 Segmentation based approaches for \ac{STR} are similar to segmentation based approaches for \ac{STD}.
 After feature extraction, the subtext components (characters for \ac{STR}) are
@@ -313,7 +314,7 @@ Figure~\ref{fig:STR-segbased-architecture})~\citep{wan_textscanner_2020}.
 Often preprocessing steps are performed to remove distortions, rectify curved text,
 remove disruptive background, improve resolutions or recover degraded text.
 Especially rectifying curved text (see Figure~\ref{fig:STN-application}) with the help of
-thin-plate spines~\citep{bookstein_principal_1989} or spatial transformer
+thin-plate spines~\citep{bookstein_principal_1989} and spatial transformer
 networks~\citep{jaderberg_spatial_2015} shows great improvement for \ac{STR}
 performance~\citep{long_scene_2021,chen_text_2021}.
 \begin{figure}[h]
@@ -334,6 +335,9 @@ Efficient feature extraction can e.g.\ be performed with binary convolutional
 nets~\citep{liu_scut-ctw1500_2022}.
 For the sequence modelling and transcription steps first~\cite{shi_end--end_2017} (\ac{CTC} based)
 and then~\cite{ghosh_visual_2017} (attention based) will be used as examples.
+% FIXME: emphasize that sequence features are basically 1d
+% FIXME: \cite{cong_comparative_2019}: other ways  to encode 1d: recusive CNN, self attention
+%   after CNN
 For~\cite{shi_end--end_2017} the convolutional feature maps are converted to a feature sequence
 with a (see Figure~\ref{fig:STR-CTC-seq-feat}).
 \begin{figure}[h]
@@ -355,7 +359,7 @@ backwards~\citep{shi_end--end_2017}.
 An \ac{LSTM} processed a sequence to gather context from ealier input for laterr
 outputs~\citep{shi_end--end_2017,goodfellow_deep_2016}.
 The \ac{BiLSTM} allows to gather context of later input for ealier outputs~\citep{shi_end--end_2017}.
-This is important since a character might comprises more than one steps in the sequence
+This is important since a character might comprise more than one step in the sequence
 data~\citep{shi_end--end_2017}.
 \begin{figure}[ht]
     \centering
@@ -451,14 +455,14 @@ As mentioned, \ac{STD} and \ac{STR} are only parts of the task that is at the ce
 \begin{figure}[ht]
     \centering
     \include{figure-code/tikz/taxonomie-E2E-tikz}
-    \caption{Different E2E Pipelines\label{fig:e2e-pipelines}}
+    \caption{Different E2E pipelines\label{fig:e2e-pipelines}}
 \end{figure}
 (1) Run \ac{STD}, crop the image at the resulting bounding boxes, run \ac{STR}.
 (2) Run \ac{STD}, crop feature maps, run adjusted \ac{STR}~\citep{chen_text_2021,long_scene_2021}.
-Two step methods can modularly be combined~\citep{liao_textboxes_2017}.
+Two step methods can modularly be combined~\citep{liao_textboxes_2017,shi_aster_2019}.
 The \ac{STD} approach from~\cite{liao_textboxes_2017} can be combined with the CTC based \ac{STR}
 from~\cite{shi_end--end_2017}.
-Note that for the two modular approaches can still be adjusted to better fit
+Note that for the two step modular approaches can still be adjusted to better fit
 together~\citep{liao_textboxes_2017}.
 The two stage approach that is used as an example was introduced by~\cite{busta_deep_2017}.
 \begin{figure}[h]
@@ -499,6 +503,8 @@ This section documents the search for literature which provides the content for 
 overview of innovation.
 For this, important \ac{DL} techniques and notable advances along with their properties are researched
 and presented.
+Note that not the whole approaches that are introduced are explained, but only the innovation that
+improves upon previous work.
 For a literature review, it is important to report how the information was found and
 synthesized~\citep{torraco_writing_2005}.
 The strategy for researching current research is most important for a literature
@@ -517,9 +523,7 @@ vary in the defined problem~\citep{chen_text_2021}.
 The delimination from Section~\ref{se:problem} of course holds for this chapter and only literature
 which concerns advances for the \ac{DL} model architecture will be regarded as important for the
 scope of this thesis.
-This extends to the whole pipeline from preprocessing an image to the final result of the model.
-Note that not the whole approaches that are introduced are explained, but only the innovation that
-improves upon previous work.
+This extends to the whole pipeline from extracting features to the final result of the model.
 
 The resulting literature for \ac{STD} along with the respective innovation can be found in
 Table~\ref{tb:STD-steps-properties}.
@@ -560,6 +564,7 @@ Table~\ref{tb:STD-steps-properties}.
                 & 132 \\
         \bottomrule
     \end{tabular}
+    \captionsetup{justification=centering}
     \caption[Notable innovations for STD model architecture]{%
         Notable innovations for STD model architecture; \\
         c:curved, m:multi-oriented, h:horizontal\label{tb:STD-steps-properties}
@@ -571,7 +576,7 @@ Research like~\cite{xue_accurate_2018} was not included, since its proposed meth
 training procedure rather than the model architecture.
 
 % FIXME: figure with rotated bb?
-The next approaches are concerned with multi-oriented text:
+The following approaches are concerned with multi-oriented text:
 The 1-stage \ac{STD} approach introduced by~\cite{liao_rotation-sensitive_2018} states that
 predicting both the text certainty scores and the \acp{BB} from the same feature maps does not
 enable the best performance.
@@ -594,7 +599,7 @@ For the remaining \acp{ROI} the \ac{ROI} pooling operation is also adjusted to d
 the results of which are used for the final prediction~\citep{ma_arbitrary-oriented_2018}.
 The first pixel based appproach was introduced by~\cite{deng_pixellink_2018}.
 It combines dense predictions maps of text/non-text and neighbor links to reconstruct text instances
-from pixel level~\cite{deng_pixellink_2018}.
+from pixel level~\citep{deng_pixellink_2018}.
 The approach from~\cite{lyu_multi-oriented_2018} is also pixel level segmentation based.
 However, not each pixel is predicted separately.
 The image is subdivided by a grid and each grid space is predicted~\citep{lyu_multi-oriented_2018}.
@@ -602,19 +607,40 @@ Also, text instance corners are predicted.
 The grid segmentation maps are then used to group corners to reconstruct text
 instances~\citep{lyu_multi-oriented_2018}.
 
-% FIXME: curved label generation? polygon
-The following approaches introduced innvations regarding curved \ac{STD}:
+The next approaches introduced innvations regarding curved \ac{STD}:
 For~\cite{liao_real-time_2019}, text probability and border pixel-level segmentation maps are used
-to construct a binary map that represents text/non-text.
+to construct a binary map that represents text/non-text (see
+Figure~\ref{fig:curved-rep-liao-real-2019}).
 The construction the binary map is performed with the newly introduced differentiable binarization
 function~\citep{liao_real-time_2019}.
 The binary map can then be used to generate curved \acp{BB}~\citep{liao_real-time_2019}.
 The approach not only improves performance but also efficiency~\citep{liao_real-time_2019}.
-A new representation for curved text was introduced by~\cite{xu_textfield_2019}.
-The representation is made up of direction vectors that point way from the nearest border.
+A new representation for curved text was introduced
+by~\cite{xu_textfield_2019} (see Figure~\ref{fig:curved-rep-xu-textfield-2019}).
+The representation is made up of direction vectors that point away from the nearest border.
 These vectors are predicted by magnitude and direction~\citep{xu_textfield_2019}.
 The resulting text direction field can then be use to reconstruct text
 instance~\citep{xu_textfield_2019}.
+\begin{figure}[ht]
+    \centering\scriptsize
+    \subfigure[
+        \scriptsize Binary text segmentation map
+        \citep{liao_real-time_2019}\label{fig:curved-rep-liao-real-2019}
+    ]{\includegraphics[width=0.40\textwidth]{img/STD-representation-curved-binary-Liao-Real-2019.png}}
+    \subfigure[
+        \scriptsize Textfield with vectors to text center
+        \citep{xu_textfield_2019}\label{fig:curved-rep-xu-textfield-2019}
+    ]{\includegraphics[width=0.40\textwidth]{%
+        img/STD-representation-curved-textfield-Xu-textfield-2019.png}
+    }
+    \subfigure[
+        \scriptsize Segmentation scales for label building
+        \citep{wang_shape_2019}\label{fig:curved-rep-wang-shape-2019}
+    ]{\includegraphics[width=0.25\textwidth]{img/STD-representation-curved-scale-Wang-Shape-2019.png}}
+    \caption{%
+        Different curved text instance reconstructing\label{fig:curved-text-representations}
+    }
+\end{figure}
 A innovation towards better efficiency based on pixel level segmentation
 from~\cite{wang_efficient_2019} introduces a light feature extraction network.
 The network repeatetly upsamples and downsamples the feature maps to improve the representational
@@ -622,14 +648,16 @@ capabilities of the efficient extractor~\citep{wang_efficient_2019}.
 The generated features are then used to predict text regions, along with text centers and similarity
 vectors to distinguish different regions~\citep{wang_efficient_2019}.
 Another way of distinguishing between text instances is to progressively predict larger scale text
-areas~\citep{wang_shape_2019}.
+areas~\citep{wang_shape_2019} (see Figure~\ref{fig:curved-rep-wang-shape-2019}).
+This is achieved by continuously shrinking the image with the help of
+kernels~\citep{wang_shape_2019}.
 This helps as the network can recognize at which scale the instances overlap~\citep{wang_shape_2019}.
-Recent research has brought up approaches that use both segmentation and \ac{BB} regression in on
-architecture~\citep{xie_scene_2018,dai_fused_2018}.
+Recent research has brought up approaches that use both segmentation and \ac{BB} regression in the
+same architecture~\citep{xie_scene_2018,dai_fused_2018}.
 The approach introduced by~\cite{xie_scene_2018} leverages text segmentation to rescore certainty
 for predicted \acp{ROI} to improve \ac{NMS}, the filtered \acp{ROI} are then used to refine
 \acp{BB} regression and text classification~\citep{xie_scene_2018}.
-The innovation by~\cite{dai_fused_2018} improves feature extraction for \ac{STD} by fusing lower-
+The innovation by~\cite{dai_fused_2018} improves feature extraction for \ac{STD} by fusing lower
 level features.
 These features are used for \ac{ROI} proposals and are then used to pool the fused feates for
 the text/non-text classification, \ac{BB} regression and text segmentation
@@ -657,37 +685,54 @@ the results started to diverge.
             & &~\cite{shi_aster_2019} & b & Rectification based on grids & 349 \\
             & &~\cite{cheng_aon_2018} & b & Extract and combine character features in four directions
                 & 209 \\
-            & &~\cite{li_show_2019} & b & Simple pipeline combined with 2d attention mechanism & 141 \\
+            & &~\cite{li_show_2019} & b & Simple pipeline combined with 2d attention mechanism & 141\\
             & &~\cite{liu_char-net_2018} & b & Adapted attention mechanism to find
                 individual characters and rectify local features for the decoder & 112 \\
             & &~\cite{bai_edit_2018} & b & Edit operations (consumption, deletion, insertion)
                 influence probability of prediction & 99 \\
         \bottomrule
     \end{tabular}
+    \captionsetup{justification=centering}
     \caption[Notable innovations for STR model architecture]{%
         Notable innovations for STR model architecture; \\
         w/: with lexicon, w/o: without lexicon, b: both\label{tb:STR-steps-properties}
     }
 \end{table}
-% FIXME: approach kürzen!
 The only approach~\citep{liao_scene_2018} that is not assigned to attention based actually also
 contains attention.
 But the approach works with localizing and classifying each character
-separately~\citep{liao_scene_2018} which is why it fits better into the segmentation based category.
+separately~\citep{liao_scene_2018} which is why it fits into the segmentation based category.
 The innovation leverages deformable convolution~\citep{dai_deformable_2017} to decide
 which spatial information to focus on~\citep{liao_scene_2018}.
-% XXX: more in depths explanation?
 Additionally, it relies on a fully convolutional attention module which weakens background and
 highlights characters~\citep{liao_scene_2018}.
 This allows the model to localize each character at pixel level~\citep{liao_scene_2018}.
-The module is performed at different scales (instead of at each time step with
-\acp{RNN})~\citep{liao_scene_2018,xu_show_2016}.
+The attention module is performed at different scales~\citep{liao_scene_2018,xu_show_2016}.
 The characters are then classified and formed into a word~\citep{liao_scene_2018}.
 
 The following approaches are all attention based, however their innovation concern different parts
 of the attention based \ac{STR} pipeline.
-The approaches by~\cite{zhan_esir_2019,luo_multi-object_2019,shi_aster_2019} all improve curved
-text rectification.
+The approaches by~\cite{zhan_esir_2019,luo_multi-object_2019,shi_aster_2019} all improve
+text rectification ahead of the encoding step.
+\begin{figure}[hb]
+    \centering\scriptsize
+    \subfigure[
+        \scriptsize iterative rectification
+        \citep{zhan_esir_2019}\label{fig:rectification-zhan-esir-2019}
+    ]{\includegraphics[width=0.35\textwidth]{img/STR-rectification-Zhan-ESIR-2019.png}}
+    \subfigure[
+        \scriptsize offset rectification
+        \citep{luo_multi-object_2019}\label{fig:rectification-luo-multi-2019}
+    ]{\includegraphics[width=0.20\textwidth]{img/STR-rectification-Luo-Multi-2019.png}}
+    \subfigure[
+        \scriptsize grid rectification
+        \citep{shi_aster_2019}\label{fig:rectification-shi-aster-2019}
+    ]{\includegraphics[width=0.35\textwidth]{img/STR-rectification-Shi-Aster-2019.png}}
+    \caption{%
+        Visualization of different innovations regarding
+        rectification\label{fig:rectification-examples}
+    }
+\end{figure}
 From~\cite{zhan_esir_2019} comes a rectification approach that iteratively estimates the fit of a
 polynomyal to the text line and uses that prediction to rectify the text with \ac{TPS}
 transformation~\citep{bookstein_principal_1989,zhan_esir_2019}.
@@ -705,10 +750,26 @@ The approach by~\cite{cheng_aon_2018} improves features by extracting features f
 four directions (right, up, left, down)~\citep{cheng_aon_2018}.
 The feature vectors are then used with the other extracted features to act as a gate (similar to
 \acp{LSTM})~\citep{cheng_aon_2018}.
+\begin{figure}[ht]
+    \centering\scriptsize
+    \subfigure[
+        \scriptsize 2d attention
+        \citep{li_show_2019}\label{fig:2d-attention-li-show-2019}
+    ]{\includegraphics[width=0.20\textwidth]{img/STR-2d-attention-Li-Show-2019.png}}
+    \subfigure[
+        \scriptsize attention character rectification
+        \citep{liu_char-net_2018}\label{fig:attention-rectification-liu-char-net-2018}
+    ]{\includegraphics[width=0.55\textwidth]{img/STR-attention-rectification-Liu-Char-Net-2018.png}}
+    \caption{%
+        Effects of innovative attention mechanisms for STR\label{fig:attention-examples}
+    }
+\end{figure}
 The next two approaches~\citep{li_show_2019,liu_char-net_2018} improve upon the attention mechanism
 for \ac{STR}.
-The innovation by improves upon 2d-attention~\citep{xu_show_2016} by taking each of the eight
-spatial neighbors into account.
+The innovation by~\cite{li_show_2019} uses 2d-attention from~\citep{xu_show_2016} to use
+for \ac{STR}.
+Additionally, the mechanism is made more robust by taking each of the eight spatial neighbors into
+account~\citep{li_show_2019}.
 The attention mechanism proposed by~\cite{liu_char-net_2018} uses attention to find characters and
 \ac{TPS} to rectify them in order predict the text intance.
 For each character, the corresponding feature region is extracted and is
@@ -718,7 +779,7 @@ The approach from~\cite{bai_edit_2018} introduces the concept of edit probibilit
 At each state, the decoder decides which edit operation to perform (consumption, deletion, insertion)
 based on their edit probibilities~\citep{bai_edit_2018}.
 These operations either forego a time step, add a character to the word or insert a missed character
-at the previous position~\cite{bai_edit_2018}.
+at the previous position~\citep{bai_edit_2018}.
 
 For end to end \ac{STS} 5 results where identified as relevant under the defined criteria.
 The last relevant innovation was found on page 5 and at page 10 the topic digerged.
@@ -741,6 +802,7 @@ The last relevant innovation was found on page 5 and at page 10 the topic digerg
                 recognition head & 100 \\
         \bottomrule
     \end{tabular}
+    \captionsetup{justification=centering}
     \caption[Notable innovations for E2E model architecture]{%
         Notable innovations for E2E model architecture; \\
         c:curved, m:multi-oriented, h:horizontal; \\
@@ -757,6 +819,21 @@ text certainty score of the \ac{STD} module to improve \ac{NMS}.
 The \ac{STR} approach from~\cite{shi_aster_2019} can be extended with the one stage
 \ac{BB} regression based \ac{STD} approach from~\cite{liao_textboxes_2017} that was also explained
 in the taxonomy~\citep{shi_aster_2019}.
+\begin{figure}[ht]
+    \centering
+    \subfigure[
+        \scriptsize STS architecture with feature sharing
+        \citep{liu_fots_2018}\label{fig:attention-rectification-liu-char-net-2018}
+    ]{\includegraphics[width=0.8\textwidth]{img/E2E-2-stage-example-Liu-Fots-2018.png}}
+    \subfigure[
+        \scriptsize Rotated to axis aligned sampling effect
+        \citep{liu_fots_2018}\label{fig:2d-attention-li-show-2019}
+    ]{\includegraphics[width=0.40\textwidth]{img/E2E-2-stage-sampling-example-Liu-Fots-2018.png}}
+    \caption[STS architecture with feature sharing]{%
+        STS architecture with feature sharing and sampling
+        effect~\citep{liu_fots_2018}\label{fig:2-stage-example-LIU-Fots-2018}
+    }
+\end{figure}
 The field of end to end \ac{STS} has moved towards 2 stage approaches that combin both \ac{STD}
 and \ac{STR}~\citep{lyu_mask_2018,long_scene_2021}.
 The innovation from~\cite{liu_fots_2018} combines a oriented detection with combined pixel

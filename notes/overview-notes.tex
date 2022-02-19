@@ -7,7 +7,8 @@ This is an unavoidable reality.'\citep{arpteg_software_2018}
 
 Text Perceptron: Towards End-to-End arbitrary-shaped text spotting~\citep{qiao_text_2021}
 \begin{itemize}
-    \item many real world texts appear in arbitrary layouts, quadrangle-based approches nmot well adapted
+    \item many real world texts appear in arbitrary layouts, quadrangle-based approches nmot well
+        adapted
         $\rightarrow$ segment text mask, good results for IOU evaluation
     \item pipelined approaches (not e2e) have suboptimal performance because errors from recognition
         cannot be utilized for optimizing detection
@@ -31,8 +32,9 @@ Two categories to do text detection
     \item Component-free methods: treat every text instance as a complete whole $\rightarrow$ directly
         regress bb/roi like general object detectors RCNN, SSD, often utilize heuristic anchors
         as prior knowledge
-    \item Component-based methods: model text instances from local perspectives and decompose instances
-        into locally detectable segments and links $\rightarrow$ combine segments into whole words
+    \item Component-based methods: model text instances from local perspectives and decompose
+        instances into locally detectable segments and links
+        $\rightarrow$ combine segments into whole words
 \end{itemize}
 
 What is wrong with scene text recognition~\cite{baek_what_2019}
@@ -57,7 +59,8 @@ Learning High-Precision Bounding Box for Rotated Object Detection via Kullback-L
 Divergence~\citep{yang_learning_2021}
 \begin{itemize}
     \item Deductive approach to rotated object detection
-    \item box is `translated' to 2D-Gaussian $\rightarrow$ KLD with prediction and true gaussian as Loss
+    \item box is `translated' to 2D-Gaussian $\rightarrow$ KLD with prediction and true gaussian as
+        Loss
     \item LIMIT:\ cannot be directly applied to quadrilateral detection
 \end{itemize}
 
@@ -105,7 +108,6 @@ stages of development
             \item spatial location at the feature maps corresponds to region of input image
             \item feature maps are fed into classifier for prediction of existance and localization
         \end{itemize}
-        see p.5 / p.165 for specific papers
     \item Methods based on Sub-text components
         \begin{itemize}
             \item any part of a text insance is still text
@@ -134,7 +136,8 @@ stages of development
 \textbf{Recognition --- Text transcribing and converting into linguistic symbols}
 use CNNs to encode images into feature space
 different approaches in text content decoding module:
-challenge: represent oriented characters and curved text that are distributed over a 2-dimensional space
+challenge: represent oriented characters and curved text that are distributed over a 2-dimensional
+space
     (rather than 1-dim/horizontal) in order to fit decoding modules (whose decodes require
     1-dimensional inputs)
 \begin{itemize}
