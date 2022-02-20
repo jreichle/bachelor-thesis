@@ -176,7 +176,7 @@ sense of certainty.
 \end{table}
 \FloatBarrier%
 
-\section{Quality Relevancy}
+\section{Quality Relevancy}\label{se:relevant-qualities}
 In addition to the qualities that arise directly from the use case, literature reveals a number of
 common qualities in regards to \ac{MLS} (see Table~\ref{tb:LiteratureQualitiesModel}), some of which
 can be regarded as relevant and other do not hold any relevance for the specific use case (see
@@ -204,6 +204,11 @@ the use case~\citep{siebert_construction_2021,nakamichi_requirements-driven_2020
 For this thesis, this applies to scene text \ac{STS} models.
 Additionally, the properties which are derived from the use case (see
 Table~\ref{tb:useCaseQualities}), can be grouped under this quality.
+The offline capabilities are always given in the approaches outlined in Chapter~\ref{ch:research}.
+% FIXME: source?
+Semantics retention is controlled by the text representation output of the \ac{STD} model (axis aligned,
+multioriented or quadrilateral bounding box, text/non-text map).
+Alphanumeric recognition is dependent on how well \ac{STR} performs without a lexicon.
 
 % Performance
 `An ML model is performant if it operates as expected according to a measure (or set of measures)

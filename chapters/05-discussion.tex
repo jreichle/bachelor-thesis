@@ -1,214 +1,171 @@
 \chapter{Discussion}\label{ch:discussion}
 This chapter contains a comparison between the taxonomy categories that were introduced in
 Section~\ref{se:taxonomy}.
-Similar to previous chapters the comparison will first investigate \ac{STD} and \ac{STR} separately
-and then combine them for \ac{STS}.
-
+The analysis is followed by a reflection on the methodology and the thesis results.
+Lastly, the outlook section brings up possible starting points for further work regarding the
+problem from Chapter~\ref{ch:problem}.
 
 \section{Analysis}\label{se:analysis}
-% FIXME: how did I find information?
-Go down hierarchy and compare most important advances
-\begin{itemize}
-    \item Compare: STD/STR pipelines
-    \item Compare: two step, two stage
-    \item In which way are innovations going?
-\end{itemize}
-Comparing numbers on benchmarks and not looking at quanitative data would result in fallacy.
+The comparison in this section is synthesized from information found in literature as well as
+some observations regarding recent innovations that are explained in Section~\ref{se:innovations}.
+The analysis is structured similar to the overview sections: first compare approach categories
+for \ac{STD} and \ac{STR} and then move on towards \ac{STS}.
+The compared aspects of the approaches are the qualities that were identified as relevant in
+Section~\ref{se:relevant-qualities}: appropriateness, performance in conjuntion with robustness,
+efficiency.
+Note that appropriateness entails the subqualities that were derived from the use
+case (see Table~\ref{tb:useCaseQualities}):
+While the offline capability requirement is met by all of the approaches that are identified in this
+thesis, semantics retention and alphanumeric recognition have to be analyzed further.
+\ac{STD} is the relevant subtask for semantics retention and \ac{STR} for alphanumeric recognition.
 
-Detection
-\begin{itemize}
-    \item reference tables found in overview!
-        \begin{itemize}
-            \item only curved or multi-orientated text solutions
-            \item mostly focused on performance/robustness rather than efficiency
-            \item for regresseion based: how to deal with orientation?
-            \item segmentation mostly curved, regression mostly oriented
-            \item while BB methods deal with orientation representations, pixel segmentation methods
-                mostly find innovations that help separate text instances
-            \item innovations for segmentation: how to distinguish text instances
-        \end{itemize}
-    \item~\cite{wang_efficient_2019}: two main challenges for \ac{STD}:
-        trade-off between speed and accuracy; model arbitrary-shaped text instance
-    \item BB regression
-        \begin{itemize}
-            \item~\cite{ferrari_textsnake_2018}: many methods have strong assumption that text
-                instances are in linear shape and therefore adopted simple representations
-                (rectangles --- axis aligned or rotated, quadrangles)
-                $\rightarrow$ problem with irregular and curved text
-            \item~\citep{long_scene_2021}: Curved text
-            \item~\cite{long_scene_2021,shi_detecting_2017}: Higher aspect ratios
-            \item~\cite{shi_detecting_2017}: Text orientation
-            \item~\cite{wang_shape_2019}: fail to deal with curved text
-            \item~\cite{xu_textfield_2019}: anchor box bias assumes text has linear shape
-                $\rightarrow$ bottleneck for adapting to curved
-        \end{itemize}
-    \item Segmentation
-        \begin{itemize}
-            \item~\cite{xu_textfield_2019}: many segmentation based methods focus on separating
-                text regions
-            \item~\cite{wang_shape_2019}: distinguishing text instances is hard
-            \item~\cite{liao_real-time_2019}: require complex post-processing for grouping
-                pixel-level prediction results into text instances
-            \item~\cite{xie_aggregation_2019}: often need time consuming post-processing steps
-                while performance is unsatisfying
-            \item~\cite{dai_fused_2018}: well suited for arbitrary shapes but often involves several
-                pipelines $\rightarrow$ inefficient
-            \item~\cite{ferrari_textsnake_2018}: some models are specifically designed for
-                arbitrary shapes
-            \item~\cite{shi_detecting_2017}: modular approach instead of whole \acp{BB}
-                $\rightarrow$ good with long aspect ratio and orientation because of flexibility
-            \item~\cite{dai_fused_2018}: often need several stages and components for final result
-                $\rightarrow$ inefficient
-            \item~\cite{qiao_text_2021}: often relies on complicated postprocessing to separate
-                different text instances
-            \item~\cite{long_scene_2021}: better flexibility and generalization over shapes and
-                aspect ratios
-            \item~\cite{long_scene_2021}: module or post-processing step to group segments
-                into text instances is vulnerable to noise and efficiency
-        \end{itemize}
-\end{itemize}
+The main challenges for \ac{STD} involve the trade-off between speed and accuracy as well as
+representing arbitrary shaped text instance~\citep{wang_efficient_2019}.
+The innovations regarding \ac{STD} deal with multi-oriented and curved text (as can be seen in
+Table~\ref{tb:STD-steps-properties}).
+\begin{table}[h]
+    \centering\scriptsize
+    \begin{tabular}{p{.09\textwidth}p{.10\textwidth}p{0.70\textwidth}}
+        \multicolumn{2}{c}{\textbf{Approach category}} & \textbf{Shortcommings} \\
+        \toprule
+        Seg free & & Curved text representation~\citep{long_scene_2021,wang_shape_2019} \\
+        & & Linear anchor box bias with curved text~\citep{wang_shape_2019,ferrari_textsnake_2018} \\
+        & & High aspect ratio test~\citep{shi_detecting_2017,long_scene_2021} \\
+        & One Stage & More efficient, straightforward architecture~\citep{lu_mimicdet_2020} \\
+        & Twe Stage & More accurate predictions due to refinement~\citep{lu_mimicdet_2020} \\
+        \midrule
+        Seg based & & Separating different text instances~\citep{wang_shape_2019} \\
+        & & Text instance construction is complex and computation
+            intensive~\citep{xie_aggregation_2019,liao_real-time_2019,qiao_text_2021} \\
+        & & Incorporate several computation intensive stages~\citep{dai_fused_2018} \\
+        & & More vulnerable to noise~\citep{long_scene_2021} \\
+        \bottomrule
+    \end{tabular}
+    \caption{STD approach category comparison\label{tb:STD-comparison}}
+\end{table}
+Segmentation free or \ac{BB} regression based approaches have trouble with curved text because of
+the anchor boxes' linear bias~\citep{wang_shape_2019,ferrari_textsnake_2018}.
+Additionally, the regressed \acp{BB} have trouble in accurately representing the shape of curved
+text instances~\citep{long_scene_2021,wang_shape_2019}.
+Representing multioriented text is not a problem on the other
+hand~\citep{liao_textboxes_2018,jiang_r2cnn_2017}.
+When it comes to comparing \ac{BB} regression approaches, one stage approaches are generally more
+efficient  because of their straightforward architecture while two stage approaches can generally
+predict more accurately  because of the refinement process~\citep{lu_mimicdet_2020}.
+Long aspect ratios are another problem of scene text which degrades \ac{BB} regression
+performance~\citep{shi_detecting_2017,long_scene_2021}.
+Segmentation based approaches on the other hand take advantage of the fact that every part of the
+text instance can locally be verified as such~\citep{long_scene_2021}.
+Note that no noteworthy comparison of subcomponent or pixel level segmentation was found.
+The bottom-up approach aleviates the problem of long aspect ratios~\citep{shi_detecting_2017}.
+However, approach is more computation intensive, as in incorporates more complex
+stages~\citep{dai_fused_2018} and complicated text instance
+construction~\citep{xie_aggregation_2019,liao_real-time_2019,dai_fused_2018}.
+The text instance construction goes hand in hand with the separation of different instances.
+This is a challenging task which is vulnerable to noise~\citep{long_scene_2021} and the focus of
+many new innovations (see Figure~\ref{fig:curved-text-representations}).
+The segmentation based approaches facilitate more natural representation of curved
+text~\citep{dai_fused_2018,long_scene_2021} (see Figure~\ref{fig:curved-text-representations}).
+What \ac{STD} is concerned the bottom line seems to be: Is it curved text detection or efficiency
+more important?
 
-Recognition
-\begin{itemize}
-    \item reference tables found in overview!
-        \begin{itemize}
-            \item mostly attention based
-            \item concerned with curved text $\rightarrow$ a lot of rectification innovation
-            \item how to distinguish text instances (neighbor~\citep{deng_pixellink_2018},
-                textfields~\citep{xu_textfield_2019},segmentation scales~\citep{wang_shape_2019})
-            \item both unconstrained and with lexicons
-        \end{itemize}
-    \item Segmentation based
-        \begin{itemize}
-            \item~\cite{xie_aggregation_2019}: require separate training targets for each segment
-                or time-step in the input sequence $\rightarrow$ inconvenient pre-segmentation and
-                post-processing stages
-            \item~\cite{shi_end--end_2017}: character annotations needed for training
-            \item~\citep{chen_text_2021}: Accurate detection of individual characters is hard
-            \item~\citep{chen_text_2021}: Contextual information between character gets lost
-                $\rightarrow$ poor word-level results
-            \item~\cite{cheng_aon_2018}: require segmentation of each character which is challenging
-                with scene backegrounds
-            \item~\cite{cheng_aon_2018}: require character annotations $\rightarrow$ time consuming
-            \item~\cite{zhan_esir_2019}: localizing individual characters is resource hungry and
-                prone to errors (complex background and character overlap)
-            \item~\cite{liu_abcnet_2020}: require complex pipeline $\rightarrow$ slow interference
-        \end{itemize}
-    \item Sequence based
-        \begin{itemize}
-            \item~\cite{li_show_2019}: deal with curved text by rectifying into 1d text
-            \item~\cite{long_scene_2021} --- challenge: represent oriented and curved text
-                distributed over 2d space $\rightarrow$ decoding modules need 1d input
-            \item~\cite{cheng_aon_2018}: image is encoded into 1D based sequence
-                $\rightarrow$ cannot handle 2d text
-                $\rightarrow$ apply text rectification to make 2d text 1d
-            \item~\cite{shi_end--end_2017}: directly learned from sequence labels (words/instances)
-            \item~\cite{xie_aggregation_2019}: no need for separate training targets for each segment
-                or time step
-            \item~\cite{liao_scene_2018}: limitations caused by difference between one dimensional
-                distribution of feature sequences and two dimentional distribution of text in
-                images
-            \item~\cite{liao_scene_2018}: dominates current \ac{STR} approaches
-            \item CTC
-                \begin{itemize}
-                    \item~\cite{chen_text_2021}:CTC prone to overfitting
-                    \item~\cite{xie_aggregation_2019}: implementation of forward-backward algorithm
-                        is complicated $\rightarrow$ large computation consumption
-                    \item~\cite{cheng_focusing_2017,xie_aggregation_2019}: can hardly be applied
-                        to 2D prediction problems
-                    \item~\cite{long_scene_2021}: better character to pixel alignment
-                    \item~\cite{cong_comparative_2019}: perform better on sentence recognition tasks
-                \end{itemize}
-            \item Attention
-                \begin{itemize}
-                    \item~\cite{cong_comparative_2019}: perform better on isolated word recognition
-                        tasks
-                    \item~\cite{wan_vocabulary_2020}: prove weak in generalizing to words
-                        outside vocabulary, but strong with vocabulary
-                    \item~\cite{bai_edit_2018}: attention can lead to missing or superfluous
-                        characters because of attention drift
-                    \item~\cite{liao_scene_2018}: misalignment between ground truth strings and
-                        output probability distribution caused by missing or superfluous characters
-                    \item~\cite{chen_text_2021}: good for isolated word recognition
-                    \item~\cite{chen_text_2021}: Attention has problems with long sequences
-                    \item~\cite{xie_aggregation_2019}: relies on attention module for label alignment
-                        $\rightarrow$ large storage requirement and computation consumption
-                    \item~\cite{xie_aggregation_2019}: misalignment problem can confuse and mislead
-                        training problem, leading to degradation of accuracy
-                    \item~\cite{xie_aggregation_2019}: can be adopted to 2D prediction but
-                        memory and time consumption are to big then
-                    \item~\cite{cheng_focusing_2017}: attention drift bad
-                    \item~\cite{long_scene_2021}: more conducive to incorporate more linguistic
-                        priors (decoder is implicit language model)
-                    \item~\cite{chen_text_2021}: attention modul is storage and computation
-                        intensive
-                    \item~\cite{chen_text_2021}: attention drift for long text instances can lead
-                        to misalignment
-                \end{itemize}
-        \end{itemize}
-\end{itemize}
+\ac{STR} research focuses on accurately recognizing 2d text instance.
+The innovations found for \ac{STR} (see Table~\ref{tb:STR-steps-properties}) show that the research
+is mostly focused on robustely recognizing curved text instances (rectification approaches and
+2d attention).
+Additionally, it can be noted that the innovative approaches are mostly attention based.
+The different approach categories all have different shortcommings (see
+Figure~\ref{tb:STR-comparison}).
+\begin{table}[h]
+    \centering\scriptsize
+    \begin{tabular}{p{.09\textwidth}p{.15\textwidth}p{0.66\textwidth}}
+        \multicolumn{2}{c}{\textbf{Approach category}} & \textbf{Shortcommings} \\
+        \toprule
+        Seg based & & Accurate detection of individual
+                        characters~\citep{chen_text_2021,cheng_aon_2018} \\
+        & & Disregard for contextual information between characters~\citep{chen_text_2021} \\
+        & & Incorporate several computation intensive stages~\citep{liu_abcnet_2020} \\
+        \midrule
+        \ac{EnDe} based & & Curved and multioriented text~\citep{cheng_aon_2018, long_scene_2021} \\
+        & CTC based & Prone to overfitting~\citep{chen_text_2021} \\
+        & & Computation extensive CTC probabilities~\citep{xie_aggregation_2019} \\
+        & & Isolated word recognition~\citep{cong_comparative_2019} \\
+        & & Not applicable to recognition of 2d text instance~\citep{cheng_focusing_2017,
+            xie_aggregation_2019,chen_text_2021} \\
+        & Attention based & Sentence and long sequence
+            recognition~\citep{cong_comparative_2019,chen_text_2021} \\
+        & & Problems without vocabulary~\citep{wan_vocabulary_2020} \\
+        & & Attention drift leads to missing or superfluous
+            characters~\citep{liao_scene_2018,xie_aggregation_2019,chen_text_2021}\\
+        & & Adapted 2d attention requires a lot of storage and
+            computation~\citep{xie_aggregation_2019,chen_text_2021} \\
+        \bottomrule
+    \end{tabular}
+    \caption{STR approach category comparison\label{tb:STR-comparison}}
+\end{table}
+For segmentation based approaches the main shortcommings are as follows.
+Localizing individual characters is computationally expensive~\citep{zhan_esir_2019}.
+A complex pipeline is needed to predict characters and align them~\citep{liu_abcnet_2020}.
+Take~\cite{wan_textscanner_2020} for example which leverages a separate geometry branch
+to which helps with word formation with the predicted charcters from the classifying branch.
+Segmentation is also susceptible to errors~\citep{zhan_esir_2019,cheng_aon_2018,chen_text_2021}.
+The errors are reinforced by the nature of scene text: complex backgrounds, noise, perspective
+and other factors~\citep{hu_gtc_2020,chen_text_2021,baek_what_2019}.
+Additionally, segmentation based approaches cannot make us of contextual information between
+charcters~\citep{chen_text_2021}.
+\ac{EnDe} based \ac{STR} on the other hand is modeled to take contextual information into
+account~\citep{long_scene_2021,chen_text_2021}.
+The problem manifests itself in dealing with 2d-text
+instances~\citep{long_scene_2021,liao_scene_2018}.
+The \ac{EnDe} basic approaches use decoders which work with sequences (and therefore
+1d)~\citep{long_scene_2021,cheng_aon_2018}.
+The introduced innovations deal with this in two ways: rectify 2d text into 1d
+text~\citep{zhan_esir_2019,luo_multi-object_2019,shi_aster_2019,liu_char-net_2018}, adapt the
+attention mechanism to 2d input~\citep{li_show_2019}.
+Note that \ac{CTC} cannot be adapted to 2d input~\citep{cheng_focusing_2017,xie_aggregation_2019}
+and the attention adaption by~\cite{li_show_2019} is memory and computation
+intensive~\citep{xie_aggregation_2019}.
+When comparing \ac{CTC} to attention based approaches it can be noted that \ac{CTC} deals better
+with long text instances or sentences while attention is better with singular
+words~\citep{cong_comparative_2019,chen_text_2021}.
+This is because the misalignment in attention can cause missing or superfluous charcters (attention
+drift)~\citep{bai_edit_2018,liao_scene_2018,cheng_focusing_2017}.
+Attention based approaches have the upper hand when it comes to incorporate implicit language models
+or lexicons but \ac{CTC} perform better without language priors~\citep{cong_comparative_2019}.
+This is especially important because the text in the use case under consideration contains
+alphanumeric strings which are not part of any lexicon.
+When it comes to computational efficiency both \ac{CTC} and attention are expensive and time
+consuming~\citep{chen_text_2021}.
+% TODO: no direct comparison for efficiency, what to do?
 
-E2E
-\begin{itemize}
-    \item 2 step
-        \begin{itemize}
-            \item~\cite{chen_text_2021}: errors can accumulate between STD and STR
-            \item~\cite{long_scene_2021}: propagation of error between detection and recognition
-            \item~\cite{qiao_text_2021}: pipelined approaches (not e2e) have suboptimal performance
-                because errors from recognition cannot be utilized for optimizing detection
-            \item~\cite{liu_fots_2018}: feature extaction usually takes the most time
-                $\rightarrow$ having to do it twice is expensive
-        \end{itemize}
-    \item 2 stage
-        \begin{itemize}
-            \item~\cite{chen_text_2021}: joint optimization
-            \item~\cite{chen_text_2021}: can prevent errors from being accumulated during training
-            \item~\cite{chen_text_2021}: share information between STD and STR
-                $\rightarrow$ optimize jointly to improve performance
-            \item~\cite{chen_text_2021}: exhibit competitive performance with faster interference
-                and smaller storage requirements
-            \item~\cite{liu_fots_2018}: sharing features significantly speeds up the network
-                by not needing a second \ac{CNN} feature extractor
-            \item~\cite{chen_text_2021}: real-time and efficient
-            \item~\cite{chen_text_2021}: competitive performance with faster interference and
-                smaller storage requirements
-        \end{itemize}
-\end{itemize}
+% FIXME: two stage pooling used for two stage sts
+2 stage approaches have the upper hand, when it comes to end to end \ac{STS}.
+These approaches are in the focus for research because they have crucial
+advantages (see Figure~\ref{tb:E2E-comparison})~\citep{chen_text_2021}.
+\begin{table}[h]
+    \centering\scriptsize%
+    \begin{tabular}{p{.11\textwidth}p{.70\textwidth}}
+        \textbf{Category} & \textbf{Shortcommings} \\
+        \toprule
+        2 step & Error propagation between detection and
+            recognition~\citep{chen_text_2021,long_scene_2021}\\
+        & No joint optimization~\citep{qiao_text_2021, chen_text_2021}\\
+        & Computation requirements for two feature extraction
+            CNNs~\citep{liu_fots_2018,chen_text_2021} \\
+        2 stage & --- \\
+        \bottomrule
+    \end{tabular}
+    \caption{E2E approach category comparison\label{tb:E2E-comparison}}
+\end{table}
+2 stage approaches are more efficient than 2 step approaches because they don't compute feature maps
+twice~\citep{liu_fots_2018,chen_text_2021}.
+This carries a lot of weight since feature extraction is usually the most time and computation
+consuming step~\citep{liu_fots_2018}.
+The direct combination of \ac{STD} and \ac{STR} also has impact on the performance.
+Because of the connecting both stages together are fully differentiable and can be jointly
+optimized~\citep{chen_text_2021,long_scene_2021,qiao_text_2021}.
+Without joint optimization error that happen in the detection step can be propagated to the
+recognition which results in performance degradation~\citep{chen_text_2021,qiao_text_2021}.
 
 \section{Reflection}
-Threats to validity!
-\begin{itemize}
-    \item~\cite{arpteg_software_2018}: different papers have different components
-        $\rightarrow$ Hardware, Platform, Source Code, Configuration
-        $\rightarrow$ studies can't really be compared
-    \item~\cite{arpteg_software_2018}: `A major challenge in developing DL systems is the
-        difficulties in estimating the results before a system has been trained and tested.'
-    \item~\cite{long_scene_2021}: different interpretations of metrics (matching for \ac{STD},
-        word/char for \ac{STR})
-    \item~\cite{siebert_construction_2021,nakamichi_requirements-driven_2020}: all entities of
-        \ac{MLS} should be inspected when developing a solution
-    \item~\cite{baek_what_2019}: different papers use different evaluation and testing environments
-    \item~\cite{baek_what_2019}: different papers use different subsets of the same dataset
-        $\rightarrow$ discrepancies in performance
-    \item~\cite{long_unrealtext_2020}: half of the widely adopted benchmark datasets have imperfect
-        annotations $\rightarrow$ ignoring case-sensitivities and punctuations, and provide new
-        annotations for those datasets
-    \item~\cite{chen_text_2021}: inconsistency of datasets, priors and testing environments make
-        comparison difficult
-    \item cutoff at 100 cit $\rightarrow$ newer publications might be equally impactful but not
-        not enough time for more citations
-\end{itemize}
-
-\section{Outlook}
-
-\begin{itemize}
-    \item~\cite{watanabe_preliminary_2019}:next steps to practically solve problem
-        $\rightarrow$  Data Collection, Data Cleaning, Data Labeling, Model Training,
-        Model Evaluation, Model Deployment, Model Monitoring
-    \item~\cite{zhao_improving_2020}: Use Neural Architecture Search to automatically find right
-        feature extractor
-    \item~\cite{siebert_construction_2021,nakamichi_requirements-driven_2020}: build system around
-        model $\rightarrow$ e.g.\ supervision mechanism
-    \item~\cite{shi_icdar2017_2017,he_icpr2018_2018}: adjust field to better metrics for evaluation
-    \item~\cite{long_scene_2021}: general trend to move towards simpler,shorter pipeline
-\end{itemize}
+% FIXME: Comparing numbers on benchmarks and not looking at quanitative data would result in fallacy.

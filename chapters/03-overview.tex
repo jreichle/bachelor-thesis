@@ -139,7 +139,9 @@ Feature extraction \ac{CNN} is again inspired by the VGG architecture~\citep{jia
 like in the previous approach.
 The generated feature map is used by a \ac{RPN}.
 Like with the previously explained approach, the feature maps are used to regress the offset
-respective to bounding boxes.
+respective to bounding boxes, however, these are considered as region that probably contain text
+that are subject to change and to be refined in a later
+stage~\citep{jiang_r2cnn_2017,lu_mimicdet_2020}.
 The bounding boxes are still axis aligned at this point~\citep{jiang_r2cnn_2017}.
 In contrast to the previous \ac{SSD} based approach, only one feature map is used in conjunction with
 \ac{BB} regression~\citep{jiang_r2cnn_2017}.
@@ -368,6 +370,7 @@ data~\citep{shi_end--end_2017}.
         Bidirectional LSTM~\citep{goodfellow_deep_2016}\label{fig:bilstm}
     }
 \end{figure}
+% FIXME: get into forward backward algorithm (graves_connectionist_2006)
 The generated encoded features with embedded context are then used for transcribing the final
 output~\citep{shi_end--end_2017}.
 The transciption uses conditional probibilities to convert the per-frame featues encoded by the
@@ -413,9 +416,10 @@ Figure~\ref{fig:STR-CTC-seq-feat}~\citep{ghosh_visual_2017,shi_end--end_2017}.
 The attention mechanism is placed between the encoder \ac{CNN} and the decoder
 \ac{LSTM}~\citep{ghosh_visual_2017}.
 % FIXME: attention mechanism can also be understood as part of decoder~\cite{shi_aster_2019}
-This mechanism uses a weighted combination of the \sfmx\ activation ($\beta_{t,i}$) of the \ac{MLP}
-output ($\Phi$) and the feature vectors to encode the relative importance of the image parts at
-each time step (see Equations~\ref{eq:attention-weighted-combination}
+This mechanism uses a weighted combination of the \sfmx\ activation ($\boldsymbol{\beta}_{t,i}$) of
+the \ac{MLP} output ($\Phi$) and the feature vectors to encode the relative importance of the
+image parts at each time step (see Equations~\ref{eq:attention-weighted-combination}
+% FIXME: performance - efficiency tradeoff for feature extractor
 and~\ref{eq:attention-gate-values})~\citep{ghosh_visual_2017,xu_show_2016}.
 \begin{equation}\label{eq:attention-weighted-combination}
     \hat{\textbf{z}}_t=\sum_{i=1}^{K}\boldsymbol{\beta}_{t,i}\cdot \x_i
@@ -436,6 +440,7 @@ Besides the possibility to use a lexicon, the approach can also incorporate lang
 the beam search process.
 These priors leverage knowledge about the language that is recognized~\citep{ghosh_visual_2017}.
 
+% FIXME: two stage approach is very similar to STD two stage -> get ROI and then refine after pooling
 As mentioned, \ac{STD} and \ac{STR} are only parts of the task that is at the center of this thesis.
 \ac{STS} can be performed in two ways (see Figure~\ref{fig:e2e-pipelines}).
 \begin{comment}
@@ -717,7 +722,7 @@ text rectification ahead of the encoding step.
 \begin{figure}[hb]
     \centering\scriptsize
     \subfigure[
-        \scriptsize iterative rectification
+        \scriptsize center line rectification
         \citep{zhan_esir_2019}\label{fig:rectification-zhan-esir-2019}
     ]{\includegraphics[width=0.35\textwidth]{img/STR-rectification-Zhan-ESIR-2019.png}}
     \subfigure[
@@ -770,7 +775,7 @@ The innovation by~\cite{li_show_2019} uses 2d-attention from~\citep{xu_show_2016
 for \ac{STR}.
 Additionally, the mechanism is made more robust by taking each of the eight spatial neighbors into
 account~\citep{li_show_2019}.
-The attention mechanism proposed by~\cite{liu_char-net_2018} uses attention to find characters and
+The mechanism proposed by~\cite{liu_char-net_2018} uses attention to recurrently find characters and
 \ac{TPS} to rectify them in order predict the text intance.
 For each character, the corresponding feature region is extracted and is
 rectified using a local spatial transformer~\citep{liu_char-net_2018}.
