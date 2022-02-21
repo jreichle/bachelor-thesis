@@ -32,20 +32,20 @@
     \node[anchor=south,lroot]{STD}
     [edge from parent fork down]
         child{node [lone] {BB regression}
-            child{node [ltwo] {One Stage}
-                child[lthree,level1] {node {Feature \\ Extraction}}
+            child{node [ltwo] {One stage}
+                child[lthree,level1] {node {Feature \\ extraction}}
                 child[lthree,level2] {node {Text \\ localization}}
                 child[lthree,level3] {node {Filter \\ results}}
             }
-            child{node [ltwo] {Two Stage}
-                child[lthree,level1] {node {Feature \\ Extraction}}
-                child[lthree,level2] {node {Text \\ localization}}
-                child[lthree,level3] {node {Text \\ readjustment}}
+            child{node [ltwo] {Two stage}
+                child[lthree,level1] {node {Feature \\ extraction}}
+                child[lthree,level2] {node {Text region \\ classification}}
+                child[lthree,level3] {node {Localization \\ readjustment}}
                 child[lthree,level4] {node {Filter \\ results}}
             }
         }
-        child{node [lone] {Segmentation \\ based} % FIXME: character and sub component
-            child[lthree,level1] {node {Feature \\ Extraction}}
+        child{node [lone] {Segmentation \\ based}
+            child[lthree,level1] {node {Feature \\ extraction}}
             child[lthree,level2] {node {Sub-components \\ segmentation}}
             child[lthree,level3] {node {Text \\ reconstruction}}
         };

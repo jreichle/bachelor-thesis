@@ -7,7 +7,7 @@ is documented.
 Lastly, the advances in the field are placed in the correct position and analyzed.
 
 % FIXME: show difference between axis-aligned, rotated and quadrilateral
-\section{Taxonomy of Pipeline Steps}\label{se:taxonomy}
+\section{Pipeline taxonomy}\label{se:taxonomy}
 Before getting into current research level, a base of knowledge about the field has to be layed.
 \begin{table}[h]
     \centering\scriptsize
@@ -48,8 +48,7 @@ incorporate both \ac{STD} and \ac{STR} techniques to solve
 \ac{STS}~\citep{long_scene_2021,ghosh_visual_2017,chen_text_2021}.
 Therefore this section will first discuss the two parts, to then later combine them.
 
-% FIXME: differentiate between: semantic and instance segmentation (detection is instance segmentation)
-%                   what is meant by segmentation based for taxonomy
+\subsection{Scene Text Detection}
 % FIXME: add to different steps: what are other popular choices e.g. backbone ResNet and FPN
 % FIXME: challenging properties
 For \ac{STD} two main categories of approaches can be identified: segmentation based and \ac{BB}
@@ -121,9 +120,9 @@ Note that 2-stage methods are fully differentiable and thus end to end trainable
 Faster R-CNN (like 1-stage methods)~\citep{ren_faster_2015,long_scene_2021}.
 The two stages consist of: \ac{ROI} regression, \ac{BB}
 adjustments~\citep{jiang_r2cnn_2017, ren_faster_2015}.
-The \ac{STD} approach introduced by~\cite{jiang_r2cnn_2017} (see Figure~\ref{fig:STD-segfree-rcnn})
-uses Faster R-CNN.%
-Unlike the previous approach, the architecture is designed to detect multioriented text
+The two stage \ac{STD} approach introduced by~\cite{jiang_r2cnn_2017} (see
+Figure~\ref{fig:STD-segfree-rcnn}) uses Faster R-CNN.%
+Unlike the previous approach, the architecture is designed to detect multi-oriented text
 instances~\citep{jiang_r2cnn_2017,liao_textboxes_2017}.
 \begin{figure}[ht]
     \centering
@@ -139,7 +138,7 @@ Feature extraction \ac{CNN} is again inspired by the VGG architecture~\citep{jia
 like in the previous approach.
 The generated feature map is used by a \ac{RPN}.
 Like with the previously explained approach, the feature maps are used to regress the offset
-respective to bounding boxes, however, these are considered as region that probably contain text
+respective to bounding boxes, however, these are considered as regions that probably contain text
 that are subject to change and to be refined in a later
 stage~\citep{jiang_r2cnn_2017,lu_mimicdet_2020}.
 The bounding boxes are still axis aligned at this point~\citep{jiang_r2cnn_2017}.
@@ -147,8 +146,8 @@ In contrast to the previous \ac{SSD} based approach, only one feature map is use
 \ac{BB} regression~\citep{jiang_r2cnn_2017}.
 The \ac{RPN} from Faster R-CNN is adjusted to use smaller scale anchor boxes to adapt to
 text~\citep{jiang_r2cnn_2017}.
-Note that R-CNN and Fast-RCNN used the slower Sequential Search algorithm instead of an
-\ac{RPN}~\citep{girshick_rich_2014,girshick_fast_2015}.
+%Note that R-CNN and Fast-RCNN used the slower Sequential Search algorithm instead of an
+%\ac{RPN}~\citep{girshick_rich_2014,girshick_fast_2015}.
 The resulting \acp{BB} are called \acp{ROI}~\citep{ren_faster_2015,jiang_r2cnn_2017}.
 They are used for \ac{ROI} pooling in conjunction with the original feature maps.
 This layer uses max pooling to convert the spatial features corresponding to the location of the
@@ -157,74 +156,20 @@ In the case of this example, \ac{ROI} pooling is used to create three feature ma
 aspect ratios ($7\times7, 3\times11, 11\times3$) which are concatenated for the next
 step~\citep{jiang_r2cnn_2017}.
 The second stage is to predict a confidence score (text, background) for each \ac{ROI} and to
-refine them by regressing values ($x_1,y_1,x_2,y_2,h$) that allow for inclined boxes to account for
+refine them by regressing values ($x_1,y_1,x_2,y_2,h$) that allow for multi-oriented boxes to account for
 rotated text~\citep{jiang_r2cnn_2017}.
 At last the resulting \acp{BB} are filtered by inclined \ac{NMS} which is adjusted to the
-incline \acp{BB}~\citep{jiang_r2cnn_2017}.
+multi-oriented \acp{BB}~\citep{jiang_r2cnn_2017}.
 
-% FIXME: introduce masking, preferably from Mask RCNN
 The basis for the segmentation based methods is the fact that every part of the text instance can
 be used to verify that there is text~\citep{long_scene_2021}.
 Because of this, sub-text components can be detected separately and then used to re-construct a text
 instance~\citep{long_scene_2021}.
-\begin{figure}[ht]
-    \centering
-    \includegraphics[width=0.7\textwidth]{img/STD-seg-based-architecture-Deng-PixelLink-2018.png}
-    \caption[Pixel, segmentation based STD architecture]{%
-        Example for a pixel, segmentation based STD
-        architecture~\citep{deng_pixellink_2018}\label{fig:STD-segbased-pixel-architecture}
-    }
-\end{figure}
-Segmentation based methods can roughly be summed up in two categories: pixel based and component
-based~\citep{long_scene_2021}.
+Segmentation based methods can roughly be summed up in two categories: pixel level and component
+level~\citep{long_scene_2021}.
 Like with \ac{BB} regression based methods, example architectures are explained in order to
 describe their categories more clearly.
-The paper~\cite{deng_pixellink_2018} introduced a pixel based \ac{STD} approach.
-Segmentation based approaches at pixel level mostly rely on \acp{FCN}~\citep{dai_fused_2018}.
-Figure~\ref{fig:STD-segbased-pixel-architecture} shows its pipeline.
-First segmentation creates a dense segmentation maps which are used to then segregate different
-instances of text~\citep{deng_pixellink_2018}.
-\begin{figure}[ht]
-    \centering
-    \includegraphics[width=0.35\textwidth]{img/STD-seg-based-CNN-Deng-PixelLink-2018.png}
-    \caption[Feature extractor and prediction head for pixel segmentation]{%
-        PixelNet CNN feature extractor with head structure for pixel
-        segmentation\label{fig:STD-segbased-pixel-CNN}
-    }
-\end{figure}
-Figure~\ref{fig:STD-segbased-pixel-CNN} shows the \ac{CNN} structure for feature extraction
-(until conv5) which is basically VGG architecture with the fully connected layers exchanged with
-another convolutional stage~\citep{deng_pixellink_2018}.
-The feature extraction followed by two heads which either predict text/non-text or
-links~\citep{deng_pixellink_2018}.
-The structure which combines downsampled feature maps with later upsampled ones is inspired
-by~\cite{long_fully_2015}.
-Continuous downsampling and and combining those layers with later, upsampled layers helps
-to combine coarse, higher level information with fine, lower level
-information~\citep{long_fully_2015}.
-The upsampling is performed with bilinear interpolation~\citep{deng_pixellink_2018}.
-Depending on which head is used, the $1\times1$ convolution layers either have 2 or $2\cdot8$ filters.
-Counted together, the model has 18 output channels~\citep{deng_pixellink_2018}.
-The $1\times1$ convolution layers are also used for upsampling (deconvolution,
-see~\cite{noh_learning_2015,long_fully_2015} for an in depth explanation)
-for the feature combination~\citep{deng_pixellink_2018}.
-2 filters are used to predict text/non-text for each pixel, while the other 16 filters predict
-the links~\citep{deng_pixellink_2018}.
-The text/non-text head essentially performs semantic segmentation, that is to categorize each
-pixel to its type~\citep{deng_pixellink_2018}.
-For every neighbor there is a negative and a positive score.
-A pixel has eight neighbors: left, left-down, left-up, right, right-down, right-up, up, down.
-Each of the $2\cdot8$ filters is responsible for a neighbor link~\citep{deng_pixellink_2018}.
-After both links and text/non-text pixels have been predicted, they are combined for instance
-segmentation~\citep{deng_pixellink_2018}.
-The link layers are used to indicate whether two text pixels are grouped together an thus belong to
-the same instance~\citep{deng_pixellink_2018}.
-The output is a dense prediction map with the same spatial structure as the input
-image~\citep{deng_pixellink_2018}.
-A bounding box can then be extracted by laying minimum area rectangles over the
-instances~\citep{deng_pixellink_2018}.
-
-The second segmentation based category for \ac{STD} segments components which are local regions of
+The first segmentation based category for \ac{STD} segments components which are local regions of
 text that can overlap one or more characters~\citep{long_scene_2021}.
 \begin{figure}[ht]
     \centering
@@ -245,10 +190,8 @@ The convolutional prediction is carried out with seven $3\times3$ filters follow
 nonlinearity for normalization.
 The segments are given by the values $x_s,y_s,w_s,h_s,\theta_s$ which offset an anchor box as well
 as confidence scores $c_1,c_2$~\citep{shi_detecting_2017}.
-Links are used to combine the segments and are accordingly used to separate neraby
+Links ($s_1,s_2$) are used to combine the segments and are accordingly used to separate neraby
 words~\citep{shi_detecting_2017}.
-Like with $c_1,c_2$, for every neighbor and cross layer neighbor a positive and a negative value
-is predicted~\citep{shi_detecting_2017}.
 \begin{figure}[ht]
     \centering
     \includegraphics[width=0.5\textwidth]{img/STD-seg-based-links-Shi-Detecting-2017.png}
@@ -257,15 +200,15 @@ is predicted~\citep{shi_detecting_2017}.
         STD~\citep{shi_detecting_2017}\label{fig:STD-segbased-component-links}
     }
 \end{figure}
-% XXX: are equations really needed?
-Within layer links are predicted for the neighbors of a space in the predicted feature map
+The convolutional link predictions are then used to as follows:
+Within layer links are for the neighbors of a space in the predicted feature map
 (see Figure~\ref{fig:STD-segbased-component-links} (a),
 Equation~\ref{eq:STD-segbased-subcomp-same-layer})~\citep{shi_detecting_2017}.
 \begin{equation}\label{eq:STD-segbased-subcomp-same-layer}
     \mathcal{N}_{s^{x,y,l}}^w =
         \frac{{\{s^{(x',y',l)}\}}_{x-1\leq x'\leq x+1,y-1\leq y'\leq y+1}}{s^{(x,y,l)}}
 \end{equation}
-The cross layer links on the other hand are predicted by using the 4 cross layer neighors of the
+The cross layer links on the other hand are found by using the 4 cross layer neighors of the
 feature map of the preceding predictor~\citep{shi_detecting_2017}.
 (see Figure~\ref{fig:STD-segbased-component-links} (b),
 Equation~\ref{eq:STD-segbased-subcomp-cross-layer})~\citep{shi_detecting_2017}.
@@ -282,6 +225,61 @@ To reconstruct, the predictions are taken as a graph: segments are nodes, links 
 Depth-first search is applied to the graph to find connected components and thus text
 instances~\citep{shi_detecting_2017}.
 
+% FIXME: introduce masking, preferably from Mask RCNN
+The paper~\cite{deng_pixellink_2018} introduced a pixel level \ac{STD} approach.
+It adapts the previous component level \ac{STD} approach to work on pixel
+level~\citep{deng_pixellink_2018}.
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.35\textwidth]{img/STD-seg-based-CNN-Deng-PixelLink-2018.png}
+    \caption[Feature extractor and prediction head for pixel segmentation]{%
+        PixelNet CNN feature extractor with head structure for pixel
+        segmentation\label{fig:STD-segbased-pixel-CNN}
+    }
+\end{figure}
+Figure~\ref{fig:STD-segbased-pixel-CNN} shows the \ac{CNN} structure for feature extraction
+(until conv5) which is basically VGG architecture with the fully connected layers exchanged with
+another convolutional stage~\citep{deng_pixellink_2018}.
+Inspired by~\cite{long_fully_2015}, the structure then combines downsampled feature maps with later
+upsampled ones~\citep{deng_pixellink_2018}.
+Pixel level segmentation approaches mostly rely on \acp{FCN}~\citep{dai_fused_2018}.
+Continuous downsampling and and combining those layers with later, upsampled layers helps
+to combine coarse, higher level information with fine, lower level
+information~\citep{long_fully_2015}.
+The upsampling is performed with bilinear interpolation~\citep{deng_pixellink_2018}.
+The feature extraction is followed by two heads which either predict text/non-text or
+links~\citep{deng_pixellink_2018}.
+This creates dense segmentation maps which are used to then segregate different
+instances of text~\citep{deng_pixellink_2018}.
+Depending on which head is used, the $1\times1$ convolution layers either have 2 or $2\cdot8$ filters.
+Counted together, the model has 18 output channels~\citep{deng_pixellink_2018}.
+2 filters are used to predict text/non-text for each pixel, while the other 16 filters predict
+the links~\citep{deng_pixellink_2018}.
+The text/non-text head essentially performs semantic segmentation, that is to categorize each
+pixel to its object type~\citep{deng_pixellink_2018}.
+For every neighbor there is a negative and a positive score.
+A pixel has eight neighbors: left, left-down, left-up, right, right-down, right-up, up, down.
+Each of the $2\cdot8$ filters is responsible for a neighbor link~\citep{deng_pixellink_2018}.
+\begin{figure}[hb]
+    \centering
+    \includegraphics[width=0.7\textwidth]{img/STD-seg-based-architecture-Deng-PixelLink-2018.png}
+    \caption[Pixel, segmentation based STD architecture]{%
+        Example for a pixel, segmentation based STD
+        architecture~\citep{deng_pixellink_2018}\label{fig:STD-segbased-pixel-architecture}
+    }
+\end{figure}
+After both links and text/non-text pixels have been predicted, they are combined for instance
+segmentation~\citep{deng_pixellink_2018}.
+The link layers are used to indicate whether two text pixels are grouped together an thus belong to
+the same instance~\citep{deng_pixellink_2018}.
+The output is a dense prediction map with the same spatial structure as the input
+image~\citep{deng_pixellink_2018}.
+A bounding box can then be extracted by laying minimum area rectangles over the
+instances~\citep{deng_pixellink_2018}.
+Figure~\ref{fig:STD-segbased-pixel-architecture} shows the whole pipeline.
+
+
+\subsection{Scene Text Recognition}
 For \ac{STR} two main categories of approaches can be identified: segmentation based and
 \ac{EnDe} based (see Figure~\ref{fig:str-pipelines})~\citep{chen_text_2021}.
 \begin{figure}[h]
@@ -297,10 +295,7 @@ text and are then used to form the text instance~\citep{chen_text_2021}.
 Because of their similarity to \ac{STD} and the recent domiance of \ac{EnDe} based
 approaches~\citep{chen_text_2021,long_scene_2021}, only the later will be explained in detail with
 examples.
-The approach from~\cite{wan_textscanner_2020} can be used as an example, should the reader feel the
-need to read up on segmentation based methods for \ac{STR} that do not include an \ac{EnDe}
-mechanism in the prediciton stage.
-\begin{figure}[h]
+\begin{figure}[hb]
     \centering
     \includegraphics[width=0.8\textwidth]{img/STR-seg-based-wan-textscaner-2020.png}
     \caption[Segmentation based STR architecture]{%
@@ -308,12 +303,18 @@ mechanism in the prediciton stage.
         architecture~\citep{wan_textscanner_2020}\label{fig:STR-segbased-architecture}
     }
 \end{figure}
+The approach from~\cite{wan_textscanner_2020} can be used as an example, should the reader feel the
+need to read up on segmentation based methods for \ac{STR} that do not include an \ac{EnDe}
+mechanism in the prediciton stage.
 The approach adds a geometry branch parallel to the charcater segmentation which helps with with
 putting the identified characters in the right sequence (see
 Figure~\ref{fig:STR-segbased-architecture})~\citep{wan_textscanner_2020}.
 
-% FIXME: einleitung zu paragraph
-Often preprocessing steps are performed to remove distortions, rectify curved text,
+For \ac{EnDe} based \ac{STR} there are twomein categories: \ac{CTC} based and attention
+based~\citep{chen_text_2021}.
+These two categories can be distinguished by the way the decoder works~\citep{chen_text_2021}.
+The previous stages in the pipeline are similar~\citep{long_scene_2021,chen_text_2021}.
+Often preprocessing stages are performed to remove distortions, rectify curved text,
 remove disruptive background, improve resolutions or recover degraded text.
 Especially rectifying curved text (see Figure~\ref{fig:STN-application}) with the help of
 thin-plate spines~\citep{bookstein_principal_1989} and spatial transformer
@@ -334,14 +335,12 @@ An example for a deep and powerful \ac{CNN} are ResNets~\citep{he_deep_2015} whi
 for benchmark purposes~\citep{chen_text_2021,long_scene_2021}.
 Refer to Section~\ref{se:cnn} for more information on ResNets.
 Efficient feature extraction can e.g.\ be performed with binary convolutional
-nets~\citep{liu_scut-ctw1500_2022}.
+nets~\citep{liu_squeezedtext_2018}.
 For the sequence modelling and transcription steps first~\cite{shi_end--end_2017} (\ac{CTC} based)
 and then~\cite{ghosh_visual_2017} (attention based) will be used as examples.
 % FIXME: emphasize that sequence features are basically 1d
-% FIXME: \cite{cong_comparative_2019}: other ways  to encode 1d: recusive CNN, self attention
+% FIXME: \cite{cong_comparative_2019}: other ways to encode 1d: recusive CNN, self attention
 %   after CNN
-For~\cite{shi_end--end_2017} the convolutional feature maps are converted to a feature sequence
-with a (see Figure~\ref{fig:STR-CTC-seq-feat}).
 \begin{figure}[h]
     \centering
     \includegraphics[width=0.3\textwidth]{img/STR-encdec-sequence-feat.png}
@@ -350,8 +349,8 @@ with a (see Figure~\ref{fig:STR-CTC-seq-feat}).
         maps~\citep{shi_end--end_2017}\label{fig:STR-CTC-seq-feat}
     }
 \end{figure}
-The sequence is generated by taking column out of the feature maps from left to
-right~\citep{shi_end--end_2017}.
+For~\cite{shi_end--end_2017} the sequence is generated by taking column out of the feature maps
+from left to right (see Figure~\ref{fig:STR-CTC-seq-feat})~\citep{shi_end--end_2017}.
 This is possible because the parts of the feature map correspond to a spatial region of the
 original image~\citep{shi_end--end_2017,goodfellow_deep_2016}.
 The generated sequence features are feed into a deep \ac{BiLSTM}.
@@ -373,13 +372,14 @@ data~\citep{shi_end--end_2017}.
 % FIXME: get into forward backward algorithm (graves_connectionist_2006)
 The generated encoded features with embedded context are then used for transcribing the final
 output~\citep{shi_end--end_2017}.
-The transciption uses conditional probibilities to convert the per-frame featues encoded by the
+The transciption uses conditional probibilities to convert the per-frame features encoded by the
 deep \ac{BiLSTM} into the label sequence which is the text instance
 prediction~\citep{shi_end--end_2017}.
 This process uses the conditional probabilities $p(l\|\Y)$ that are defined
 by~\cite{graves_connectionist_2006}, which is why the category of approaches is called
 \ac{CTC} based.
-$l$ stands for the label sequence and \Y\ stands for the per-frame features~\citep{shi_end--end_2017}.
+$l$ stands for the predicted character sequence and \Y\ stands for the per-frame
+features~\citep{shi_end--end_2017}.
 Each frame $\y_t$ is a probability distribution over the possible character and a `blank'
 character~\citep{shi_end--end_2017,graves_connectionist_2006}.
 It is distinguished between lexicon based and lexicon free transcription~\citep{shi_end--end_2017}.
@@ -389,9 +389,11 @@ Then all duplicate characters are discarded.
 \[\text{H-el-l-o}\]
 At last all blanks are discarded, leaving the final prediction~\citep{shi_end--end_2017}.
 \[\text{Hello}\]
-For lexicon based transcription the combination of \Y\ ist checked for similarity to words in the
+For lexicon based transcription the combination of \Y\ is checked for similarity to words in the
 lexicon based on the levenstein distance (like the metrics \ac{AED}, \ac{NED} defined in
 Section~\ref{se:sts})~\citep{shi_end--end_2017}.
+The process of searching for similarity can be efficiently implemented with the BK-tree data
+structure~\citep{burkhard_approaches_1973,shi_end--end_2017}.
 The word in the lexicon with the largest probability to be derived from \Y\ is
 chosen~\citep{shi_end--end_2017}.
 
@@ -440,6 +442,7 @@ Besides the possibility to use a lexicon, the approach can also incorporate lang
 the beam search process.
 These priors leverage knowledge about the language that is recognized~\citep{ghosh_visual_2017}.
 
+\subsection{Scene Text Spotting}
 % FIXME: two stage approach is very similar to STD two stage -> get ROI and then refine after pooling
 As mentioned, \ac{STD} and \ac{STR} are only parts of the task that is at the center of this thesis.
 \ac{STS} can be performed in two ways (see Figure~\ref{fig:e2e-pipelines}).
@@ -540,7 +543,7 @@ Table~\ref{tb:STD-steps-properties}.
                                                            & \textbf{Innovation} & \textbf{\#cit}\\
         \toprule
         Seg free & & \\
-            & 1-stage &~\cite{liao_rotation-sensitive_2018} & m & use rotation sensitive features
+            & 1-stage &~\cite{liao_rotation-sensitive_2018} & m & Use rotation sensitive features
                 for regression and rotation insensitive features for text certainty scores & 300 \\
             & &~\cite{liao_textboxes_2018} & m & Predict multi-oriented bounding boxes with
                 quadrilateral representation & 499 \\
@@ -594,7 +597,7 @@ A more efficient approach was introduced by~\citep{liao_textboxes_2018}.
 To deal with multi oriented text, the approach introduced a different representation for \acp{BB}
 which is multi-oriented.
 The represention has 13 parameters~\citep{liao_textboxes_2018}.
-That is more than usual for a multioriented \ac{BB} (8)~\citep{ma_arbitrary-oriented_2018}.
+That is more than usual for a multi-oriented \ac{BB} (8)~\citep{ma_arbitrary-oriented_2018}.
 The 2-stage approach \ac{STD} from~\cite{ma_arbitrary-oriented_2018} deals with text orientation
 differently.
 The \ac{RPN} generates oriented \acp{ROI}, they are offset by already rotated anchor

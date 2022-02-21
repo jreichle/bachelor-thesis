@@ -1,13 +1,11 @@
 \chapter{Discussion}\label{ch:discussion}
 This chapter contains a comparison between the taxonomy categories that were introduced in
 Section~\ref{se:taxonomy}.
-The analysis is followed by a reflection on the methodology and the thesis results.
-Lastly, the outlook section brings up possible starting points for further work regarding the
-problem from Chapter~\ref{ch:problem}.
+The analysis is followed by a reflection on the methodology and the thesis' results.
 
 \section{Analysis}\label{se:analysis}
 The comparison in this section is synthesized from information found in literature as well as
-some observations regarding recent innovations that are explained in Section~\ref{se:innovations}.
+some observations regarding recent innovations that are examined in Section~\ref{se:innovations}.
 The analysis is structured similar to the overview sections: first compare approach categories
 for \ac{STD} and \ac{STR} and then move on towards \ac{STS}.
 The compared aspects of the approaches are the qualities that were identified as relevant in
@@ -19,7 +17,7 @@ While the offline capability requirement is met by all of the approaches that ar
 thesis, semantics retention and alphanumeric recognition have to be analyzed further.
 \ac{STD} is the relevant subtask for semantics retention and \ac{STR} for alphanumeric recognition.
 
-The main challenges for \ac{STD} involve the trade-off between speed and accuracy as well as
+The main challenges for \ac{STD} involve the tradeoff between speed and accuracy as well as
 representing arbitrary shaped text instance~\citep{wang_efficient_2019}.
 The innovations regarding \ac{STD} deal with multi-oriented and curved text (as can be seen in
 Table~\ref{tb:STD-steps-properties}).
@@ -47,7 +45,7 @@ Segmentation free or \ac{BB} regression based approaches have trouble with curve
 the anchor boxes' linear bias~\citep{wang_shape_2019,ferrari_textsnake_2018}.
 Additionally, the regressed \acp{BB} have trouble in accurately representing the shape of curved
 text instances~\citep{long_scene_2021,wang_shape_2019}.
-Representing multioriented text is not a problem on the other
+Representing multi-oriented text is not a problem on the other
 hand~\citep{liao_textboxes_2018,jiang_r2cnn_2017}.
 When it comes to comparing \ac{BB} regression approaches, one stage approaches are generally more
 efficient  because of their straightforward architecture while two stage approaches can generally
@@ -57,7 +55,7 @@ performance~\citep{shi_detecting_2017,long_scene_2021}.
 Segmentation based approaches on the other hand take advantage of the fact that every part of the
 text instance can locally be verified as such~\citep{long_scene_2021}.
 Note that no noteworthy comparison of subcomponent or pixel level segmentation was found.
-The bottom-up approach aleviates the problem of long aspect ratios~\citep{shi_detecting_2017}.
+The bottom-up approach alleviates the problem of long aspect ratios~\citep{shi_detecting_2017}.
 However, approach is more computation intensive, as in incorporates more complex
 stages~\citep{dai_fused_2018} and complicated text instance
 construction~\citep{xie_aggregation_2019,liao_real-time_2019,dai_fused_2018}.
@@ -66,7 +64,7 @@ This is a challenging task which is vulnerable to noise~\citep{long_scene_2021} 
 many new innovations (see Figure~\ref{fig:curved-text-representations}).
 The segmentation based approaches facilitate more natural representation of curved
 text~\citep{dai_fused_2018,long_scene_2021} (see Figure~\ref{fig:curved-text-representations}).
-What \ac{STD} is concerned the bottom line seems to be: Is it curved text detection or efficiency
+What \ac{STD} is concerned, the bottom line seems to be: Is it curved text detection or efficiency
 more important?
 
 \ac{STR} research focuses on accurately recognizing 2d text instance.
@@ -74,8 +72,7 @@ The innovations found for \ac{STR} (see Table~\ref{tb:STR-steps-properties}) sho
 is mostly focused on robustely recognizing curved text instances (rectification approaches and
 2d attention).
 Additionally, it can be noted that the innovative approaches are mostly attention based.
-The different approach categories all have different shortcommings (see
-Figure~\ref{tb:STR-comparison}).
+However, attention too has shortcommings (see Figure~\ref{tb:STR-comparison}).
 \begin{table}[h]
     \centering\scriptsize
     \begin{tabular}{p{.09\textwidth}p{.15\textwidth}p{0.66\textwidth}}
@@ -86,7 +83,7 @@ Figure~\ref{tb:STR-comparison}).
         & & Disregard for contextual information between characters~\citep{chen_text_2021} \\
         & & Incorporate several computation intensive stages~\citep{liu_abcnet_2020} \\
         \midrule
-        \ac{EnDe} based & & Curved and multioriented text~\citep{cheng_aon_2018, long_scene_2021} \\
+        \ac{EnDe} based & & Curved and multi-oriented text~\citep{cheng_aon_2018, long_scene_2021} \\
         & CTC based & Prone to overfitting~\citep{chen_text_2021} \\
         & & Computation extensive CTC probabilities~\citep{xie_aggregation_2019} \\
         & & Isolated word recognition~\citep{cong_comparative_2019} \\
