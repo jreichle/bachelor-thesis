@@ -165,4 +165,30 @@ Without joint optimization error that happen in the detection step can be propag
 recognition which results in performance degradation~\citep{chen_text_2021,qiao_text_2021}.
 
 \section{Reflection}
-% FIXME: Comparing numbers on benchmarks and not looking at quanitative data would result in fallacy.
+The goal of this thesis was to create an overview over \ac{STS} approaches in order to facilitate
+making a choice in regards to a pracitcal problem.
+This goal is impeded by a a couple of factors.
+The first being that all entities of a \ac{MLS} need to be examined in order to develop a proper
+solution~\citep{siebert_construction_2021,nakamichi_requirements-driven_2020}.
+Because not all entities (most importantly the data entity) are available, this was not possible.
+
+% FIXME: other steps in lifecycle
+
+Another reason is the chosen cutoff point of 100 citations as a requirement for innovative literature.
+Even though it is useful to filter for the most groundbreaking advancements in the field,
+newer innovations that have not been revealed long enough to earn enough citations might be left
+out of the equation.
+
+The analysis does not contain quanitative data on performance or efficiency regarding
+singular approaches or even regarding task categories.
+This is because literature on \ac{ML} and \ac{DL} benchmarking suggests that it is not a good
+practice to combine and compare results from different
+studies~\citep{baek_what_2019,arpteg_software_2018,long_scene_2021}.
+There's different rationales for this.
+Because different studies incorporate different components such as Hardware, Platform, Source Code
+or Configuration the comparison would be flawed~\citep{arpteg_software_2018,baek_what_2019}.
+Additionally, different studies might present a different interpretation of
+metrics~\citep{long_scene_2021}.
+Yet another reason has to do with the benchmark datasets in use: datasets are used inconsitently in
+many cases.
+Often certain images are left out for various reasons~\citep{baek_what_2019}.

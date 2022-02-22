@@ -411,17 +411,16 @@ important for each timestep~\citep{ghosh_visual_2017}.
     }
 \end{figure}
 Figure~\ref{fig:STR-attention} shows the network architecture~\citep{ghosh_visual_2017}.
-The \ac{CNN} performs feature extraction and encoding~\citep{ghosh_visual_2017}.
-% FIXME: The \ac{CNN} architecture introduced by~\cite{jaderberg_deep_2015} is used.
-The feature map is then converted into feature vectors like in
+The \ac{CNN} performs feature extraction~\citep{ghosh_visual_2017}.
+The feature map is then encoded into feature vectors like in
 Figure~\ref{fig:STR-CTC-seq-feat}~\citep{ghosh_visual_2017,shi_end--end_2017}.
 The attention mechanism is placed between the encoder \ac{CNN} and the decoder
 \ac{LSTM}~\citep{ghosh_visual_2017}.
-% FIXME: attention mechanism can also be understood as part of decoder~\cite{shi_aster_2019}
+Note that some approaches consider the attention mechanism to be a part of the
+decoder~\citep{shi_aster_2019}.
 This mechanism uses a weighted combination of the \sfmx\ activation ($\boldsymbol{\beta}_{t,i}$) of
 the \ac{MLP} output ($\Phi$) and the feature vectors to encode the relative importance of the
 image parts at each time step (see Equations~\ref{eq:attention-weighted-combination}
-% FIXME: performance - efficiency tradeoff for feature extractor
 and~\ref{eq:attention-gate-values})~\citep{ghosh_visual_2017,xu_show_2016}.
 \begin{equation}\label{eq:attention-weighted-combination}
     \hat{\textbf{z}}_t=\sum_{i=1}^{K}\boldsymbol{\beta}_{t,i}\cdot \x_i
@@ -522,7 +521,8 @@ enforced~\citep{torraco_writing_2005}.
 The literature is identified through searching in the Google Scholar database.
 The search is executed with keywords such as, but not only: Scene Text Detection,
 Scene Text Recognition, Scene Text Spotting, End to End.
-A criterion for further examination is an appropriate amount of citations ($>100$) for the piece of
+For identified literature, the citations are investigated to find further innovations in the field.
+A criterion for examination is an appropriate amount of citations ($>100$) for the piece of
 literature in question.
 All research after 2018 which pertains innovations for model architecture for extracting scene
 text is regarded as relevant.
@@ -562,8 +562,9 @@ Table~\ref{tb:STD-steps-properties}.
             & &~\cite{wang_efficient_2019} & c & Efficient segmentation and learnable reconstruction
                & 122 \\
             & &~\cite{wang_shape_2019} & c & Multiple segmentation maps at different scales & 266 \\
-            & Component-level &~--- & & & \\
-            % FIXME: add textsnake?
+            & &~\cite{ferrari_textsnake_2018} & c & Text representation based on
+               a sequence ov overlapping circles & 301 \\
+            & & Component-level &~--- & & \\
         \midrule
         Mixture & & \\
             & &~\cite{xie_scene_2018} & c & Use text segmentation to rescore \acp{ROI} with more
@@ -582,7 +583,8 @@ The conducted search on Google Scholar yielded twelve results until page 10.
 On page 15 the results started to diverge from the topic and thus the search was concluded.
 Research like~\cite{xue_accurate_2018} was not included, since its proposed method concerns the
 training procedure rather than the model architecture.
-
+The investigation into the identified literature's citations yielded another
+result:~\cite{ferrari_textsnake_2018}.
 % FIXME: figure with rotated bb?
 The following approaches are concerned with multi-oriented text:
 The 1-stage \ac{STD} approach introduced by~\cite{liao_rotation-sensitive_2018} states that
@@ -629,24 +631,35 @@ The representation is made up of direction vectors that point away from the near
 These vectors are predicted by magnitude and direction~\citep{xu_textfield_2019}.
 The resulting text direction field can then be use to reconstruct text
 instance~\citep{xu_textfield_2019}.
+Another approach that improves text representation was introduced by~\cite{ferrari_textsnake_2018}.
+The pixel level segmentation approach predicts the values that can be used to form the text
+representation shown in Figure~\ref{fig:curved-rep-ferarri-textsnake-2018}.
+The representation combins circles with a line to form a curved text
+instance~\citep{ferrari_textsnake_2018}.
 \begin{figure}[ht]
     \centering\scriptsize
     \subfigure[
         \scriptsize Binary text segmentation map
         \citep{liao_real-time_2019}\label{fig:curved-rep-liao-real-2019}
-    ]{\includegraphics[width=0.40\textwidth]{img/STD-representation-curved-binary-Liao-Real-2019.png}}
+    ]{\includegraphics[width=0.45\textwidth]{img/STD-representation-curved-binary-Liao-Real-2019.png}}
     \subfigure[
         \scriptsize Textfield with vectors to text center
         \citep{xu_textfield_2019}\label{fig:curved-rep-xu-textfield-2019}
-    ]{\includegraphics[width=0.40\textwidth]{%
+    ]{\includegraphics[width=0.45\textwidth]{%
         img/STD-representation-curved-textfield-Xu-textfield-2019.png}
     }
     \subfigure[
         \scriptsize Segmentation scales for label building
         \citep{wang_shape_2019}\label{fig:curved-rep-wang-shape-2019}
     ]{\includegraphics[width=0.25\textwidth]{img/STD-representation-curved-scale-Wang-Shape-2019.png}}
+    \subfigure[
+        \scriptsize Textsnake representation with centerline interconnected circles
+        \citep{ferrari_textsnake_2018}\label{fig:curved-rep-ferarri-textsnake-2018}
+    ]{\includegraphics[width=0.30\textwidth]{%
+        img/STD-representation-curved-textsnake-ferarri-textsnake-2018.png}
+    }
     \caption{%
-        Different curved text instance reconstructing\label{fig:curved-text-representations}
+        Different curved text instance representation\label{fig:curved-text-representations}
     }
 \end{figure}
 A innovation towards better efficiency based on pixel level segmentation
@@ -676,6 +689,7 @@ work with curved text instance~\citep{dai_fused_2018,xie_scene_2018}.
 For \ac{STR} the search led to 8 results (see Table~\ref{tb:STR-steps-properties}).
 The last relevant innovation was found on page 13 and at page 18 the search was stopped because
 the results started to diverge.
+The investigation of citations did not lead to new results.
 \begin{table}[h]
     \centering\scriptsize
     \begin{tabular}{p{.09\textwidth}p{.165\textwidth}p{.20\textwidth}p{.065\textwidth}
@@ -791,6 +805,7 @@ at the previous position~\citep{bai_edit_2018}.
 
 For end to end \ac{STS} 5 results where identified as relevant under the defined criteria.
 The last relevant innovation was found on page 5 and at page 10 the topic digerged.
+The investigation of citations did not lead to new results.
 \begin{table}[h]
     \centering\scriptsize
     \begin{tabular}{p{.09\textwidth}p{.20\textwidth}p{0.07\textwidth}p{0.07\textwidth}

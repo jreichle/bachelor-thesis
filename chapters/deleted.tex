@@ -51,7 +51,7 @@ For \ac{ML} and thus \ac{DL} projects, data directly influences the performance 
 This results in the need to specify \acp{DR} for data that is used
 in conjunction with the \ac{DL} system~\cite{vogelsang_requirements_2019}.
 
-% FIXME: keep requirements such as maintenance (encapsulation, modularity), development, ...??
+% keep requirements such as maintenance (encapsulation, modularity), development, ...??
 
 % functional requirements
 The basic functionality can be described as extraction of textual data from images.
@@ -67,7 +67,7 @@ Those values can then be transformed into other formats such as JSON or HTML as 
 The images can contain arbitrary alpha-numeric strings (see figure~\ref{fig:examples}).
 This results in the requirement that the \ac{DL} model has to be able to recognize sequences that
 are not part of a predefined lexicon~\cite{ghosh_visual_2017}.
-% FIXME: performance, change reliability to performance after checking source
+% performance, change reliability to performance after checking source
 
 
 % non-functional requirements
@@ -99,7 +99,7 @@ When it comes to the quality of data there's three factors: completeness, consis
 correctness.
 These factors are especially important since better quality as a big influence on
 performance~\cite{vogelsang_requirements_2019}.
-% FIXME: set into relation with data quantity? after certain amount of data convergence to value
+% set into relation with data quantity? after certain amount of data convergence to value
 %       but if quality better higher convergence
 For completeness, it is important that the dataset that is used for finetuning contains all edge
 cases that are relevant for the task~\cite{arpteg_software_2018, vogelsang_requirements_2019}.
@@ -107,15 +107,15 @@ cases that are relevant for the task~\cite{arpteg_software_2018, vogelsang_requi
 true'\cite{vogelsang_requirements_2019}.
 As implementation and training a \ac{DL} model is not the subject of this theses these \ac{DR} are
 not discussed in detail in the following chapters.
-% FIXME: add following
+% add following
 Relevant, Complete, Balanced, Accurate~\cite{ashmore_assuring_2021}
 
 %%%%%%%%%%%%%%%%%%%%%%%%
 % Transformer theory
 %%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Transformers}
-% FIXME: look into \cite{kloss_learning_2016}
-% FIXME: either improve or remove
+% look into \cite{kloss_learning_2016}
+% either improve or remove
 Of the most popular basic strucures for \acp{NN}, the transformers are the newest innovation.
 The paper from~\cite{vaswani_attention_2017} introduced the transfomer architecture which is
 build for processing sequence data and~\cite{dosovitskiy_image_2021} then introduced the vision
@@ -156,7 +156,7 @@ Figure~\ref{fig:transformer-dot-product})~\citep{vaswani_attention_2017}.
         vectors~\citep{vaswani_attention_2017}\label{fig:transformer-dot-product}
     }
 \end{figure}
-% FIXME: use ihttps://github.com/janosh/tikz/tree/main/assets/self-attention nstead
+% use ihttps://github.com/janosh/tikz/tree/main/assets/self-attention nstead
 This is calculated multiple times (hence the term multi-head) and the results are merged by
 concatenation and a subseding linear layer~\citep{vaswani_attention_2017}.
 This allows the model to use different representations of the

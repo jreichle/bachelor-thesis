@@ -262,7 +262,6 @@ convolutional layer, pooling layer~\citep{chauhan_review_2018,ponti_everything_2
 The fully connected layers are the layers that make up \acp{MLP}~\citep{ponti_everything_2017}.
 
 % conv layer
-% FIXME: convolution operation mostly used with same padding
 A convolutional layer has multiple filters which consist of multiple
 kernels~\citep{chauhan_review_2018}.
 For multi layer input, with $d$ so called channels, a filter has the same amount of kernels as there
@@ -283,7 +282,7 @@ $n\times n$ subspace of the input (see Figure~\ref{fig:conv-layer})~\citep{ponti
 The convolution operation is performed for every space in the input, spaces can be skipped if
 stride is introduced~\citep{ponti_everything_2017}.
 Often zero-padding is used to preserve the spatial dimensions between input and output of
-the layer~\citep{ponti_everything_2017}.
+the layer~\citep{ponti_everything_2017,simonyan_very_2015}.
 The number of filters a convolutional layer applies is equal to the output channels that the layer
 has which are often called feature maps~\citep{ponti_everything_2017}.
 The result of the convolution is usually fed into a \relu\ activation function to introduce
@@ -345,8 +344,7 @@ layers~\citep{he_deep_2015}.
 % FIXME: add upsampling: bilinear interpolation, deconv and reverse pooling
 
 \section{Recurrent Neural Nets}
-% FIXME: input often tokenized (like for transformer)~\cite{cho_learning_2014,asadi_encoder-decoder_2020}
-% FIXME: add vector-sequence,sequence-vector,sequence-sequence
+
 \acp{RNN} are another popular category of \ac{NN} which are used for processing sequential input,
 like text and speech~\citep{chauhan_review_2018}.
 Figure~\ref{fig:rnn-unrolling} shows a simple \ac{RNN}.
@@ -382,8 +380,8 @@ singular values of those weight matrices are $>1$ or
 $<1$~\citep{goodfellow_deep_2016,pascanu_difficulty_2013}.
 The example \ac{RNN} produced a output sequence the same length as the input
 sequence, however, this does not have to be the case for \acp{RNN}~\citep{goodfellow_deep_2016}.
-Both the input and the output can either be a sequence of variable length or a vector of fixed
-length~\citep{goodfellow_deep_2016}.
+Depending on the chosen \ac{RNN}, noth the input and the output can either be a sequence of
+variable length or a vector of fixed length~\citep{goodfellow_deep_2016}.
 Optimization of the parameters of \acp{RNN} is performed with (truncated) backpropagation through
 time~\citep{sherstinsky_fundamentals_2020}.
 
@@ -432,7 +430,7 @@ cell~\citep{goodfellow_deep_2016}.
     \end{pmatrix}
 \end{equation}
 \begin{equation}\label{eq:lstm-c}
-    \textbf{c}_t=\textbf{f}_t\otimes \textbf{c}_{t-1} + \textbf{i}_t\otimes \textbf{g}_t
+    \textbf{c}_t=\textbf{f}_t\otimes\textbf{c}_{t-1} + \textbf{i}_t\otimes\textbf{g}_t
 \end{equation}
 \begin{equation}\label{eq:lstm-h}
     \h_t=\textbf{o}_t\otimes\tanh(\textbf{c}_t)
@@ -448,6 +446,10 @@ prediction sequence~\citep{zaremba_recurrent_2015}.
 
 \acp{RNN} are often used with the \ac{EnDe} mechanism introduced by~\cite{cho_learning_2014}.
 This mechanism is a structure for \ac{NN} that is used for a variety of problems.
+It was originally designed to use \acp{RNN} to transform an input sequence into a output sequence
+for e.g.~translation~\citep{cho_learning_2014}.
+The output of which can be of variable length (the end is usually indicated by a special
+token)~\citep{cho_learning_2014,asadi_encoder-decoder_2020}.
 The \ac{EnDe} mechanism entails two parts: The encoded which transforms the input into a
 different representation, it compresses all the information from the input into a feature vector;
 the decoder uses that the extracted features to generate the output
@@ -578,7 +580,6 @@ Precision-versus-Recall curve.
 \fone\ on the other hand only considers singular instances on that curve~\citep{long_scene_2021} and
 is sensitive to the tradeoff while \ac{AP} is invariant to it~\citep{shi_icdar2017_2017}.
 % STR
-% FIXME: lexicons, context
 For \ac{STR} the evaluation can be based on character-level or word-level.
 There is no need to match ground truth to prediction, as the image is already
 cropped~\citep{long_scene_2021}.
