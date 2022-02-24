@@ -54,7 +54,7 @@ Long aspect ratios are another problem of scene text which degrades \ac{BB} regr
 performance~\citep{shi_detecting_2017,long_scene_2021}.
 Segmentation based approaches on the other hand take advantage of the fact that every part of the
 text instance can locally be verified as such~\citep{long_scene_2021}.
-Note that no noteworthy comparison of subcomponent or pixel level segmentation was found.
+Note that no noteworthy comparison of subcomponent or pixel level segmentation could be identified.
 The bottom-up approach alleviates the problem of long aspect ratios~\citep{shi_detecting_2017}.
 However, approach is more computation intensive, as in incorporates more complex
 stages~\citep{dai_fused_2018} and complicated text instance
@@ -135,7 +135,6 @@ When it comes to computational efficiency both \ac{CTC} and attention are expens
 consuming~\citep{chen_text_2021}.
 % TODO: no direct comparison for efficiency, what to do?
 
-% FIXME: two stage pooling used for two stage sts
 2 stage approaches have the upper hand, when it comes to end to end \ac{STS}.
 These approaches are in the focus for research because they have crucial
 advantages (see Figure~\ref{tb:E2E-comparison})~\citep{chen_text_2021}.
@@ -152,7 +151,7 @@ advantages (see Figure~\ref{tb:E2E-comparison})~\citep{chen_text_2021}.
         2 stage & --- \\
         \bottomrule
     \end{tabular}
-    \caption{E2E approach category comparison\label{tb:E2E-comparison}}
+    \caption{STS approach category comparison\label{tb:E2E-comparison}}
 \end{table}
 2 stage approaches are more efficient than 2 step approaches because they don't compute feature maps
 twice~\citep{liu_fots_2018,chen_text_2021}.
@@ -171,8 +170,6 @@ This goal is impeded by a a couple of factors.
 The first being that all entities of a \ac{MLS} need to be examined in order to develop a proper
 solution~\citep{siebert_construction_2021,nakamichi_requirements-driven_2020}.
 Because not all entities (most importantly the data entity) are available, this was not possible.
-
-% FIXME: other steps in lifecycle
 
 Another reason is the chosen cutoff point of 100 citations as a requirement for innovative literature.
 Even though it is useful to filter for the most groundbreaking advancements in the field,
