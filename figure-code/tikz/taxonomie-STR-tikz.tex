@@ -39,15 +39,17 @@
         }
         child{node [lone] {Encoder \\ decoder based}
             child{node [ltwo] {CTC}
-                child[lthree,level1] {node {Feature \\ extraction}}
-                child[lthree,level2] {node {Sequence \\ modelling}}
-                child[lthree,level3] {node {CTC rule \\ transcription}}
+                child[lthree,level1] {node {Rectification}}
+                child[lthree,level2] {node {Feature \\ extraction}}
+                child[lthree,level3] {node {Sequence \\ modelling}}
+                child[lthree,level4] {node {CTC rule \\ transcription}}
             }
             child{node [ltwo] {Attention}
-                child[lthree,level1] {node {Feature \\ extraction}}
-                child[lthree,level2] {node {Sequence \\ modelling}}
-                child[lthree,level3] {node {Attention \\ mechanism}}
-                child[lthree,level4] {node {Max probability \\ transcription}}
+                child[lthree,level1] {node {Rectification}}
+                child[lthree,level2] {node {Feature \\ extraction}}
+                child[lthree,level3] {node {Sequence \\ modelling}}
+                child[lthree,level4] {node {Attention \\ mechanism}}
+                child[lthree,level5] {node {Max probability \\ transcription}}
             }
         };
 \end{tikzpicture}

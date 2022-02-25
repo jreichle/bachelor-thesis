@@ -47,21 +47,26 @@ Additionally, the regressed \acp{BB} have trouble in accurately representing the
 text instances~\citep{long_scene_2021,wang_shape_2019}.
 Representing multi-oriented text is not a problem on the other
 hand~\citep{liao_textboxes_2018,jiang_r2cnn_2017}.
+
 When it comes to comparing \ac{BB} regression approaches, one stage approaches are generally more
 efficient  because of their straightforward architecture while two stage approaches can generally
 predict more accurately  because of the refinement process~\citep{lu_mimicdet_2020}.
 Long aspect ratios are another problem of scene text which degrades \ac{BB} regression
 performance~\citep{shi_detecting_2017,long_scene_2021}.
+
 Segmentation based approaches on the other hand take advantage of the fact that every part of the
 text instance can locally be verified as such~\citep{long_scene_2021}.
 Note that no noteworthy comparison of subcomponent or pixel level segmentation could be identified.
 The bottom-up approach alleviates the problem of long aspect ratios~\citep{shi_detecting_2017}.
+
 However, approach is more computation intensive, as in incorporates more complex
 stages~\citep{dai_fused_2018} and complicated text instance
 construction~\citep{xie_aggregation_2019,liao_real-time_2019,dai_fused_2018}.
+
 The text instance construction goes hand in hand with the separation of different instances.
 This is a challenging task which is vulnerable to noise~\citep{long_scene_2021} and the focus of
 many new innovations (see Figure~\ref{fig:curved-text-representations}).
+
 The segmentation based approaches facilitate more natural representation of curved
 text~\citep{dai_fused_2018,long_scene_2021} (see Figure~\ref{fig:curved-text-representations}).
 What \ac{STD} is concerned, the bottom line seems to be: Is it curved text detection or efficiency
@@ -105,11 +110,13 @@ Localizing individual characters is computationally expensive~\citep{zhan_esir_2
 A complex pipeline is needed to predict characters and align them~\citep{liu_abcnet_2020}.
 Take~\cite{wan_textscanner_2020} for example which leverages a separate geometry branch
 to which helps with word formation with the predicted charcters from the classifying branch.
+
 Segmentation is also susceptible to errors~\citep{zhan_esir_2019,cheng_aon_2018,chen_text_2021}.
 The errors are reinforced by the nature of scene text: complex backgrounds, noise, perspective
 and other factors~\citep{hu_gtc_2020,chen_text_2021,baek_what_2019}.
 Additionally, segmentation based approaches cannot make us of contextual information between
 charcters~\citep{chen_text_2021}.
+
 \ac{EnDe} based \ac{STR} on the other hand is modeled to take contextual information into
 account~\citep{long_scene_2021,chen_text_2021}.
 The problem manifests itself in dealing with 2d-text
@@ -122,18 +129,19 @@ attention mechanism to 2d input~\citep{li_show_2019}.
 Note that \ac{CTC} cannot be adapted to 2d input~\citep{cheng_focusing_2017,xie_aggregation_2019}
 and the attention adaption by~\cite{li_show_2019} is memory and computation
 intensive~\citep{xie_aggregation_2019}.
+
 When comparing \ac{CTC} to attention based approaches it can be noted that \ac{CTC} deals better
 with long text instances or sentences while attention is better with singular
 words~\citep{cong_comparative_2019,chen_text_2021}.
 This is because the misalignment in attention can cause missing or superfluous charcters (attention
 drift)~\citep{bai_edit_2018,liao_scene_2018,cheng_focusing_2017}.
+
 Attention based approaches have the upper hand when it comes to incorporate implicit language models
 or lexicons but \ac{CTC} perform better without language priors~\citep{cong_comparative_2019}.
 This is especially important because the text in the use case under consideration contains
 alphanumeric strings which are not part of any lexicon.
 When it comes to computational efficiency both \ac{CTC} and attention are expensive and time
 consuming~\citep{chen_text_2021}.
-% TODO: no direct comparison for efficiency, what to do?
 
 2 stage approaches have the upper hand, when it comes to end to end \ac{STS}.
 These approaches are in the focus for research because they have crucial

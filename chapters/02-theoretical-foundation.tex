@@ -322,14 +322,14 @@ For the operation only the maximum value of the current subspace of the current 
 taken (see Figure~\ref{fig:maxpool})~\citep{chauhan_review_2018}.
 
 % XXX: receptive fields!
-When it comes to deep \acp{CNN}, the problem of vanishing/exploding gradients occurs during
+When it comes to training deep \acp{CNN}, the problem of vanishing/exploding gradients occurs during
 backpropagation.
 This problem can be impede convergence~\citep{he_deep_2015}.
 It can be solved by normalized intitialization of the network's weights and intermediate
 batch normalization layers~\citep{he_deep_2015,bjorck_understanding_2018}.
 Layer normalization can also be used~\citep{liu_rethinking_2021,ba_layer_2016}.
 ResNet introduced residual blocks with skip connections which pass the gradient to later layers
-to bypass exedingly deep \ac{NN} to overcome the degradation problem (deep \ac{NN} perform
+to bypass exedingly deep \ac{NN} to overcome the degradation problem (where deep \ac{NN} perform
 worse than shallow ones)~\citep{he_deep_2015}.
 These skip connections basically map the identity of ealier layer to later
 layers~\citep{he_deep_2015}.
@@ -448,7 +448,7 @@ It was originally designed to use \acp{RNN} to transform an input sequence into 
 for e.g.~translation~\citep{cho_learning_2014}.
 The output of which can be of variable length (the end is usually indicated by a special
 token)~\citep{cho_learning_2014,asadi_encoder-decoder_2020}.
-The \ac{EnDe} mechanism entails two parts: The encoded which transforms the input into a
+The \ac{EnDe} mechanism entails two parts: The encoder which transforms the input into a
 different representation, it compresses all the information from the input into a feature vector;
 the decoder uses that the extracted features to generate the output
 predictions~\citep{asadi_encoder-decoder_2020,cho_learning_2014}.
@@ -553,9 +553,9 @@ Recall)~\citep{he_icpr2018_2018}.
 %           relationship to PvR curve/AP
 \ac{STD} differs mostly in the way the protocols match the prediction to the ground
 truth~\citep{long_scene_2021}.
-Detectors have multiple predictors which regress the placing and sizing of bounding boxes.
+Detectors have multiple predictors which regress the placing and sizing of \acp{BB}.
 More information on this will follow in Chapter~\ref{ch:research}.
-Matching is the process of assigning a bounding box prediction to the ground
+Matching is the process of assigning a \ac{BB} prediction to the ground
 truth, like in e.g.~\cite{liu_ssd_2016,liao_textboxes_2018}.
 The PASCAL approach defines the \ac{IOU} (see Equation~\ref{eq:iou}).
 \begin{equation}\label{eq:iou}
@@ -569,7 +569,7 @@ A match is considered a True Positive, the other values are assigned
 accordingly~\citep{sun_icdar_2019}.
 % more BB have IOU>threshhold -> depending on situation all or greatest value
 Other evaluation approaches are mostly based on \ac{IOU}, e.g. MSRA-TD 500 evaluates the rotation
-from the bounding box, compared to the truth in addition to the \ac{IOU}
+from the \ac{BB}, compared to the truth in addition to the \ac{IOU}
 threshhold~\citep{long_scene_2021}.
 \cite{long_scene_2021} argues that researchers in the field of \ac{STD} should consider \ac{AP}
 as the main evaluation protocol rather than \fone.
@@ -577,6 +577,7 @@ According to~\cite{su_relationship_2015}, \ac{AP} can be considered the area und
 Precision-versus-Recall curve.
 \fone\ on the other hand only considers singular instances on that curve~\citep{long_scene_2021} and
 is sensitive to the tradeoff while \ac{AP} is invariant to it~\citep{shi_icdar2017_2017}.
+
 % STR
 For \ac{STR} the evaluation can be based on character-level or word-level.
 There is no need to match ground truth to prediction, as the image is already
@@ -600,6 +601,7 @@ calculates the distance between prediction and ground truth (see Equation~\ref{e
 D denotes the Levenshtein distance, s denotes the text, l denotes the text length and N is the total
 number of text lines~\citep{shi_icdar2017_2017}.
 For \ac{STR} \ac{NED} is used over the whole dataset~\citep{karatzas_icdar_2013}.
+
 \ac{STS} is oriented to both \ac{STD} and \ac{STR}.
 The prediction has to be matched to the ground truth like for \ac{STD}~\citep{long_scene_2021}.
 For comparing predictions and matched the respective ground truths that have been matched, \ac{NED}
