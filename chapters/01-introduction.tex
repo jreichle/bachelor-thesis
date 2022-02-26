@@ -1,7 +1,7 @@
 \chapter{Introduction}\label{ch:intro}
 \section{Motivation}
 Digitization can be described as transforming analog information into a digital
-respresentation~\citep{imgrund_approaching_2018}.
+representation~\citep{imgrund_approaching_2018}.
 Information systems in conjunction with digitization help to optimize efficiency and productivity
 for business performance, as well as to reduce costs~\citep{imgrund_approaching_2018}.
 This facilitates the growing need for automation~\citep{imgrund_approaching_2018}.
@@ -9,29 +9,29 @@ Additionally, a comprehensive information system with such digitized information
 to aggregate and share information to harness its benefits~\citep{goodhue_impact_1992}.
 However, before reaping the rewards, the information must first be digitized.
 Take technicians for example, who work in the field with different equipment.
-It is useful to digitize the lables of such equipment, to keep an overview over the
+It is useful to digitize the labels of such equipment, to keep an overview of the
 inventory~\citep{abramowicz_business_2019}.
 The automated process of digitizing such data is called \ac{OCR}, the concept of extracting typed,
-handwritten or printed text from an image~\citep{zhao_improving_2020}.
+handwritten, or printed text from an image~\citep{zhao_improving_2020}.
 Techniques for this concept have improved a lot due to the advances in the field of
 \ac{DL}~\citep{zhao_improving_2020}.
-When compared to traditional methods \ac{DL} improves automation, effectiveness and
+When compared to traditional methods \ac{DL} improves automation, effectiveness, and
 generalization~\citep{chen_text_2021}.
 Applying these new capabilities and finding the right solution in the space of \ac{DL} for the
 use case of extracting information of labels is the focus of this thesis.
-This is an interesting task as performance of \ac{OCR} systems in natural scenes is still
+This is an interesting task as the performance of \ac{OCR} systems in natural scenes is still
 challenging~\citep{zhao_improving_2020, chen_text_2021}.
 Such scenes entail natural scenes captured by a camera~\citep{chen_text_2021, baek_what_2019}.
 Factors such as complex backgrounds, noise, perspective and variability in fonts, colors and sizes,
 of scene texts complicate the process~\citep{hu_gtc_2020,chen_text_2021,baek_what_2019}.
-In these conditions \ac{OCR} is known as \ac{STS}~\citep{long_scene_2021}.
+In these conditions, \ac{OCR} is known as \ac{STS}~\citep{long_scene_2021}.
 
 \section{Problem Description}\label{se:problem}
-The goal of this thesis is to create an overview over possible \ac{DL} techniques that facilitates
+The goal of this thesis is to create an overview of possible \ac{DL} techniques that facilitates
 finding a solution for the process of digitization.
 The research question guiding the process is most crucial:
-Which state of the art \ac{DL} approaches for scene text \ac{OCR} are viable for the use case of
-extracting textual label data from images taken in real world conditions?
+Which state-of-the art \ac{DL} approaches for scene text \ac{OCR} are viable for the use case of
+extracting textual label data from images taken in real-world conditions?
 
 The definition of the viability of an approach must be determined for this.
 What qualities such as detecting alpha-numeric strings or suitability despite
@@ -39,46 +39,47 @@ inadequate image conditions must a solution have~\citep{ghosh_visual_2017, hu_gt
 
 It is difficult to assess how well a \ac{DL} approach performs before it has been
 implemented and tested on the specific problem or representative dataset~\citep{arpteg_software_2018}.
-This justifies the need to create an overview rather than pointing out a single approach which is
-deemed the most promissing.
-In order to create the overview the necessary steps in the process of \ac{STS} need to be highlighted,
+This justifies the need to create an overview rather than pointing out a single approach that is
+deemed the most promising.
+To create the overview the necessary steps in the process of \ac{STS} need to be highlighted,
 from localizing possible text instances to predicting the characters or
 words~\citep{long_scene_2021, sourvanos_challenges_2018}.
-The ways in which the respective issues for the steps are solved need to be
-identified from literature, listed and explained alongside.
+How the respective issues for the steps are solved need to be
+identified from the literature, listed, and explained alongside.
 
 The article~\cite{ashmore_assuring_2021} defines four phases of the \ac{ML} lifecycle, namely,
-Data Management, Model Learing, Model Verification and Model Deployment.
+Data Management, Model Learning, Model Verification and Model Deployment.
 Only the substage Model Selection from Model Learning will only be looked at in the scope of this
 thesis.
 The substage aims at selecting the right \ac{ML} model to perform a given
 task~\citep{ashmore_assuring_2021}.
-The substages loss function selection, training and hyperparameter
+The substages loss function selection, training, and hyperparameter
 selection~\citep{ashmore_assuring_2021} will not be examined.
-Other aspects such as data analysis, implementation, training, deployment and maintenance of a
+Other aspects such as data analysis, implementation, training, deployment, and maintenance of a
 solution in a production environment shall not be performed either.
 The overview and subsequent analysis thereof creates a foundation for finding the right solution,
 it does however not contain any claims about the degree of goodness or about the certainty of
 solving the given problem.
-Based on this thesis, further further verification, implementation and testing can then be performed.
+Based on this thesis, further verification, implementation and testing can then be performed.
 
 \section{Methodology}\label{se:methodology}
 The methodology of this thesis can be labeled as a literature review~\citep{snyder_literature_2019,
 torraco_writing_2005}.
-The goal is to provide an overview over current \ac{DL} techniques that can help in
+The goal is to provide an overview of current \ac{DL} techniques that can help in
 choosing which to implement and to test to solve the specific problem of \ac{STS}, defined in
 Section~\ref{se:problem} and further developed in Chapter~\ref{ch:problem}.
 
 The research question guiding the process is most crucial~\citep{snyder_literature_2019}:
 Which state of the art \ac{DL} approaches for \ac{STS} are viable for the use case of extracting
-textual label data from real world images.
+textual label data from real-world images.
 For a literature review, it is important to report how the information was found and
 synthesized~\citep{torraco_writing_2005}.
 Therefore, each section in the overview contains a paragraph about said information.
 
 The strategy for researching the field is most important for a literature
 review~\citep{snyder_literature_2019}.
-Before getting into current research level, a foundation of knowledge about the field must be layed.
+Before getting into the current research level, a foundation of knowledge about the field must be
+laid.
 A taxonomy is created for this which is useful to classify and give context to innovations in the
 field.
 This is performed with the help of overview literature and other related research in the field.
@@ -89,7 +90,7 @@ used, as well as exclusion criteria that are enforced~\citep{torraco_writing_200
 Innovations are explored through searching in the Google Scholar database.
 A criterion for further examination is an appropriate amount of citations for the piece of literature
 in question.
-Additionally, literature is selected through citations for and by literature which has already been
+Additionally, literature is selected through citations for and by literature that has already been
 identified as important.
 All research after 2018 which pertains to extracting scene text is regarded as relevant.
 Standard \ac{OCR} solutions may not hold validity in practice, as the image and text conditions can
@@ -98,36 +99,37 @@ An important criterion is that the paper contributes to the \ac{ML} model.
 This extends to the whole pipeline from extraction features to the final result of the model.
 The identified literature is synthesized into an overview that is aligned according to the taxonomy.
 
-In order to improve the validity for the subsequent analysis, the problem is dissected further.
-This includes analysing the specific use case as well as researching which qualities have been
+To improve the validity of the subsequent analysis, the problem is dissected further.
+This includes analyzing the specific use case as well as researching which qualities have been
 identified as generally critical for scene text approaches.
-The qualities are taken from literature which covers \ac{ML} in general to literature
-which covers \ac{OCR} under challenging scene text conditions.
+The qualities are taken from literature that covers \ac{ML} in general to literature
+that covers \ac{OCR} under challenging scene text conditions.
 
-In the analysis possibly viable approaches are compared with the required qualities defined
+In the analysis, possibly viable approaches are compared with the required qualities defined
 in Chapter~\ref{ch:problem}.
-The comparison will be organized according the taxonomy which facilitates the clarity and
+The comparison will be organized according, the taxonomy which facilitates clarity and
 comprehensibility.
-The comparison is arranged in hierarchical fashion: different pipeline categories,
-different categories for pipeline tasks and innovations for those tasks.
+The comparison is arranged hierarchically: different pipeline categories,
+different categories for pipeline tasks and, innovations for those tasks.
 The analysis thus shows which approaches are worthwhile to apply the whole \ac{ML} lifecycle to.
 
 \section{Expected Results}
 In addition to a deeper understanding of the problem and its detailed definition, the literature
 review lays the foundation for finding the right approach for the extraction of textual
 information from images with equipment labels through literature review.
-In the subsequent analysis different approaches are highlighted for their theoretical fit as a solution.
+In the subsequent analysis, different approaches are highlighted for their theoretical fit as a
+solution.
 
 In the following, the structure of this thesis is listed and each chapter's expected
 result is detailed along with its benefits for the overall objective of producing an overview of
-state of the art \ac{STS} relevant for the problem described in Section~\ref{se:problem}.
+state-of-the-art \ac{STS} relevant for the problem described in Section~\ref{se:problem}.
 Chapter~\ref{ch:theoretical} lays the theoretical foundation for later chapters.
 This includes general principles of \ac{DL} and by extension \ac{ML} but also of \ac{STS}.
 In Chapter~\ref{ch:research} current research is examined
 The overview is twofold: a taxonomy for the pipeline and its approaches as well as innovations in
 current research.
-The resulting overview can be viewed as a basis for a decision when it comes implementing a practical
-solution.
+The resulting overview can be viewed as a basis for a decision when it comes to implementing a
+practical solution.
 In Chapter~\ref{ch:problem} the problem from Section~\ref{se:problem} is addressed in more detail.
 The result shall be a firm understanding of qualities that a solution must possess.
 These requirements are the point of focus for the further examination of techniques.

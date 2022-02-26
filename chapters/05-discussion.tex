@@ -9,7 +9,7 @@ some observations regarding recent innovations that are examined in Section~\ref
 The analysis is structured similar to the overview sections: first compare approach categories
 for \ac{STD} and \ac{STR} and then move on towards \ac{STS}.
 The compared aspects of the approaches are the qualities that were identified as relevant in
-Section~\ref{se:relevant-qualities}: appropriateness, performance in conjuntion with robustness,
+Section~\ref{se:relevant-qualities}: appropriateness, performance in conjunction with robustness,
 efficiency.
 Note that appropriateness entails the subqualities that were derived from the use
 case (see Table~\ref{tb:useCaseQualities}):
@@ -47,10 +47,6 @@ Additionally, the regressed \acp{BB} have trouble in accurately representing the
 text instances~\citep{long_scene_2021,wang_shape_2019}.
 Representing multi-oriented text is not a problem on the other
 hand~\citep{liao_textboxes_2018,jiang_r2cnn_2017}.
-
-When it comes to comparing \ac{BB} regression approaches, one stage approaches are generally more
-efficient  because of their straightforward architecture while two stage approaches can generally
-predict more accurately  because of the refinement process~\citep{lu_mimicdet_2020}.
 Long aspect ratios are another problem of scene text which degrades \ac{BB} regression
 performance~\citep{shi_detecting_2017,long_scene_2021}.
 
@@ -58,17 +54,19 @@ Segmentation based approaches on the other hand take advantage of the fact that 
 text instance can locally be verified as such~\citep{long_scene_2021}.
 Note that no noteworthy comparison of subcomponent or pixel level segmentation could be identified.
 The bottom-up approach alleviates the problem of long aspect ratios~\citep{shi_detecting_2017}.
+The segmentation based approaches facilitate more natural representation of curved
+text~\citep{dai_fused_2018,long_scene_2021} (see Figure~\ref{fig:curved-text-representations}).
 
-However, approach is more computation intensive, as in incorporates more complex
+However, the segmentation pipeline is more computation intensive, as in incorporates more complex
 stages~\citep{dai_fused_2018} and complicated text instance
 construction~\citep{xie_aggregation_2019,liao_real-time_2019,dai_fused_2018}.
-
 The text instance construction goes hand in hand with the separation of different instances.
 This is a challenging task which is vulnerable to noise~\citep{long_scene_2021} and the focus of
 many new innovations (see Figure~\ref{fig:curved-text-representations}).
 
-The segmentation based approaches facilitate more natural representation of curved
-text~\citep{dai_fused_2018,long_scene_2021} (see Figure~\ref{fig:curved-text-representations}).
+When it comes to comparing \ac{BB} regression approaches, one stage approaches are generally more
+efficient  because of their straightforward architecture while two stage approaches can generally
+predict more accurately  because of the refinement process~\citep{lu_mimicdet_2020}.
 What \ac{STD} is concerned, the bottom line seems to be: Is it curved text detection or efficiency
 more important?
 
@@ -110,7 +108,6 @@ Localizing individual characters is computationally expensive~\citep{zhan_esir_2
 A complex pipeline is needed to predict characters and align them~\citep{liu_abcnet_2020}.
 Take~\cite{wan_textscanner_2020} for example which leverages a separate geometry branch
 to which helps with word formation with the predicted charcters from the classifying branch.
-
 Segmentation is also susceptible to errors~\citep{zhan_esir_2019,cheng_aon_2018,chen_text_2021}.
 The errors are reinforced by the nature of scene text: complex backgrounds, noise, perspective
 and other factors~\citep{hu_gtc_2020,chen_text_2021,baek_what_2019}.

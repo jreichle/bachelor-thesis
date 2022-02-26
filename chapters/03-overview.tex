@@ -592,11 +592,11 @@ The investigation into the identified literature's citations yielded another
 result:~\cite{ferrari_textsnake_2018}.
 
 The following approaches are concerned with efficiency for multi-oriented text:
-The 1-stage \ac{BB} regresseion approach by~\citep{liao_textboxes_2018} introduced a different
+The 1-stage \ac{BB} regression approach by~\citep{liao_textboxes_2018} introduced a different
 representation for \acp{BB} which is multi-oriented.
 The represention has 13 parameters~\citep{liao_textboxes_2018}.
 That is more than usual for a multi-oriented \ac{BB} (8)~\citep{ma_arbitrary-oriented_2018}.
-The efficient approach from~\cite{lyu_multi-oriented_2018} is pixel level segmentation based.
+An efficient approach from~\cite{lyu_multi-oriented_2018} is pixel level segmentation based.
 The image is subdivided by a grid and each grid space of pixels is
 predicted to efficiently generate a pixel segmentation map~\citep{lyu_multi-oriented_2018}.
 Also, text instance corners are predicted.
@@ -614,7 +614,7 @@ The classification head is preceded with oriented response pooling which generat
 features from the given feature maps~\citep{liao_rotation-sensitive_2018}.
 The 2-stage approach \ac{STD} from~\cite{ma_arbitrary-oriented_2018} deals with text orientation
 differently.
-The \ac{RPN} generates oriented \acp{ROI}, they are offset by already rotated anchor
+The \ac{RPN} generates oriented \acp{ROI}, which are offset by already rotated anchor
 boxes~\citep{ma_arbitrary-oriented_2018}.
 The results are filtered with \ac{NMS} which is adjusted to rotation.
 For the remaining \acp{ROI} the \ac{ROI} pooling operation is also adjusted to deal with rotation,
@@ -630,7 +630,7 @@ Figure~\ref{fig:curved-rep-liao-real-2019}).
 The construction the binary map is performed with the newly introduced differentiable binarization
 function~\citep{liao_real-time_2019}.
 The binary map can then be used to generate curved \acp{BB}~\citep{liao_real-time_2019}.
-The approach not only improves performance but also efficiency~\citep{liao_real-time_2019}.
+The approach not only improves efficiency but also performance~\citep{liao_real-time_2019}.
 A innovation towards better efficiency based on pixel level segmentation
 from~\cite{wang_efficient_2019} introduces a light feature extraction network.
 The network repeatetly upsamples and downsamples the feature maps to improve the representational
