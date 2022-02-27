@@ -1,29 +1,29 @@
 \chapter{Conclusion}
-This thesis facilitates a comprehensive overview over techniques that are used for \ac{STS}.
-The associated tasks and the different categories of approaches are useful in comparing different
-solutions when it comes to the identified qualitied that are important for the use case
+This thesis facilitates a comprehensive overview of techniques that are used for \ac{STS}.
+The associated tasks and the different approaches help compare different
+solutions for the identified qualified that are important for the use case
 (appropriateness, performance/robustness, efficiency).
 
-The overview and literature review reveals that the fields of \ac{STD} and \ac{STR} are concerned
+The overview and literature review reveal that \ac{STD} and \ac{STR} are concerned
 with robust performance for multi-oriented and curved text instances.
-For \ac{STD} the more efficient \ac{BB} regression based methods can detect multi-oriented text well.
-Because of their representational deficiencies pixel level segmentation based methods are better for
+For \ac{STD}, the more efficient \ac{BB} regression based methods can detect multi-oriented text well.
+Because of their representational deficiencies, pixel level segmentation based methods are better for
 detecting curved text.
-For the semantics retention subquality for appropriateness it is therefore important to consider
+For the semantics retention subquality for appropriateness, it is, therefore, essential to consider
 the text properties of the dataset.
-The attention mechanism has become the main approach for \ac{STR} robustness.
+The attention mechanism has become the primary approach for \ac{STR} robustness.
 However, many innovations are concerned with the curved text rectification stage that both
 \ac{CTC} and attention based \ac{EnDe} solutions share.
-For recognition of alphanumeric strings, \ac{CTC} has the advantage over the attention mechanism.
-Because of their remarkable efficiency and competitive performance, 2 stage approaches  are focus
-of research for \ac{STS}.
-The efficient combination of \ac{STD} and \ac{STR} stages and reuse of feature maps are topic
+\ac{CTC} has the advantage over the attention mechanism for recognition of alphanumeric strings.
+Because of their remarkable efficiency and competitive performance, 2 stage approaches focus
+on \ac{STS} research.
+The efficient combination of \ac{STD} and \ac{STR} stages and reuse of feature maps are topics
 of the innovations in the field.
 
-For future work it would be useful to consider different steps in the \ac{ML}
-lifecycle~\citep{watanabe_preliminary_2019} or to build a \ac{MLS} around the identified \ac{DL}
+For future work, it would be helpful to consider different steps in the \ac{ML}
+lifecycle~\citep{watanabe_preliminary_2019} or build a \ac{MLS} around the identified \ac{DL}
 approach for \ac{STS}~\citep{siebert_construction_2021,nakamichi_requirements-driven_2020}.
 An example would be to design a supervision mechanism for model monitoring that is important for
 \ac{DL} in production systems~\cite{nakamichi_requirements-driven_2020,watanabe_preliminary_2019}.
-Another possible step would be to design and carry out a comprehensive study to generate quanitative
-regarding the qualities that a \ac{STS} soultion must possess.
+Another possible step would be to design and carry out a comprehensive study to generate quantitative
+data regarding the qualities that a \ac{STS} solution must possess.

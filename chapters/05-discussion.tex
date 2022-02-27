@@ -1,24 +1,24 @@
 \chapter{Discussion}\label{ch:discussion}
 This chapter contains a comparison between the taxonomy categories that were introduced in
 Section~\ref{se:taxonomy}.
-The analysis is followed by a reflection on the methodology and the thesis' results.
+The analysis is followed by reflecting on the methodology and the thesis' results.
 
 \section{Analysis}\label{se:analysis}
-The comparison in this section is synthesized from information found in literature as well as
+The comparison in this section is synthesized from information found in literature and
 some observations regarding recent innovations that are examined in Section~\ref{se:innovations}.
-The analysis is structured similar to the overview sections: first compare approach categories
+The analysis is structured similarly to the overview sections: first compare approach categories
 for \ac{STD} and \ac{STR} and then move on towards \ac{STS}.
-The compared aspects of the approaches are the qualities that were identified as relevant in
+The approaches' compared aspects are the qualities that were identified as relevant in
 Section~\ref{se:relevant-qualities}: appropriateness, performance in conjunction with robustness,
 efficiency.
-Note that appropriateness entails the subqualities that were derived from the use
+Note that appropriateness entails the subqualities derived from the use
 case (see Table~\ref{tb:useCaseQualities}):
-While the offline capability requirement is met by all of the approaches that are identified in this
+While the offline capability requirement is met by all of the approaches identified in this
 thesis, semantics retention and alphanumeric recognition have to be analyzed further.
 \ac{STD} is the relevant subtask for semantics retention and \ac{STR} for alphanumeric recognition.
 
-The main challenges for \ac{STD} involve the tradeoff between speed and accuracy as well as
-representing arbitrary shaped text instance~\citep{wang_efficient_2019}.
+The main challenges for \ac{STD} involve the tradeoff between speed and accuracy and
+representing arbitrary shaped text instances~\citep{wang_efficient_2019}.
 The innovations regarding \ac{STD} deal with multi-oriented and curved text (as can be seen in
 Table~\ref{tb:STD-steps-properties}).
 \begin{table}[h]
@@ -43,39 +43,39 @@ Table~\ref{tb:STD-steps-properties}).
 \end{table}
 Segmentation free or \ac{BB} regression based approaches have trouble with curved text because of
 the anchor boxes' linear bias~\citep{wang_shape_2019,ferrari_textsnake_2018}.
-Additionally, the regressed \acp{BB} have trouble in accurately representing the shape of curved
+Additionally, the regressed \acp{BB} have trouble accurately representing the shape of curved
 text instances~\citep{long_scene_2021,wang_shape_2019}.
-Representing multi-oriented text is not a problem on the other
+Representing multi-oriented text is not a problem, on the other
 hand~\citep{liao_textboxes_2018,jiang_r2cnn_2017}.
 Long aspect ratios are another problem of scene text which degrades \ac{BB} regression
 performance~\citep{shi_detecting_2017,long_scene_2021}.
 
-Segmentation based approaches on the other hand take advantage of the fact that every part of the
+On the other hand, segmentation based approaches take advantage of the fact that every part of the
 text instance can locally be verified as such~\citep{long_scene_2021}.
 Note that no noteworthy comparison of subcomponent or pixel level segmentation could be identified.
 The bottom-up approach alleviates the problem of long aspect ratios~\citep{shi_detecting_2017}.
-The segmentation based approaches facilitate more natural representation of curved
+The segmentation based approaches facilitate a more natural representation of curved
 text~\citep{dai_fused_2018,long_scene_2021} (see Figure~\ref{fig:curved-text-representations}).
 
-However, the segmentation pipeline is more computation intensive, as in incorporates more complex
+However, the segmentation pipeline is more computation-intensive, as it incorporates more complex
 stages~\citep{dai_fused_2018} and complicated text instance
 construction~\citep{xie_aggregation_2019,liao_real-time_2019,dai_fused_2018}.
 The text instance construction goes hand in hand with the separation of different instances.
-This is a challenging task which is vulnerable to noise~\citep{long_scene_2021} and the focus of
-many new innovations (see Figure~\ref{fig:curved-text-representations}).
+This challenging task is vulnerable to noise~\citep{long_scene_2021} and focuses on
+many innovations (see Figure~\ref{fig:curved-text-representations}).
 
-When it comes to comparing \ac{BB} regression approaches, one stage approaches are generally more
-efficient  because of their straightforward architecture while two stage approaches can generally
-predict more accurately  because of the refinement process~\citep{lu_mimicdet_2020}.
-What \ac{STD} is concerned, the bottom line seems to be: Is it curved text detection or efficiency
-more important?
+When comparing \ac{BB} regression approaches, one stage approaches are generally more
+efficient  because of their straightforward architecture, while two stage approaches can generally
+predict the more accurately  because of the refinement process~\citep{lu_mimicdet_2020}.
+What \ac{STD} is concerned, the bottom line seems to be:
+Is curved text detection or efficiency more critical?
 
-\ac{STR} research focuses on accurately recognizing 2d text instance.
+\ac{STR} research focuses on accurately recognizing 2d text instances.
 The innovations found for \ac{STR} (see Table~\ref{tb:STR-steps-properties}) show that the research
-is mostly focused on robustely recognizing curved text instances (rectification approaches and
+mainly focuses on robustly recognizing curved text instances (rectification approaches and
 2d attention).
 Additionally, it can be noted that the innovative approaches are mostly attention based.
-However, attention too has shortcommings (see Figure~\ref{tb:STR-comparison}).
+However, attention also has shortcomings (see Figure~\ref{tb:STR-comparison}).
 \begin{table}[h]
     \centering\scriptsize
     \begin{tabular}{p{.09\textwidth}p{.15\textwidth}p{0.66\textwidth}}
@@ -103,45 +103,45 @@ However, attention too has shortcommings (see Figure~\ref{tb:STR-comparison}).
     \end{tabular}
     \caption{STR approach category comparison\label{tb:STR-comparison}}
 \end{table}
-For segmentation based approaches the main shortcommings are as follows.
+For segmentation based approaches, the main shortcommings are as follows.
 Localizing individual characters is computationally expensive~\citep{zhan_esir_2019}.
 A complex pipeline is needed to predict characters and align them~\citep{liu_abcnet_2020}.
-Take~\cite{wan_textscanner_2020} for example which leverages a separate geometry branch
-to which helps with word formation with the predicted charcters from the classifying branch.
+Take~\cite{wan_textscanner_2020}, for example, which leverages a separate geometry branch
+to help with word formation with the predicted characters from the classifying branch.
 Segmentation is also susceptible to errors~\citep{zhan_esir_2019,cheng_aon_2018,chen_text_2021}.
-The errors are reinforced by the nature of scene text: complex backgrounds, noise, perspective
+The nature of scene text reinforces the errors: complex backgrounds, noise, perspective,
 and other factors~\citep{hu_gtc_2020,chen_text_2021,baek_what_2019}.
-Additionally, segmentation based approaches cannot make us of contextual information between
-charcters~\citep{chen_text_2021}.
+Additionally, segmentation based approaches cannot use contextual information between
+characters~\citep{chen_text_2021}.
 
-\ac{EnDe} based \ac{STR} on the other hand is modeled to take contextual information into
+\ac{EnDe} based \ac{STR}, on the other hand, is modeled to take contextual information into
 account~\citep{long_scene_2021,chen_text_2021}.
 The problem manifests itself in dealing with 2d-text
 instances~\citep{long_scene_2021,liao_scene_2018}.
-The \ac{EnDe} basic approaches use decoders which work with sequences (and therefore
+The \ac{EnDe} basic approaches use decoders that work with sequences (and therefore
 1d)~\citep{long_scene_2021,cheng_aon_2018}.
 The introduced innovations deal with this in two ways: rectify 2d text into 1d
 text~\citep{zhan_esir_2019,luo_multi-object_2019,shi_aster_2019,liu_char-net_2018}, adapt the
 attention mechanism to 2d input~\citep{li_show_2019}.
-Note that \ac{CTC} cannot be adapted to 2d input~\citep{cheng_focusing_2017,xie_aggregation_2019}
-and the attention adaption by~\cite{li_show_2019} is memory and computation
-intensive~\citep{xie_aggregation_2019}.
+Note that \ac{CTC} cannot be adapted to 2d input~\citep{cheng_focusing_2017,xie_aggregation_2019},
+and the attention adaption by~\cite{li_show_2019} is memory and
+computation-intensive~\citep{xie_aggregation_2019}.
 
-When comparing \ac{CTC} to attention based approaches it can be noted that \ac{CTC} deals better
+When comparing \ac{CTC} to attention based approaches, it can be noted that \ac{CTC} deals better
 with long text instances or sentences while attention is better with singular
 words~\citep{cong_comparative_2019,chen_text_2021}.
-This is because the misalignment in attention can cause missing or superfluous charcters (attention
+This is because the misalignment in attention can cause missing or superfluous characters (attention
 drift)~\citep{bai_edit_2018,liao_scene_2018,cheng_focusing_2017}.
 
-Attention based approaches have the upper hand when it comes to incorporate implicit language models
-or lexicons but \ac{CTC} perform better without language priors~\citep{cong_comparative_2019}.
+Attention based approaches have the upper hand when incorporating implicit language models
+or lexicons, but \ac{CTC} performs better without language priors~\citep{cong_comparative_2019}.
 This is especially important because the text in the use case under consideration contains
 alphanumeric strings which are not part of any lexicon.
-When it comes to computational efficiency both \ac{CTC} and attention are expensive and time
-consuming~\citep{chen_text_2021}.
+When it comes to computational efficiency, both \ac{CTC} and attention are expensive and
+time-consuming~\citep{chen_text_2021}.
 
-2 stage approaches have the upper hand, when it comes to end to end \ac{STS}.
-These approaches are in the focus for research because they have crucial
+2 stage approaches have the upper hand when it comes to end-to-end \ac{STS}.
+These approaches are in focus for research because they have crucial
 advantages (see Figure~\ref{tb:E2E-comparison})~\citep{chen_text_2021}.
 \begin{table}[h]
     \centering\scriptsize%
@@ -158,39 +158,39 @@ advantages (see Figure~\ref{tb:E2E-comparison})~\citep{chen_text_2021}.
     \end{tabular}
     \caption{STS approach category comparison\label{tb:E2E-comparison}}
 \end{table}
-2 stage approaches are more efficient than 2 step approaches because they don't compute feature maps
+2 stage approaches are more efficient than 2 step approaches because they do not compute feature maps
 twice~\citep{liu_fots_2018,chen_text_2021}.
-This carries a lot of weight since feature extraction is usually the most time and computation
-consuming step~\citep{liu_fots_2018}.
-The direct combination of \ac{STD} and \ac{STR} also has impact on the performance.
+This carries much weight since feature extraction is usually the most time and
+computation-consuming step~\citep{liu_fots_2018}.
+The direct combination of \ac{STD} and \ac{STR} also impacts the performance.
 Because of the connecting both stages together are fully differentiable and can be jointly
 optimized~\citep{chen_text_2021,long_scene_2021,qiao_text_2021}.
-Without joint optimization error that happen in the detection step can be propagated to the
-recognition which results in performance degradation~\citep{chen_text_2021,qiao_text_2021}.
+Without joint optimization, errors in the detection step can be propagated to the
+recognition, resulting in performance degradation~\citep{chen_text_2021,qiao_text_2021}.
 
 \section{Reflection}
-The goal of this thesis was to create an overview over \ac{STS} approaches in order to facilitate
-making a choice in regards to a pracitcal problem.
-This goal is impeded by a a couple of factors.
-The first being that all entities of a \ac{MLS} need to be examined in order to develop a proper
+This thesis aimed to create an overview of \ac{STS} approaches to facilitate
+choosing a practical problem.
+A couple of factors impede this goal.
+The first being that all entities of a \ac{MLS} need to be examined to develop a proper
 solution~\citep{siebert_construction_2021,nakamichi_requirements-driven_2020}.
-Because not all entities (most importantly the data entity) are available, this was not possible.
+Because not all entities (most notably the data entity) are available, this was not possible.
 
 Another reason is the chosen cutoff point of 100 citations as a requirement for innovative literature.
-Even though it is useful to filter for the most groundbreaking advancements in the field,
+Even though it is helpful to filter for the most groundbreaking advancements in the field,
 newer innovations that have not been revealed long enough to earn enough citations might be left
 out of the equation.
 
-The analysis does not contain quanitative data on performance or efficiency regarding
-singular approaches or even regarding task categories.
-This is because literature on \ac{ML} and \ac{DL} benchmarking suggests that it is not a good
-practice to combine and compare results from different
+The analysis does not contain quantitative data on performance or efficiency regarding
+singular approaches or even task categories.
+This is because the literature on \ac{ML} and \ac{DL} benchmarking suggests that it is not good
+to combine and compare results from different
 studies~\citep{baek_what_2019,arpteg_software_2018,long_scene_2021}.
-There's different rationales for this.
-Because different studies incorporate different components such as Hardware, Platform, Source Code
-or Configuration the comparison would be flawed~\citep{arpteg_software_2018,baek_what_2019}.
+There are different rationales for this.
+Because different studies incorporate different components such as hardware, platform, source code,
+or configuration, the comparison would be flawed~\citep{arpteg_software_2018,baek_what_2019}.
 Additionally, different studies might present a different interpretation of
 metrics~\citep{long_scene_2021}.
-Yet another reason has to do with the benchmark datasets in use: datasets are used inconsitently in
+Another reason is the benchmark datasets: datasets are used inconsistently in
 many cases.
-Often certain images are left out for various reasons~\citep{baek_what_2019}.
+Often specific images are left out for various reasons~\citep{baek_what_2019}.

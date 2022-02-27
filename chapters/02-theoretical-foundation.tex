@@ -1,40 +1,40 @@
 \cleardoublepage%
 \chapter{Theoretical Foundation}\label{ch:theoretical}
-This chapter succinctly describes principles which build the foundation for later chapters.
+This chapter succinctly describes principles that build the foundation for later chapters.
 Only the most relevant topics are touched upon, necessary details are explained in later chapters.
-The mathematics that makes the techniques possible is not explained in depths as it would otherwise
+The mathematics that makes the techniques possible is not explained in-depth as it would otherwise
 exceed the scope of this work.
-Whenever possible heavy mathematical notation is omitted if it does not aid the understanding of the
-reader.
+Whenever possible heavy mathematical notation is omitted if it does not aid the reader's
+understanding.
 
 % XXX: note probabilistic view (distributions, frequentist/bayesian)
 \section{Machine Learning}
-To grasp \ac{DL}, a solid understanding of \ac{ML} has to be developed
-first~\citep{goodfellow_deep_2016}.
+A solid understanding of \ac{ML} has to be developed
+first to grasp \ac{DL}~\citep{goodfellow_deep_2016}.
 This is because \ac{DL} is a subfield of \ac{ML}~\citep{chauhan_review_2018}.
-The most well known definition for \ac{ML} comes from~\cite{mitchell_machine_1997}:
+The most well-known definition for \ac{ML} comes from~\cite{mitchell_machine_1997}:
 `A computer program is said to learn from experience $E$ with respect to some class of tasks $T$
 and performance measure $P$, improves with experience $E$'.
 
 % XXX: explain difference: model - algorithm
-The task that the \ac{MLS} learns to perform, can range from approximating a function
-(e.g.\ regression --- $f:\R^n \rightarrow \R^l$, classification ---
+The task that the \ac{MLS} learns to perform can range from approximating a function
+(e.g., regression --- $f:\R^n \rightarrow \R^l$, classification ---
 $f:\R^n \rightarrow \{1,\ldots,k\}$) to obtaining a different representation for the data that
 has beneficial properties for further processing but preserves as much information as possible
-(e.g.\ PCA for compression)~\citep{goodfellow_deep_2016}.
+(e.g., PCA for compression)~\citep{goodfellow_deep_2016}.
 Note that the learning itself is not the task but merely the process of improving on performing the
 task~\citep{goodfellow_deep_2016}.
-One of the most well known \ac{ML} algorithms is Linear Regression.
-In the following the algorithm is used as an example for explaining \ac{ML} principles.
+One of the most well-known \ac{ML} algorithms is Linear Regression.
+In the following, the algorithm is used as an example for explaining \ac{ML} principles.
 As the name implies, Linear Regression is used to predict a value $\hat{y}\in\R$ given the input vector
-$\x\in\R^n$ which is made up of the features $x_i$.
+$\x\in\R^n$, which is made up of the features $x_i$.
 The goal is to approximate the ground truth $y$.
 Linear is derived from the underlying model shown in Equation~\ref{eq:linReg}:
 \begin{equation}\label{eq:linReg}
     f(\x;\w,b) = \w^{T} \cdot \x + b = \sum_{i=1}^{n} w_i x_i + b = \hat{y}
 \end{equation}
 The scalar product of the weights $\w\in\R^n$ and \x\ is added to the bias term $b\in\R$.
-Both $\w,b$ are parameters that are learned by the model in order to optimize the
+Both $\w,b$ are parameters learned by the model to optimize the
 approximation~\citep{goodfellow_deep_2016}.
 
 The performance of a model measures how well the task can be completed.
@@ -46,48 +46,48 @@ The metric \ac{MSE} (see Equation~\ref{eq:mse}) can be used for Linear Regressio
 \end{equation}
 Here $m$ denotes the number of examples $\xti$ with the associated targets $\yti$, used to calculate
 the error~\citep{geron_hands-machine_2017,goodfellow_deep_2016}.
-The goal is to minimize the generalization error which measures the expected performance on
+The goal is to minimize the generalization error, which measures the expected performance on
 previously unseen input~\citep{geron_hands-machine_2017}.
-For this the test set is used, once the model has been trained.
+The test set is used once the model has been trained.
 The test set is a part of the available data~\citep{geron_hands-machine_2017, goodfellow_deep_2016}.
 The generalization error can be divided into three components.
-The bias error arises from simplifying assumptions for the model, the variance error measures the
+The bias error arises from simplifying assumptions for the model; the variance error measures the
 variation in the model outcome depending on the data used for training.
-Both these errors are influenced by the model's representation capacity which is why the
-relationship between them is call the Bias/Variance tradeoff.
-Lastly the irreducible error stems from not having measured all data as well as the variation
+The model's representation capacity influences both these errors, so the
+relationship is called the Bias/Variance tradeoff.
+Lastly, the irreducible error stems from not having measured all data and the variation
 in real data and cannot be
 reduced~\citep{ashmore_assuring_2021, james_introduction_2013,geron_hands-machine_2017}.
 
 The experience part of \ac{ML} depicts the process where the algorithm is `experiencing' the training
-dataset $\Xt$ and is learning important properties of the dataset.
+dataset $\Xt$ and is learning essential properties of the dataset.
 In general, there are two paradigms for training: supervised and
 unsupervised~\citep{goodfellow_deep_2016}.
-Linear Regression is an example for supervised learning, as the model is using the ground truth value
+Linear Regression is an example for supervised learning, as the model uses the ground truth value
 to learn approximating $\yti$\ for the associated input
 $\xti$~\citep{alzubi_machine_2018,goodfellow_deep_2016}.
-For unsupervised learning on the other hand the algorithm is not directed to predict a target
+For unsupervised learning, on the other hand, the algorithm is not directed to predict a target
 value but to learn properties about the data and to leverage them for representation tasks
 like compressing or denoising the data~\citep{goodfellow_deep_2016,geron_hands-machine_2017}.
-In most cases training can be described as an optimization problem, i.e.\ as minimizing a
-function --- the so called objective or loss function $L$~\citep{goodfellow_deep_2016}.
+In most cases, training can be described as an optimization problem, i.e., minimizing a
+function --- the so-called objective or loss function $L$~\citep{goodfellow_deep_2016}.
 The \ac{MSE} introduced earlier can be used for Linear Regression (see Equation~\ref{eq:mseOpt}).
-This objective function has properties which make it suitable for models which have linear
-output~\citep{goodfellow_deep_2016}.
+This objective function has properties that make it suitable for linear output
+models~\citep{goodfellow_deep_2016}.
 \begin{equation}\label{eq:mseOpt}
     \min_{\w,b} \textsf{MSE}(\w,b)
 \end{equation}
-Note that for minimization the \ac{MSE} is a function of $\w,b$ and not of $\x$, in terms of
-predicting a value the \ac{MSE} is a function of $\x$ parametrized by $\w,b$ (see
+Note that for minimization, the \ac{MSE} is a function of $\w,b$, and not of $\x$.
+In predicting a value, the \ac{MSE} is a function of $\x$ parametrized by $\w,b$ (see
 Equation~\ref{eq:mseOpt}).
-In Equation~\ref{eq:linReg} \w,$b$ are parameters that have to be learned in order to minimize
+In Equation~\ref{eq:linReg} \w,$b$ are parameters that must be learned to minimize
 the generalization error~\citep{james_introduction_2013,geron_hands-machine_2017}.
-For other tasks such as binary classification, the metric (e.g. \fone) and the
+For other tasks such as binary classification, the metric (e.g., \fone) and the
 objective function (binary cross entropy loss) are different~\citep{geron_hands-machine_2017,
 ho_real-world-weight_2020}.
-For optimization the \ac{GD} algorithm is prevalent, especially in the subfield of \ac{DL}.
-As the name suggests, the gradient is used to iteratively update the parameters $\w,b$ to arrive
-at a minimum of the objective function (see Equation~\ref{eq:gradDescW}
+For optimization, the \ac{GD} algorithm is prevalent, especially in the subfield of \ac{DL}.
+As the name suggests, the gradient is used to update the parameters $\w,b$ iteratively  to arrive
+at a minimum of the objective function (see Equations~\ref{eq:gradDescW}
 and~\ref{eq:gradDescb})~\citep{geron_hands-machine_2017}.
 \begin{equation}\label{eq:gradDescW}
     \w'\leftarrow \w-\epsilon\cdot\nabla_{\w} \textsf{MSE}(\w,b)
@@ -107,23 +107,23 @@ and~\ref{eq:gradDescb})~\citep{geron_hands-machine_2017}.
     }
 \end{figure}
 The learning rate constant $\epsilon$ can be adjusted to speed up or slow down the `steps' which
-can have different effects on the convergence~\citep{goodfellow_deep_2016}.
-There are more sophisticated variations of the \ac{GD} algorithm which are more suited for practical
-application (e.g. RMSProp, Adam)~\citep{geron_hands-machine_2017}.
+can affect the convergence~\citep{goodfellow_deep_2016}.
+More sophisticated variations of the \ac{GD} algorithm are more suited for practical
+application (e.g., RMSProp, Adam)~\citep{geron_hands-machine_2017}.
 Note that the process minimizes the test error with the test set $\Xt$.
-The effect on the generalization error depends on model capacity which is the space of functions
+The effect on the generalization error depends on model capacity, which is the space of functions
 the model enables~\citep{goodfellow_deep_2016}.
 Linear Regression has the capacity to fit data with a linear relationship between features and
 ground truth.
-If the underlying relationship is more complicated, the model can only underfit the data (model
-bias)~\citep{goodfellow_deep_2016}.
-Polynomial Regression has more capacity for example.
-Say the real relationship between features and ground truth now actually is linear;
-the Polynomial Regression model can overfit for statistical outliers in the training set which is why
-in this case the model with the lower capacity can achieve a lower generalization
+If the underlying relationship is more complicated than that, the model can only underfit the data
+(model bias)~\citep{goodfellow_deep_2016}.
+Polynomial Regression has more capacity than Linear Regression, for example.
+Say the actual relationship between features and ground truth now actually is linear;
+the Polynomial Regression model can overfit for statistical outliers in the training set, which is why
+in this case, the model with the lower capacity can achieve a lower generalization
 error~\citep{geron_hands-machine_2017}.
-Therefore, it is important to improve the bias/variance tradeoff.
-Aside from model selection, there are different techniques used to prevent overfitting
+Therefore, it is essential to improve the bias/variance tradeoff.
+Aside from model selection, different techniques are used to prevent overfitting
 (Regularization)~\citep{goodfellow_deep_2016}.
 \begin{figure}[h]
     \centering
@@ -139,27 +139,27 @@ Aside from model selection, there are different techniques used to prevent overf
 \end{figure}
 
 \section{Deep Learning}
-In \ac{DL}, \acp{DNN} are leveraged to automatically learn new representations of data through
-multiple layers of abstraction.
+In \ac{DL}, \acp{DNN} are leveraged to learn new data representations through
+multiple layers of abstraction automatically .
 This makes \acp{DNN} powerful function approximators~\citep{goodfellow_deep_2016}.
-\ac{DL} has only caught on in the recent years as the big computational cost has been met
-by improvement in computer hardware as well as in automatic feature
+\ac{DL} has only caught on in recent years as the enormous computational cost has been met
+by improvement in computer hardware and automatic feature
 learning~\citep{ponti_everything_2017, chen_text_2021}.
-In this section the basics of \acp{NN} are explained and popular basic architectures thereof are
+In this section, the basics of \acp{NN} are explained, and popular basic architectures thereof are
 introduced.
 % XXX: add freeing of researchers from manually crafting features \cite{long_scene_2021}
 
-The most basic \ac{NN} is called a feedforward \ac{NN} or \ac{MLP} where the information only
+The most basic \ac{NN} is called a feedforward \ac{NN} or \ac{MLP}, where the information only
 flows in one direction (in contrast to \acp{RNN} or Transformers)~\citep{goodfellow_deep_2016}.
-The network is made up of so called artificial neurons.
-These neurons are arranged as a directed acyclic graph arranged in multiple
+The network is made up of so-called artificial neurons.
+These neurons are arranged as a directed acyclic graph in multiple
 layers~\citep{goodfellow_deep_2016}.
-The first layer which receives the input features $\x$ is called the input layer, the last layer
+The first layer, which receives the input features $\x$, is called the input layer, the last layer
 which outputs the final estimation of $\hat{y}$ or $\hat{\y}$ is called the output layer, all layers in between
 are called the hidden layers~\citep{shrestha_review_2019}.
-The structure with which the \ac{NN} is build in terms of how many layers, how many neurons in each
-layer and how they are connected, is called architecture~\citep{goodfellow_deep_2016}.
-The number of layers $d$ is refered to as depths, whereas the dimensionality of those layers is
+The structure with which the \ac{NN} is built in terms of how many layers, how many neurons are in
+each layer, and how they are connected, is called architecture~\citep{goodfellow_deep_2016}.
+The number of layers $d$ is referred to as depths, whereas the dimensionality of those layers is
 called the width $w$~\citep{goodfellow_deep_2016}.
 \begin{figure}[ht]
 	\centering
@@ -171,19 +171,19 @@ called the width $w$~\citep{goodfellow_deep_2016}.
     }
 \end{figure}
 A neuron, the basic building block of \acp{NN}, receives input from neurons in the previous layer
-and calculates a single value which is propagated to neurons in the following
+and calculates a single value propagated to neurons in the following
 layer~\citep{shrestha_review_2019}.
 The value is calculated by feeding the received information into a Linear Regression model (see
 Equation~\ref{eq:linReg}).
-The resulting value is fed into an activation function $g$ which introduces nonlinearity, to allow
+The resulting value is fed into an activation function $g$ which introduces nonlinearity to allow
 more complicated transformations of information and representation~\citep{goodfellow_deep_2016}.
 \begin{equation}\label{eq:neuron}
     f(\x;\T) = g(\T\x)=\z
 \end{equation}
-Here $f$ denotes the function which is performed by a layer of neurons (linearity + activation).
-The parameters of the individual neurons are grouped together to $\T$ ($\T_{:,0}$ equals 1 for the
+Here $f$ denotes the function performed by a layer of neurons (linearity + activation).
+The parameters of the individual neurons are grouped to $\T$ ($\T_{:,0}$ equals 1 for the
 bias term).
-Popular activation functions include \relu, $\tanh$, sigmoid ($\sigma$) and
+Popular activation functions include \relu, $\tanh$, sigmoid ($\sigma$), and
 \sfmx~\citep{shrestha_review_2019}.
 \begin{equation}\label{eq:relu}
     \relu(x)=\max(0,x)
@@ -199,31 +199,31 @@ Popular activation functions include \relu, $\tanh$, sigmoid ($\sigma$) and
 \end{equation}
 While \relu\ is the prevalent function for feedforward \ac{NN}~\citep{goodfellow_deep_2016},
 $\tanh$ is often used in \acp{RNN} like in~\cite{sherstinsky_fundamentals_2020,greff_lstm_2017}.
-Sigmoid (\sfmx) activation functions, used for the output layer, are used to generate a bernoulli
-(multinouli) distribution which is useful for classification tasks~\citep{goodfellow_deep_2016}.
-Note that for e.g.\ regression, the output layer can omit the activation
+Sigmoid (\sfmx) activation functions, used for the output layer, are used to generate a Bernoulli
+(Multinouli) distribution which is helpful for classification tasks~\citep{goodfellow_deep_2016}.
+For, e.g.\ regression, the output layer can omit the activation
 function~\citep{goodfellow_deep_2016}.
-The calculation of the prediction is basically a concatenation of the functions defined by the
+The prediction calculation is a concatenation of the functions defined by the
 layers and their neurons, the process of which is called
-forwardpropagation~\citep{ponti_everything_2017,goodfellow_deep_2016}.
+forward propagation~\citep{ponti_everything_2017,goodfellow_deep_2016}.
 \begin{equation}\label{eq:NNconcat}
     \hat{y}=f(\ldots f(f(\x;\T^{(1)});\T^{(2)})\ldots;\T^{(d)})
 \end{equation}
 $\T^{(i)}$ in Equation~\ref{eq:NNconcat} stands for the parameters in layer i with $\T^{(i)}_{j,:}$
 being the parameters the $j$-th neuron in that layer~\citep{goodfellow_deep_2016}.
-The forwardpropagation can also be described by a computational graph (see
+The forward propagation can also be described by a computational graph (see
 Figure~\ref{fig:multilayer-perceptron})~\citep{goodfellow_deep_2016}.
 
 The term \ac{DNN} comes from adding many hidden layers to the \ac{NN}~\citep{shrestha_review_2019}.
-This allows for a more complicated function and better developed features or representations that
+This allows for a more complicated function and better-developed features or representations that
 are extracted from the input feature vector $\x$~\citep{oyedotun_deep_2015}.
 The \ac{DNN} can be trained as a whole, thus making feature engineering redundant in contrast to
-normal \ac{ML} algorithms~\citep{arpteg_software_2018}.
+standard \ac{ML} algorithms~\citep{arpteg_software_2018}.
 The training algorithm is called backpropagation.
 The training error is calculated through the objective function and is propagated
-in conjunction with the output of forwardpropagation on each neuron~\citep{goodfellow_deep_2016}.
-For this the chain rule of calculus can be used to modularly, recursively propagate the
-loss backwards to use \ac{GD} (see Figure~\ref{fig:error-backpropagation}).
+in conjunction with the output of forward propagation on each neuron~\citep{goodfellow_deep_2016}.
+For this, the chain rule of calculus can be used to modularly recursively propagate the
+loss backward to use \ac{GD} (see Figure~\ref{fig:error-backpropagation}).
 % XXX: NNs are not convex
 \begin{figure}[ht]
 	\centering
@@ -234,7 +234,7 @@ loss backwards to use \ac{GD} (see Figure~\ref{fig:error-backpropagation}).
         updating the neurons parameters with gradient descent\label{fig:error-backpropagation}
     }
 \end{figure}
-The upstream gradient that is coming from neurons in the next layer is multiplied with the
+The upstream gradient coming from neurons in the next layer is multiplied with the
 jacobian matrix of the current neuron to produce the downstream gradient that is then used by
 the preceding layer~\citep{boue_deep_2018,goodfellow_deep_2016}.
 \begin{equation}\label{eq:backPropNeuronW}
@@ -262,12 +262,12 @@ convolutional layer, pooling layer~\citep{chauhan_review_2018,ponti_everything_2
 The fully connected layers are the layers that make up \acp{MLP}~\citep{ponti_everything_2017}.
 
 % conv layer
-A convolutional layer has multiple filters which consist of multiple
+A convolutional layer has multiple filters, which consist of multiple
 kernels~\citep{chauhan_review_2018}.
-For multi layer input, with $d$ so called channels, a filter has the same amount of kernels as there
+For multi-layer input, with $d$ so-called channels, a filter has the same amount of kernels as there
 are channels ($d$)~\citep{ponti_everything_2017}.
-Note that the height and width are refered to as spatial dimensions and the depth is refered to as
-the channel dimension.
+Note that the height and width are spatial dimensions, and the depth is referred to
+as the channel dimension.
 \begin{figure}[ht]
     \centering
     \include{figure-code/tikz/conv-layer-tikz}
@@ -275,22 +275,22 @@ the channel dimension.
         Convolution operation of a single kernel~\citep{chauhan_review_2018}\label{fig:conv-layer}
     }
 \end{figure}
-A kernel is a $n\times n$ square matrix made up of learnable parameters, so a filter is a tensor
+A kernel is a $n\times n$ square matrix of learnable parameters, so a filter is a tensor
 $n\times n\times d$.
-The convolution operation is the elementwise multiplication between the filter and overlapping
-$n\times n$ subspace of the input (see Figure~\ref{fig:conv-layer})~\citep{ponti_everything_2017}.
-The convolution operation is performed for every space in the input, spaces can be skipped if
-stride is introduced~\citep{ponti_everything_2017}.
+The convolution operation is the elementwise multiplication between the filter and the input's
+overlapping $n\times n$ subspace (see Figure~\ref{fig:conv-layer})~\citep{ponti_everything_2017}.
+The convolution operation is performed for every space in the input.
+Spaces can be skipped if stride is introduced~\citep{ponti_everything_2017}.
 Often zero-padding is used to preserve the spatial dimensions between input and output of
 the layer~\citep{ponti_everything_2017,simonyan_very_2015}.
 The number of filters a convolutional layer applies is equal to the output channels that the layer
-has which are often called feature maps~\citep{ponti_everything_2017}.
-The result of the convolution is usually fed into a \relu\ activation function to introduce
+has, which are often called feature maps~\citep{ponti_everything_2017}.
+The convolution result is usually fed into a \relu\ activation function to introduce
 nonlinearity like with fully connected layers.
-The activation is performed on every element in the output und preserves the
+The activation is performed on every element in the output and preserves the
 dimensionality~\citep{ponti_everything_2017}.
-In the explained scenario, the filter is slid across a 2d-surface to perform convolution, note that
-this can be restricted to 1d (for e.g.\ audio), or extended to 3d (for e.g. CT
+In the explained scenario, the filter is slid across a 2d-surface to perform convolution.
+Note that this can be restricted to 1d (e.g., audio) or extended to 3d (e.g., CT
 scans)~\citep{goodfellow_deep_2016}.
 
 % pooling
@@ -302,7 +302,7 @@ scans)~\citep{goodfellow_deep_2016}.
         dimensions\label{fig:pool-layer}
     }
 \end{figure}
-Pooling layers are used to reduce the spatial dimension (i.e.\ downsampling) of feature
+Pooling layers are used to reduce the spatial dimension (i.e., downsampling) of feature
 maps~\citep{ponti_everything_2017}.
 Pooling layers preserve the number of channels, as the operation is performed to each channel
 separately (see Figure~\ref{fig:pool-layer})~\citep{chauhan_review_2018}.
@@ -314,24 +314,24 @@ separately (see Figure~\ref{fig:pool-layer})~\citep{chauhan_review_2018}.
         2~\citep{chauhan_review_2018}\label{fig:maxpool}
     }
 \end{figure}
-Much like with convolutions (in 2d scenario), the pooling operation is slid across the height and
-weight dimensions of the channels (possibly with stride) and the pooling operation is
+Much like with convolutions (in 2d scenario) the pooling operation is slid across the height and
+weight dimensions of the channels (possibly with stride), and the pooling operation is
 performed~\citep{ponti_everything_2017,chauhan_review_2018}.
 The most popular kind of pooling is maxpooling~\citep{ponti_everything_2017}.
-For the operation only the maximum value of the current subspace of the current channel is
+For the operation, only the maximum value of the current subspace of the current channel is
 taken (see Figure~\ref{fig:maxpool})~\citep{chauhan_review_2018}.
 
 % XXX: receptive fields!
 When it comes to training deep \acp{CNN}, the problem of vanishing/exploding gradients occurs during
 backpropagation.
-This problem can be impede convergence~\citep{he_deep_2015}.
-It can be solved by normalized intitialization of the network's weights and intermediate
+This problem can impede convergence~\citep{he_deep_2015}.
+It can be solved by normalized initialization the network's weights and intermediate
 batch normalization layers~\citep{he_deep_2015,bjorck_understanding_2018}.
 Layer normalization can also be used~\citep{liu_rethinking_2021,ba_layer_2016}.
-ResNet introduced residual blocks with skip connections which pass the gradient to later layers
-to bypass exedingly deep \ac{NN} to overcome the degradation problem (where deep \ac{NN} perform
+ResNet introduced residual blocks with skip connections that pass the gradient to later layers
+to bypass exceedingly deep \ac{NN} to overcome the degradation problem (where deep \acp{NN} perform
 worse than shallow ones)~\citep{he_deep_2015}.
-These skip connections basically map the identity of ealier layer to later
+These skip connections map the identity of the previous layers to later
 layers~\citep{he_deep_2015}.
 \begin{figure}[ht]
     \centering
@@ -343,7 +343,7 @@ layers~\citep{he_deep_2015}.
 \end{figure}
 
 \section{Recurrent Neural Nets}
-\acp{RNN} are another popular category of \ac{NN} which are used for processing sequential input,
+\acp{RNN} are another popular category of \ac{NN} used for processing sequential input,
 like text and speech~\citep{chauhan_review_2018}.
 Figure~\ref{fig:rnn-unrolling} shows a simple \ac{RNN}.
 \begin{figure}[ht]
@@ -359,8 +359,7 @@ A sequence of inputs \X\ is iteratively fed into the \ac{RNN}.
 The current layer of the network takes $\x^{(t)}$ and $\h^{(t-1)}$ and produces $\h^{(t)}$
 (see Equation~\ref{eq:rnn-h}).
 Additionally, $\h^{(t)}$ is used to calculate the output $\hat{\y}^{(t)}$ (see
-Equation~\ref{eq:rnn-yh})
-and it is handed to the next layer~\citep{goodfellow_deep_2016}.
+Equation~\ref{eq:rnn-yh}), and it is handed to the next layer~\citep{goodfellow_deep_2016}.
 $\h^{(t)}$ is thought of as a hidden state which stores information from previous
 inputs~\citep{goodfellow_deep_2016}.
 \begin{equation}\label{eq:rnn-h}
@@ -376,9 +375,10 @@ During an execution run, all unrolled layers share the same weights
 This makes gradients from backpropagation vulnerable to exploding/vanishing gradients if the
 singular values of those weight matrices are $>1$ or
 $<1$~\citep{goodfellow_deep_2016,pascanu_difficulty_2013}.
-The example \ac{RNN} produced a output sequence the same length as the input
-sequence, however, this does not have to be the case for \acp{RNN}~\citep{goodfellow_deep_2016}.
-Depending on the chosen \ac{RNN}, noth the input and the output can either be a sequence of
+The example \ac{RNN} produced an output sequence the same length as the input
+sequence.
+However, this does not have to be the case for \acp{RNN}~\citep{goodfellow_deep_2016}.
+Depending on the chosen \ac{RNN}, both the input and the output can either be a sequence of
 variable length or a vector of fixed length~\citep{goodfellow_deep_2016}.
 Optimization of the parameters of \acp{RNN} is performed with (truncated) backpropagation through
 time~\citep{sherstinsky_fundamentals_2020}.
@@ -396,16 +396,18 @@ layers~\citep{chauhan_review_2018}.
     }
 \end{figure}
 The \ac{LSTM} also improves upon the vanishing gradients problem associated with
-increasingly deep \acp{NN}~\citep{sherstinsky_fundamentals_2020} (clipping gradients is often used
-to help with exploding gradients~\citep{goodfellow_deep_2016}).
-A so called cell is shown in Figure~\ref{fig:lstm}, it shows the basic structure which represents
-the recurrent building block of \acp{LSTM}~\citep{goodfellow_deep_2016}.
+increasingly deep \acp{NN}~\citep{sherstinsky_fundamentals_2020}
+The clipping gradients technique is often used to help with exploding
+gradients~\citep{goodfellow_deep_2016}.
+A so-called cell is shown in Figure~\ref{fig:lstm}.
+It shows the basic structure, representing the recurrent building block of
+\acp{LSTM}~\citep{goodfellow_deep_2016}.
 The three gates (input, forget, output) help make the \ac{LSTM} a widely used \ac{NN} model.
-The gates calculate weights between 0 and 1 (thus the use of $\sigma$) that are used to control
+The gates calculate weights between 0 and 1 (thus the use of $\sigma$) used to control
 the flow of information~\citep{goodfellow_deep_2016}.
-The forget gate is part of a self loop which helps to accumulate information longer, the input
-gate helps to focus on the relevant characteristics of the input information
-and the output gate removes irrelevant information for the output as well as the next
+The forget gate is part of a self-loop which helps to accumulate information longer, the input
+gate helps to focus on the relevant characteristics of the input information,
+and the output gate removes irrelevant information for the output and the next
 cell~\citep{goodfellow_deep_2016}.
 \begin{equation}\label{eq:lstm-gates}
     \begin{pmatrix}
@@ -433,34 +435,34 @@ cell~\citep{goodfellow_deep_2016}.
 \begin{equation}\label{eq:lstm-h}
     \h_t=\textbf{o}_t\otimes\tanh(\textbf{c}_t)
 \end{equation}
-The Equations~\ref{eq:lstm-gates},~\ref{eq:lstm-c} and~\ref{eq:lstm-h} show the calculations
+Equations~\ref{eq:lstm-gates},~\ref{eq:lstm-c}, and~\ref{eq:lstm-h} show the calculations
 performed for a single timestep~\citep{xu_show_2016}.
 $\sigma$ and $\tanh$ denote the application of activation functions after the weight matrix $T$
 is multiplied by the stacked input $\x_t,\h_{t-1}$~\citep{zaremba_recurrent_2015}.
-$\textbf{i}_t,\textbf{f}_t,\textbf{o}_t$ are the output of the input gate, forget gate and output
+$\textbf{i}_t,\textbf{f}_t,\textbf{o}_t$ are the output of the input gate, forget gate, and output
 gate.
 $\textbf{c}_t,\textbf{h}_t$ are the cell states and outputs to the next step or the
 prediction sequence~\citep{zaremba_recurrent_2015}.
 
 \acp{RNN} are often used with the \ac{EnDe} mechanism introduced by~\cite{cho_learning_2014}.
-This mechanism is a structure for \ac{NN} that is used for a variety of problems.
-It was originally designed to use \acp{RNN} to transform an input sequence into a output sequence
-for e.g.~translation~\citep{cho_learning_2014}.
-The output of which can be of variable length (the end is usually indicated by a special
-token)~\citep{cho_learning_2014,asadi_encoder-decoder_2020}.
-The \ac{EnDe} mechanism entails two parts: The encoder which transforms the input into a
-different representation, it compresses all the information from the input into a feature vector;
-the decoder uses that the extracted features to generate the output
+This mechanism is a structure for \ac{NN} that is used for various problems.
+Initially, it was designed to use \acp{RNN} to transform an input sequence into an output sequence,
+e.g., translation~\citep{cho_learning_2014}.
+The output of which can be of variable length (a special token usually indicates the
+end)~\citep{cho_learning_2014,asadi_encoder-decoder_2020}.
+The \ac{EnDe} mechanism entails two parts: The encoder, which transforms the input into a
+different representation, compresses all the information from the input into a feature vector;
+the decoder uses the extracted features to generate the output
 predictions~\citep{asadi_encoder-decoder_2020,cho_learning_2014}.
 The decoder can thus use the whole input context at once~\citep{asadi_encoder-decoder_2020}.
 The output associated with decoders is sequential~\citep{asadi_encoder-decoder_2020}.
 The mechanism can be implemented in different ways.
 Both purely \acp{RNN} based~\citep{cho_learning_2014} implementations and mixtures along with
 \acp{CNN}~\citep{ghosh_visual_2017} exist~\citep{asadi_encoder-decoder_2020}.
-The \ac{RNN} \ac{EnDe} can be used to transform a sequence of variable length into another
-sequence with different variable length~\citep{cho_learning_2014}.
+The \ac{RNN} \ac{EnDe} can transform a sequence of variable lengths into another
+sequence with different variable lengths~\citep{cho_learning_2014}.
 The encoder processes the input sequence and crafts a representation vector that encodes information
-and context for the whole input sequence which can then be used for every time step in the decoder
+and context for the whole input sequence, which can then be used for every step in the decoder
 network (see Figure~\ref{fig:enc-dec-rnn})~\citep{cho_learning_2014}.
 \begin{figure}[h]
     \centering
@@ -470,7 +472,7 @@ network (see Figure~\ref{fig:enc-dec-rnn})~\citep{cho_learning_2014}.
         architecture~\citep{cho_learning_2014}\label{fig:enc-dec-rnn}
     }
 \end{figure}
-An example use for an \ac{EnDe} architecture with a \ac{CNN} encoder and a \ac{RNN} decoder
+An example used for an \ac{EnDe} architecture with a \ac{CNN} encoder and a \ac{RNN} decoder
 would be image captioning~\citep{asadi_encoder-decoder_2020}.
 The image is encoded into a vector which includes context for the whole
 image~\citep{asadi_encoder-decoder_2020}.
@@ -486,37 +488,36 @@ image~\citep{asadi_encoder-decoder_2020}.
 \section{Scene Text Spotting}\label{se:sts}
 %% intro
 % def, ocr vs sts
-\ac{OCR} is the concept of extracting typed, handwritten or printed text
+\ac{OCR} is the concept of extracting typed, handwritten, or printed text
 from an image~\citep{zhao_improving_2020}.
 Achieving satisfactory performance of \ac{OCR} systems in natural scenes is still
 challenging~\citep{zhao_improving_2020, chen_text_2021}.
 Such scenes entail natural scenes captured by a camera~\citep{chen_text_2021, baek_what_2019}.
-The difficulties arise from diviersity and variability of text, complexity and interference from
-backgrounds and imperfect imaging conditions.
-In these conditions \ac{OCR} is known as \ac{STS}~\citep{long_scene_2021}.
+The difficulties arise from diversity and variability of text, complexity, and interference from
+backgrounds, and poor imaging conditions.
+In these conditions, \ac{OCR} is known as \ac{STS}~\citep{long_scene_2021}.
 % DL influence
 Before the advent of \ac{DL}, researchers in the field had to hand-craft
 features~\citep{long_scene_2021}.
 \ac{DL} automates the feature generation process with its representation and learning
 capabilities~\citep{long_scene_2021,goodfellow_deep_2016}.
-Because of this, \ac{DL} methods are the prefered tools for performing
+Because of this, \ac{DL} methods are the preferred tools for performing
 \ac{STS}~\citep{long_scene_2021}.
 % STD, STR, end to end
 \ac{OCR} and \ac{STS} are often divided into two subcategories (Scene) Text Detection and (Scene)
 Text Recognition~\citep{zhao_improving_2020, long_scene_2021,chen_text_2021}.
-For \ac{STD} the task is to localize text instances in the image, whereas the \ac{STR} task
+For \ac{STD}, the task is to localize text instances in the image, whereas the \ac{STR} task
 is to recognize/categorize text from already cropped images~\citep{chen_text_2021}.
-Note that a system which performs both \ac{STR} and \ac{STD} in one continuous pipeline are called
-end-to-end approaches~\citep{chen_text_2021}.
+Note that a system that performs both \ac{STR} and \ac{STD} in one continuous pipeline is called
+an end-to-end approach~\citep{chen_text_2021}.
 
 %% evaluation metrics
 % XXX: properties and pros for different metrics
 % XXX: table with task, metric, properties/why it's used
-To assess the performance of the developed approaches, the right evaluation metrics
-have too be used.
+The right evaluation metrics must be used to assess the performance of developed approaches.
 % STD
-The popular protocols Precision, Recall and the \fone\ are used for
-comparison among approaches for \ac{STD}~\citep{long_scene_2021}.
+The popular protocols Precision, Recall, and the \fone\ are used to compare
+approaches for \ac{STD}~\citep{long_scene_2021}.
 The metrics are derived with values from the confusion matrix (see
 Tabel~\ref{tb:confusionMatrix})~\citep{davis_relationship_2006}.
 \begin{table}[ht]
@@ -546,78 +547,78 @@ The difference of metrics for the task manifests itself in the way the values of
 are calculated~\citep{long_scene_2021}.
 Note that the tradeoff between False Positives and Fales Negatives manifests itself in the
 Precision-versus-Recall curve~\citep{su_relationship_2015}.
-\fone\ is also refered to as the harmonic mean (between Precision and
+\fone\ is also referred to as the harmonic mean (between Precision and
 Recall)~\citep{he_icpr2018_2018}.
 % XXX: PvR curve figure
 % XXX: introduce ROC curve --- ratio of true positive rate and false positive rate, and
 %           relationship to PvR curve/AP
-\ac{STD} differs mostly in the way the protocols match the prediction to the ground
+\ac{STD} differs mainly in how the protocols match the prediction to the ground
 truth~\citep{long_scene_2021}.
 Detectors have multiple predictors which regress the placing and sizing of \acp{BB}.
 More information on this will follow in Chapter~\ref{ch:research}.
 Matching is the process of assigning a \ac{BB} prediction to the ground
-truth, like in e.g.~\cite{liu_ssd_2016,liao_textboxes_2018}.
+truth, e.g.,~\cite{liu_ssd_2016,liao_textboxes_2018}.
 The PASCAL approach defines the \ac{IOU} (see Equation~\ref{eq:iou}).
 \begin{equation}\label{eq:iou}
     \ac{IOU}=
             \frac{\text{area of intersection between truth and prediction}}{\text{area of union
             between truth and prediction}}
 \end{equation}
-For PASCAL, the prediction will be matched, if the \ac{IOU} value is larger than a
-threshhold~\citep{long_scene_2021}.
+For PASCAL, the prediction will be matched if the \ac{IOU} value is larger than a
+threshold~\citep{long_scene_2021}.
 A match is considered a True Positive, the other values are assigned
 accordingly~\citep{sun_icdar_2019}.
-% more BB have IOU>threshhold -> depending on situation all or greatest value
-Other evaluation approaches are mostly based on \ac{IOU}, e.g. MSRA-TD 500 evaluates the rotation
-from the \ac{BB}, compared to the truth in addition to the \ac{IOU}
-threshhold~\citep{long_scene_2021}.
+% more BB have IOU>threshold -> depending on situation all or greatest value
+Other evaluation approaches are mostly based on \ac{IOU}, e.g., MSRA-TD 500 evaluates the rotation
+from the \ac{BB} compared to the truth and the \ac{IOU}
+threshold~\citep{long_scene_2021}.
 \cite{long_scene_2021} argues that researchers in the field of \ac{STD} should consider \ac{AP}
-as the main evaluation protocol rather than \fone.
+as the primary evaluation protocol rather than \fone.
 According to~\cite{su_relationship_2015}, \ac{AP} can be considered the area under the
 Precision-versus-Recall curve.
-\fone\ on the other hand only considers singular instances on that curve~\citep{long_scene_2021} and
-is sensitive to the tradeoff while \ac{AP} is invariant to it~\citep{shi_icdar2017_2017}.
+\fone, on the other hand, only considers singular instances on that curve~\citep{long_scene_2021} and
+is sensitive to the tradeoff, while \ac{AP} is invariant to it~\citep{shi_icdar2017_2017}.
 
 % STR
-For \ac{STR} the evaluation can be based on character-level or word-level.
+For \ac{STR}, the evaluation can be based on character-level or word-level.
 There is no need to match ground truth to prediction, as the image is already
 cropped~\citep{long_scene_2021}.
-Often lexicons which contain possible words, are used by \ac{STR}.
-Testing as well as real world performance can depend strongly on these
+Often lexicons that contain possible words are used by \ac{STR}.
+Testing and real-world performance can depend strongly on these
 lexicons~\citep{chen_text_2021,long_scene_2021}.
 The equations~\ref{eq:wordRecognitionAccuracy} and~\ref{eq:wordErrorRate} show metrics based on
-word level~\citep{chen_text_2021}.
+word-level~\citep{chen_text_2021}.
 \begin{equation}\label{eq:wordRecognitionAccuracy}
 \text{Word Recognition Accuracy} = \frac{\text{correctly recognized words}}{\text{total words}}
 \end{equation}
 \begin{equation}\label{eq:wordErrorRate}
     \text{Word Error Rate} = 1 - \text{Word Recognition Accuracy}
 \end{equation}
-An example for a character-based metric would be $1 - $NED where \ac{NED}
+An example for a character-based metric would be $1 - $NED, where \ac{NED}
 calculates the distance between prediction and ground truth (see Equation~\ref{eq:ned}).
 \begin{equation}\label{eq:ned}
     \text{NED} = \frac{1}{N}\sum_{i=1}^N \frac{D(s_i,\hat{s}_i)}{\max(l_i,\hat{l_i})}
 \end{equation}
-D denotes the Levenshtein distance, s denotes the text, l denotes the text length and N is the total
+D denotes the Levenshtein distance, s denotes the text, l denotes the text length, and N is the total
 number of text lines~\citep{shi_icdar2017_2017}.
-For \ac{STR} \ac{NED} is used over the whole dataset~\citep{karatzas_icdar_2013}.
+For \ac{STR}, \ac{NED} is used over the whole dataset~\citep{karatzas_icdar_2013}.
 
 \ac{STS} is oriented to both \ac{STD} and \ac{STR}.
-The prediction has to be matched to the ground truth like for \ac{STD}~\citep{long_scene_2021}.
-For comparing predictions and matched the respective ground truths that have been matched, \ac{NED}
+The prediction must be matched to the ground truth, like for \ac{STD}~\citep{long_scene_2021}.
+For comparing predictions and matching the respective ground truths that have been matched, \ac{NED}
 is used~\citep{chen_text_2021}.
-For end-to-end recognition~\citep{karatzas_icdar_2013,karatzas_icdar_2015}, the main evaluation
-protocols that are used include Precision, Recall, \fone\ and \ac{AED}~\citep{chen_text_2021}.
+For end-to-end recognition~\citep{karatzas_icdar_2013,karatzas_icdar_2015}, the primary evaluation
+protocols that are used include Precision, Recall, \fone, and \ac{AED}~\citep{chen_text_2021}.
 A sample is considered a True positive if the \ac{NED} distance between predictions and
-matched ground truths is equal to 0~\citep{sun_icdar_2019} (on sample can have multiple text
+matched ground truths equals 0~\citep{sun_icdar_2019} (one sample can have multiple text
 instances).
-\ac{AED} is the sum of \ac{NED} values devided by the number of pictures~\citep{chen_text_2021}.
-Note that competitions often define their own variants of the metrics,
-e.g.~\cite{he_icpr2018_2018,shi_icdar2017_2017}.
-Case sensitivity and matching criteria are examples for changing properties of metrics.
+\ac{AED} is the sum of \ac{NED} values divided by the number of pictures~\citep{chen_text_2021}.
+Note that competitions often define their variants of the metrics,
+e.g.,~\cite{he_icpr2018_2018,shi_icdar2017_2017}.
+Case sensitivity and matching criteria are examples of changing properties of metrics.
 
-To compare approaches with these metrics benchmark datasets are used which have different
-characteristics.
+To compare approaches with these metrics, benchmark datasets that have different characteristics
+are used.
 \begin{table}[ht]
     \centering\scriptsize
     \begin{tabular}{p{.25\textwidth}p{.05\textwidth}p{.05\textwidth}p{.15\textwidth}p{.25\textwidth}}
@@ -637,12 +638,12 @@ characteristics.
     \end{tabular}
     \caption{Benchmark datasets and their properties\label{tb:datasets}}
 \end{table}
-Table~\ref{tb:datasets} lists a couple of influencial benchmark datasets along with their key
+Table~\ref{tb:datasets} lists a couple of influential benchmark datasets and their fundamental
 properties.
 ICDAR (2013) references the Focused Scene Text dataset~\citep{karatzas_icdar_2013} and ICDAR 2015
 to the Incidental Text Competition dataset~\citep{karatzas_icdar_2015}.
-The second and third column indicate whether the dataset provides annotations for the tasks.
-The Text Orientation column specifies the most complicated orientation that is present in the dataset
+The second and third columns indicate whether the dataset provides annotations for the tasks.
+The Text Orientation column specifies the most complicated orientation present in the dataset
 (Curved $\subset$ Multi-oriented $\subset$ Horizontal).
-A collection of images which shows representational examples taken out of benchmark datasets, can
-be found in the Appendix~\ref{ch:app-datasets}.
+A collection of images that shows representative examples taken out of benchmark datasets can
+be found in Appendix~\ref{ch:app-datasets}.
