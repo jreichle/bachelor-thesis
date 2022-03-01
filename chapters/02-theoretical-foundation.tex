@@ -282,7 +282,7 @@ overlapping $n\times n$ subspace (see Figure~\ref{fig:conv-layer})~\citep{ponti_
 The convolution operation is performed for every space in the input.
 Spaces can be skipped if stride is introduced~\citep{ponti_everything_2017}.
 Often zero-padding is used to preserve the spatial dimensions between input and output of
-the layer~\citep{ponti_everything_2017,simonyan_very_2015}.
+the layer (known as same-padding)~\citep{ponti_everything_2017,simonyan_very_2015}.
 The number of filters a convolutional layer applies is equal to the output channels that the layer
 has, which are often called feature maps~\citep{ponti_everything_2017}.
 The convolution result is usually fed into a \relu\ activation function to introduce

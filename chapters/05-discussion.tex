@@ -26,13 +26,13 @@ Table~\ref{tb:STD-steps-properties}).
     \begin{tabular}{p{.09\textwidth}p{.10\textwidth}p{0.70\textwidth}}
         \multicolumn{2}{c}{\textbf{Approach category}} & \textbf{Shortcommings} \\
         \toprule
-        Seg free & & Curved text representation~\citep{long_scene_2021,wang_shape_2019} \\
+        Seg-free & & Curved text representation~\citep{long_scene_2021,wang_shape_2019} \\
         & & Linear anchor box bias with curved text~\citep{wang_shape_2019,ferrari_textsnake_2018} \\
         & & High aspect ratio test~\citep{shi_detecting_2017,long_scene_2021} \\
-        & One Stage & More efficient, straightforward architecture~\citep{lu_mimicdet_2020} \\
-        & Twe Stage & More accurate predictions due to refinement~\citep{lu_mimicdet_2020} \\
+        & One-stage & More efficient, straightforward architecture~\citep{lu_mimicdet_2020} \\
+        & Twe-stage & More accurate predictions due to refinement~\citep{lu_mimicdet_2020} \\
         \midrule
-        Seg based & & Separating different text instances~\citep{wang_shape_2019} \\
+        Seg-based & & Separating different text instances~\citep{wang_shape_2019} \\
         & & Text instance construction is complex and computation
             intensive~\citep{xie_aggregation_2019,liao_real-time_2019,qiao_text_2021} \\
         & & Incorporate several computation intensive stages~\citep{dai_fused_2018} \\
@@ -41,7 +41,7 @@ Table~\ref{tb:STD-steps-properties}).
     \end{tabular}
     \caption{STD approach category comparison\label{tb:STD-comparison}}
 \end{table}
-Segmentation free or \ac{BB} regression based approaches have trouble with curved text because of
+Segmentation-free or \ac{BB} regression based approaches have trouble with curved text because of
 the anchor boxes' linear bias~\citep{wang_shape_2019,ferrari_textsnake_2018}.
 Additionally, the regressed \acp{BB} have trouble accurately representing the shape of curved
 text instances~\citep{long_scene_2021,wang_shape_2019}.
@@ -50,11 +50,11 @@ hand~\citep{liao_textboxes_2018,jiang_r2cnn_2017}.
 Long aspect ratios are another problem of scene text which degrades \ac{BB} regression
 performance~\citep{shi_detecting_2017,long_scene_2021}.
 
-On the other hand, segmentation based approaches take advantage of the fact that every part of the
+On the other hand, segmentation-based approaches take advantage of the fact that every part of the
 text instance can locally be verified as such~\citep{long_scene_2021}.
-Note that no noteworthy comparison of subcomponent or pixel level segmentation could be identified.
+Note that no noteworthy comparison of sub-text level or pixel-level segmentation could be identified.
 The bottom-up approach alleviates the problem of long aspect ratios~\citep{shi_detecting_2017}.
-The segmentation based approaches facilitate a more natural representation of curved
+The segmentation-based approaches facilitate a more natural representation of curved
 text~\citep{dai_fused_2018,long_scene_2021} (see Figure~\ref{fig:curved-text-representations}).
 
 However, the segmentation pipeline is more computation-intensive, as it incorporates more complex
@@ -64,8 +64,8 @@ The text instance construction goes hand in hand with the separation of differen
 This challenging task is vulnerable to noise~\citep{long_scene_2021} and focuses on
 many innovations (see Figure~\ref{fig:curved-text-representations}).
 
-When comparing \ac{BB} regression approaches, one stage approaches are generally more
-efficient  because of their straightforward architecture, while two stage approaches can generally
+When comparing \ac{BB} regression approaches, one-stage approaches are generally more
+efficient  because of their straightforward architecture, while two-stage approaches can generally
 predict the more accurately  because of the refinement process~\citep{lu_mimicdet_2020}.
 What \ac{STD} is concerned, the bottom line seems to be:
 Is curved text detection or efficiency more critical?
@@ -73,37 +73,37 @@ Is curved text detection or efficiency more critical?
 \ac{STR} research focuses on accurately recognizing 2d text instances.
 The innovations found for \ac{STR} (see Table~\ref{tb:STR-steps-properties}) show that the research
 mainly focuses on robustly recognizing curved text instances (rectification approaches and
-2d attention).
-Additionally, it can be noted that the innovative approaches are mostly attention based.
+2d-attention).
+Additionally, it can be noted that the innovative approaches are mostly attention-based.
 However, attention also has shortcomings (see Figure~\ref{tb:STR-comparison}).
 \begin{table}[h]
     \centering\scriptsize
     \begin{tabular}{p{.09\textwidth}p{.15\textwidth}p{0.66\textwidth}}
         \multicolumn{2}{c}{\textbf{Approach category}} & \textbf{Shortcommings} \\
         \toprule
-        Seg based & & Accurate detection of individual
+        Seg-based & & Accurate detection of individual
                         characters~\citep{chen_text_2021,cheng_aon_2018} \\
         & & Disregard for contextual information between characters~\citep{chen_text_2021} \\
         & & Incorporate several computation intensive stages~\citep{liu_abcnet_2020} \\
         \midrule
-        \ac{EnDe} based & & Curved and multi-oriented text~\citep{cheng_aon_2018, long_scene_2021} \\
-        & CTC based & Prone to overfitting~\citep{chen_text_2021} \\
+        \ac{EnDe}-based & & Curved and multi-oriented text~\citep{cheng_aon_2018, long_scene_2021} \\
+        & CTC-based & Prone to overfitting~\citep{chen_text_2021} \\
         & & Computation extensive CTC probabilities~\citep{xie_aggregation_2019} \\
         & & Isolated word recognition~\citep{cong_comparative_2019} \\
         & & Not applicable to recognition of 2d text instance~\citep{cheng_focusing_2017,
             xie_aggregation_2019,chen_text_2021} \\
-        & Attention based & Sentence and long sequence
+        & Attention-based & Sentence and long sequence
             recognition~\citep{cong_comparative_2019,chen_text_2021} \\
         & & Problems without vocabulary~\citep{wan_vocabulary_2020} \\
         & & Attention drift leads to missing or superfluous
             characters~\citep{liao_scene_2018,xie_aggregation_2019,chen_text_2021}\\
-        & & Adapted 2d attention requires a lot of storage and
+        & & Adapted 2d-attention requires a lot of storage and
             computation~\citep{xie_aggregation_2019,chen_text_2021} \\
         \bottomrule
     \end{tabular}
     \caption{STR approach category comparison\label{tb:STR-comparison}}
 \end{table}
-For segmentation based approaches, the main shortcommings are as follows.
+For segmentation-based approaches, the main shortcommings are as follows.
 Localizing individual characters is computationally expensive~\citep{zhan_esir_2019}.
 A complex pipeline is needed to predict characters and align them~\citep{liu_abcnet_2020}.
 Take~\cite{wan_textscanner_2020}, for example, which leverages a separate geometry branch
@@ -111,10 +111,10 @@ to help with word formation with the predicted characters from the classifying b
 Segmentation is also susceptible to errors~\citep{zhan_esir_2019,cheng_aon_2018,chen_text_2021}.
 The nature of scene text reinforces the errors: complex backgrounds, noise, perspective,
 and other factors~\citep{hu_gtc_2020,chen_text_2021,baek_what_2019}.
-Additionally, segmentation based approaches cannot use contextual information between
+Additionally, segmentation-based approaches cannot use contextual information between
 characters~\citep{chen_text_2021}.
 
-\ac{EnDe} based \ac{STR}, on the other hand, is modeled to take contextual information into
+\ac{EnDe}-based \ac{STR}, on the other hand, is modeled to take contextual information into
 account~\citep{long_scene_2021,chen_text_2021}.
 The problem manifests itself in dealing with 2d-text
 instances~\citep{long_scene_2021,liao_scene_2018}.
@@ -127,20 +127,20 @@ Note that \ac{CTC} cannot be adapted to 2d input~\citep{cheng_focusing_2017,xie_
 and the attention adaption by~\cite{li_show_2019} is memory and
 computation-intensive~\citep{xie_aggregation_2019}.
 
-When comparing \ac{CTC} to attention based approaches, it can be noted that \ac{CTC} deals better
-with long text instances or sentences while attention is better with singular
+When comparing \ac{CTC}-based to attention-based approaches, it can be noted that \ac{CTC} deals
+better with long text instances or sentences while attention is better with singular
 words~\citep{cong_comparative_2019,chen_text_2021}.
 This is because the misalignment in attention can cause missing or superfluous characters (attention
 drift)~\citep{bai_edit_2018,liao_scene_2018,cheng_focusing_2017}.
 
-Attention based approaches have the upper hand when incorporating implicit language models
+Attention-based approaches have the upper hand when incorporating implicit language models
 or lexicons, but \ac{CTC} performs better without language priors~\citep{cong_comparative_2019}.
 This is especially important because the text in the use case under consideration contains
 alphanumeric strings which are not part of any lexicon.
 When it comes to computational efficiency, both \ac{CTC} and attention are expensive and
 time-consuming~\citep{chen_text_2021}.
 
-2 stage approaches have the upper hand when it comes to end-to-end \ac{STS}.
+2-stage approaches have the upper hand when it comes to end-to-end \ac{STS}.
 These approaches are in focus for research because they have crucial
 advantages (see Figure~\ref{tb:E2E-comparison})~\citep{chen_text_2021}.
 \begin{table}[h]
@@ -148,17 +148,17 @@ advantages (see Figure~\ref{tb:E2E-comparison})~\citep{chen_text_2021}.
     \begin{tabular}{p{.11\textwidth}p{.70\textwidth}}
         \textbf{Category} & \textbf{Shortcommings} \\
         \toprule
-        2 step & Error propagation between detection and
+        2-step & Error propagation between detection and
             recognition~\citep{chen_text_2021,long_scene_2021}\\
         & No joint optimization~\citep{qiao_text_2021, chen_text_2021}\\
         & Computation requirements for two feature extraction
             CNNs~\citep{liu_fots_2018,chen_text_2021} \\
-        2 stage & --- \\
+        2-stage & --- \\
         \bottomrule
     \end{tabular}
     \caption{STS approach category comparison\label{tb:E2E-comparison}}
 \end{table}
-2 stage approaches are more efficient than 2 step approaches because they do not compute feature maps
+2-stage approaches are more efficient than 2-step approaches because they do not compute feature maps
 twice~\citep{liu_fots_2018,chen_text_2021}.
 This carries much weight since feature extraction is usually the most time and
 computation-consuming step~\citep{liu_fots_2018}.
