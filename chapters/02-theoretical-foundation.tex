@@ -183,13 +183,13 @@ more complicated transformations of information and representation~\citep{goodfe
 Here $f$ denotes the function performed by a layer of neurons (linearity + activation).
 The parameters of the individual neurons are grouped to $\T$ ($\T_{:,0}$ equals 1 for the
 bias term).
-Popular activation functions include \relu, $\tanh$, sigmoid ($\sigma$), and
+Popular activation functions include \relu, \tahn, sigmoid ($\sigma$), and
 \sfmx~\citep{shrestha_review_2019}.
 \begin{equation}\label{eq:relu}
     \relu(x)=\max(0,x)
 \end{equation}
 \begin{equation}\label{eq:tanh}
-    \tanh(x)=\frac{\exp(x)-\exp(-x)}{\exp{x}+\exp{-x}}
+    \tahn(x)=\frac{\exp(x)-\exp(-x)}{\exp{x}+\exp{-x}}
 \end{equation}
 \begin{equation}\label{eq:sigmoid}
     \sigma(x)=\frac{1}{1+\exp(-x)}
@@ -198,7 +198,7 @@ Popular activation functions include \relu, $\tanh$, sigmoid ($\sigma$), and
     {\sfmx(\x)}_i = \frac{\exp(x_i)}{\sum_j \exp(x_j)}
 \end{equation}
 While \relu\ is the prevalent function for feedforward \ac{NN}~\citep{goodfellow_deep_2016},
-$\tanh$ is often used in \acp{RNN} like in~\cite{sherstinsky_fundamentals_2020,greff_lstm_2017}.
+$\tahn$ is often used in \acp{RNN} like in~\cite{sherstinsky_fundamentals_2020,greff_lstm_2017}.
 Sigmoid (\sfmx) activation functions, used for the output layer, are used to generate a Bernoulli
 (Multinouli) distribution which is helpful for classification tasks~\citep{goodfellow_deep_2016}.
 For, e.g.\ regression, the output layer can omit the activation
@@ -363,7 +363,7 @@ Equation~\ref{eq:rnn-yh}), and it is handed to the next layer~\citep{goodfellow_
 $\h^{(t)}$ is thought of as a hidden state which stores information from previous
 inputs~\citep{goodfellow_deep_2016}.
 \begin{equation}\label{eq:rnn-h}
-    \h^{(t)} = \tanh(b+W\h^{(t-1)}+U\x^{(t)})
+    \h^{(t)} = \tahn(b+W\h^{(t-1)}+U\x^{(t)})
 \end{equation}
 \begin{equation}\label{eq:rnn-yh}
     \hat{\y}^{(t)} = \sfmx(c + V\h^{(t)})
@@ -421,7 +421,7 @@ cell~\citep{goodfellow_deep_2016}.
         \sigma \\
         \sigma \\
         \sigma \\
-        \tanh
+        \tahn
     \end{pmatrix}
     T
     \begin{pmatrix}
@@ -433,11 +433,11 @@ cell~\citep{goodfellow_deep_2016}.
     \textbf{c}_t=\textbf{f}_t\otimes\textbf{c}_{t-1} + \textbf{i}_t\otimes\textbf{g}_t
 \end{equation}
 \begin{equation}\label{eq:lstm-h}
-    \h_t=\textbf{o}_t\otimes\tanh(\textbf{c}_t)
+    \h_t=\textbf{o}_t\otimes\tahn(\textbf{c}_t)
 \end{equation}
 Equations~\ref{eq:lstm-gates},~\ref{eq:lstm-c}, and~\ref{eq:lstm-h} show the calculations
 performed for a single timestep~\citep{xu_show_2016}.
-$\sigma$ and $\tanh$ denote the application of activation functions after the weight matrix $T$
+$\sigma$ and $\tahn$ denote the application of activation functions after the weight matrix $T$
 is multiplied by the stacked input $\x_t,\h_{t-1}$~\citep{zaremba_recurrent_2015}.
 $\textbf{i}_t,\textbf{f}_t,\textbf{o}_t$ are the output of the input gate, forget gate, and output
 gate.
