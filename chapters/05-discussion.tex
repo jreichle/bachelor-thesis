@@ -52,7 +52,6 @@ performance~\citep{shi_detecting_2017,long_scene_2021}.
 
 On the other hand, segmentation-based approaches take advantage of the fact that every part of the
 text instance can locally be verified as such~\citep{long_scene_2021}.
-Note that no noteworthy comparison of sub-text level or pixel-level segmentation could be identified.
 The bottom-up approach alleviates the problem of long aspect ratios~\citep{shi_detecting_2017}.
 The segmentation-based approaches facilitate a more natural representation of curved
 text~\citep{dai_fused_2018,long_scene_2021} (see Figure~\ref{fig:curved-text-representations}).
@@ -60,13 +59,14 @@ text~\citep{dai_fused_2018,long_scene_2021} (see Figure~\ref{fig:curved-text-rep
 However, the segmentation pipeline is more computation-intensive, as it incorporates more complex
 stages~\citep{dai_fused_2018} and complicated text instance
 construction~\citep{xie_aggregation_2019,liao_real-time_2019,dai_fused_2018}.
-The text instance construction goes hand in hand with the separation of different instances.
+The text instance reconstruction goes hand in hand with the separation of different instances.
 This challenging task is vulnerable to noise~\citep{long_scene_2021} and focuses on
 many innovations (see Figure~\ref{fig:curved-text-representations}).
 
 When comparing \ac{BB} regression approaches, one-stage approaches are generally more
 efficient  because of their straightforward architecture, while two-stage approaches can generally
 predict the more accurately  because of the refinement process~\citep{lu_mimicdet_2020}.
+Note that no noteworthy comparison of sub-text level or pixel-level segmentation could be identified.
 What \ac{STD} is concerned, the bottom line seems to be:
 Is curved text detection or efficiency more critical?
 
@@ -74,7 +74,8 @@ Is curved text detection or efficiency more critical?
 The innovations found for \ac{STR} (see Table~\ref{tb:STR-steps-properties}) show that the research
 mainly focuses on robustly recognizing curved text instances (rectification approaches and
 2d-attention).
-Additionally, it can be noted that the innovative approaches are mostly attention-based.
+It can be noted that the innovative approaches are mostly attention-based.
+
 However, attention also has shortcomings (see Figure~\ref{tb:STR-comparison}).
 \begin{table}[h]
     \centering\scriptsize
@@ -88,7 +89,6 @@ However, attention also has shortcomings (see Figure~\ref{tb:STR-comparison}).
         \midrule
         \ac{EnDe}-based & & Curved and multi-oriented text~\citep{cheng_aon_2018, long_scene_2021} \\
         & CTC-based & Prone to overfitting~\citep{chen_text_2021} \\
-        & & Computation extensive CTC probabilities~\citep{xie_aggregation_2019} \\
         & & Isolated word recognition~\citep{cong_comparative_2019} \\
         & & Not applicable to recognition of 2d text instance~\citep{cheng_focusing_2017,
             xie_aggregation_2019,chen_text_2021} \\
@@ -132,17 +132,18 @@ better with long text instances or sentences while attention is better with sing
 words~\citep{cong_comparative_2019,chen_text_2021}.
 This is because the misalignment in attention can cause missing or superfluous characters (attention
 drift)~\citep{bai_edit_2018,liao_scene_2018,cheng_focusing_2017}.
-
 Attention-based approaches have the upper hand when incorporating implicit language models
 or lexicons, but \ac{CTC} performs better without language priors~\citep{cong_comparative_2019}.
 This is especially important because the text in the use case under consideration contains
 alphanumeric strings which are not part of any lexicon.
 When it comes to computational efficiency, both \ac{CTC} and attention are expensive and
 time-consuming~\citep{chen_text_2021}.
+For \ac{STR} \ac{CTC} seems to be the choice for efficiency and attention for robustness for
+curved text.
 
 2-stage approaches have the upper hand when it comes to end-to-end \ac{STS}.
 These approaches are in focus for research because they have crucial
-advantages (see Figure~\ref{tb:E2E-comparison})~\citep{chen_text_2021}.
+advantages (see Table~\ref{tb:E2E-comparison})~\citep{chen_text_2021}.
 \begin{table}[h]
     \centering\scriptsize%
     \begin{tabular}{p{.11\textwidth}p{.70\textwidth}}

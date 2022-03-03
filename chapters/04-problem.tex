@@ -71,8 +71,9 @@ that does not possess the qualities in question cannot be regarded as viable for
 In the article~\cite{ashmore_assuring_2021}, the qualities are identified and assigned to different
 challenges in working with \ac{MLS}: Development, production,
 organizational challenges.
-Because only the Model Selection substage of the lifecycle is performed, the challenges and their
-qualities are not relevant for this thesis, as they concern the operational aspect of \acp{MLS}.
+Because only the Model Selection substage of the lifecycle is performed, the defined challenges and
+their qualities are not relevant for this thesis, as they concern the operational aspect of
+\acp{MLS}.
 
 In~\cite{nakamichi_requirements-driven_2020,siebert_construction_2021}, systematic
 identification and documentation of qualities are detailed.
@@ -101,6 +102,7 @@ information~\citep{siebert_construction_2021}.
 The environment entity covers the external aspects of the \ac{MLS}, which may interact with
 it~\citep{siebert_construction_2021}.
 In the scope of this work, the environment entails mainly the conditions in which images are taken.
+
 For this thesis, the entities data and system cannot be regarded as given.
 The entities environment and infrastructure are only loosely defined through the use case.
 That is why the systematic approaches cannot be performed in the scope of this thesis.
@@ -108,7 +110,8 @@ For example,~\cite{siebert_construction_2021} propose to follow the systematic C
 identifying qualities.
 It cannot be performed due to the lack of data and the other entities derived from the use case.
 
-Table~\ref{tb:LiteratureQualitiesModel} lists all qualities that pertain to the model entity.
+Table~\ref{tb:LiteratureQualitiesModel} lists all qualities that pertain to the model entity
+and that were found in literature.
 Different qualities are \textit{grouped} for their similarities.
 Because of their properties, they can be evaluated jointly.
 When documenting the identified qualities,
@@ -145,14 +148,14 @@ sense of certainty.
         Model Fitness --- Degree of Correctness &~\cite{nakamichi_requirements-driven_2020,
                                                     zhang_machine_2020} \\
         Development correctness &~\cite{siebert_construction_2021} \\
+        Relevance / Bias-Variance tradeoff &~\cite{siebert_construction_2021, zhang_machine_2020} \\
+        Trained Model Generalization Performance Appropriateness
+                                                    &~\cite{nakamichi_requirements-driven_2020} \\
         \midrule
         \textit{Robustness} \\
         Robustness &~\cite{ashmore_assuring_2021, hu_towards_2020, siebert_construction_2021} \\
         Robustness Against Change of Input Data &~\cite{nakamichi_requirements-driven_2020} \\
         Robustness Against Noise Data &~\cite{nakamichi_requirements-driven_2020} \\
-        Relevance / bias-variance tradeoff &~\cite{siebert_construction_2021, zhang_machine_2020} \\
-        Trained Model Generalization Performance Appropriateness
-                                                    &~\cite{nakamichi_requirements-driven_2020} \\
         \midrule
         \textit{Reusability} &~\cite{ashmore_assuring_2021} \\
         \midrule
@@ -185,7 +188,7 @@ common qualities in regards to \ac{MLS} (see Table~\ref{tb:LiteratureQualitiesMo
 can be regarded as relevant and others do not hold any relevance for the specific use case (see
 Table~\ref{tb:condensedQualities}).
 The qualities are taken from the literature covering \ac{ML} in general to literature
-covering scene text \ac{OCR}.
+covering \ac{STS}.
 Only qualities that concern the model will be looked at, as the model is the focus of this thesis.
 The qualities may, however, be influenced by other entities.
 
@@ -204,7 +207,7 @@ The qualities may, however, be influenced by other entities.
 % Appropriateness
 The appropriateness quality refers to the ability to perform the type of task required by
 the use case~\citep{siebert_construction_2021,nakamichi_requirements-driven_2020}.
-For this thesis, this applies to scene text \ac{STS} models.
+For this thesis, this applies to \ac{STS} models.
 Additionally, the properties derived from the use case (see
 Table~\ref{tb:useCaseQualities}) can be grouped under this quality.
 The offline capabilities are always given in the approaches outlined in Chapter~\ref{ch:research}.
@@ -218,7 +221,7 @@ that captures relevant characteristics of the model output'~\citep{ashmore_assur
 For the performance quality, a measure is chosen depending on the type of task to be
 solved~\citep{siebert_construction_2021}.
 The F-Score is an example a of metric used to compare different
-models~\cite{chen_text_2021, long_scene_2021}.
+models~\citep{chen_text_2021, long_scene_2021}.
 Performance is usually measured with a test dataset that is independent of training and validating
 a model to approximate the generalization performance~\citep{goodfellow_deep_2016,
 nakamichi_requirements-driven_2020}.
@@ -239,9 +242,9 @@ Note that the datasets introduced in Section~\ref{se:sts} include the challengin
 as \ac{STS} is defined with robustness in mind.
 For example,~\cite{karatzas_icdar_2013,karatzas_icdar_2015,chng_total-text_2017} define their
 challenge with different image properties concerned with robustness.
-Additionally, \ac{STS} is differentiated from \ac{OCR} by solving a more difficult reading problems
-with more complex image~\citep{long_scene_2021,hu_gtc_2020,chen_text_2021,baek_what_2019}.
-Therefore, the difference in performance and robustness is not clear-cut for \ac{STS}.
+Additionally, \ac{STS} is differentiated from \ac{OCR} by solving more difficult reading problems
+for more complex images~\citep{long_scene_2021,hu_gtc_2020,chen_text_2021,baek_what_2019}.
+Therefore, the difference in performance and robustness is negligable for \ac{STS}.
 
 % Performance efficiency
 Performance efficiency addresses time and resource utilization when the model is in use.

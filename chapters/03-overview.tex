@@ -209,7 +209,7 @@ words~\citep{shi_detecting_2017}.
 \begin{figure}[ht]
     \centering
     \includegraphics[width=0.5\textwidth]{img/STD-seg-based-links-Shi-Detecting-2017.png}
-    \caption[Predicting links for segmentation-based STD]{%
+    \caption[Link prediction for segmentation-based STD]{%
         Visualization for prediction of links within and across layers for segmentation-based
         STD~\citep{shi_detecting_2017}\label{fig:STD-segbased-component-links}
     }
@@ -408,6 +408,8 @@ prediction~\citep{shi_end--end_2017}.
 This process uses the conditional probabilities $p(\textbf{l}\|Y)$ that are defined
 by~\cite{graves_connectionist_2006}, which is why the category of approaches is called
 \ac{CTC}-based.
+The \ac{CTC} probabilities are heavily influencing the model
+training~\citep{shi_end--end_2017,graves_connectionist_2006}.
 $\textbf{l}$ stands for the predicted character sequence, and Y stands for the per-frame
 features~\citep{shi_end--end_2017}.
 Each frame $\y^{(t)}$ is a probability distribution over the possible character and a `blank'
@@ -783,7 +785,7 @@ For \ac{STR}, the search led to 8 results (see Table~\ref{tb:STR-steps-propertie
 The last relevant innovation was found on page 13, and on page 18, the search was stopped because
 the results diverged.
 The investigation of citations did not lead to new results.
-\begin{table}[hb]
+\begin{table}[ht]
     \centering\scriptsize
     \begin{tabular}{p{.09\textwidth}p{.16\textwidth}p{.192\textwidth}p{0.03\textwidth}
             p{0.3\textwidth}p{.05\textwidth}p{.05\textwidth}}
@@ -828,18 +830,6 @@ The attention module is performed at different scales~\citep{liao_scene_2018,xu_
 
 The following approaches are all attention-based.
 However, their innovation concern different parts of the attention-based \ac{STR} pipeline.
-The approaches by~\cite{zhan_esir_2019,luo_multi-object_2019,shi_aster_2019} all improve
-text rectification ahead of the encoding step.
-From~\cite{zhan_esir_2019} comes a rectification approach that iteratively estimates the fit of a
-polynomial to the text line and uses that prediction to rectify the text with \ac{TPS}
-transformation~\citep{bookstein_principal_1989,zhan_esir_2019}.
-Rectification is improved by~\cite{luo_multi-object_2019} by removing the vertical offset of characters
-to straighten the word out by placing a character lower or higher.
-This works well for slanted images but has problems with curved text in contrast to the other
-rectification modules~\citep{zhan_esir_2019,liu_star-net_2016,long_scene_2021}.
-Fractional pickup is also introduced by~\cite{luo_multi-object_2019}.
-It is a mechanism to improve the attention field of vision to lightly include adjacent characters
-to improve robustness~\citep{luo_multi-object_2019}.
 \begin{figure}[hb]
     \centering\scriptsize
     \subfigure[
@@ -859,6 +849,18 @@ to improve robustness~\citep{luo_multi-object_2019}.
         rectification\label{fig:rectification-examples}
     }
 \end{figure}
+The approaches by~\cite{zhan_esir_2019,luo_multi-object_2019,shi_aster_2019} all improve
+text rectification ahead of the encoding step.
+From~\cite{zhan_esir_2019} comes a rectification approach that iteratively estimates the fit of a
+polynomial to the text line and uses that prediction to rectify the text with \ac{TPS}
+transformation~\citep{bookstein_principal_1989,zhan_esir_2019}.
+Rectification is improved by~\cite{luo_multi-object_2019} by removing the vertical offset of characters
+to straighten the word out by placing a character lower or higher.
+This works well for slanted images but has problems with curved text in contrast to the other
+rectification modules~\citep{zhan_esir_2019,liu_star-net_2016,long_scene_2021}.
+Fractional pickup is also introduced by~\cite{luo_multi-object_2019}.
+It is a mechanism to improve the attention field of vision to lightly include adjacent characters
+to improve robustness~\citep{luo_multi-object_2019}.
 Like~\cite{zhan_esir_2019},~\cite{shi_aster_2019} estimate the text form by localizing
 grid control points that surround the text instance from the top and bottom.
 The grid can then be used with \acp{TPS}~\citep{shi_aster_2019}.

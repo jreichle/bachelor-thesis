@@ -28,26 +28,30 @@ In these conditions, \ac{OCR} is known as \ac{STS}~\citep{long_scene_2021}.
 
 \section{Problem Description}\label{se:problem}
 This thesis aims to create an overview of possible \ac{DL} techniques that facilitate
-finding a solution for the process of digitization.
-The research question guiding the process is most crucial:
-Which state-of-the-art \ac{DL} approaches for scene text \ac{OCR} are viable for the use case of
-extracting textual label data from images taken in real-world conditions?
+finding a solution for digitization.
+Which state-of-the-art \ac{DL} approaches for \ac{STS} are viable for the use case of extracting
+textual label data from real-world images.
 
-The definition of the viability of an approach must be determined for this.
+It is difficult to assess how well a \ac{DL} approach performs before being implemented and tested
+on the specific problem or representative dataset~\citep{arpteg_software_2018}.
+This justifies creating an overview rather than pointing out a single approach that is
+deemed the most promising.
+There are different categories of approaches~\citep{chen_text_2021,long_scene_2021}.
+The categories must be distinguished and explained.
+How the respective issues for the steps are solved must be
+identified from the literature, listed, and explained alongside.
+
+The definition of the viability of an approach must be determined to judge a technique's shortcomings.
 What qualities such as detecting alpha-numeric strings or suitability despite
 inadequate image conditions must a solution have~\citep{ghosh_visual_2017, hu_gtc_2020}?
 
-It is difficult to assess how well a \ac{DL} approach performs before being
-implemented and tested on the specific problem or representative dataset~\citep{arpteg_software_2018}.
-This justifies the need to create an overview rather than pointing out a single approach that is
-deemed the most promising.
-To create the overview, the necessary steps in the process of \ac{STS} need to be highlighted,
-from localizing possible text instances to predicting the characters or
-words~\citep{long_scene_2021, sourvanos_challenges_2018}.
-How the respective issues for the steps are solved needs to be
-identified from the literature, listed, and explained alongside.
+The approaches' shortcomings must be identified to compare them.
+This analysis cannot be performed with quantitative data, as results from different studies are
+not safely comparable~\citep{baek_what_2019,arpteg_software_2018,long_scene_2021}.
+Therefore, the comparison must leverage qualitative data concerning the different approach
+categories.
 
-The article~\cite{ashmore_assuring_2021} defines four phases of the \ac{ML} lifecycle:
+The article by~\cite{ashmore_assuring_2021} defines four phases of the \ac{ML} lifecycle:
 Data Management, Model Learning, Model Verification, and Model Deployment.
 Only the substage Model Selection from Model Learning will only be looked at in the scope of this
 thesis.
@@ -57,10 +61,13 @@ The substages loss function selection, training, and hyperparameter
 selection~\citep{ashmore_assuring_2021} will not be examined.
 Other aspects such as data analysis, implementation, training, deployment, and maintenance of a
 solution in a production environment shall not be performed either.
-The overview and subsequent analysis thereof creates a foundation for finding the right solution.
+The selection of approaches is only concerned with their potential performance and not
+necessarily what steps must be executed to reach said performance.
+
+The overview and subsequent analysis create a foundation for finding the right solution.
 However, it does not contain any claims about the degree of goodness or the certainty of
 solving the given problem.
-Further verification, implementation, and testing can then be performed based on this thesis.
+Based on this thesis, further verification, implementation, and testing can then be performed.
 
 \section{Methodology}\label{se:methodology}
 The methodology of this thesis can be labeled as a literature review~\citep{snyder_literature_2019,
@@ -70,33 +77,33 @@ which to implement and test to solve the specific problem of \ac{STS}, defined i
 Section~\ref{se:problem} and further developed in Chapter~\ref{ch:problem}.
 
 The research question guiding the process is most crucial~\citep{snyder_literature_2019}:
-Which state-of-the-art \ac{DL} approaches for \ac{STS} are viable for the use case of extracting
-textual label data from real-world images.
+What \ac{DL} approaches for scene text \ac{OCR} are there, and what are their shortcomings concerning
+the problem of extracting textual label data from images taken in real-world conditions?
+
 It is important to report how the information was found and
 synthesized~\citep{torraco_writing_2005}.
 Therefore, each section in the overview contains a paragraph about said information.
 
-The research strategy is most important for a literature
-review~\citep{snyder_literature_2019}.
 Before getting into the current research level, a foundation of knowledge about the field must be
 laid.
-A taxonomy is created for this, which is helpful to classify and give context to innovations in the
-field.
-This is performed with the help of overview literature and other related research in the field.
-The taxonomy is determined according to the requirement for clarity of the subsequent provision of
-current research.
-The search strategy for current innovations includes determining databases and keywords
+A taxonomy is created to facilitate the clarity of the subsequent provision of current research and
+the analysis.
+The taxonomy is helpful to classify and give context to innovations in the field.
+It is formed with the help of overview literature and other related research in the field.
+
+The research strategy is most important for a literature
+review~\citep{snyder_literature_2019}.
+The strategy for current innovations includes determining databases and keywords
 used and exclusion criteria that are enforced~\citep{torraco_writing_2005}.
 Innovations are explored through searching in the Google Scholar database.
-A criterion for further examination is appropriate citations for the piece of literature
-in question.
-
 Additionally, literature is selected through citations for and literature that has already been
 identified as important.
 All research after 2018 which pertains to extracting scene text is regarded as relevant.
 Standard \ac{OCR} solutions may not hold validity in practice, as the image and text conditions can
 vary in the defined problem~\citep{chen_text_2021}.
-An necessary criterion is that the paper contributes to the \ac{ML} model.
+A criterion for further examination is appropriate citations for the piece of literature
+in question.
+Another necessary criterion is that the paper contributes to the \ac{ML} model.
 This extends to the whole pipeline from extraction features to the final result of the model.
 The identified literature is synthesized into an overview aligned according to the taxonomy.
 
@@ -108,10 +115,8 @@ covering \ac{OCR} under challenging scene text conditions.
 
 In the analysis, possibly viable approaches are compared with the required qualities defined
 in Chapter~\ref{ch:problem}.
-The comparison will be organized according to the taxonomy, which facilitates clarity and
+The comparison is organized according to the taxonomy, which facilitates clarity and
 comprehensibility.
-The comparison is arranged hierarchically: different pipeline categories,
-different categories for pipeline tasks, and innovations for those tasks.
 The analysis thus shows which approaches are worthwhile to apply the whole \ac{ML} lifecycle to.
 
 \section{Expected Results}
@@ -133,8 +138,8 @@ The resulting overview can be viewed as a basis for a decision to implement a
 practical solution.
 In Chapter~\ref{ch:problem}, the problem from Section~\ref{se:problem} is addressed in more detail.
 The result shall be a firm understanding of qualities that a solution must possess.
-These requirements are the point of focus for the further examination of techniques.
-This enables the discussion in Chapter~\ref{ch:discussion}.
+These requirements are the point of focus for the further examination of techniques and
+enable the discussion in Chapter~\ref{ch:discussion}.
 Here the results and the availability of a solution and the methodology of this work
 are assessed critically.
 The conclusion is a summary of the results compared to the expected results detailed in this chapter,

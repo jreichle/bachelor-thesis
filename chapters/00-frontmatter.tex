@@ -1,9 +1,35 @@
 \erklaerung%
 
 \begin{abstract}
-    Here abstract for \the\arbeit.
+    What Deep Learning approaches for Scene Text Spotting are there, and what are their shortcomings
+    concerning the problem of extracting textual label data from images taken in real-world
+    conditions?
+    That is the question guiding this thesis.
+    It is essential, as automized digitization has many economic upsides.
+    A taxonomy is created that distinguishes different categories of approaches for clarity for
+    subsequent chapters:
+    Scene Text Spotting can be subdivided into Scene Text Detection and Scene Text Recognition.
+    Both subtasks have different categories of approaches that are examined.
+    A literature review is conducted to identify the most important innovations and gain insight
+    into what shortcomings the field works on and what techniques are used in the process.
+    The most prevalent issue is dealing with curved text robustly.
+    For detection segmentation-based approaches and for recognition, attention-based approaches
+    improve curved text recognition.
+    Before analyzing the identified approaches, qualities are identified that serve as criteria
+    for the comparison: appropriateness, performance/robustness, and efficiency.
+    The analysis uses these qualities to compare the different categories.
+    Depending on the specific dataset's properties, different approach categories can shine:
+    regression-based detection efficiently deals with oriented text while segmentation-based
+    detection is needed for curved text. For recognition, sequence-based approaches are the
+    favorite.
+    These entail CTC-based approaches for oriented text that contains longer text instances or
+    alphanumeric strings and attention-based approaches for robustness for curved text.
+    Additionally, CTC is the better choice for efficiency.
+    For the whole task of Scene Text Spotting, the end-to-end differentiable 2-stage approaches
+    that combine detection and recognition by sampling features are the clear favorite over 2-step
+    approaches.
 
-    \vspace*{150px}
+    \vspace*{70px}
 
     {\noindent
         \textbf{Keywords:} Deep Learning, Scene Text Spotting, Literature Review
