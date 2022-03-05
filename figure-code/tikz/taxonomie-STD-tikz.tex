@@ -34,19 +34,19 @@
         child{node [lone] {BB regression}
             child{node [ltwo] {One-stage}
                 child[lthree,level1] {node {Feature \\ extraction}}
-                child[lthree,level2] {node {Text \\ localization}}
-                child[lthree,level3] {node {Filter \\ results}}
+                child[lthree,level2] {node {Text instance \\ localization}}
+                child[lthree,level3] {node {Result \\ filtering}}
             }
             child{node [ltwo] {Two-stage}
                 child[lthree,level1] {node {Feature \\ extraction}}
-                child[lthree,level2] {node {Text region \\ classification}}
+                child[lthree,level2] {node {Text region \\ localization}}
                 child[lthree,level3] {node {Localization \\ readjustment}}
-                child[lthree,level4] {node {Filter \\ results}}
+                child[lthree,level4] {node {Result \\ filtering}}
             }
         }
         child{node [lone] {Segmentation \\ based}
             child[lthree,level1] {node {Feature \\ extraction}}
-            child[lthree,level2] {node {Sub-components \\ segmentation}}
+            child[lthree,level2] {node {Sub-component \\ segmentation}}
             child[lthree,level3] {node {Text \\ reconstruction}}
         };
 \end{tikzpicture}

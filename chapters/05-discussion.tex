@@ -23,8 +23,8 @@ The innovations regarding \ac{STD} deal with multi-oriented and curved text (as 
 Table~\ref{tb:STD-steps-properties}).
 \begin{table}[h]
     \centering\scriptsize
-    \begin{tabular}{p{.09\textwidth}p{.10\textwidth}p{0.70\textwidth}}
-        \multicolumn{2}{c}{\textbf{Approach category}} & \textbf{Shortcommings} \\
+    \begin{tabular}{p{.10\textwidth}p{.10\textwidth}p{0.70\textwidth}}
+        \multicolumn{2}{c}{\textbf{Approach category}} & \textbf{Shortcomings} \\
         \toprule
         Seg-free & & Curved text representation~\citep{long_scene_2021,wang_shape_2019} \\
         & & Linear anchor box bias with curved text~\citep{wang_shape_2019,ferrari_textsnake_2018} \\
@@ -39,7 +39,7 @@ Table~\ref{tb:STD-steps-properties}).
         & & More vulnerable to noise~\citep{long_scene_2021} \\
         \bottomrule
     \end{tabular}
-    \caption{STD approach category comparison\label{tb:STD-comparison}}
+    \caption{STD approach category shortcomings\label{tb:STD-shortcomings}}
 \end{table}
 Segmentation-free or \ac{BB} regression-based approaches have trouble with curved text because of
 the anchor boxes' linear bias~\citep{wang_shape_2019,ferrari_textsnake_2018}.
@@ -69,6 +69,24 @@ predict the more accurately  because of the refinement process~\citep{lu_mimicde
 Note that no noteworthy comparison of sub-text level or pixel-level segmentation could be identified.
 What \ac{STD} is concerned, the bottom line seems to be:
 Is curved text detection or efficiency more critical?
+\begin{table}[h]
+    \scriptsize\centering
+    \begin{tabular}{llccc}
+        \multicolumn{2}{c}{\textbf{Approach category}} & \textbf{Semantics retention}
+                                                       & \textbf{Performance} & \textbf{Efficiency} \\
+        \toprule
+        Seg-free & & $\times$ & $\times$ & \checkmark\ \\
+           & 1-stage & $\times$ & $\times$ & \checkmark\ \\
+           & 2-stage & $\times$ & \checkmark\ & $\times$ \\
+        \midrule
+        Seg-based & & \checkmark\ & \checkmark\ & $\times$ \\
+        \bottomrule
+    \end{tabular}
+    \caption{Curved STD approach category comparison\label{tb:STD-comparison}}
+\end{table}
+Table~\ref{tb:STD-comparison} shows the synthesized comparison for curved \ac{STD} based on their
+shortcomings.
+The table compares the categories seg-free and seg-based and the sub-categories 1-stage and 2-stage.
 
 \ac{STR} research focuses on accurately recognizing 2d text instances.
 The innovations found for \ac{STR} (see Table~\ref{tb:STR-steps-properties}) show that the research
@@ -76,11 +94,11 @@ mainly focuses on robustly recognizing curved text instances (rectification appr
 2d-attention).
 It can be noted that the innovative approaches are mostly attention-based.
 
-However, attention also has shortcomings (see Figure~\ref{tb:STR-comparison}).
+However, attention also has shortcomings (see Figure~\ref{tb:STR-shortcomings}).
 \begin{table}[h]
     \centering\scriptsize
-    \begin{tabular}{p{.09\textwidth}p{.15\textwidth}p{0.66\textwidth}}
-        \multicolumn{2}{c}{\textbf{Approach category}} & \textbf{Shortcommings} \\
+    \begin{tabular}{p{.115\textwidth}p{.15\textwidth}p{0.66\textwidth}}
+        \multicolumn{2}{c}{\textbf{Approach category}} & \textbf{Shortcomings} \\
         \toprule
         Seg-based & & Accurate detection of individual
                         characters~\citep{chen_text_2021,cheng_aon_2018} \\
@@ -101,9 +119,9 @@ However, attention also has shortcomings (see Figure~\ref{tb:STR-comparison}).
             computation~\citep{xie_aggregation_2019,chen_text_2021} \\
         \bottomrule
     \end{tabular}
-    \caption{STR approach category comparison\label{tb:STR-comparison}}
+    \caption{STR approach category shortcomings\label{tb:STR-shortcomings}}
 \end{table}
-For segmentation-based approaches, the main shortcommings are as follows.
+For segmentation-based approaches, the main shortcomings are as follows.
 Localizing individual characters is computationally expensive~\citep{zhan_esir_2019}.
 A complex pipeline is needed to predict characters and align them~\citep{liu_abcnet_2020}.
 Take~\cite{wan_textscanner_2020}, for example, which leverages a separate geometry branch
@@ -140,14 +158,33 @@ When it comes to computational efficiency, both \ac{CTC} and attention are expen
 time-consuming~\citep{chen_text_2021}.
 For \ac{STR} \ac{CTC} seems to be the choice for efficiency and attention for robustness for
 curved text.
+\begin{table}[h]
+    \scriptsize\centering
+    \begin{tabular}{llccc}
+        \multicolumn{2}{c}{\textbf{Approach category}} & \textbf{Alphanumeric recognition}
+                                                       & \textbf{Performance} & \textbf{Efficiency} \\
+        \toprule
+        Seg-based & & \checkmark\ & $\times$ & $\times$ \\
+        \midrule
+        EnDe-based & & \checkmark\ & \checkmark\ & \checkmark\ \\
+           & CTC-based & \checkmark\ & $\times$ & \checkmark\ \\
+           & Attention-based & $\times$ & \checkmark\ & $\times$ \\
+        \bottomrule
+    \end{tabular}
+    \caption{Curved STR approach category comparison\label{tb:STR-comparison}}
+\end{table}
+Table~\ref{tb:STR-comparison} shows the synthesized comparison for curved \ac{STR} based on their
+shortcomings.
+The table compares the categories seg-based and EnDe-based and the sub-categories CTC-based and
+attention-based.
 
 2-stage approaches have the upper hand when it comes to end-to-end \ac{STS}.
 These approaches are in focus for research because they have crucial
-advantages (see Table~\ref{tb:E2E-comparison})~\citep{chen_text_2021}.
+advantages (see Table~\ref{tb:E2E-shortcomings})~\citep{chen_text_2021}.
 \begin{table}[h]
     \centering\scriptsize%
     \begin{tabular}{p{.11\textwidth}p{.70\textwidth}}
-        \textbf{Category} & \textbf{Shortcommings} \\
+        \textbf{Category} & \textbf{Shortcomings} \\
         \toprule
         2-step & Error propagation between detection and
             recognition~\citep{chen_text_2021,long_scene_2021}\\
@@ -157,8 +194,9 @@ advantages (see Table~\ref{tb:E2E-comparison})~\citep{chen_text_2021}.
         2-stage & --- \\
         \bottomrule
     \end{tabular}
-    \caption{STS approach category comparison\label{tb:E2E-comparison}}
+    \caption{STS approach category shortcomings\label{tb:E2E-shortcomings}}
 \end{table}
+
 2-stage approaches are more efficient than 2-step approaches because they do not compute feature maps
 twice~\citep{liu_fots_2018,chen_text_2021}.
 This carries much weight since feature extraction is usually the most time and
@@ -168,6 +206,19 @@ Because of the connecting both stages together are fully differentiable and can 
 optimized~\citep{chen_text_2021,long_scene_2021,qiao_text_2021}.
 Without joint optimization, errors in the detection step can be propagated to the
 recognition, resulting in performance degradation~\citep{chen_text_2021,qiao_text_2021}.
+\begin{table}[h]
+    \scriptsize\centering
+    \begin{tabular}{lcccc}
+        \textbf{Category} & \textbf{Performance} & \textbf{Efficiency} \\
+        \toprule
+        2-step & \checkmark\ & $\times$ \\
+        2-stage & \checkmark\ & \checkmark\ \\
+        \bottomrule
+    \end{tabular}
+    \caption{Curved STS approach category comparison\label{tb:STS-comparison}}
+\end{table}
+The resulting comparison between the 2-step and 2-stage categories concerning curved \ac{STS} can be
+found in Table~\ref{tb:STS-comparison}.
 
 \section{Reflection}
 This thesis aimed to create an overview of \ac{STS} approaches to facilitate

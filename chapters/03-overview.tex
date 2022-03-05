@@ -10,8 +10,9 @@ Lastly, the advances in the field are placed in the correct position and analyze
 Before getting into the current research level, a knowledge base about the field has to be layed.
 \begin{table}[h]
     \centering\scriptsize
-    \begin{tabular}{p{.04\textwidth}p{.11\textwidth}p{.16\textwidth}p{.55\textwidth}}
-        Task & \multicolumn{2}{c}{Approach category} & Identifying properties \\
+    \begin{tabular}{p{.04\textwidth}p{.115\textwidth}p{.16\textwidth}p{.52\textwidth}}
+        \textbf{Task} & \multicolumn{2}{c}{\textbf{Approach category}}
+                      & \textbf{Identifying properties} \\
         \toprule
         STD & Seg-free & & Localize whole instances, filter out false positives \\
             & & One-stage & Regress BBs direclty \\
@@ -21,7 +22,7 @@ Before getting into the current research level, a knowledge base about the field
             & & Component-level & Predict sub-text components \\
         \midrule
         STR & Seg-based & & Character segmentation and classification\\
-            & \ac{EnDe}-based & & Sequence recognition \\
+            & EnDe-based & & Sequence recognition \\
             & & CTC-based & CTC rule transciption \\
             & & Attention-based & Attention mechanism \\
         \midrule
@@ -243,7 +244,8 @@ instances~\citep{shi_detecting_2017}.
 The paper~\cite{deng_pixellink_2018} introduced a pixel-level \ac{STD} approach.
 It adapts the previous component-level \ac{STD} approach to work on
 pixel-level~\citep{deng_pixellink_2018}.
-Pixel-level segmentation approaches mainly rely on \acp{FCN}~\citep{dai_fused_2018}.
+Pixel-level segmentation approaches mainly rely on fully convolutional neural
+networks~\citep{dai_fused_2018}.
 \begin{figure}[ht]
     \centering
     \includegraphics[width=0.35\textwidth]{img/STD-seg-based-CNN-Deng-PixelLink-2018.png}
@@ -663,7 +665,7 @@ This extends to the whole pipeline from extracting features to the final result 
     \captionsetup{justification=centering}
     \caption[Notable innovations for STD model architecture]{%
         Notable innovations for STD model architecture; \\
-        c:curved, m:multi-oriented, h:horizontal; \\
+        c: curved, m: multi-oriented, h: horizontal; \\
         e: efficiency, p: performance\label{tb:STD-steps-properties}
     }
 \end{table}
@@ -682,7 +684,7 @@ representation for \acp{BB}, which is multi-oriented.
 The representation has 13 parameters~\citep{liao_textboxes_2018}.
 That is more than usual for a multi-oriented \ac{BB} (8)~\citep{ma_arbitrary-oriented_2018}.
 An efficient approach from~\cite{lyu_multi-oriented_2018} uses pixel-level segmentation.
-A grid subdiides the image, and each grid space of pixels is
+A grid subdivides the image, and each grid space of pixels is
 predicted to efficiently generate a pixel segmentation map~\citep{lyu_multi-oriented_2018}.
 Also, text instance corners are predicted.
 The grid segmentation maps are then used to group corners to reconstruct text
@@ -785,37 +787,38 @@ For \ac{STR}, the search led to 8 results (see Table~\ref{tb:STR-steps-propertie
 The last relevant innovation was found on page 13, and on page 18, the search was stopped because
 the results diverged.
 The investigation of citations did not lead to new results.
+% FIXME: change lexicon to: what combination of subtask categories
 \begin{table}[ht]
     \centering\scriptsize
     \begin{tabular}{p{.09\textwidth}p{.16\textwidth}p{.192\textwidth}p{0.03\textwidth}
             p{0.3\textwidth}p{.05\textwidth}p{.05\textwidth}}
-        \multicolumn{2}{c}{Approach category} & Source & \#cit & Innovation & Lexi-con & Stage \\
+        \multicolumn{2}{c}{\textbf{Approach category}} & \textbf{Source} & \textbf{\#cit}
+                                       & \textbf{Innovation} & \textbf{Stage} \\
         \toprule
         Seg-based & &~\cite{liao_scene_2018} & 120 & Combine different levels of character attention
-            to localize characters and improve receptive fields with deformable convolution & w/o \\
+            to localize characters and improve receptive fields with deformable convolution \\
         \midrule
-        \ac{EnDe}-based & & & \\
+        EnDe-based & & & \\
             & CTC-based &~--- & & \\
             & Attention-based &~\cite{zhan_esir_2019} & 181 & Iterative rectification with line
-                fitting transformation & b & r \\
-            & &~\cite{luo_multi-object_2019} & 174 & Rectification by removing character offset &
-                b & r \\
-            & &~\cite{shi_aster_2019} & 349 & Rectification based on grids & b & r \\
+                fitting transformation & r \\
+            & &~\cite{luo_multi-object_2019} & 174 & Rectification by removing character offset & r \\
+            & &~\cite{shi_aster_2019} & 349 & Rectification based on grids & r \\
             & &~\cite{cheng_aon_2018} & 209 & Extract and combine character features in four
-                directions & b & f \\
+                directions & f \\
             & &~\cite{li_show_2019} & 141 & Simple pipeline combined with neighbor adjusted, robust
-                2d attention mechanism & b & s\\
+                2d attention mechanism & a\\
             & &~\cite{liu_char-net_2018} & 112 & Adapted attention mechanism to find
-                individual characters and rectify local features for the decoder & b & s \\
+                individual characters and rectify local features for the decoder & a \\
             & &~\cite{bai_edit_2018} & 100 & Edit operations (consumption, deletion, insertion)
-                influence probability of prediction & b & d \\
+                influence probability of prediction & d \\
         \bottomrule
     \end{tabular}
     \captionsetup{justification=centering}
     \caption[Notable innovations for STR model architecture]{%
         Notable innovations for STR model architecture; \\
         w/: with lexicon, w/o: without lexicon, b: both; \\
-        r: rectification, f: feature extraction, s: sequence modelling,
+        r: rectification, f: feature extraction, a: attention mechanism,
         d: decoding\label{tb:STR-steps-properties}
     }
 \end{table}
@@ -911,29 +914,30 @@ The investigation of citations did not lead to new results.
 \begin{table}[h]
     \centering\scriptsize
     \begin{tabular}{p{.09\textwidth}p{.19\textwidth}p{0.03\textwidth}p{0.37\textwidth}
-            p{0.07\textwidth}p{0.07\textwidth}}
+            p{0.07\textwidth}p{0.157\textwidth}}
     \textbf{Category} & \textbf{Source} & \textbf{\#cit} & \textbf{Innovation} &
-                                        \textbf{Orien-tation} & \textbf{Lexi-con} \\
+                                        \textbf{Orien-tation} & \textbf{Combination} \\
         \toprule
-        2-step &~\cite{liao_textboxes_2018} & 499 & Combine Texboxes++ detection with \ac{CTC}
-            recognition, used recognition confidence score for & m & b\\
-            &~\cite{shi_aster_2019} & 349 & Textboxes++ \ac{BB} rectification and grid usage for
-                attention recognition & c & b \\
-        2-stage &~\cite{lyu_mask_2018} & 362 & \ac{ROI} detection followed by pixel and character
-            segmentation & c & w/o \\
+        2-step &~\cite{liao_textboxes_2018} & 499 & Combine Texboxes++ detection with CTC
+            recognition, used recognition confidence score for & m & one-stage$\rightarrow$CTC\\
+            &~\cite{shi_aster_2019} & 349 & Textboxes++ BB rectification and grid usage for
+                attention recognition & c & one-stage$\rightarrow$att \\
+        2-stage &~\cite{lyu_mask_2018} & 362 & ROI detection followed by pixel and character
+            segmentation & c & two-stage$\rightarrow$seg \\
             &~\cite{liu_fots_2018} & 355 & Bilinear interpolation to transform oriented feature
-                regions into axis-aligned feature maps followed by \ac{CTC} recognition
-                & m & b \\
+                regions into axis-aligned feature maps followed by CTC recognition
+            & m & two-stage$\rightarrow$CTC\\
             &~\cite{liu_abcnet_2020} & 100 & One stage with bezier curves instead of anchor fee
-                detection followed by bezier adjusted ROI pooling and a lightweight \ac{CTC}
-                recognition head & c & b  \\
+                detection followed by bezier adjusted ROI pooling and a lightweight CTC
+                recognition head & c & one-stage$\rightarrow$CTC  \\
         \bottomrule
     \end{tabular}
     \captionsetup{justification=centering}
     \caption[Notable innovations for STS model architecture]{%
         Notable innovations for STS model architecture; \\
-        c:curved, m:multi-oriented, h:horizontal; \\
-        w/: with lexicon, w/o: without lexicon, b: both\label{tb:E2E-steps-properties}
+        c: curved, m: multi-oriented, h: horizontal; \\
+        detection$\rightarrow$recognition --- seg: segmentation, att:
+        attention\label{tb:E2E-steps-properties}
     }
 \end{table}
 

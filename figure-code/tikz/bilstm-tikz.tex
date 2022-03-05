@@ -1,5 +1,5 @@
 {\scriptsize%
-\begin{tikzpicture}[scale=0.5]
+\begin{tikzpicture}[scale=0.3]
 	\node[rectangle] (Y0) at (0, 0) {$\dots$};
 	\node[rectangle, draw, right=2em of Y0, minimum height=1cm, minimum width=1cm] (RNN)
         {LSTM$_\rightarrow$};
@@ -38,7 +38,7 @@
 	\draw[-stealth] (X2) -- (RNN2);
 	\draw[-stealth] (X3) -- (RNN3);
 	\draw[-stealth] (X4) -- (RNN4);
-	\draw[-stealth] (Y0) -- (RNN);
+	\draw[-stealth, densely dotted] (Y0) -- (RNN);
 	\draw[-stealth] (RNN) -- node[above, pos=0.35] {} (RNN2);
 	\draw[-stealth] (RNN2) -- node[above, pos=0.35] {} (RNN3);
 	\draw[-stealth] (RNN3) -- node[above, pos=0.35] {} (RNN4);
