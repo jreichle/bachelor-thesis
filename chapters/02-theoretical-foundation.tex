@@ -268,7 +268,7 @@ For multi-layer input, with $d$ so-called channels, a filter has the same amount
 are channels ($d$)~\citep{ponti_everything_2017}.
 Note that the height and width are spatial dimensions, and the depth is referred to
 as the channel dimension.
-\begin{figure}[ht]
+\begin{figure}[h]
     \centering
     \include{figure-code/tikz/conv-layer-tikz}
     \caption[Visualization of a convolution operation]{%
@@ -346,13 +346,6 @@ layers~\citep{he_deep_2015}.
 \acp{RNN} are another popular category of \ac{NN} used for processing sequential input,
 like text and speech~\citep{chauhan_review_2018}.
 Figure~\ref{fig:rnn-unrolling} shows a simple \ac{RNN}.
-\begin{figure}[ht]
-    \centering
-    \include{figure-code/tikz/rnn-tikz}%
-    \caption[Simple recurrent neural net]{%
-        Recurrent neural net unrolling~\citep{goodfellow_deep_2016}\label{fig:rnn-unrolling}
-    }
-\end{figure}
 The defining element is the recurrent connection from node $\h$ to
 itself~\citep{goodfellow_deep_2016}.
 A sequence of inputs \X\ is iteratively fed into the \ac{RNN}.
@@ -370,6 +363,13 @@ inputs~\citep{goodfellow_deep_2016}.
 \end{equation}
 Note that the connection between hidden layers can differ depending on the type of \ac{RNN}
 used~\citep{goodfellow_deep_2016}.
+\begin{figure}[ht]
+    \centering
+    \include{figure-code/tikz/rnn-tikz}%
+    \caption[Simple recurrent neural net]{%
+        Recurrent neural net unrolling~\citep{goodfellow_deep_2016}\label{fig:rnn-unrolling}
+    }
+\end{figure}
 During an execution run, all unrolled layers share the same weights
 ($U,V,W$)~\citep{chauhan_review_2018}.
 This makes gradients from backpropagation vulnerable to exploding/vanishing gradients if the

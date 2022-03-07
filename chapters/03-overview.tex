@@ -124,6 +124,7 @@ are slid across the input features generating 12 predicted \ac{BB} per
 position~\citep{liao_textboxes_2017}.
 The \acp{BB} of all layers are then subjected to the process of \ac{NMS} to filter out the best
 \ac{BB} for each possible text instance~\citep{liao_textboxes_2017}.
+\ac{NMS} is a light post-processing step (not part of the \ac{DL} pipeline).
 Of all detections which overlap (\ac{IOU}) more than a threshold
 $\phi$, only the with the highest confidence score ($c$) is kept~\citep{hosang_learning_2017}.
 
@@ -172,8 +173,8 @@ step~\citep{jiang_r2cnn_2017}.
 The second stage is to predict a confidence score (text, background) for each \ac{ROI} and to
 refine them by regressing values ($x_1,y_1,x_2,y_2,h$) that allow for multi-oriented boxes to
 account for rotated text~\citep{jiang_r2cnn_2017}.
-At last, the resulting \acp{BB} are filtered by inclined \ac{NMS}, which is adjusted to the
-multi-oriented \acp{BB}~\citep{jiang_r2cnn_2017}.
+At last, the resulting \acp{BB} are filtered by inclined \ac{NMS} post-processing, which is
+adjusted to the multi-oriented \acp{BB}~\citep{jiang_r2cnn_2017}.
 
 The basis for the segmentation-based methods is that every part of the text instance can
 be used to verify that there is text~\citep{long_scene_2021}.
@@ -215,7 +216,7 @@ words~\citep{shi_detecting_2017}.
         STD~\citep{shi_detecting_2017}\label{fig:STD-segbased-component-links}
     }
 \end{figure}
-The convolutional link predictions are then used for text reconstruction as follows:
+The convolutional link predictions are then used for text reconstruction post-processing as follows:
 Within a layer, links connect the neighbors of the space in the predicted feature map
 (see Figure~\ref{fig:STD-segbased-component-links} (a),
 Equation~\ref{eq:STD-segbased-subcomp-same-layer})~\citep{shi_detecting_2017}.
@@ -240,7 +241,6 @@ For reconstruction, the predictions are taken as a graph: segments are nodes, li
 Depth-first search is applied to the graph to find connected components and thus text
 instances~\citep{shi_detecting_2017}.
 
-% FIXME: pyramid shaped conv nets for pixel segmentation
 The paper~\cite{deng_pixellink_2018} introduced a pixel-level \ac{STD} approach.
 It adapts the previous component-level \ac{STD} approach to work on
 pixel-level~\citep{deng_pixellink_2018}.
@@ -289,7 +289,8 @@ A pixel has eight neighbors: left, left-down, left-up, right, right-down, right-
 Each of the $2\cdot8$ filters is responsible for a neighbor link~\citep{deng_pixellink_2018}.
 The output is a dense prediction map with the same spatial structure as the input
 image~\citep{deng_pixellink_2018}.
-After both links and text/non-text pixels have been predicted, the text reconstruction stage starts.
+After both links and text/non-text pixels have been predicted, the text reconstruction
+post-processing stage starts.
 They are combined for instance segmentation~\citep{deng_pixellink_2018}.
 The link layers are used to indicate whether two text pixels are grouped and thus belong to
 the same instance~\citep{deng_pixellink_2018}.
@@ -301,7 +302,7 @@ instances~\citep{deng_pixellink_2018}.
 Figure~\ref{fig:STD-segbased-pixel-architecture} shows the whole pipeline.
 Like this approach, pixel-level segmentation approaches often introduced new ways of
 distinguishing text instances and predicting a variety of different values followed by
-postprocessing to achieve distinguishing different
+post-processing to achieve distinguishing different
 instances~\citep{deng_pixellink_2018,liao_real-time_2019,ferrari_textsnake_2018}.
 
 \subsection{Scene Text Recognition}
@@ -336,8 +337,8 @@ putting the identified characters in the correct sequence (see
 Figure~\ref{fig:STR-segbased-architecture})~\citep{wan_textscanner_2020}.
 
 For \ac{EnDe}-based \ac{STR}, there are two main categories: \ac{CTC}-based and
-attention-based~\citep{chen_text_2021}.
-These two categories can be distinguished by how the decoder works~\citep{chen_text_2021}.
+attention-based~\citep{chen_text_2021,cong_comparative_2019}.
+These two categories can mainly be distinguished by how the decoder works~\citep{chen_text_2021}.
 The previous stages in the pipeline are similar~\citep{long_scene_2021,chen_text_2021}.
 Often preprocessing stages are performed to remove distortions, rectify curved text,
 remove disruptive background, improve resolutions or recover degraded text.
@@ -350,9 +351,35 @@ remove disruptive background, improve resolutions or recover degraded text.
     }
 \end{figure}
 Especially rectifying curved text (see Figure~\ref{fig:STN-application}) with the help of
-thin-plate spines~\citep{bookstein_principal_1989} and spatial transformer
-networks~\citep{jaderberg_spatial_2015} show significant improvement for \ac{STR}
+spatial transformer networks~\citep{jaderberg_spatial_2015} show significant improvement for \ac{STR}
 performance~\citep{long_scene_2021,chen_text_2021}.
+A spatial transformer has three stages:
+First first part regresses values ($\T$) used as parameters for the
+transformation~\citep{jaderberg_spatial_2015}.
+The dimensions of $\T$ depend on which type of transformation is intended to be
+performed~\citep{jaderberg_spatial_2015}.
+The transformation that is most often used is based on
+\ac{TPS}~\citep{bookstein_principal_1989,jaderberg_spatial_2015}.
+Each pixel location on the input image ($x_i,y_i$) is then transformed to a pixel location
+($x'_i,y'_i$) in  the output image (see
+Equation~\ref{eq:spatial-transformer-sampler})~\citep{liu_star-net_2016}.
+\begin{equation}\label{eq:spatial-transformer-sampler}
+    \begin{pmatrix}
+        x_i \\
+        y_i
+    \end{pmatrix}
+    = \T \cdot
+    \begin{pmatrix}
+        x'_i \\
+        y'_i \\
+        1
+    \end{pmatrix}
+\end{equation}
+The third part uses bilinear interpolation with the four nearest pixels of the input pixel to
+determine the intensity of the output pixel~\citep{liu_star-net_2016}.
+The spatial transformer can be trained with the propagated recognition
+loss~\citep{liu_star-net_2016,jaderberg_spatial_2015}.
+
 For feature extraction, different \ac{CNN} architectures can be chosen.
 The tradeoff between performance and memory \& computation cost determines what \ac{CNN} should be
 chosen~\citep{chen_text_2021}.
@@ -364,16 +391,16 @@ networks~\citep{liu_squeezedtext_2018}.
 
 For the sequence modeling and transcription steps, first \ac{CTC}-based
 and then attention-based examples are explained.
-Sequence modeling generates contextual information from a sequence of characters rather
-than considering every character individually~\citep{chen_text_2021}.
-\begin{figure}[h]
+\begin{figure}[hb]
     \centering
-    \includegraphics[width=0.3\textwidth]{img/STR-encdec-sequence-feat.png}
+    \includegraphics[width=0.25\textwidth]{img/STR-encdec-sequence-feat.png}
     \caption[Sequential feature extraction from convolution feature maps]{%
         Sequential feature extraction from convolution feature
         maps~\citep{shi_end--end_2017}\label{fig:STR-CTC-seq-feat}
     }
 \end{figure}
+Sequence modeling generates contextual information from a sequence of characters rather
+than considering every character individually~\citep{chen_text_2021}.
 For~\cite{shi_end--end_2017}, the sequence is generated by taking columns out of the feature maps
 from left to the right (see Figure~\ref{fig:STR-CTC-seq-feat})~\citep{shi_end--end_2017}.
 This acts as a connector of visual representation and the sequence representation
@@ -440,7 +467,7 @@ Figure~\ref{fig:STR-sequence-attention} shows the architecture of the sequence a
 mechanism-based approach~\citep{shi_robust_2016}.
 \begin{figure}[h]
     \centering
-    \includegraphics[width=0.45\textwidth]{img/STR-encdec-attention-Shi-Robust-2016.png}
+    \includegraphics[width=0.30\textwidth]{img/STR-encdec-attention-Shi-Robust-2016.png}
     \caption[Encoder decoder \& sequence attention based STR architecture]{%
         Encoder decoder based STR architecture with sequence attention
         mechanism~\citep{shi_robust_2016}\label{fig:STR-sequence-attention}
@@ -457,6 +484,10 @@ Here the attention weights $\boldsymbol{\alpha}_t$ are used to determine which p
 $\h_t$ is essential (see Equation~\ref{eq:sequential-attention-multi})~\citep{shi_robust_2016}.
 This is possible because the \sfmx\ has non-negative outputs between 0 and 1 (see
 Equation~\ref{eq:sequential-attention-weights}).
+Equations~\ref{eq:sequential-attention-weights} and~\ref{eq:sequential-attention-scoring} show the
+time calculation of those weights at each time step~\citep{shi_robust_2016}.
+The output $\textbf{g}_t$ is fed into a Gated Recurrent Unit, which is a \ac{RNN} very similar to
+\acp{LSTM} (it has two gates instead of three)~\citep{dey_gate-variants_2017}.
 \begin{equation}\label{eq:sequential-attention-multi}
     \textbf{g}^{(t)}=\boldsymbol{\alpha}^{(t)} \otimes \textbf{h}^{(t)}
 \end{equation}
@@ -467,10 +498,6 @@ Equation~\ref{eq:sequential-attention-weights}).
 \begin{equation}\label{eq:sequential-attention-scoring}
     \Phi=A\cdot\tahn(W\textbf{s}^{(t-1)}+V\h^{(t)}+U(F\boldsymbol{\alpha}^{(t-1)})+b)
 \end{equation}
-Equations~\ref{eq:sequential-attention-weights} and~\ref{eq:sequential-attention-scoring} show the
-time calculation of those weights at each time step~\citep{shi_robust_2016}.
-The output $\textbf{g}_t$ is fed into a Gated Recurrent Unit, which is a \ac{RNN} very similar to
-\acp{LSTM} (it has two gates instead of three)~\citep{dey_gate-variants_2017}.
 The Gated Recurrent Units use \sfmx\ to output a probability distribution over the possible
 characters (alphanumeric characters + `end-of-sequence' token)~\citep{shi_robust_2016}.
 The prediction/transcription stage is similar to the following approach and will be explained after
@@ -483,7 +510,7 @@ The attention mechanism then helps the subsequent \ac{LSTM} to choose the most r
 image for each timestep~\citep{ghosh_visual_2017}.
 \begin{figure}[h]
     \centering
-    \includegraphics[width=0.7\textwidth]{img/STR-encdec-attention-Gosh-Visual-2017.png}
+    \includegraphics[width=0.60\textwidth]{img/STR-encdec-attention-Gosh-Visual-2017.png}
     \caption[Encoder decoder \& visual attention based STR architecture]{%
         Encoder decoder based STR architecture with visual attention
         mechanism~\citep{ghosh_visual_2017}\label{fig:STR-attention}
@@ -878,7 +905,7 @@ The feature vectors are then used with the other extracted features to act as a 
     \subfigure[
         \scriptsize Robust neighbor adjusted 2d attention
         \citep{li_show_2019}\label{fig:2d-attention-li-show-2019}
-    ]{\includegraphics[width=0.20\textwidth]{img/STR-2d-attention-Li-Show-2019.png}}
+    ]{\includegraphics[width=0.17\textwidth]{img/STR-2d-attention-Li-Show-2019.png}}
     \subfigure[
         \scriptsize Attention character rectification
         \citep{liu_char-net_2018}\label{fig:attention-rectification-liu-char-net-2018}
@@ -978,8 +1005,16 @@ which are used to extract features for both a \ac{BB} regression branch and a se
 that predicts text instances and characters on a pixel-level~\citep{lyu_mask_2018}.
 The \acp{BB} are used with the text instance segmentation to form the final detection prediction, and
 the characters are combined to the recognition prediction~\citep{lyu_mask_2018}.
-The network from~\cite{liu_abcnet_2020} uses bezier curves to represent curved text.
+The network from~\cite{liu_abcnet_2020} uses bezier curves to represent curved text (see
+Figure~\ref{fig:bezier}).
+\begin{figure}[hb]
+    \centering
+    \includegraphics[width=0.7\textwidth]{img/E2E-2-stage-bezier-Liu-ABCNet-2020.png}
+    \caption[Bezier-curves predicted by control points]{%
+        Bezier-curves predicted by control points $b_i$~\citep{liu_abcnet_2020}\label{fig:bezier}
+    }
+\end{figure}
 The bezier curve representation is predicted by a one stage, anchor free
 regression~\citep{liu_abcnet_2020}.
 The spatial features corresponding to the predicted instances are then extracted from the feature
-maps and handed to a lightweight \ac{CTC}-based recognition branch~\citep{lyu_mask_2018}.
+maps, rectified and handed to a lightweight \ac{CTC}-based recognition branch~\citep{lyu_mask_2018}.
