@@ -49,7 +49,8 @@ the error~\citep{geron_hands-machine_2017,goodfellow_deep_2016}.
 The goal is to minimize the generalization error, which measures the expected performance on
 previously unseen input~\citep{geron_hands-machine_2017}.
 The test set is used once the model has been trained.
-The test set is a part of the available data~\citep{geron_hands-machine_2017, goodfellow_deep_2016}.
+The test set is a part of the available data for use that is only used for confirmation
+purposes~\citep{geron_hands-machine_2017, goodfellow_deep_2016}.
 The generalization error can be divided into three components.
 The bias error arises from simplifying assumptions for the model; the variance error measures the
 variation in the model outcome depending on the data used for training.
@@ -97,7 +98,8 @@ and~\ref{eq:gradDescb})~\citep{geron_hands-machine_2017}.
     b'\leftarrow b-\epsilon\cdot\frac{\delta}{\delta b} \textsf{MSE}(\w,b)
         = b-\frac{2\epsilon}{m}(\Xt\w+b-\y)
 \end{equation}
-
+Figure~\ref{fig:grad-desc} shows a simplified visualization of potential \ac{GD} steps towards the
+loss minimum and an intuition for how the gradients signs affect the calculated parameters.
 \begin{figure}[hb]
     \centering
     \input{figure-code/tikz/gradient-descent-tikz.tex}
@@ -106,6 +108,7 @@ and~\ref{eq:gradDescb})~\citep{geron_hands-machine_2017}.
         a 1-dimensional objective function~\citep{goodfellow_deep_2016}\label{fig:grad-desc}
     }
 \end{figure}
+
 The learning rate constant $\epsilon$ can be adjusted to speed up or slow down the `steps' which
 can affect the convergence~\citep{goodfellow_deep_2016}.
 More sophisticated variations of the \ac{GD} algorithm are more suited for practical
@@ -123,8 +126,8 @@ the Polynomial Regression model can overfit for statistical outliers in the trai
 in this case, the model with the lower capacity can achieve a lower generalization
 error~\citep{geron_hands-machine_2017}.
 Therefore, it is essential to improve the bias/variance tradeoff.
-Aside from model selection, different techniques are used to prevent overfitting
-(Regularization)~\citep{goodfellow_deep_2016}.
+Aside from model selection, different techniques are used to prevent
+overfitting~\citep{goodfellow_deep_2016}.
 \begin{figure}[h]
     \centering
     \subfigure[Linear Regression underfit\label{fig:lin-reg-under}]{%
@@ -215,7 +218,7 @@ The forward propagation can also be described by a computational graph (see
 Figure~\ref{fig:multilayer-perceptron})~\citep{goodfellow_deep_2016}.
 
 The term \ac{DNN} comes from adding many hidden layers to the \ac{NN}~\citep{shrestha_review_2019}.
-This allows for a more complicated function and better-developed features or representations that
+This allows for a more complicated function and more elaborate features or representations that
 are extracted from the input feature vector $\x$~\citep{oyedotun_deep_2015}.
 The \ac{DNN} can be trained as a whole, thus making feature engineering redundant in contrast to
 standard \ac{ML} algorithms~\citep{arpteg_software_2018}.
@@ -250,6 +253,10 @@ This calculation is performed until the first layer of the computational graph i
 reached~\citep{goodfellow_deep_2016}.
 Note that the algorithm can be performed with tensors of arbitrary
 dimensionality~\citep{goodfellow_deep_2016}.
+When it comes to training \acp{DNN}, the problem of vanishing/exploding gradients occurs during
+backpropagation.
+This problem can impede convergence~\citep{he_deep_2015}.
+Different kinds of \ac{NN} deal with this problem differently.
 
 \section{Convoluational Neural Nets}\label{se:cnn}
 % basics
@@ -532,7 +539,7 @@ Tabel~\ref{tb:confusionMatrix})~\citep{davis_relationship_2006}.
                             & \makecell{False Positive \\ True Negative} \\
         \bottomrule
     \end{tabular}}
-    \caption{Confusion Matrix\label{tb:confusionMatrix}}
+    \caption{Confusion matrix\label{tb:confusionMatrix}}
 \end{table}
 \begin{equation}\label{eq:P}
     \text{Precision}=\frac{\text{True Positive}}{\text{True Positive + False Positive}}
@@ -541,11 +548,11 @@ Tabel~\ref{tb:confusionMatrix})~\citep{davis_relationship_2006}.
     \text{Recall}=\frac{\text{True Positive}}{\text{True Positive + False Negative}}
 \end{equation}
 \begin{equation}\label{eq:f1}
-    F_1\text{-Score}=\frac{2\cdot \text{Precision}\cdot \text{Recall}}{\text{Precision}+\text{Recall}}
+    F_1\text{-Score}=\frac{2\cdot \text{Precision}\cdot \text{Recall}}{\text{Precision + Recall}}
 \end{equation}
 The difference of metrics for the task manifests itself in the way the values of the confusion matrix
 are calculated~\citep{long_scene_2021}.
-Note that the tradeoff between False Positives and Fales Negatives manifests itself in the
+Note that the tradeoff between False Positives and False Negatives manifests itself in the
 Precision-versus-Recall curve~\citep{su_relationship_2015}.
 \fone\ is also referred to as the harmonic mean (between Precision and
 Recall)~\citep{he_icpr2018_2018}.

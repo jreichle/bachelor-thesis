@@ -21,6 +21,8 @@ The main challenges for \ac{STD} involve the tradeoff between speed and accuracy
 representing arbitrary shaped text instances~\citep{wang_efficient_2019}.
 The innovations regarding \ac{STD} deal with multi-oriented and curved text (as can be seen in
 Table~\ref{tb:STD-steps-properties}).
+The innovations often include feature extraction and various segmentation innovations improve upon
+text representation and the subsequent text reconstruction i.e., distinguishing of text instances.
 \begin{table}[h]
     \centering\scriptsize
     \begin{tabular}{p{.10\textwidth}p{.10\textwidth}p{0.70\textwidth}}
@@ -41,6 +43,7 @@ Table~\ref{tb:STD-steps-properties}).
     \end{tabular}
     \caption{STD approach category shortcomings\label{tb:STD-shortcomings}}
 \end{table}
+
 Segmentation-free or \ac{BB} regression-based approaches have trouble with curved text because of
 the anchor boxes' linear bias~\citep{wang_shape_2019,ferrari_textsnake_2018}.
 Additionally, the regressed \acp{BB} have trouble accurately representing the shape of curved
