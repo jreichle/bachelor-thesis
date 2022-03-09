@@ -3,7 +3,7 @@
 Digitization is the transformation of analog information into a digital
 representation~\citep{imgrund_approaching_2018}.
 Information systems in conjunction with digitization help optimize efficiency and productivity
-for business performance, as well as reduce costs~\citep{imgrund_approaching_2018}.
+for business performance and reduce costs~\citep{imgrund_approaching_2018}.
 This facilitates the growing need for automation~\citep{imgrund_approaching_2018}.
 Additionally, a comprehensive information system with such digitized information allows a company
 to aggregate and share information to harness its benefits~\citep{goodhue_impact_1992}.
@@ -15,15 +15,14 @@ The automated process of digitizing such data is called \ac{OCR}, the concept of
 handwritten, or printed text from an image~\citep{zhao_improving_2020}.
 Techniques for this concept have improved a lot due to the advances in
 \ac{DL}~\citep{zhao_improving_2020}.
-Compared to traditional methods, \ac{DL} improves automation, effectiveness, and
-generalization~\citep{chen_text_2021}.
+\ac{DL} improves automation, effectiveness, and generalization~\citep{chen_text_2021}.
 Applying these new capabilities and finding the right solution in the space of \ac{DL} for the
 use case of extracting information of labels is the focus of this thesis.
 This is an exciting task as the performance of \ac{OCR} systems in natural scenes is still
 challenging~\citep{zhao_improving_2020, chen_text_2021}.
 Such scenes entail natural scenes captured by a camera~\citep{chen_text_2021, baek_what_2019}.
 Factors such as complex backgrounds, noise, perspective, and variability in fonts, colors, and sizes,
-of scene texts, complicate the process~\citep{hu_gtc_2020,chen_text_2021,baek_what_2019}.
+of scene texts complicate the process~\citep{hu_gtc_2020,chen_text_2021,baek_what_2019}.
 In these conditions, \ac{OCR} is known as \ac{STS}~\citep{long_scene_2021}.
 
 \section{Problem Description}\label{se:problem}
@@ -34,8 +33,8 @@ textual label data from real-world images.
 
 It is difficult to assess how well a \ac{DL} approach performs before being implemented and tested
 on the specific problem or representative dataset~\citep{arpteg_software_2018}.
-This justifies creating an overview rather than pointing out a single approach that is
-deemed the most promising.
+This justifies creating an overview rather than pointing out a single approach deemed the most
+promising.
 There are different categories of approaches~\citep{chen_text_2021,long_scene_2021}.
 The categories must be distinguished and explained.
 How the respective issues for the steps are solved must be
@@ -58,7 +57,7 @@ thesis.
 The substage aims at selecting a suitable \ac{ML} model to perform a given
 task~\citep{ashmore_assuring_2021}.
 The other Model Learning substages, loss function selection, training, and hyperparameter
-selection~\citep{ashmore_assuring_2021} will not be examined.
+selection~\citep{ashmore_assuring_2021}, will not be examined.
 Other aspects such as data analysis, implementation, training, deployment, and maintenance of a
 solution in a production environment shall not be performed either.
 Note that is this work is concerned with end-to-end recognition, which aims to detect and recognize
@@ -68,7 +67,7 @@ words only~\citep{chen_text_2021,karatzas_icdar_2015}.
 The overview and subsequent analysis create a foundation for finding the right solution.
 However, it does not contain any claims about the degree of goodness or the certainty of
 solving the given problem.
-Based on this thesis, further verification, implementation, and testing can then be performed.
+Further verification, implementation, and testing can then be performed based on this thesis.
 
 \section{Methodology}\label{se:methodology}
 The methodology of this thesis can be labeled as a literature review~\citep{snyder_literature_2019,
@@ -85,9 +84,9 @@ It is important to report how the information was found and
 synthesized~\citep{torraco_writing_2005}.
 Therefore, each section in the overview contains a paragraph about said information.
 
-Before getting into the current research level, a foundation of knowledge about the field must be
-laid.
-A taxonomy is created to facilitate the clarity of the subsequent provision of current research and
+Before getting into the current research level, it is necessary to familiarize oneself with the
+field.
+A taxonomy is created to clarify the subsequent provision of current research and
 the analysis.
 The taxonomy is helpful to classify and give context to innovations in the field.
 It is formed with the help of overview literature and other related research in the field.
@@ -95,10 +94,10 @@ It is formed with the help of overview literature and other related research in 
 The research strategy is most important for a literature
 review~\citep{snyder_literature_2019}.
 The strategy for current innovations includes determining databases and keywords
-used and exclusion criteria that are enforced~\citep{torraco_writing_2005}.
+used and enforced exclusion criteria~\citep{torraco_writing_2005}.
 Innovations are explored through searching in the Google Scholar database.
-Additionally, literature is selected through citations for and literature that has already been
-identified as important.
+Additionally, literature is selected through citations for literature that has already been
+identified as impactful.
 All research after 2018 which pertains to extracting scene text is regarded as relevant.
 Standard \ac{OCR} solutions that do not concern scene text may not hold validity in practice, as
 the image and text conditions can vary in the defined problem~\citep{chen_text_2021}.
@@ -108,7 +107,7 @@ Another necessary criterion is that the paper contributes to the \ac{ML} model.
 This extends to the whole pipeline from extraction features to the final result of the model.
 The identified literature is synthesized into an overview aligned according to the taxonomy.
 
-To improve the validity of the subsequent analysis, the problem is dissected further.
+The problem is dissected further to improve the validity of the subsequent analysis.
 This includes analyzing the specific use case and researching which qualities have been
 identified as generally critical for scene text approaches.
 The qualities are taken from the literature covering \ac{ML} in general to literature
@@ -131,7 +130,7 @@ In the following, the structure of this thesis is listed, and each chapter's exp
 result is detailed along with its benefits for the overall objective of producing an overview of
 state-of-the-art \ac{STS} relevant for the problem described in Section~\ref{se:problem}.
 Chapter~\ref{ch:theoretical} lays the theoretical foundation for later chapters.
-This includes general principles of \ac{DL} and, by extension \ac{ML}, and of \ac{STS}.
+This includes general principles of \ac{DL} and, by extension \ac{ML}, and \ac{STS}.
 Chapter~\ref{ch:research} examines current research.
 The overview is twofold: a taxonomy for the pipeline and its approaches as well as innovations in
 current research.
@@ -141,7 +140,7 @@ In Chapter~\ref{ch:problem}, the problem from Section~\ref{se:problem} is addres
 The result shall be a firm understanding of qualities that a solution must possess.
 These requirements are the point of focus for the further examination of techniques and
 enable the discussion in Chapter~\ref{ch:discussion}.
-Here the results and the availability of a solution and the methodology of this work
+Here, the results, the availability of a solution, and the methodology of this work
 are assessed critically.
-The conclusion is a summary of the results compared to the expected results detailed in this chapter,
+The conclusion is a summary of the results compared to the expected results detailed in this chapter
 and an outlook for further research into the topic.

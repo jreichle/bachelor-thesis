@@ -21,8 +21,9 @@ The main challenges for \ac{STD} involve the tradeoff between speed and accuracy
 representing arbitrary shaped text instances~\citep{wang_efficient_2019}.
 The innovations regarding \ac{STD} deal with multi-oriented and curved text (as can be seen in
 Table~\ref{tb:STD-steps-properties}).
-The innovations often include feature extraction and various segmentation innovations improve upon
-text representation and the subsequent text reconstruction i.e., distinguishing of text instances.
+The innovations often include feature extraction and various segmentation innovations that improve
+text representation and the subsequent text reconstruction, i.e., distinguishing text
+instances.
 \begin{table}[h]
     \centering\scriptsize
     \begin{tabular}{p{.10\textwidth}p{.10\textwidth}p{0.70\textwidth}}
@@ -69,8 +70,8 @@ many innovations (see Figure~\ref{fig:curved-text-representations}).
 When comparing \ac{BB} regression approaches, one-stage approaches are generally more
 efficient  because of their straightforward architecture, while two-stage approaches can generally
 predict the more accurately  because of the refinement process~\citep{lu_mimicdet_2020}.
-Note that no noteworthy comparison of sub-text level or pixel-level segmentation could be identified.
-What \ac{STD} is concerned, the bottom line seems to be:
+Note that no meaningful comparison of sub-text level or pixel-level segmentation could be identified.
+To what \ac{STD} is concerned, the bottom line seems to be:
 Is curved text detection or efficiency more critical?
 \begin{table}[h]
     \scriptsize\centering
@@ -205,7 +206,7 @@ twice~\citep{liu_fots_2018,chen_text_2021}.
 This carries much weight since feature extraction is usually the most time and
 computation-consuming step~\citep{liu_fots_2018}.
 The direct combination of \ac{STD} and \ac{STR} also impacts the performance.
-Because of the connecting both stages together are fully differentiable and can be jointly
+Because of the connection, both stages are fully differentiable and can be jointly
 optimized~\citep{chen_text_2021,long_scene_2021,qiao_text_2021}.
 Without joint optimization, errors in the detection step can be propagated to the
 recognition, resulting in performance degradation~\citep{chen_text_2021,qiao_text_2021}.
@@ -227,11 +228,11 @@ found in Table~\ref{tb:STS-comparison}.
 This thesis aimed to create an overview of \ac{STS} approaches to facilitate
 choosing a practical problem.
 A couple of factors impede this goal.
-The first being that all entities of a \ac{MLS} need to be examined to develop a proper
+The first is that all entities of a \ac{MLS} need to be examined to develop a proper
 solution~\citep{siebert_construction_2021,nakamichi_requirements-driven_2020}.
 Because not all entities (most notably the data entity) are available, this was not possible.
 
-Another reason is the chosen cutoff point of 100 citations as a requirement for innovative literature.
+Another reason is the chosen cutoff point of 100 citations as a requirement for impactful literature.
 Even though it is helpful to filter for the most groundbreaking advancements in the field,
 newer innovations that have not been revealed long enough to earn enough citations might be left
 out of the equation.

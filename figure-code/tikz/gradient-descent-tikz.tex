@@ -1,7 +1,7 @@
 {\scriptsize%
 \begin{tikzpicture}[scale=1.5]
-    \draw[->] (-3.2,0) -- (3.2,0) node[right] {$\w$};
-    \draw[->] (0,-0.2) -- (0,4) node[above] {$MSE$};
+    \draw[->] (-3.2,0) -- (3.2,0) node[right] {$w$};
+    \draw[->] (0,-0.2) -- (0,4) node[above] {\textsf{MSE}};
 
     \foreach \x/\xtext in {2/2, 3/3}
         \draw[shift={(\x,0)}] (0pt,2pt) -- (0pt,-2pt) node[below] {$\xtext$};
@@ -12,22 +12,22 @@
 
     \draw (-2,4) parabola bend (0,0) (2,4) node[below right] {$\norm{0-x}^2$};
     \draw[-,line width=0.03cm] (0.75,0.5) -- (1.5,2) node[below right]
-    {$\textsf{sign}(\frac{dy}{d\w})=\textcolor{red}{+}1$};
+    {$\textsf{sign}(\frac{dy}{dw})=\textcolor{red}{+}1$};
     \draw[-,line width=0.03cm] (-0.75,0.5) -- (-1.5,2) node[below left]
-    {$\textsf{sign}(\frac{dy}{d\w})=\textcolor{red}{-}1$};
+    {$\textsf{sign}(\frac{dy}{dw})=\textcolor{red}{-}1$};
 
-    \node at (2.2, 1.1) {$\w' \leftarrow \w - (\textcolor{red}{+}\left|\frac{dy}{d\w}\right|)$};
-    \node at (-2.2, 1.1) {$\w' \leftarrow \w - (\textcolor{red}{-}\left|\frac{dy}{d\w}\right|)$};
+    \node at (2.2, 1.1) {$w' \leftarrow w - (\textcolor{red}{+}\left|\frac{dy}{dw}\right|)$};
+    \node at (-2.2, 1.1) {$w' \leftarrow w - (\textcolor{red}{-}\left|\frac{dy}{dw}\right|)$};
 
     \draw[-] (1,1) -- (1,0);
     \draw[-] (-1,1) -- (-1,0);
     \draw[-] (0.5,0.25) -- (0.5,0);
     \draw[-] (-0.5,0.25) -- (-0.5,0);
 
-    \node at (1, -0.2) {$\w$};
-    \node at (-1, -0.2) {$\w$};
+    \node at (1, -0.2) {$w$};
+    \node at (-1, -0.2) {$w$};
 
-    \node at (0.5, -0.155) {$\w'$};
-    \node at (-0.5, -0.155) {$\w'$};
+    \node at (0.5, -0.155) {$w'$};
+    \node at (-0.5, -0.155) {$w'$};
 \end{tikzpicture}
 }

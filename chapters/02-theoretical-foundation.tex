@@ -99,7 +99,7 @@ and~\ref{eq:gradDescb})~\citep{geron_hands-machine_2017}.
         = b-\frac{2\epsilon}{m}(\Xt\w+b-\y)
 \end{equation}
 Figure~\ref{fig:grad-desc} shows a simplified visualization of potential \ac{GD} steps towards the
-loss minimum and an intuition for how the gradients signs affect the calculated parameters.
+loss minimum and an intuition for how the gradients' signs affect the calculated parameters.
 \begin{figure}[hb]
     \centering
     \input{figure-code/tikz/gradient-descent-tikz.tex}
@@ -109,7 +109,7 @@ loss minimum and an intuition for how the gradients signs affect the calculated 
     }
 \end{figure}
 
-The learning rate constant $\epsilon$ can be adjusted to speed up or slow down the `steps' which
+The learning rate constant $\epsilon$ can be adjusted to speed up or slow down the `steps', which
 can affect the convergence~\citep{goodfellow_deep_2016}.
 More sophisticated variations of the \ac{GD} algorithm are more suited for practical
 application (e.g., RMSProp, Adam)~\citep{geron_hands-machine_2017}.
@@ -143,7 +143,7 @@ overfitting~\citep{goodfellow_deep_2016}.
 
 \section{Deep Learning}
 In \ac{DL}, \acp{DNN} are leveraged to learn new data representations through
-multiple layers of abstraction automatically .
+multiple layers of abstraction automatically.
 This makes \acp{DNN} powerful function approximators~\citep{goodfellow_deep_2016}.
 \ac{DL} has only caught on in recent years as the enormous computational cost has been met
 by improvement in computer hardware and automatic feature
@@ -161,7 +161,7 @@ The first layer, which receives the input features $\x$, is called the input lay
 which outputs the final estimation of $\hat{y}$ or $\hat{\y}$ is called the output layer, all layers in between
 are called the hidden layers~\citep{shrestha_review_2019}.
 The structure with which the \ac{NN} is built in terms of how many layers, how many neurons are in
-each layer, and how they are connected, is called architecture~\citep{goodfellow_deep_2016}.
+each layer, and how they are connected is called architecture~\citep{goodfellow_deep_2016}.
 The number of layers $d$ is referred to as depths, whereas the dimensionality of those layers is
 called the width $w$~\citep{goodfellow_deep_2016}.
 \begin{figure}[ht]
@@ -204,7 +204,7 @@ While \relu\ is the prevalent function for feedforward \ac{NN}~\citep{goodfellow
 $\tahn$ is often used in \acp{RNN} like in~\cite{sherstinsky_fundamentals_2020,greff_lstm_2017}.
 Sigmoid (\sfmx) activation functions, used for the output layer, are used to generate a Bernoulli
 (Multinouli) distribution which is helpful for classification tasks~\citep{goodfellow_deep_2016}.
-For, e.g.\ regression, the output layer can omit the activation
+For, e.g., regression, the output layer can omit the activation
 function~\citep{goodfellow_deep_2016}.
 The prediction calculation is a concatenation of the functions defined by the
 layers and their neurons, the process of which is called
@@ -321,7 +321,7 @@ separately (see Figure~\ref{fig:pool-layer})~\citep{chauhan_review_2018}.
         2~\citep{chauhan_review_2018}\label{fig:maxpool}
     }
 \end{figure}
-Much like with convolutions (in 2d scenario) the pooling operation is slid across the height and
+Much like with convolutions (in 2d scenario), the pooling operation is slid across the height and
 weight dimensions of the channels (possibly with stride), and the pooling operation is
 performed~\citep{ponti_everything_2017,chauhan_review_2018}.
 The most popular kind of pooling is maxpooling~\citep{ponti_everything_2017}.
@@ -332,7 +332,7 @@ taken (see Figure~\ref{fig:maxpool})~\citep{chauhan_review_2018}.
 When it comes to training deep \acp{CNN}, the problem of vanishing/exploding gradients occurs during
 backpropagation.
 This problem can impede convergence~\citep{he_deep_2015}.
-It can be solved by normalized initialization the network's weights and intermediate
+It can be solved by normalized initialization of the network's weights and intermediate
 batch normalization layers~\citep{he_deep_2015,bjorck_understanding_2018}.
 Layer normalization can also be used~\citep{liu_rethinking_2021,ba_layer_2016}.
 ResNet introduced residual blocks with skip connections that pass the gradient to later layers
@@ -402,8 +402,8 @@ layers~\citep{chauhan_review_2018}.
         vector~\citep{goodfellow_deep_2016,yu_review_2019}\label{fig:lstm}
     }
 \end{figure}
-The \ac{LSTM} also improves upon the vanishing gradients problem associated with
-increasingly deep \acp{NN}~\citep{sherstinsky_fundamentals_2020}
+The \ac{LSTM} also improves the vanishing gradients problem associated with
+increasingly deep \acp{NN}~\citep{sherstinsky_fundamentals_2020}.
 The clipping gradients technique is often used to help with exploding
 gradients~\citep{goodfellow_deep_2016}.
 A so-called cell is shown in Figure~\ref{fig:lstm}.
@@ -500,7 +500,7 @@ from an image~\citep{zhao_improving_2020}.
 Achieving satisfactory performance of \ac{OCR} systems in natural scenes is still
 challenging~\citep{zhao_improving_2020, chen_text_2021}.
 Such scenes entail natural scenes captured by a camera~\citep{chen_text_2021, baek_what_2019}.
-The difficulties arise from diversity and variability of text, complexity, and interference from
+The difficulties arise from diversity and variability of text, complexity and interference from
 backgrounds, and poor imaging conditions.
 In these conditions, \ac{OCR} is known as \ac{STS}~\citep{long_scene_2021}.
 % DL influence
@@ -521,7 +521,7 @@ an end-to-end approach~\citep{chen_text_2021}.
 %% evaluation metrics
 % XXX: properties and pros for different metrics
 % XXX: table with task, metric, properties/why it's used
-The right evaluation metrics must be used to assess the performance of developed approaches.
+The correct evaluation metrics must be used to assess the performance of developed approaches.
 % STD
 The popular protocols Precision, Recall, and the \fone\ are used to compare
 approaches for \ac{STD}~\citep{long_scene_2021}.
@@ -573,8 +573,8 @@ The PASCAL approach defines the \ac{IOU} (see Equation~\ref{eq:iou}).
 \end{equation}
 For PASCAL, the prediction will be matched if the \ac{IOU} value is larger than a
 threshold~\citep{long_scene_2021}.
-A match is considered a True Positive, the other values are assigned
-accordingly~\citep{sun_icdar_2019}.
+A match is considered a True Positive.
+The other values are assigned accordingly~\citep{sun_icdar_2019}.
 % more BB have IOU>threshold -> depending on situation all or greatest value
 Other evaluation approaches are mostly based on \ac{IOU}, e.g., MSRA-TD 500 evaluates the rotation
 from the \ac{BB} compared to the truth and the \ac{IOU}

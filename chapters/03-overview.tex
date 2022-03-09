@@ -1,6 +1,6 @@
 \chapter{Technique Overview}\label{ch:research}
 The objective is to create an overview of techniques in the field.
-According to the methodology detailed in~\ref{se:methodology}, a taxonomy is first introduced
+According to the methodology detailed in~\ref{se:methodology}, a taxonomy is first introduced,
 which facilitates the analysis and comparison of techniques.
 The subsequent search for literature that lays the foundation for an overview of current research
 is documented.
@@ -90,8 +90,8 @@ Figure~\ref{fig:STD-segfree-ssd}), which is based on \ac{SSD}.
 \end{figure}
 Note that the approach is modeled to recognize horizontal text instances~\citep{liao_textboxes_2017}.
 It uses a convolutional network inspired by the VGG architecture (blocks of two or
-three $3\times3$ conv layers with same-padding followed by a $2\times2$ max pooling layer with
-stride 2) for feature extraction~\citep{liao_textboxes_2017,simonyan_very_2015}.
+three $3\times3$ convolutional layers with same-padding followed by a $2\times2$ max pooling layer
+with stride 2) for feature extraction~\citep{liao_textboxes_2017,simonyan_very_2015}.
 Note that the spatial padding added for convolution ensures that spatial dimensions are
 preserved~\citep{simonyan_very_2015}.
 Afterward come additional layers, which continuously downsample.
@@ -108,7 +108,9 @@ Note that the output is not the location of a \ac{BB} but the offset to the
 respective anchor box~\citep{liao_textboxes_2017,long_scene_2021}.
 Anchor boxes are predefined to bias towards different sizes and aspect ratios (see
 Figure~\ref{fig:STD-segfree-anchors})~\citep{liao_textboxes_2017}.
-\begin{figure}[ht]
+The text-box layers are the difference from the \ac{SSD} approach for standard object
+detection~\citep{liao_textboxes_2017,liu_ssd_2016}.
+\begin{figure}[t]
     \centering
     \includegraphics[width=0.5\textwidth]{img/STD-seg-free-anchor-boxes-Zhao-Novel-2018.png}
     \caption[Anchor box placement for one space on the feature map]{%
@@ -116,8 +118,6 @@ Figure~\ref{fig:STD-segfree-anchors})~\citep{liao_textboxes_2017}.
         map~\citep{zhao_novel_2018}\label{fig:STD-segfree-anchors}
     }
 \end{figure}
-The text-box layers are the difference from the \ac{SSD} approach for standard object
-detection~\citep{liao_textboxes_2017,liu_ssd_2016}.
 These layers use $1\times5$ filters to adjust to larger aspect ratios~\citep{liao_textboxes_2017}.
 Each text-box layer has 72 filters (12 anchor boxes $\cdot$ 6 values per prediction), the filters
 are slid across the input features generating 12 predicted \ac{BB} per
@@ -136,7 +136,7 @@ Faster R-CNN (like two-stage methods)~\citep{ren_faster_2015,long_scene_2021}.
 The two stages consist of \ac{ROI} regression \ac{BB}
 adjustments~\citep{jiang_r2cnn_2017, ren_faster_2015}.
 The two-stage \ac{STD} approach introduced by~\cite{jiang_r2cnn_2017} (see
-Figure~\ref{fig:STD-segfree-rcnn}) uses Faster R-CNN.%
+Figure~\ref{fig:STD-segfree-rcnn}) uses Faster R-CNN.\
 Unlike the previous approach, the architecture is designed to detect multi-oriented text
 instances~\citep{jiang_r2cnn_2017,liao_textboxes_2017}.
 \begin{figure}[ht]
@@ -157,7 +157,7 @@ respective to \acp{BB}.
 However, these are considered regions that probably contain text subject to change and
 be refined later~\citep{jiang_r2cnn_2017,lu_mimicdet_2020}.
 The \acp{BB} are still axis aligned at this point~\citep{jiang_r2cnn_2017}.
-In contrast to the previous \ac{SSD}-based approach, only one feature map is used in conjunction with
+In contrast to the previous \ac{SSD}-based approach, only one feature map is used with
 \ac{BB} regression~\citep{jiang_r2cnn_2017}.
 The \ac{RPN} from Faster R-CNN is adjusted to use smaller-scale anchor boxes to adapt to
 text~\citep{jiang_r2cnn_2017}.
@@ -180,16 +180,16 @@ The basis for the segmentation-based methods is that every part of the text inst
 be used to verify that there is text~\citep{long_scene_2021}.
 Because of this, sub-text components can be detected separately and then used to reconstruct a text
 instance~\citep{long_scene_2021}.
-Segmentation-based methods can be summed up in two categories: pixel-level and
-component-level~\citep{long_scene_2021}.
-\begin{figure}[hb]
+\begin{figure}[b]
     \centering
-    \includegraphics[width=0.8\textwidth]{img/STD-seg-based-architecture-Shi-Detecting-2017.png}
+    \includegraphics[width=0.7\textwidth]{img/STD-seg-based-architecture-Shi-Detecting-2017.png}
     \caption[Sub-text component, segmentation-based STD architecture]{%
         Example for a sub-text component, segmentation-based STD
         architecture~\citep{shi_detecting_2017}\label{fig:STD-segbased-component-architecture}
     }
 \end{figure}
+Segmentation-based methods can be summed up in two categories: pixel-level and
+component-level~\citep{long_scene_2021}.
 Like \ac{BB} regression-based methods, example architectures are explained to
 describe their categories more clearly.
 The first segmentation-based category for \ac{STD} segment components which are local regions of
@@ -332,8 +332,8 @@ examples.
 The approach from~\cite{wan_textscanner_2020} can be used as an example, should the reader feel the
 need to read up on segmentation-based methods for \ac{STR} that do not include an \ac{EnDe}
 mechanism in the sequence modeling and prediction stage.
-The approach adds a geometry branch parallel to the character segmentation, which helps with
-putting the identified characters in the correct sequence (see
+The approach adds a geometry branch parallel to the character segmentation, which helps put
+the identified characters in the correct sequence (see
 Figure~\ref{fig:STR-segbased-architecture})~\citep{wan_textscanner_2020}.
 
 For \ac{EnDe}-based \ac{STR}, there are two main categories: \ac{CTC}-based and
@@ -391,7 +391,7 @@ networks~\citep{liu_squeezedtext_2018}.
 
 For the sequence modeling and transcription steps, first \ac{CTC}-based
 and then attention-based examples are explained.
-\begin{figure}[hb]
+\begin{figure}[b]
     \centering
     \includegraphics[width=0.25\textwidth]{img/STR-encdec-sequence-feat.png}
     \caption[Sequential feature extraction from convolution feature maps]{%
@@ -405,7 +405,7 @@ For~\cite{shi_end--end_2017}, the sequence is generated by taking columns out of
 from left to the right (see Figure~\ref{fig:STR-CTC-seq-feat})~\citep{shi_end--end_2017}.
 This acts as a connector of visual representation and the sequence representation
 needed for \acp{RNN}~\citep{chen_text_2021}.
-This is possible because the parts of the feature map correspond to a spatial region of the
+This is possible because the parts of the feature map corresponding to a spatial region of the
 original image~\citep{shi_end--end_2017,goodfellow_deep_2016}.
 This encoding corresponds to a 1d representation that neglects vertical spatial
 information~\citep{cong_comparative_2019}.
@@ -507,7 +507,7 @@ The approach from~\cite{ghosh_visual_2017} is inspired by~\cite{bahdanau_neural_
 It uses a \ac{CNN} for spatial encoding of the input image, which the attention mechanism uses
 directly.
 The attention mechanism then helps the subsequent \ac{LSTM} to choose the most relevant parts of the
-image for each timestep~\citep{ghosh_visual_2017}.
+image for each time step~\citep{ghosh_visual_2017}.
 \begin{figure}[h]
     \centering
     \includegraphics[width=0.60\textwidth]{img/STR-encdec-attention-Gosh-Visual-2017.png}
@@ -622,7 +622,7 @@ model~\citep{busta_deep_2017}.
 \section{State-of-the-Art Methods}\label{se:innovations}
 This section documents the search for literature that provides the content for the subsequent
 overview of innovation.
-For this, essential \ac{DL} techniques, notable advances, and properties are researched
+Essential \ac{DL} techniques, notable advances, and properties are researched
 and presented.
 Note that not the whole introduced approaches are explained, but only the innovation that
 improves upon previous work.
@@ -709,7 +709,7 @@ The following approaches are concerned with efficiency for multi-oriented text:
 The 1-stage \ac{BB} regression approach by~\citep{liao_textboxes_2018} introduced a different
 representation for \acp{BB}, which is multi-oriented.
 The representation has 13 parameters~\citep{liao_textboxes_2018}.
-That is more than usual for a multi-oriented \acp{BB} (8)~\citep{ma_arbitrary-oriented_2018}.
+That is more than usual for multi-oriented \acp{BB} (8)~\citep{ma_arbitrary-oriented_2018}.
 An efficient approach from~\cite{lyu_multi-oriented_2018} uses pixel-level segmentation.
 A grid subdivides the image, and each grid space of pixels is
 predicted to efficiently generate a pixel segmentation map~\citep{lyu_multi-oriented_2018}.
@@ -860,7 +860,7 @@ The attention module is performed at different scales~\citep{liao_scene_2018,xu_
 
 The following approaches are all attention-based.
 However, their innovation concern different parts of the attention-based \ac{STR} pipeline.
-\begin{figure}[hb]
+\begin{figure}[b]
     \centering\scriptsize
     \subfigure[
         \scriptsize center line rectification
@@ -920,7 +920,7 @@ The innovation by~\cite{li_show_2019} uses 2d attention from~\citep{xu_show_2016
 for \ac{STR}.
 The mechanism is made more robust by taking each of the eight spatial neighbors into
 account~\citep{li_show_2019}.
-Compared to the visual attention mechanism it can not only decide horizontally which part of the
+Compared to the visual attention mechanism, it can not only decide horizontally which part of the
 image to focus on but also vertically~\citep{li_show_2019,ghosh_visual_2017}.
 The mechanism proposed by~\cite{liu_char-net_2018} uses attention to recurrently find characters and
 \ac{TPS} to rectify them to predict the text instance.
@@ -935,7 +935,7 @@ These operations either forego a time step, add a character to the word or inser
 at the previous position~\citep{bai_edit_2018}.
 
 \subsection{Spotting Innovations}
-Five results were identified as relevant under the defined criteria for end-to-end \ac{STS},
+Five results were identified as relevant under the defined criteria for end-to-end \ac{STS}.
 The last relevant innovation was found on page five, and on page ten, the topic diverged.
 The investigation of citations did not lead to new results.
 \begin{table}[h]
@@ -954,7 +954,7 @@ The investigation of citations did not lead to new results.
             &~\cite{liu_fots_2018} & 355 & Bilinear interpolation to transform oriented feature
                 regions into axis-aligned feature maps followed by CTC recognition
             & m & two-stage$\rightarrow$CTC\\
-            &~\cite{liu_abcnet_2020} & 100 & One stage with bezier curves instead of anchor fee
+            &~\cite{liu_abcnet_2020} & 100 & One-stage with bezier curves instead of anchor fee
                 detection followed by bezier adjusted ROI pooling and a lightweight CTC
                 recognition head & c & one-stage$\rightarrow$CTC  \\
         \bottomrule
@@ -975,8 +975,8 @@ The \ac{STD} approach from~\cite{liao_textboxes_2018} can be extended with the \
 approach from~\cite{shi_end--end_2017}, explained along with the taxonomy.
 The word probability predicted by the \ac{CTC} transcription can be combined with the
 text certainty score of the \ac{STD} module to improve \ac{NMS}.
-The \ac{STR} approach from~\cite{shi_aster_2019} can be extended with the one stage
-\ac{BB} regression based \ac{STD} approach from~\cite{liao_textboxes_2017} that was also explained
+The \ac{STR} approach from~\cite{shi_aster_2019} can be extended with the one-stage
+\ac{BB} regression-based \ac{STD} approach from~\cite{liao_textboxes_2017} that was also explained
 in the taxonomy~\citep{shi_aster_2019}.
 
 The field of end-to-end \ac{STS} has moved towards 2 stage approaches that combine both \ac{STD}
@@ -1007,14 +1007,14 @@ The \acp{BB} are used with the text instance segmentation to form the final dete
 the characters are combined to the recognition prediction~\citep{lyu_mask_2018}.
 The network from~\cite{liu_abcnet_2020} uses bezier curves to represent curved text (see
 Figure~\ref{fig:bezier}).
-\begin{figure}[hb]
+\begin{figure}[b]
     \centering
-    \includegraphics[width=0.7\textwidth]{img/E2E-2-stage-bezier-Liu-ABCNet-2020.png}
+    \includegraphics[width=0.6\textwidth]{img/E2E-2-stage-bezier-Liu-ABCNet-2020.png}
     \caption[Bezier-curves predicted by control points]{%
         Bezier-curves predicted by control points $b_i$~\citep{liu_abcnet_2020}\label{fig:bezier}
     }
 \end{figure}
-The bezier curve representation is predicted by a one stage, anchor free
+The bezier curve representation is predicted by one-stage, anchor-free
 regression~\citep{liu_abcnet_2020}.
 The spatial features corresponding to the predicted instances are then extracted from the feature
-maps, rectified and handed to a lightweight \ac{CTC}-based recognition branch~\citep{lyu_mask_2018}.
+maps, rectified, and handed to a lightweight \ac{CTC}-based recognition branch~\citep{lyu_mask_2018}.
